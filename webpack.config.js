@@ -253,6 +253,11 @@ module.exports = env => {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                options: {
+                    plugins: [
+                        '@babel/plugin-proposal-class-properties'
+                    ]
+                }
             },
             {
                 test: /\.ts$/,
