@@ -17,6 +17,10 @@ export class ModelManager  {
     constructor() {
         this.items = hasKey('items') ? getString('items') : defaultItems;
     }
+    resetItems() {
+        this.items = defaultItems;
+        this.saveItems();
+    }
     getItems() {
         return this.items;
     }

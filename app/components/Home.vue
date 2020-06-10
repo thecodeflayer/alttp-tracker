@@ -2,11 +2,7 @@
     <Page>
         <Navbar></Navbar>
         <GridLayout>
-            <Label class="info">
-                <FormattedString>
-                    <Span :text="JSON.stringify(this.$modelManager.getItem('sword'))"/>
-                </FormattedString>
-            </Label>
+            <Button class="info" @tap="resetItems">Reset Items</Button>
         </GridLayout>
     </Page>
 </template>
@@ -18,7 +14,9 @@
 
         },
         methods: {
-
+            resetItems() {
+                this.$modelManager.resetItems();
+            }
         }
     };
 </script>
@@ -33,6 +31,9 @@
 
     .info {
         font-size: 20;
+        background-color: darkgreen;
+        padding: 10;
+        color: white;
         horizontal-align: center;
         vertical-align: center;
     }
