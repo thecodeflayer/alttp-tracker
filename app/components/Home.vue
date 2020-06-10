@@ -1,9 +1,6 @@
 <template>
     <Page>
-        <ActionBar>
-            <Label text="Home"/>
-        </ActionBar>
-
+        <Navbar></Navbar>
         <GridLayout>
             <Label class="info">
                 <FormattedString>
@@ -16,17 +13,21 @@
 </template>
 
 <script>
+
   export default {
-    computed: {
+      computed: {
       message() {
-        return "Blank {N}-Vue app";
+        return "Home Page Yo!";
       }
+    },
+    methods: {
+
     }
   };
 </script>
 
 <style scoped lang="scss">
-    @import '~@nativescript/theme/scss/variables/blue';
+    @import '~@nativescript/theme/scss/variables/forest';
 
     // Custom styles
     .fas {
