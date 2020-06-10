@@ -1,10 +1,9 @@
 <template>
     <Page backgroundColor="black">
         <Navbar></Navbar>
-        <GridLayout class="item-grid" columns="*,40" rows="40,40">
-            <Image row="0" col="0" :src="moonpearl" class="item" @tap="clickItem('moonpearl')" />
-            <Image row="0" col="1" :src="getImage('mirror')" class="item" @tap="clickItem('mirror')"/>
-            <Label :text="moonpearl" color="white" row="1" col="0" />
+        <GridLayout class="item-grid" columns="40,40" rows="40,40">
+            <Image row="0" col="0" :src="items.moonpearl" class="item" @tap="clickItem('moonpearl')" />
+            <Image row="0" col="1" :src="items.mirror" class="item" @tap="clickItem('mirror')"/>
         </GridLayout>
     </Page>
 </template>
@@ -14,14 +13,17 @@
     export default {
         data() {
             return {
-                moonpearl: false
+                items: {
+                    moonpearl: false,
+                    mirror: false
+                }
             }
         },
         computed: {
-
         },
         created() {
-            this.moonpearl = this.getImage('moonpearl');
+            this.items.moonpearl = this.getImage('moonpearl');
+            this.items.mirror = this.getImage('mirror');
         },
         methods: {
             getImage(key) {
@@ -41,7 +43,8 @@
                 } else if (typeof this.$modelManager.getItem(key) === "number") {
                     return '~/assets/images/'+key+this.$modelManager.getItem(key)+'.png';
                 }
-                this[key] = this.getImage(key);
+                this.items[key] = this.getImage(key);
+                //console.log(this[key]);
             }
         }
     };
