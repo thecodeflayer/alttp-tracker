@@ -4,8 +4,7 @@
         <GridLayout>
             <Label class="info">
                 <FormattedString>
-                    <Span class="fas" text.decode="&#xf135; "/>
-                    <Span :text="message"/>
+                    <Span :text="JSON.stringify(this.$modelManager.getItem('sword'))"/>
                 </FormattedString>
             </Label>
         </GridLayout>
@@ -14,16 +13,14 @@
 
 <script>
 
-  export default {
-      computed: {
-      message() {
-        return "Home Page Yo!";
-      }
-    },
-    methods: {
+    export default {
+        computed: {
 
-    }
-  };
+        },
+        methods: {
+
+        }
+    };
 </script>
 
 <style scoped lang="scss">
