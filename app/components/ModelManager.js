@@ -24,11 +24,14 @@ export class ModelManager  {
     getItems() {
         return this.items;
     }
+    getItemKeys() {
+        return Object.keys(this.items);
+    }
     getItem(key) {
         if(Object.keys(this.items).indexOf(key) > -1) {
             return this.items[key];
         } else {
-            console.error('no item with that key!');
+            console.error('no item with that key!', key);
         }
     }
     setItem(key, value) {
