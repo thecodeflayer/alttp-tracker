@@ -11,11 +11,14 @@ import {
 } from "tns-core-modules/application-settings";
 
 import {defaultItems} from "~/defaultItems";
+import {defaultDungeons} from "~/defaultDungeons";
 
 export class ModelManager  {
     items = {};
+    dungeons = {};
     constructor() {
         this.items = hasKey('items') ? getString('items') : defaultItems;
+        this.dungeons = hasKey('dungeons') ? getString('dungeons') : defaultDungeons;
     }
     resetItems() {
         this.items = defaultItems;
@@ -40,5 +43,29 @@ export class ModelManager  {
     }
     saveItems() {
         setString('items', JSON.stringify(this.items));
+    }
+    resetDungeons() {
+        this.dungeons = defaultDungeons;
+        this.saveDungeons();
+    }
+    getDungeons() {
+        return this.dungeons;
+    }
+    getDungeonKeys() {
+        return Object.keys(this.dungeons);
+    }
+    getDungeon(key) {
+        if(Object.keys(this.dungeons).indexOf(key) > -1) {
+            return this.dungeons[key];
+        } else {
+            console.error('no dungeon with that key!', key);
+        }
+    }
+    setDungeonValue(dungeonKey, key, value) {
+        this.dungeons.boss[dungeonKey][key] = value;
+        this.saveDungeons();
+    }
+    saveDungeons() {
+        setString('dungeons', JSON.stringify(this.items));
     }
 }
