@@ -1,9 +1,8 @@
 <template>
     <Page backgroundColor="black">
         <Navbar></Navbar>
-        <GridLayout class="item-grid" columns="40,40" rows="40,40">
-            <Image row="0" col="0" :src="items.moonpearl" class="item" @tap="clickItem('moonpearl')" />
-            <Image row="0" col="1" :src="items.mirror" class="item" @tap="clickItem('mirror')"/>
+        <GridLayout class="item-grid" columns="40,40,40,40,40,40" rows="40,40,40,40,40,40">
+            <Image v-for="(key, index) in itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
         </GridLayout>
     </Page>
 </template>
@@ -11,12 +10,10 @@
 <script>
 
     export default {
-        data() {
+        data: function() {
             return {
-                items: {
-                    moonpearl: false,
-                    mirror: false
-                }
+                items: this.getAllImages(),
+                itemKeys: this.$modelManager.getItemKeys()
             }
         },
         computed: {
@@ -35,16 +32,29 @@
                     }
                 } else if (typeof this.$modelManager.getItem(key) === "number") {
                     return '~/assets/images/'+key+this.$modelManager.getItem(key)+'.png';
+                } else {
+                    return '~/assets/images/unknown.png';
                 }
             },
             clickItem(key) {
                 if (typeof this.$modelManager.getItem(key) === "boolean") {
                     this.$modelManager.setItem(key, !this.$modelManager.getItem(key));
                 } else if (typeof this.$modelManager.getItem(key) === "number") {
-                    return '~/assets/images/'+key+this.$modelManager.getItem(key)+'.png';
+                    let val = this.$modelManager.getItem(key) + 1;
+                    if(val > this.$maxItemValues[key]){
+                        val = 0;
+                    }
+                    this.$modelManager.setItem(key, val);
                 }
                 this.items[key] = this.getImage(key);
-                //console.log(this[key]);
+            },
+            getAllImages() {
+                const retval = {};
+                const keys = this.$modelManager.getItemKeys();
+                for(const key of keys) {
+                    retval[key] = this.getImage(key);
+                }
+                return retval;
             }
         }
     };
