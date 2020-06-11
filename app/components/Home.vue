@@ -1,8 +1,9 @@
 <template>
     <Page>
         <Navbar></Navbar>
-        <GridLayout>
-            <Button class="info" @tap="resetItems">Reset Items</Button>
+        <GridLayout columns="*", rows="50,50,50,50" style="margin-top:10">
+            <Button row="0" col="0" class="btn" @tap="resetItems">Reset Items</Button>
+            <Button row="1" col="0" class="btn" @tap="resetDungeons">Reset Dungeons</Button>
         </GridLayout>
     </Page>
 </template>
@@ -16,6 +17,9 @@
         methods: {
             resetItems() {
                 this.$modelManager.resetItems();
+            },
+            resetDungeons() {
+                this.$modelManager.resetDungeons();
             }
         }
     };
@@ -29,12 +33,13 @@
         @include colorize($color: accent);
     }
 
-    .info {
+    .btn {
         font-size: 20;
         background-color: darkgreen;
         padding: 10;
         color: white;
         horizontal-align: center;
         vertical-align: center;
+        width: 90%
     }
 </style>
