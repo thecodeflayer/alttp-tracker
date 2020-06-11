@@ -1,27 +1,33 @@
 <template>
     <ActionBar backgroundColor="#006400">
-        <StackLayout orientation="horizontal">
-            <StackLayout orientation="vertical" @tap="navHome">
-                <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="20" width="20" />
-                <Label text="Home" verticalAlignment="top" fontSize="14" class="btn-label"/>
+        <ScrollView orientation="horizontal">
+            <StackLayout orientation="horizontal">
+                <StackLayout orientation="vertical" @tap="navHome">
+                    <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Home" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
+                <StackLayout orientation="vertical" @tap="navItems">
+                    <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Items" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
+                <StackLayout orientation="vertical" @tap="navDungeons">
+                    <Image src="~/img/navbar/dungeons.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Dungeons" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
+                <StackLayout orientation="vertical" @tap="navLightMap">
+                    <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Light Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
+                <StackLayout orientation="vertical" @tap="navDarkMap">
+                    <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Dark Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
+                <StackLayout orientation="vertical" @tap="navSettings">
+                    <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="20" width="20" />
+                    <Label text="Settings" verticalAlignment="top" fontSize="14" class="btn-label"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout orientation="vertical" @tap="navItems">
-                <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="20" width="20" />
-                <Label text="Items" verticalAlignment="top" fontSize="14" class="btn-label"/>
-            </StackLayout>
-            <StackLayout orientation="vertical" @tap="navLightMap">
-                <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="20" width="20" />
-                <Label text="Light Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
-            </StackLayout>
-            <StackLayout orientation="vertical" @tap="navDarkMap">
-                <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="20" width="20" />
-                <Label text="Dark Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
-            </StackLayout>
-            <StackLayout orientation="vertical" @tap="navSettings">
-                <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="20" width="20" />
-                <Label text="Settings" verticalAlignment="top" fontSize="14" class="btn-label"/>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ActionBar>
 </template>
 
@@ -31,6 +37,7 @@
     import DarkMap from "~/components/DarkMap";
     import Items from "~/components/Items";
     import Settings from "~/components/Settings";
+    import Dungeons from "~/components/Dungeons";
 
     export default {
         computed: {
@@ -51,6 +58,9 @@
             },
             navSettings() {
                 this.$navigateTo(Settings);
+            },
+            navDungeons() {
+                this.$navigateTo(Dungeons);
             }
         }
     };

@@ -2,18 +2,9 @@
     <Page backgroundColor="black">
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
-            <StackLayout orientation="vertical">
-                <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
-                    <Image v-for="(key, index) in itemKeys" v-bind:key="itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
-                </GridLayout>
-                <GridLayout class="dungeon-grid" columns="*,*,*,*" rows="70,70,70">
-                    <GridLayout v-for="(key, index) in dungeonKeys" v-bind:key="dungeonKeys" :row="Math.floor(index/4)" :col="index % 4"
-                                v-bind:style="{backgroundImage: '~/img/dungeons/'+key+'_boss'+(this.dungeons.boss ? '1':'0')+'.png'}"
-                                class="dungeon-stack">
-                        <Label text="test"></Label>
-                    </GridLayout>
-                </GridLayout>
-            </StackLayout>
+            <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
+                <Image v-for="(key, index) in itemKeys" v-bind:key="itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
+            </GridLayout>
         </ScrollView>
     </Page>
 </template>
@@ -25,8 +16,6 @@
             return {
                 items: this.getAllImages(),
                 itemKeys: this.$modelManager.getItemKeys(),
-                dungeons: this.getDungeons(),
-                dungeonKeys: this.$modelManager.getDungeonKeys()
             }
         },
         computed: {
