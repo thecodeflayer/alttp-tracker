@@ -23,6 +23,14 @@ export const defaultDungeons = {
         map: false,
         compass: false,
     }, // tower of harrah
+    aga: {
+        boss: false,
+        crystal: 0,
+        chests: 0,
+        maxChests: 0,
+        map: false,
+        compass: false,
+    }, // aganhim
     pod: {
         boss: false,
         crystal: 0,
@@ -79,12 +87,12 @@ export const defaultDungeons = {
         map: false,
         compass: false,
     }, // turtle rock
-    aga: {
+    agatoo: {
         boss: false,
         crystal: 0,
-        chests: 10,
-        maxChests: 10,
+        chests: 20,
+        maxChests: 20,
         map: false,
         compass: false,
-    }, // aganhim
+    } // aganhim2
 }
