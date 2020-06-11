@@ -1,7 +1,7 @@
 <template>
     <Page backgroundColor="black">
         <Navbar></Navbar>
-        <GridLayout class="item-grid" columns="40,40,40,40,40,40" rows="40,40,40,40,40,40">
+        <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40,40">
             <Image v-for="(key, index) in itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
         </GridLayout>
     </Page>

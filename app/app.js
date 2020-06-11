@@ -12,7 +12,7 @@ Vue.prototype.$maxItemValues = {
     glove: 2,
     sword: 4,
     shield: 3,
-    tunic: 3
+    tunic: 2
 }
 new Vue({
     render: h => h('frame', [h(Home)]),
