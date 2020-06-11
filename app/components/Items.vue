@@ -26,14 +26,14 @@
             getImage(key) {
                 if (typeof this.$modelManager.getItem(key) === "boolean") {
                     if (this.$modelManager.getItem(key)){
-                        return '~/assets/images/'+key+'.png';
+                        return '~/img/items/'+key+'1.png';
                     } else {
-                        return '~/assets/images/disabled/'+key+'.png';
+                        return '~/img/items/'+key+'0.png';
                     }
                 } else if (typeof this.$modelManager.getItem(key) === "number") {
-                    return '~/assets/images/'+key+this.$modelManager.getItem(key)+'.png';
+                    return '~/img/items/'+key+this.$modelManager.getItem(key)+'.png';
                 } else {
-                    return '~/assets/images/unknown.png';
+                    return '~/img/items/unknown.png';
                 }
             },
             clickItem(key) {

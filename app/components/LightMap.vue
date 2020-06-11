@@ -7,7 +7,6 @@
                     <Span :text="message"/>
                 </FormattedString>
             </Label>
-            <Image src="~/assets/images/0058.png" stretch="none" />
         </GridLayout>
     </Page>
 </template>
