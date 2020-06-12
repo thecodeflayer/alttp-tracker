@@ -75,9 +75,5 @@
         height: 32;
         margin: 4;
     }
-    .dungeon-stack {
-        background-repeat: no-repeat;
-        background-position: center;
-    }
 
 </style>

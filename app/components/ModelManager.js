@@ -61,8 +61,11 @@ export class ModelManager  {
             console.error('no dungeon with that key!', key);
         }
     }
+    getDungeonValue(dungeonKey, key) {
+        return this.dungeons[dungeonKey][key];
+    }
     setDungeonValue(dungeonKey, key, value) {
-        this.dungeons.boss[dungeonKey][key] = value;
+        this.dungeons[dungeonKey][key] = value;
         this.saveDungeons();
     }
     saveDungeons() {
