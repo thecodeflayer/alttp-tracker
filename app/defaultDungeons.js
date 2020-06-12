@@ -131,7 +131,7 @@ export const defaultDungeons = {
         smallkeys: 0,
         maxSmallkeys: 6
     }, // turtle rock
-    agatoo: {
+    gt: {
         boss: false,
         crystal: 0,
         maxCrystal: 0,
