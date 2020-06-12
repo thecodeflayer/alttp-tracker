@@ -16,12 +16,54 @@ import {defaultDungeons} from "~/defaultDungeons";
 export class ModelManager  {
     items = {};
     dungeons = {};
+    itemsVersion = '0.0.1';
+    dungeonsVersion = '0.0.1';
     constructor() {
-        this.items = hasKey('items') ? getString('items') : defaultItems;
-        this.dungeons = hasKey('dungeons') ? getString('dungeons') : defaultDungeons;
+        this.items = this.validateItemsFromStorage(); //hasKey('items') ? JSON.parse(getString('items')).data : defaultItems.data;
+        this.dungeons = this.validateDungeonsFromStorage(); //hasKey('dungeons') ? JSON.parse(getString('dungeons')).data : defaultDungeons.data;
+    }
+    validateItemsFromStorage() {
+        let retval = defaultItems.data;
+        let stored = undefined;
+        if(hasKey('items')){
+            try {
+                stored = JSON.parse(getString('items'));
+                if(stored.version && stored.version === this.itemsVersion) {
+                    retval = stored.data;
+                    console.log('successfully got items from storage!')
+                } else {
+                    console.log('item versions do not match got:',stored.version, 'wanted:', this.itemsVersion);
+                }
+            } catch(err) {
+                console.error('error getting items from storage', err);
+            }
+        } else {
+            console.log('no items found in storage, loading default');
+        }
+        return retval;
+    }
+    validateDungeonsFromStorage() {
+        let retval = defaultDungeons.data;
+        let stored = undefined;
+        if(hasKey('dungeons')){
+            try {
+                stored = JSON.parse(getString('dungeons'));
+                if(stored.version && stored.version === this.dungeonsVersion) {
+                    retval = stored.data;
+                    console.log('successfully got dungeons from storage!')
+                } else {
+                    console.log('dungeon versions do not match got:',stored.version, 'wanted:', this.dungeonsVersion);
+                }
+            } catch(err) {
+                console.error('error getting dungeons from storage', err);
+            }
+        } else {
+            console.log('no dungeons found in storage, loading default');
+        }
+        return retval;
     }
     resetItems() {
-        this.items = defaultItems;
+        this.items = defaultItems.data;
         this.saveItems();
     }
     getItems() {
@@ -42,10 +84,12 @@ export class ModelManager  {
         this.saveItems();
     }
     saveItems() {
-        setString('items', JSON.stringify(this.items));
+        const d = JSON.parse(JSON.stringify(defaultItems));
+        d.data = this.items;
+        setString('items', JSON.stringify(d));
     }
     resetDungeons() {
-        this.dungeons = defaultDungeons;
+        this.dungeons = defaultDungeons.data;
         this.saveDungeons();
     }
     getDungeons() {
@@ -69,6 +113,8 @@ export class ModelManager  {
         this.saveDungeons();
     }
     saveDungeons() {
-        setString('dungeons', JSON.stringify(this.items));
+        const d = JSON.parse(JSON.stringify(defaultDungeons));
+        d.data = this.dungeons;
+        setString('dungeons', JSON.stringify(d));
     }
 }
