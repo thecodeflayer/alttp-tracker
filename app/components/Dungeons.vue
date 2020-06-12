@@ -1,18 +1,17 @@
 <template>
     <Page backgroundColor="black">
         <Navbar></Navbar>
-        <Label text="derp" />
         <ScrollView orientation="vertical">
             <StackLayout orientation="vertical" class="dungeon-stack">
-                <StackLayout orientation="horizontal" class="dungeon-row" v-for="(key, index) in dungeonKeys" v-bind:key="dungeonKeys">
-                    <Image :src="images.bosses[key]" class="dungeon-img" @tap="clickItem(key,'boss')"/>
-                    <Image :src="images.crystals[key]" class="dungeon-img" @tap="clickItem(key,'crystal')"/>
-                    <Image :src="images.chests[key]" class="dungeon-img" @tap="clickItem(key,'chests')"/>
-                    <Image :src="images.bosskeys[key]" class="dungeon-img" @tap="clickItem(key,'bosskey')"/>
-                    <Image :src="images.maps[key]" class="dungeon-img" @tap="clickItem(key,'map')"/>
-                    <Image :src="images.compasses[key]" class="dungeon-img" @tap="clickItem(key,'compass')" />
-                    <Image :src="images.smallkeys[key]" class="dungeon-img" @tap="clickItem(key,'smallkeys')" />
-                </StackLayout>
+                <GridLayout class="dungeon-grid" columns="*,*,*,*,*,*,*" v-for="(key, index) in dungeonKeys" v-bind:key="dungeonKeys">
+                    <Image row="0" col="0" :src="images.crystals[key]" class="dungeon-img" @tap="clickItem(key,'crystal')"/>
+                    <Image row="0" col="1" :src="images.bosses[key]" class="dungeon-img" @tap="clickItem(key,'boss')"/>
+                    <Image row="0" col="2" :src="images.chests[key]" class="dungeon-img" @tap="clickItem(key,'chests')"/>
+                    <Image row="0" col="3" :src="images.bosskeys[key]" class="dungeon-img" @tap="clickItem(key,'bosskey')"/>
+                    <Image row="0" col="4" :src="images.maps[key]" class="dungeon-img" @tap="clickItem(key,'map')"/>
+                    <Image row="0" col="5" :src="images.compasses[key]" class="dungeon-img" @tap="clickItem(key,'compass')" />
+                    <Image row="0" col="6" :src="images.smallkeys[key]" class="dungeon-img" @tap="clickItem(key,'smallkeys')" />
+                </GridLayout>
             </StackLayout>
         </ScrollView>
     </Page>
@@ -69,11 +68,11 @@
                 const keys = this.$modelManager.getDungeonKeys();
                 for(const key of keys) {
                     retval.bosses[key] = '~/img/dungeons/'+key+'_boss'+(dungeons[key].boss ? '1' : '0')+'.png';
-                    retval.crystals[key] = '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
+                    retval.crystals[key] = dungeons[key].maxCrystal === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
                     retval.chests[key] = '~/img/dungeons/chest'+dungeons[key].chests+'.png';
-                    retval.bosskeys[key] = '~/img/dungeons/bosskey'+(dungeons[key].bosskey ? '1' : '0')+'.png';
-                    retval.maps[key] = '~/img/dungeons/map'+(dungeons[key].map ? '1' : '0')+'.png';
-                    retval.compasses[key] = '~/img/dungeons/compass'+(dungeons[key].compass ? '1' : '0')+'.png';
+                    retval.bosskeys[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/bosskey'+(dungeons[key].bosskey ? '1' : '0')+'.png';
+                    retval.maps[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/map'+(dungeons[key].map ? '1' : '0')+'.png';
+                    retval.compasses[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/compass'+(dungeons[key].compass ? '1' : '0')+'.png';
                     retval.smallkeys[key] = '~/img/dungeons/smallkey'+dungeons[key].smallkeys+'.png';
                 }
                 return retval;
