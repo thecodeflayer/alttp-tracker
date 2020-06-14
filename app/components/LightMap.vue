@@ -10,7 +10,7 @@
                     <Label text="Map Item Uno" />
                 </StackLayout>
             </StackLayout>
-            <GridLayout :top="menuHandler.top" left="0" columns="40" rows="20">
+            <GridLayout :top="10" left="0" columns="40" rows="20">
                 <Image row="0" col="0" src="~/img/lightworld/compass_btn.png" style="padding-left:10"
                        :visibility="menuHandler.mode === 0 ? 'visible':'collapsed'" @tap="toggleMode" />
                 <Image row="0" col="0" src="~/img/lightworld/map_btn.png" style="padding-left:10"
