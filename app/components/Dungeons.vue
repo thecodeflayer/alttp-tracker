@@ -3,7 +3,7 @@
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
             <StackLayout orientation="vertical" class="dungeon-stack">
-                <GridLayout class="dungeon-grid" columns="*,*,*,*,*,*,*" v-for="(key, index) in dungeonKeys" v-bind:key="dungeonKeys">
+                <GridLayout class="dungeon-grid" columns="*,*,*,*,*,*,*,*" v-for="(key, index) in dungeonKeys" v-bind:key="dungeonKeys">
                     <Image row="0" col="0" :src="images.crystals[key]" class="dungeon-img" @tap="clickItem(key,'crystal')"/>
                     <Image row="0" col="1" :src="images.bosses[key]" class="dungeon-img" @tap="clickItem(key,'boss')"/>
                     <Image row="0" col="2" :src="images.chests[key]" class="dungeon-img" @tap="clickItem(key,'chests')"/>
@@ -11,6 +11,7 @@
                     <Image row="0" col="4" :src="images.maps[key]" class="dungeon-img" @tap="clickItem(key,'map')"/>
                     <Image row="0" col="5" :src="images.compasses[key]" class="dungeon-img" @tap="clickItem(key,'compass')" />
                     <Image row="0" col="6" :src="images.smallkeys[key]" class="dungeon-img" @tap="clickItem(key,'smallkeys')" />
+                    <Image row="0" col="7" :src="images.medallion[key]" class="dungeon-img" @tap="clickItem(key,'medallion')" />
                 </GridLayout>
             </StackLayout>
         </ScrollView>
@@ -68,7 +69,8 @@
                     bosskeys: {},
                     maps: {},
                     compasses: {},
-                    smallkeys: {}
+                    smallkeys: {},
+                    medallion: {}
                 };
                 const dungeons = this.$modelManager.getDungeons();
                 const keys = this.$modelManager.getDungeonKeys();
@@ -80,6 +82,7 @@
                     retval.maps[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/map'+(dungeons[key].map ? '1' : '0')+'.png';
                     retval.compasses[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/compass'+(dungeons[key].compass ? '1' : '0')+'.png';
                     retval.smallkeys[key] = '~/img/dungeons/smallkey'+dungeons[key].smallkeys+'.png';
+                    retval.medallion[key] = dungeons[key].maxMedallion === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/medallion'+dungeons[key].medallion+'.png';
                 }
                 return retval;
             },

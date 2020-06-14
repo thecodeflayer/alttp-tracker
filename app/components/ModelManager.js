@@ -18,7 +18,7 @@ export class ModelManager  {
     items = {};
     dungeons = {};
     itemsVersion = '0.0.1';
-    dungeonsVersion = '0.0.1';
+    dungeonsVersion = '0.0.2';
     constructor() {
         this.items = this.validateItemsFromStorage(); //hasKey('items') ? JSON.parse(getString('items')).data : defaultItems.data;
         this.dungeons = this.validateDungeonsFromStorage(); //hasKey('dungeons') ? JSON.parse(getString('dungeons')).data : defaultDungeons.data;
