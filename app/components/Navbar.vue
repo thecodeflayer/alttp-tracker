@@ -1,33 +1,31 @@
 <template>
     <ActionBar backgroundColor="#006400">
-        <ScrollView orientation="horizontal">
-            <StackLayout orientation="horizontal">
-                <StackLayout orientation="vertical" @tap="navHome">
-                    <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Home" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
-                <StackLayout orientation="vertical" @tap="navItems">
-                    <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Items" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
-                <StackLayout orientation="vertical" @tap="navDungeons">
-                    <Image src="~/img/navbar/dungeons.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Dungeons" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
-                <StackLayout orientation="vertical" @tap="navLightMap">
-                    <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Light Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
-                <StackLayout orientation="vertical" @tap="navDarkMap">
-                    <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Dark Map" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
-                <StackLayout orientation="vertical" @tap="navSettings">
-                    <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="20" width="20" />
-                    <Label text="Settings" verticalAlignment="top" fontSize="14" class="btn-label"/>
-                </StackLayout>
+        <StackLayout orientation="horizontal">
+            <StackLayout orientation="vertical" @tap="navHome">
+                <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Home" verticalAlignment="top" fontSize="10" class="btn-label"/>
             </StackLayout>
-        </ScrollView>
+            <StackLayout orientation="vertical" @tap="navItems">
+                <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Items" verticalAlignment="top" fontSize="10" class="btn-label"/>
+            </StackLayout>
+            <StackLayout orientation="vertical" @tap="navDungeons">
+                <Image src="~/img/navbar/dungeons.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Dungeons" verticalAlignment="top" fontSize="10" class="btn-label"/>
+            </StackLayout>
+            <StackLayout orientation="vertical" @tap="navLightMap">
+                <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Light World" verticalAlignment="top" fontSize="10" class="btn-label"/>
+            </StackLayout>
+            <StackLayout orientation="vertical" @tap="navDarkMap">
+                <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Dark World" verticalAlignment="top" fontSize="10" class="btn-label"/>
+            </StackLayout>
+            <StackLayout orientation="vertical" @tap="navSettings">
+                <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="32" width="32" />
+                <Label text="Settings" verticalAlignment="top" fontSize="10" class="btn-label"/>
+            </StackLayout>
+        </StackLayout>
     </ActionBar>
 </template>
 
