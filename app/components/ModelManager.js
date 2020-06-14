@@ -29,7 +29,7 @@ export class ModelManager  {
         this.screen = screen;
     }
     validateItemsFromStorage() {
-        let retval = defaultItems.data;
+        let retval = JSON.parse(JSON.stringify(defaultItems.data));
         let stored = undefined;
         if(hasKey('items')){
             try {
@@ -49,7 +49,7 @@ export class ModelManager  {
         return retval;
     }
     validateDungeonsFromStorage() {
-        let retval = defaultDungeons.data;
+        let retval = JSON.parse(JSON.stringify(defaultDungeons.data));
         let stored = undefined;
         if(hasKey('dungeons')){
             try {
@@ -69,7 +69,7 @@ export class ModelManager  {
         return retval;
     }
     validateMapFromStorage() {
-        let retval = defaultMap.data;
+        let retval = JSON.parse(JSON.stringify(defaultMap.data));
         let stored = undefined;
         if(hasKey('map')){
             try {
