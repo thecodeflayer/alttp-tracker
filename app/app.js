@@ -2,6 +2,7 @@ import Vue from 'nativescript-vue';
 import Home from './components/Home'
 import Navbar from '~/components/Navbar';
 import {ModelManager} from "~/components/ModelManager";
+import Items from "~/components/Items";
 //Vue.config.silent = false;
 Vue.component('Navbar', Navbar);
 Vue.prototype.$modelManager = new ModelManager();
@@ -15,5 +16,5 @@ Vue.prototype.$maxItemValues = {
     tunic: 2
 }
 new Vue({
-    render: h => h('frame', [h(Home)]),
+    render: h => h('frame', [h(Items)]),
 }).$start();

@@ -9,6 +9,7 @@ import {
     remove,
     clear
 } from "tns-core-modules/application-settings";
+import {screen} from 'tns-core-modules/platform'
 
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
@@ -21,6 +22,7 @@ export class ModelManager  {
     constructor() {
         this.items = this.validateItemsFromStorage(); //hasKey('items') ? JSON.parse(getString('items')).data : defaultItems.data;
         this.dungeons = this.validateDungeonsFromStorage(); //hasKey('dungeons') ? JSON.parse(getString('dungeons')).data : defaultDungeons.data;
+        this.screen = screen;
     }
     validateItemsFromStorage() {
         let retval = defaultItems.data;
