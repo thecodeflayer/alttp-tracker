@@ -1,5 +1,5 @@
 export const defaultDungeons = {
-    version: '0.0.1',
+    version: '0.0.2',
     data: {
         ep: {
             boss: false,
@@ -11,7 +11,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 2
+            maxSmallkeys: 2,
+            medallion: 0,
+            maxMedallion: 0
         }, // eastern palace
         dp: {
             boss: false,
@@ -23,7 +25,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 4
+            maxSmallkeys: 4,
+            medallion: 0,
+            maxMedallion: 0
         }, // desert palace
         toh: {
             boss: false,
@@ -35,7 +39,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 1
+            maxSmallkeys: 1,
+            medallion: 0,
+            maxMedallion: 0
         }, // tower of harrah
         aga: {
             boss: false,
@@ -47,7 +53,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 7
+            maxSmallkeys: 7,
+            medallion: 0,
+            maxMedallion: 0
         }, // aganhim
         pod: {
             boss: false,
@@ -59,7 +67,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 6
+            maxSmallkeys: 6,
+            medallion: 0,
+            maxMedallion: 0
         }, // palace of darkness
         sp: {
             boss: false,
@@ -71,7 +81,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 5
+            maxSmallkeys: 5,
+            medallion: 0,
+            maxMedallion: 0
         }, // swamp palace
         sw: {
             boss: false,
@@ -83,7 +95,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 5
+            maxSmallkeys: 5,
+            medallion: 0,
+            maxMedallion: 0
         }, // skull woods
         tt: {
             boss: false,
@@ -95,7 +109,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 3
+            maxSmallkeys: 3,
+            medallion: 0,
+            maxMedallion: 0
         }, // thieves town
         ip: {
             boss: false,
@@ -107,7 +123,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 6
+            maxSmallkeys: 6,
+            medallion: 0,
+            maxMedallion: 0
         }, // ice palace
         mm: {
             boss: false,
@@ -119,7 +137,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 6
+            maxSmallkeys: 6,
+            medallion: 0,
+            maxMedallion: 3
         }, // misery mire
         tr: {
             boss: false,
@@ -131,7 +151,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 6
+            maxSmallkeys: 6,
+            medallion: 0,
+            maxMedallion: 3
         }, // turtle rock
         gt: {
             boss: false,
@@ -143,7 +165,9 @@ export const defaultDungeons = {
             compass: false,
             bosskey: false,
             smallkeys: 0,
-            maxSmallkeys: 8
+            maxSmallkeys: 8,
+            medallion: 0,
+            maxMedallion: 0
         } // aganhim2
     }
 }
