@@ -13,15 +13,19 @@ import {screen} from 'tns-core-modules/platform'
 
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
+import {defaultMap} from "~/defaultMap";
 
 export class ModelManager  {
     items = {};
     dungeons = {};
+    map = {};
     itemsVersion = '0.0.1';
     dungeonsVersion = '0.0.2';
+    mapVersion = '0.0.1';
     constructor() {
-        this.items = this.validateItemsFromStorage(); //hasKey('items') ? JSON.parse(getString('items')).data : defaultItems.data;
-        this.dungeons = this.validateDungeonsFromStorage(); //hasKey('dungeons') ? JSON.parse(getString('dungeons')).data : defaultDungeons.data;
+        this.items = this.validateItemsFromStorage();
+        this.dungeons = this.validateDungeonsFromStorage();
+        this.map = this.validateMapFromStorage();
         this.screen = screen;
     }
     validateItemsFromStorage() {
@@ -61,6 +65,26 @@ export class ModelManager  {
             }
         } else {
             console.log('no dungeons found in storage, loading default');
+        }
+        return retval;
+    }
+    validateMapFromStorage() {
+        let retval = defaultMap.data;
+        let stored = undefined;
+        if(hasKey('map')){
+            try {
+                stored = JSON.parse(getString('map'));
+                if(stored.version && stored.version === this.mapVersion) {
+                    retval = stored.data;
+                    console.log('successfully got map from storage!')
+                } else {
+                    console.log('map versions do not match got:',stored.version, 'wanted:', this.dungeonsVersion);
+                }
+            } catch(err) {
+                console.error('error getting map from storage', err);
+            }
+        } else {
+            console.log('no map found in storage, loading default');
         }
         return retval;
     }
@@ -118,5 +142,14 @@ export class ModelManager  {
         const d = JSON.parse(JSON.stringify(defaultDungeons));
         d.data = this.dungeons;
         setString('dungeons', JSON.stringify(d));
+    }
+    resetMap() {
+        this.map = defaultMap.data;
+        this.saveMap();
+    }
+    saveMap() {
+        const d = JSON.parse(JSON.stringify(defaultMap));
+        d.data = this.map;
+        setString('map', JSON.stringify(d));
     }
 }
