@@ -3,12 +3,10 @@ export const defaultMap = {
     data: {
         locations:{},
         lightworld: {
-            mode:0, //0 for map, 1 for item list
-            scale: 0.5,
-            top: -375,
-            left: -375,
-            x: -375,
-            y: -375
+            mode:0, //0 for map, 1 for location list
+            scale: 1,
+            x: 0,
+            y: 0
         },
         darkworld: {}
     }
