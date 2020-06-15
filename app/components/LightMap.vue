@@ -2,25 +2,16 @@
     <Page backgroundColor="black">
         <Navbar ref="navbar"></Navbar>
         <AbsoluteLayout @pan="onPan" @pinch="onPinch">
-            <AbsoluteLayout ref="mapWrapper" top="0" left="0"
-                            :visibility="menuHandler.mode === 0 ? 'visible':'collapsed'"
-                            :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale" backgroundColor="red">
+            <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
                 <Image v-for="tile in mapHandler.tiles" v-bind:key="mapHandler.tiles" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
-                <Label v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
+                <Label v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
                        :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
-                       :width="Math.floor(20 * (1 / pinchHandler.currentScale))"
-                       :height="Math.floor(20 * (1 / pinchHandler.currentScale))"
-                       :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.currentScale)))"
-                       :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.currentScale)))"
+                       :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                         @tap="onClickLocale(key)"/>
             </AbsoluteLayout>
-            <ScrollView top="30" left="0" orientation="vertical">
-                <StackLayout orientation="vertical" :visibility="menuHandler.mode === 1 ? 'visible':'collapsed'">
-                    <StackLayout orientation="horizontal" backgroundColor="#006400">
-                        <Label class="location-label" text="Map Item Uno" />
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
             <GridLayout :top="10" left="0" columns="40,*" rows="*">
                 <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10"
                        :visibility="menuHandler.mode === 0 ? 'visible':'collapsed'" @tap="toggleMode" />
@@ -52,7 +43,9 @@
                     top: 0,
                     left: 0,
                     lastScale: -1,
-                    currentScale: this.$modelManager.map.lightworld.scale
+                    currentScale: this.$modelManager.map.lightworld.scale,
+                    localeScale: this.$modelManager.map.lightworld.scale,
+                    pinching: false
                 },
                 mapHandler: {
                     tiles: this.populateTiles(),
@@ -69,7 +62,7 @@
             this.$modelManager.validateLocales();
             this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x;
             this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y;
-            const newScale = this.pinchHandler.currentScale = this.$modelManager.map.lightworld.scale;
+            const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale;
             this.pinchHandler.top = -Math.abs(Math.floor((this.mapHeight * 0.5) - ((this.mapHeight * newScale) * 0.5)));
             this.pinchHandler.left = -Math.abs(Math.floor((this.mapWidth * 0.5) - ((this.mapWidth * newScale) * 0.5)));
         },
@@ -113,14 +106,14 @@
                             this.getViewHeight(this.$refs.navbar.nativeView) -
                             this.mapHeight);
                     }
-                    this.debugInfo = 'pinch:' + this.pinchHandler.top +
-                        ' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
-                        ' screen calc:' + (this.getMainScreenHeight() - this.getViewHeight(this.$refs.navbar.nativeView)) +
-                        ' map raw:'+ this.$refs.mapWrapper.nativeView.getMeasuredHeight() +
-                        ' scale:'+ (this.pinchHandler.currentScale+'').substr(0,4) +
-                        ' minscale' + this.getMinScale() +
-                        ' newy:'+ (newY +'').substr(0,4) +
-                        ' screen scale:' + this.screen.mainScreen.scale;
+                    // this.debugInfo = 'pinch:' + this.pinchHandler.top +
+                    //     ' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
+                    //     ' screen calc:' + (this.getMainScreenHeight() - this.getViewHeight(this.$refs.navbar.nativeView)) +
+                    //     ' map raw:'+ this.$refs.mapWrapper.nativeView.getMeasuredHeight() +
+                    //     ' scale:'+ (this.pinchHandler.currentScale+'').substr(0,4) +
+                    //     ' minscale' + this.getMinScale() +
+                    //     ' newy:'+ (newY +'').substr(0,4) +
+                    //     ' screen scale:' + this.screen.mainScreen.scale;
                     this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x = newX;
                     this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y = newY;
                     this.panHandler.lastX = args.deltaX;
@@ -132,6 +125,9 @@
                 }
             },
             onPinch(args) {
+                if(args.state === 1) {
+                    this.pinchHandler.pinching = true;
+                }
                 let lastScale = this.pinchHandler.lastScale === -1 ? this.pinchHandler.currentScale : this.pinchHandler.lastScale;
                 let newScale = lastScale * args.scale;
                 if(newScale < this.getMinScale()) {
@@ -145,6 +141,8 @@
 
                 if(args.state === 3) {
                     this.pinchHandler.lastScale = newScale;
+                    this.pinchHandler.localeScale = this.pinchHandler.currentScale;
+                    this.pinchHandler.pinching = false;
                 }
             },
             toggleMode(){
