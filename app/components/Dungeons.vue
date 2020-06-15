@@ -32,12 +32,6 @@
         },
         created() {
         },
-        navigatingTo() {
-            console.log('nav to dungeons');
-            this.dungeons = this.$modelManager.getDungeons();
-            this.dungeonKeys = this.$modelManager.getDungeonKeys();
-            this.images = this.getAllImages();
-        },
         methods: {
             clickItem(key, item) {
                 if (typeof this.$modelManager.getDungeonValue(key, item) === "boolean") {
@@ -60,6 +54,7 @@
                     this.$modelManager.setDungeonValue(key, item, val);
                 }
                 this.images = this.getAllImages();
+                this.$modelManager.validateLocales();
             },
             getAllImages() {
                 const retval = {

@@ -52,6 +52,7 @@
                     this.$modelManager.setItem(key, val);
                 }
                 this.items[key] = this.getImage(key);
+                this.$modelManager.validateLocales();
             },
             getAllImages() {
                 const retval = {};
