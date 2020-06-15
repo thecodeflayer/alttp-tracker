@@ -1,5 +1,5 @@
 <template>
-    <ActionBar backgroundColor="#006400">
+    <ActionBar backgroundColor="#006400" class="action-bar">
         <StackLayout orientation="horizontal">
             <StackLayout orientation="vertical" @tap="navHome">
                 <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="32" width="32" />
@@ -15,11 +15,11 @@
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navLightMap">
                 <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Light World" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Lightworld" verticalAlignment="top" fontSize="10" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navDarkMap">
                 <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Dark World" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Darkworld" verticalAlignment="top" fontSize="10" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navSettings">
                 <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="32" width="32" />
@@ -72,14 +72,15 @@
         @include colorize($color: accent);
     }
 
-    .info {
-        font-size: 20;
-        horizontal-align: center;
-        vertical-align: center;
+    .action-bar {
+        margin-left: -12;
+        margin-top:12;
     }
 
     .btn-label {
-        padding:0 5;
+        padding: 0;
         margin:0;
+        width:52;
+        text-align: center;
     }
 </style>

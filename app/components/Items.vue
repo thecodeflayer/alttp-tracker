@@ -22,11 +22,6 @@
         },
         created() {
         },
-        navigatingTo() {
-            console.log('nav to items');
-            this.items = this.getAllImages();
-            this.itemKeys = this.$modelManager.getItemKeys();
-        },
         methods: {
             getImage(key) {
                 if (typeof this.$modelManager.getItem(key) === "boolean") {
