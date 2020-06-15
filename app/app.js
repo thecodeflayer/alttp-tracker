@@ -3,7 +3,7 @@ import Home from './components/Home'
 import Navbar from '~/components/Navbar';
 import {ModelManager} from "~/components/ModelManager";
 import Items from "~/components/Items";
-Vue.config.silent = false;
+//Vue.config.silent = false;
 Vue.component('Navbar', Navbar);
 Vue.prototype.$modelManager = new ModelManager();
 Vue.prototype.$maxItemValues = {
