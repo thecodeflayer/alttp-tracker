@@ -62,7 +62,7 @@ export const staticMapLW = {
         return items.jar > 0;
     }},
     lwHideout:{x:283,y:194, desc:'Lost Woods Hideout', validate(){return true;}},
-    lumberjackTree:{x:0,y:0, desc:'Lumberjack Tree', validate(items, dungeons){
+    lumberjackTree:{x:115,y:451, desc:'Lumberjack Tree', validate(items, dungeons){
         return dungeons.aga.boss;
     }},
     graveyardLedge:{x:855,y:416, desc:'Graveyard Ledge', validate(items){
@@ -71,5 +71,68 @@ export const staticMapLW = {
     lwMushroom:{x:185,y:135, desc:'Lost Woods Mushroom Location', validate(){return true;}},
     floodChest:{x:703,y:1405, desc:'Floodgate Chest', validate(){return true;}},
     floodTreasure:{x:677,y:1394, desc:'Floodgate Sunken Treasure', validate(){return true;}},
-
+    linkHouse: {x:820,y:1037, desc:'Link\'s House', validate(){return true;}},
+    aginahCave: {x:298,y:1242, desc:'Aginah Cave', validate(items){
+        return items.bombs;
+    }},
+    moldormCave: {x:978,y:1412, desc:'Mini-Moldorm Cave', validate(items){
+        return items.bombs;
+    }},
+    iceRodCave: {x:1342,y:1160, desc:'Ice Rod Cave', validate(items){
+        return items.bombs;
+    }},
+    hobo: {x:1059,y:1045, desc:'Hobo Under the Bridge', validate(items){
+        return items.flippers;
+    }},
+    bombosTablet: {x:328,y:1380, desc:'Bombos Tablet', validate(items){
+        return items.glove === 2 && items.moonpearl && items.mirror && items.book;
+    }},
+    cave45: {x:399,y:1242, desc:'Cave 45', validate(items){
+        return items.glove === 2 && items.moonpearl && items.mirror;
+    }},
+    checkerCave: {x:263,y:1165, desc:'Checkerboard Cave', validate(items){
+        return items.glove === 2 && items.moonpearl && items.mirror && items.flute;
+    }},
+    library: {x:243,y:990, desc:'Library', validate(items){
+        return items.boots;
+    }},
+    mazeRace: {x:148,y:1080, desc:'Maze Race', validate(items){
+        return items.bombs;
+    }},
+    desertLedge: {x:38,y:1375, desc:'Desert Ledge', validate(items){
+        return items.book;
+    }},
+    lakeIsland: {x:1091,y:1244, desc:'Lake Hylia Island', validate(items){
+        return items.glove === 2 && items.moonpearl && items.mirror && items.flippers;
+    }},
+    fluteSpot: {x:435,y:992, desc:'Flute Spot', validate(items){
+        return items.shovel;
+    }},
+    oldMan: {x:609,y:286, desc:'Rescue Old Man', validate(items){
+        return items.glove > 0 && items.lantern;
+    }},
+    spectacleRockCave: {x:732,y:220, desc:'Spectacle Rock Cave', validate(items){
+        return items.glove > 0 && items.lantern;
+    }},
+    etherTablet: {x:630,y:28, desc:'Ether Tablet', validate(items){
+        return items.glove > 0 && items.moonpearl && items.mirror && items.book && items.lantern;
+    }},
+    spectacleRock: {x:761,y:121, desc:'Spectacle Rock', validate(items){
+        return items.glove > 0 && items.mirror && items.lantern;
+    }},
+    spiralCave: {x:1195,y:140, desc:'Spiral Cave', validate(items){
+        return items.glove > 0 && items.lantern && items.hookshot;
+    }},
+    mimicCave: {x:1266,y:140, desc:'Mimic Cave', validate(items, dungeons){
+        const m = (dungeons.tr.medallion === 1 && items.bombos) ||
+            (dungeons.tr.medallion === 2 && items.ether) ||
+            (dungeons.tr.medallion === 3 && items.quake)
+        return m && items.hammer && items.glove === 2 && items.firerod && items.moonpearl && items.mirror && items.redcane && items.lantern;
+    }},
+    paradoxCave: {x:1283,y:222, desc:'Paradox', validate(items){
+        return items.hammer && items.glove > 0 && items.mirror && items.lantern;
+    }},
+    floatingIsland: {x:1220,y:26, desc:'Floating Island', validate(items){
+        return items.glove === 2 && items.mirror && items.moonpearl && items.lantern && items.hookshot;
+    }}
 }
