@@ -12,11 +12,8 @@
                        :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                         @tap="onClickLocale(key)"/>
             </AbsoluteLayout>
-            <GridLayout :top="10" left="0" columns="40,*" rows="*">
-                <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10"
-                       :visibility="menuHandler.mode === 0 ? 'visible':'collapsed'" @tap="toggleMode" />
-                <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/map_btn.png" style="padding-left:10"
-                       :visibility="menuHandler.mode === 1 ? 'visible': 'collapsed'" @tap="toggleMode"/>
+            <GridLayout top="10" left="0" columns="40,*" rows="*">
+                <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10" @tap="toggleMode" />
                 <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
             </GridLayout>
         </AbsoluteLayout>
@@ -27,6 +24,8 @@
 <script>
     import {screen} from 'tns-core-modules/platform';
     import {staticMapLW} from "~/staticMapLW";
+    import * as app from 'tns-core-modules/application'
+    import LightList from "~/components/LightList";
 
     export default {
         data: function() {
@@ -55,7 +54,7 @@
                 },
                 mapWidth:1500,
                 mapHeight:1500,
-                screen: screen
+                screen: screen,
             }
         },
         mounted() {
@@ -65,8 +64,46 @@
             const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale;
             this.pinchHandler.top = -Math.abs(Math.floor((this.mapHeight * 0.5) - ((this.mapHeight * newScale) * 0.5)));
             this.pinchHandler.left = -Math.abs(Math.floor((this.mapWidth * 0.5) - ((this.mapWidth * newScale) * 0.5)));
+            this.mapHeight = this.getMapHeight();
+            //this.debugInfo = 'navheight: ' + this.getNavbarHeight();
         },
         methods: {
+            getMapHeight() {
+                let retval = 1500;
+                retval = 1500 + this.getNavbarHeight();
+                return retval;
+            },
+            getNavbarHeight() {
+                if(app.android) {
+                    let navBarHeight = 0;
+                    let windowManager = app.android.context
+                        .getSystemService(android.content.Context.WINDOW_SERVICE);
+                    let d = windowManager.getDefaultDisplay();
+
+                    let realDisplayMetrics = new android.util.DisplayMetrics();
+                    d.getRealMetrics(realDisplayMetrics);
+
+                    let realHeight = realDisplayMetrics.heightPixels;
+                    let realWidth = realDisplayMetrics.widthPixels;
+
+                    let displayMetrics = new android.util.DisplayMetrics();
+                    d.getMetrics(displayMetrics);
+
+                    let displayHeight = displayMetrics.heightPixels;
+                    let displayWidth = displayMetrics.widthPixels;
+
+                    if((realHeight - displayHeight) > 0) { // Portrait
+                        navBarHeight = realHeight - displayHeight;
+                    } else if ((realWidth - displayWidth) > 0) { // Landscape
+                        //return zero for now. only so many wonky things to deal with at a time.
+                        //navBarHeight = realWidth - displayWidth;
+                        return 0;
+                    }
+                    return Math.floor(navBarHeight / this.screen.mainScreen.scale);
+
+                }
+                return 0;
+            },
             populateTiles() {
                 const retval = [];
                 for(let i = 0; i < 25; i ++) {
@@ -98,11 +135,11 @@
                     if(newY > this.pinchHandler.top) {
                         newY = this.pinchHandler.top;
                     } else if((newY + this.pinchHandler.top) <
-                        -Math.abs(this.getMainScreenHeight() -
+                        -Math.abs((this.getMainScreenHeight()) -
                             this.getViewHeight(this.$refs.navbar.nativeView) -
                             this.mapHeight)){
                         newY = -Math.abs(Math.abs(this.pinchHandler.top) +
-                            this.getMainScreenHeight() -
+                            (this.getMainScreenHeight()) -
                             this.getViewHeight(this.$refs.navbar.nativeView) -
                             this.mapHeight);
                     }
@@ -148,6 +185,7 @@
             toggleMode(){
                 this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode === 1 ? 0 : 1;
                 this.$modelManager.saveMap();
+                this.$navigateTo(LightList);
             },
             getViewWidth(view) {
                 return Math.floor(view.getMeasuredWidth() / this.screen.mainScreen.scale);
