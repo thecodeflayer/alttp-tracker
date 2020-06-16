@@ -3,27 +3,27 @@
         <StackLayout orientation="horizontal">
             <StackLayout orientation="vertical" @tap="navHome">
                 <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Home" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Home" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navItems">
                 <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Items" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Items" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navDungeons">
                 <Image src="~/img/navbar/dungeons.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Dungeons" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Dungeons" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navLightMap">
                 <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Lightworld" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Lightworld" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navDarkMap">
                 <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Darkworld" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Darkworld" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
             <StackLayout orientation="vertical" @tap="navSettings">
                 <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="32" width="32" />
-                <Label text="Settings" verticalAlignment="top" fontSize="10" class="btn-label"/>
+                <Label text="Settings" verticalAlignment="top" class="btn-label"/>
             </StackLayout>
         </StackLayout>
     </ActionBar>
@@ -36,17 +36,19 @@
     import Items from "~/components/Items";
     import Settings from "~/components/Settings";
     import Dungeons from "~/components/Dungeons";
+    import LightList from "~/components/LightList";
 
     export default {
-        computed: {
-
-        },
         methods: {
             navHome() {
                 this.$navigateTo(Home);
             },
             navLightMap() {
-                this.$navigateTo(LightMap);
+                if(this.$modelManager.map.lightworld.mode === 1) {
+                    this.$navigateTo(LightList);
+                } else {
+                    this.$navigateTo(LightMap);
+                }
             },
             navDarkMap() {
                 this.$navigateTo(DarkMap);
@@ -74,7 +76,7 @@
 
     .action-bar {
         margin-left: -12;
-        margin-top:12;
+        margin-top:0;
     }
 
     .btn-label {
@@ -82,5 +84,7 @@
         margin:0;
         width:52;
         text-align: center;
+        font-family: "Return of Ganon", "ReturnofGanon";
+        font-size: 14;
     }
 </style>
