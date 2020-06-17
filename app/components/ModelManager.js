@@ -153,13 +153,14 @@ export class ModelManager  {
         setString('map', JSON.stringify(d));
     }
     validateLocales() {
-        const keys = Object.keys(staticMapLW);
-        const dkeys = Object.keys(staticMapDungeonsLW);
-        for(const key of keys){
+        const lkeys = Object.keys(staticMapLW);
+        const ldkeys = Object.keys(staticMapDungeonsLW);
+        for(const key of lkeys){
             this.map.lightworld.locations[key].klass = staticMapLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
-        for(const key of dkeys){
+        for(const key of ldkeys){
             this.map.lightworld.dungeons[key].klass = staticMapDungeonsLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.lightworld.bosses[key].klass = staticMapDungeonsLW[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
     }
 }

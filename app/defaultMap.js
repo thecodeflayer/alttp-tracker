@@ -59,6 +59,11 @@ export const defaultMap = {
                 ep:{klass:'locale-red'},
                 dp:{klass: 'locale-red'},
                 toh:{klass: 'locale-red'}
+            },
+            bosses: {
+                ep:{klass:'locale-red'},
+                dp:{klass: 'locale-red'},
+                toh:{klass: 'locale-red'}
             }
         },
         darkworld: {}

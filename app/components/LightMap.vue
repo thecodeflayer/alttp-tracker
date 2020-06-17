@@ -13,10 +13,23 @@
                         @tap="onClickLocale(key)"/>
                 <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:dkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                        :class="mapHandler.dungeonValues[dkey].chests === 0 ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
-                       :width="Math.floor(50 * (1 / pinchHandler.localeScale))"
-                       :height="Math.floor(50 * (1 / pinchHandler.localeScale))"
-                       :left="Math.floor(mapHandler.staticDungeons[dkey].x - (25 * (1 / pinchHandler.localeScale)))"
-                       :top="Math.floor(mapHandler.staticDungeons[dkey].y - (25 * (1 / pinchHandler.localeScale)))" />
+                       :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(46 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticDungeons[dkey].x - (23 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticDungeons[dkey].y - (23 * (1 / pinchHandler.localeScale)))" />
+                <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:bkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                       style="border-width: 0"
+                       :class="mapHandler.dungeonValues[bkey].boss === 0 ? 'locale-gray' : mapHandler.bosses[bkey].klass"
+                       :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticDungeons[bkey].x - (15 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticDungeons[bkey].y - (15 * (1 / pinchHandler.localeScale)))" />
+                <Image v-for="bkey in mapHandler.dungeonKeys" v-bind:bkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                       :src="'~/img/dungeons/'+bkey+'_boss0.png'"
+                       :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticDungeons[bkey].x - (10 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
             </AbsoluteLayout>
             <GridLayout top="10" left="0" columns="40,*" rows="*">
                 <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10" @tap="toggleMode" />
@@ -61,6 +74,7 @@
                     dungeonKeys: Object.keys(staticMapDungeonsLW),
                     staticDungeons: staticMapDungeonsLW,
                     dungeons: this.$modelManager.map.lightworld.dungeons,
+                    bosses: this.$modelManager.map.lightworld.bosses,
                     dungeonValues: this.$modelManager.dungeons
                 },
                 mapWidth:1500,
