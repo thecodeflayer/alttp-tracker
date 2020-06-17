@@ -33,50 +33,50 @@
 
 <script>
 
-    import LightMap from "~/components/LightMap";
-    import {staticMapLW} from "~/staticMapLW";
+    import DarkMap from "~/components/DarkMap";
+    import {staticMapDW} from "~/staticMapDW";
 
     export default {
         data: function() {
             return {
                 menuHandler: {
-                    mode: this.$modelManager.map.lightworld.mode
+                    mode: this.$modelManager.map.darkworld.mode
                 },
                 mapHandler: {
-                    keys: Object.keys(staticMapLW),
-                    staticLocations: staticMapLW,
-                    locations: this.$modelManager.map.lightworld.locations
+                    keys: Object.keys(staticMapDW),
+                    staticLocations: staticMapDW,
+                    locations: this.$modelManager.map.darkworld.locations
                 },
                 scrollTimout: undefined,
-                scrollOffsetY: this.$modelManager.map.lightworld.scrollY
+                scrollOffsetY: this.$modelManager.map.darkworld.scrollY
             }
         },
         // mounted() {
-        //     this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
+        //     this.scrollOffsetY = this.$modelManager.map.darkworld.scrollY;
         //     //this.$refs.listScrollView.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
         //
         // },
         methods: {
             toggleMode(){
-                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
+                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
                 this.$modelManager.saveMap();
-                this.$navigateTo(LightMap);
+                this.$navigateTo(DarkMap);
             },
             clickCompass(key) {
-                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
-                this.$modelManager.map.lightworld.centerKey = key;
+                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
+                this.$modelManager.map.darkworld.centerKey = key;
                 this.$modelManager.saveMap();
-                this.$navigateTo(LightMap);
+                this.$navigateTo(DarkMap);
             },
             clickCheck(key) {
-                this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+                this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
                 this.$modelManager.saveMap();
             },
             onScroll(args){
                 console.log('save scroll', args.scrollY, this.scrollOffsetY);
                 clearTimeout(this.scrollTimout);
                 this.scrollTimout = setTimeout(() => {
-                    this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY = args.scrollY;
+                    this.scrollOffsetY = this.$modelManager.map.darkworld.scrollY = args.scrollY;
                     this.$modelManager.saveMap();
                 }, 300);
             },

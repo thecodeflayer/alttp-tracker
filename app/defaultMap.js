@@ -69,6 +69,52 @@ export const defaultMap = {
                 aga:{klass: 'locale-red'}
             }
         },
-        darkworld: {}
+        darkworld: {
+            mode:0, //0 for map, 1 for location list
+            scale: 1,
+            x: 0,
+            y: 0,
+            centerKey: undefined,
+            scrollY: 0,
+            locations: {
+                superbunnyCave: {checked: false, klass: 'locale-red'},
+                hookshotCave: {checked: false, klass: 'locale-red'},
+                spikeCave: {checked: false, klass: 'locale-red'},
+                catfish: {checked: false, klass: 'locale-red'},
+                pyramid: {checked: false, klass: 'locale-red'},
+                pyramidFairy: {checked: false, klass: 'locale-red'},
+                brewery: {checked: false, klass: 'locale-red'},
+                cShapeHouse: {checked: false, klass: 'locale-red'},
+                chestGame: {checked: false, klass: 'locale-red'},
+                hammerPegs: {checked: false, klass: 'locale-red'},
+                bumperCave: {checked: false, klass: 'locale-red'},
+                blacksmith: {checked: false, klass: 'locale-red'},
+                purpleChest: {checked: false, klass: 'locale-red'},
+                hypeCave: {checked: false, klass: 'locale-red'},
+                stumpy: {checked: false, klass: 'locale-red'},
+                diggingGame: {checked: false, klass: 'locale-red'},
+                mireShed: {checked: false, klass: 'locale-red'},
+            },
+            dungeons: {
+                pod: {klass:'locale-red'}, // palace of darkness
+                sp: {klass:'locale-red'}, // swamp palace
+                sw: {klass:'locale-red'}, // skull woods
+                tt: {klass:'locale-red'}, // thieves town
+                ip: {klass:'locale-red'}, // ice palace
+                mm: {klass:'locale-red'}, // misery mire
+                tr: {klass:'locale-red'}, // turtle rock
+                gt: {klass:'locale-red'}
+            },
+            bosses: {
+                pod: {klass:'locale-red'}, // palace of darkness
+                sp: {klass:'locale-red'}, // swamp palace
+                sw: {klass:'locale-red'}, // skull woods
+                tt: {klass:'locale-red'}, // thieves town
+                ip: {klass:'locale-red'}, // ice palace
+                mm: {klass:'locale-red'}, // misery mire
+                tr: {klass:'locale-red'}, // turtle rock
+                gt: {klass:'locale-red'}
+            }
+        }
     }
 }

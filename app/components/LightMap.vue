@@ -32,7 +32,7 @@
                        :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
             </AbsoluteLayout>
             <GridLayout top="10" left="0" columns="40,*" rows="*">
-                <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10" @tap="toggleMode" />
+                <Image row="0" col="0" height="16" width="16" src="~/img/compass_btn.png" style="padding-left:10" @tap="toggleMode" />
                 <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
             </GridLayout>
         </AbsoluteLayout>
