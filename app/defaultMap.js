@@ -10,6 +10,7 @@ export const defaultMap = {
             locations: {
                 uncle: {checked: false, klass:'locale-green'},
                 secretPassage: {checked: false, klass:'locale-green'},
+                backOfEscape: {checked: false, klass: 'locale-red'},
                 sahashralaHut: {checked: false, klass:'locale-green'},
                 sahashrala: {checked: false, klass:'locale-red'},
                 potionShop:{checked: false, klass:'locale-red'},
