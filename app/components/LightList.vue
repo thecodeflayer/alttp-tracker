@@ -50,15 +50,19 @@
         },
         methods: {
             toggleMode(){
-                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode === 1 ? 0 : 1;
+                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
                 this.$modelManager.saveMap();
                 this.$navigateTo(LightMap);
             },
             clickCompass(key) {
-
+                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
+                this.$modelManager.map.lightworld.centerKey = key;
+                this.$modelManager.saveMap();
+                this.$navigateTo(LightMap);
             },
             clickCheck(key) {
-
+                this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+                this.$modelManager.saveMap();
             }
         }
     };

@@ -64,8 +64,11 @@
             const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale;
             this.pinchHandler.top = -Math.abs(Math.floor((this.mapHeight * 0.5) - ((this.mapHeight * newScale) * 0.5)));
             this.pinchHandler.left = -Math.abs(Math.floor((this.mapWidth * 0.5) - ((this.mapWidth * newScale) * 0.5)));
+            if(this.$modelManager.map.lightworld.centerKey) {
+                this.centerOnKey();
+            }
             this.mapHeight = this.getMapHeight();
-            //this.debugInfo = 'navheight: ' + this.getNavbarHeight();
+
         },
         methods: {
             getMapHeight() {
@@ -123,26 +126,9 @@
                 if(args.state === 2) {
                     let newX = this.$refs.mapWrapper.nativeView.left + ((args.deltaX - this.panHandler.lastX));
                     let newY = this.$refs.mapWrapper.nativeView.top + ((args.deltaY - this.panHandler.lastY));
-                    if(newX > this.pinchHandler.left) {
-                        newX = this.pinchHandler.left;
-                    } else if((newX + this.pinchHandler.left) <
-                        -Math.abs(this.getMainScreenWidth() -
-                            this.mapWidth)){
-                        newX = -Math.abs(Math.abs(this.pinchHandler.left) +
-                            this.getMainScreenWidth() -
-                            this.mapWidth);
-                    }
-                    if(newY > this.pinchHandler.top) {
-                        newY = this.pinchHandler.top;
-                    } else if((newY + this.pinchHandler.top) <
-                        -Math.abs((this.getMainScreenHeight()) -
-                            this.getViewHeight(this.$refs.navbar.nativeView) -
-                            this.mapHeight)){
-                        newY = -Math.abs(Math.abs(this.pinchHandler.top) +
-                            (this.getMainScreenHeight()) -
-                            this.getViewHeight(this.$refs.navbar.nativeView) -
-                            this.mapHeight);
-                    }
+                    this.keepInBounds(newX, newY);
+                    this.panHandler.lastX = args.deltaX;
+                    this.panHandler.lastY = args.deltaY;
                     // this.debugInfo = 'pinch:' + this.pinchHandler.top +
                     //     ' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
                     //     ' screen calc:' + (this.getMainScreenHeight() - this.getViewHeight(this.$refs.navbar.nativeView)) +
@@ -150,11 +136,7 @@
                     //     ' scale:'+ (this.pinchHandler.currentScale+'').substr(0,4) +
                     //     ' minscale' + this.getMinScale() +
                     //     ' newy:'+ (newY +'').substr(0,4) +
-                    //     ' screen scale:' + this.screen.mainScreen.scale;
-                    this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x = newX;
-                    this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y = newY;
-                    this.panHandler.lastX = args.deltaX;
-                    this.panHandler.lastY = args.deltaY;
+                    //     ' screen scale:' + this.screen.mainScreen.scale;this.panHandler.lastX = args.deltaX;
                 } else if(args.state === 3) {
                     this.panHandler.lastX = 0;
                     this.panHandler.lastY = 0;
@@ -182,8 +164,47 @@
                     this.pinchHandler.pinching = false;
                 }
             },
+            centerOnKey() {
+                const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale = 1;
+                this.pinchHandler.top = -Math.abs(Math.floor((this.mapHeight * 0.5) - ((this.mapHeight * newScale) * 0.5)));
+                this.pinchHandler.left = -Math.abs(Math.floor((this.mapWidth * 0.5) - ((this.mapWidth * newScale) * 0.5)));
+                const locale = this.mapHandler.staticLocations[this.$modelManager.map.lightworld.centerKey];
+                this.$modelManager.map.lightworld.centerKey = undefined;
+                const halfWidth = Math.floor(this.getMainScreenWidth() / 2);
+                const halfHeight = Math.floor((this.getMainScreenHeight() - this.getViewHeight(this.$refs.navbar.nativeView)) / 2);
+                let newX = Math.floor(-Math.abs(locale.x) + (halfWidth));
+                let newY = Math.floor(-Math.abs(locale.y) + (halfHeight));
+                console.log('x',locale.x, halfWidth, this.pinchHandler.currentScale,  newX);
+                console.log('y',locale.y, halfHeight, this.pinchHandler.currentScale,  newY);
+                this.keepInBounds(newX, newY);
+                this.$modelManager.saveMap();
+            },
+            keepInBounds(newX, newY) {
+                if(newX > this.pinchHandler.left) {
+                    newX = this.pinchHandler.left;
+                } else if((newX + this.pinchHandler.left) <
+                    -Math.abs(this.getMainScreenWidth() -
+                        this.mapWidth)){
+                    newX = -Math.abs(Math.abs(this.pinchHandler.left) +
+                        this.getMainScreenWidth() -
+                        this.mapWidth);
+                }
+                if(newY > this.pinchHandler.top) {
+                    newY = this.pinchHandler.top;
+                } else if((newY + this.pinchHandler.top) <
+                    -Math.abs((this.getMainScreenHeight()) -
+                        this.getViewHeight(this.$refs.navbar.nativeView) -
+                        this.mapHeight)){
+                    newY = -Math.abs(Math.abs(this.pinchHandler.top) +
+                        (this.getMainScreenHeight()) -
+                        this.getViewHeight(this.$refs.navbar.nativeView) -
+                        this.mapHeight);
+                }
+                this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x = newX;
+                this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y = newY;
+            },
             toggleMode(){
-                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode === 1 ? 0 : 1;
+                this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 1;
                 this.$modelManager.saveMap();
                 this.$navigateTo(LightList);
             },
