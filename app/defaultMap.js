@@ -58,12 +58,14 @@ export const defaultMap = {
             dungeons: {
                 ep:{klass:'locale-red'},
                 dp:{klass: 'locale-red'},
-                toh:{klass: 'locale-red'}
+                toh:{klass: 'locale-red'},
+                aga:{klass: 'locale-red'}
             },
             bosses: {
                 ep:{klass:'locale-red'},
                 dp:{klass: 'locale-red'},
-                toh:{klass: 'locale-red'}
+                toh:{klass: 'locale-red'},
+                aga:{klass: 'locale-red'}
             }
         },
         darkworld: {}
