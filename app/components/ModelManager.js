@@ -15,6 +15,8 @@ import {defaultDungeons} from "~/defaultDungeons";
 import {defaultMap} from "~/defaultMap";
 import {staticMapLW} from "~/staticMapLW";
 import {staticMapDungeonsLW} from "~/staticMapDungeonsLW";
+import {staticMapDW} from "~/staticMapDW";
+import {staticMapDungeonsDW} from "~/staticMapDungeonsDW";
 
 export class ModelManager  {
     items = {};
@@ -155,12 +157,21 @@ export class ModelManager  {
     validateLocales() {
         const lkeys = Object.keys(staticMapLW);
         const ldkeys = Object.keys(staticMapDungeonsLW);
+        const dkeys = Object.keys(staticMapDW);
+        const ddkeys = Object.keys(staticMapDungeonsDW);
         for(const key of lkeys){
             this.map.lightworld.locations[key].klass = staticMapLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
         for(const key of ldkeys){
             this.map.lightworld.dungeons[key].klass = staticMapDungeonsLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
             this.map.lightworld.bosses[key].klass = staticMapDungeonsLW[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+        }
+        for(const key of dkeys){
+            this.map.darkworld.locations[key].klass = staticMapDW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+        }
+        for(const key of ddkeys){
+            this.map.darkworld.dungeons[key].klass = staticMapDungeonsDW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.darkworld.bosses[key].klass = staticMapDungeonsDW[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
     }
 }
