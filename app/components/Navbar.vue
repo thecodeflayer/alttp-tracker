@@ -37,6 +37,7 @@
     import Settings from "~/components/Settings";
     import Dungeons from "~/components/Dungeons";
     import LightList from "~/components/LightList";
+    import DarkList from "~/components/DarkList";
 
     export default {
         methods: {
@@ -51,7 +52,11 @@
                 }
             },
             navDarkMap() {
-                this.$navigateTo(DarkMap);
+                if(this.$modelManager.map.darkworld.mode === 1) {
+                    this.$navigateTo(DarkList);
+                } else {
+                    this.$navigateTo(DarkMap);
+                }
             },
             navItems() {
                 this.$navigateTo(Items);

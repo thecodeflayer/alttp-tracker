@@ -1,5 +1,5 @@
 <template>
-    <Page>
+    <Page backgroundColor="black">
         <Navbar></Navbar>
         <GridLayout columns="*", rows="50,50,50,50" style="margin-top:10">
             <Button row="0" col="0" class="btn" @tap="resetItems">Reset Items</Button>
@@ -43,6 +43,7 @@
         color: white;
         horizontal-align: center;
         vertical-align: center;
+        font-family: "Return of Ganon", "ReturnofGanon";
         width: 90%
     }
 </style>
