@@ -54,6 +54,11 @@ export const defaultMap = {
                 mimicCave: {checked: false, klass: 'locale-red'},
                 paradoxCave: {checked: false, klass: 'locale-red'},
                 floatingIsland: {checked: false, klass: 'locale-red'},
+            },
+            dungeons: {
+                ep:{klass:'locale-red'},
+                dp:{klass: 'locale-red'},
+                toh:{klass: 'locale-red'}
             }
         },
         darkworld: {}
