@@ -7,6 +7,7 @@ export const defaultMap = {
             x: 0,
             y: 0,
             centerKey: undefined,
+            scrollY: 0,
             locations: {
                 uncle: {checked: false, klass:'locale-green'},
                 secretPassage: {checked: false, klass:'locale-green'},

@@ -6,7 +6,11 @@
                 <Image height="16" width="16" src="~/img/lightworld/map_btn.png" style="padding-left:10"/>
                 <Label style="padding:0 8" text="Return to Map" />
             </StackLayout>
-            <ScrollView orientation="vertical" :height="mapHandler.keys.length * 54">
+            <ScrollView  ref="listScrollView" orientation="vertical" @loaded="onLoadScroll"
+                         :height="mapHandler.keys.length * 54"
+                         :scrollableHeight="mapHandler.keys.length * 54"
+                         :scrollToVerticalOffset="scrollOffsetY"
+                         @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
                     <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" columns="40,*,40" rows="46">
                         <Image row="0" col="0" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
@@ -40,9 +44,16 @@
                     keys: Object.keys(staticMapLW),
                     staticLocations: staticMapLW,
                     locations: this.$modelManager.map.lightworld.locations
-                }
+                },
+                scrollTimout: undefined,
+                scrollOffsetY: this.$modelManager.map.lightworld.scrollY;
             }
         },
+        // mounted() {
+        //     this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
+        //     //this.$refs.listScrollView.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
+        //
+        // },
         methods: {
             toggleMode(){
                 this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
@@ -58,7 +69,15 @@
             clickCheck(key) {
                 this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
                 this.$modelManager.saveMap();
-            }
+            },
+            onScroll(args){
+                console.log('save scroll', args.scrollY, this.scrollOffsetY);
+                clearTimeout(this.scrollTimout);
+                this.scrollTimout = setTimeout(() => {
+                    this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY = args.scrollY;
+                    this.$modelManager.saveMap();
+                }, 300);
+            },
         }
     };
 </script>

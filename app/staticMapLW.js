@@ -87,7 +87,7 @@ export const staticMapLW = {
         return items.jar > 0;
     }},
     lwHideout:{x:283,y:194, title:'Lost Woods Hideout', desc: '', req:[], validate(){return true;}},
-    lumberjackTree:{x:115,y:451, title:'Lumberjack Tree', desc: '',
+    lumberjackTree:{x:450,y:110, title:'Lumberjack Tree', desc: '',
         req:['dungeons/aga_boss0'], validate(items, dungeons){
         return dungeons.aga.boss;
     }},
