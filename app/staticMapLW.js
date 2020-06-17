@@ -55,101 +55,132 @@ export const staticMapLW = {
             }
             return rb === 2 && g;
     }},
-    kingTomb: {x: 902, y: 444, title:'King\'s Tomb', desc: '', req:[], validate(items){
-        return items.glove === 2 && items.boots;
+    kingTomb: {x: 902, y: 444, title:'King\'s Tomb', desc: '',
+        req:['items/glove2','items/boots1'],
+        validate(items){
+            return items.glove === 2 && items.boots;
     }},
     tavern:{x: 240, y:850, title:'Kakariko Tavern', desc: '', req:[], validate(){return true;}},
-    chickenHut: {x: 814, y:146, title:'Chicken Hut', desc: '', req:[], validate(items){
+    chickenHut: {x: 814, y:146, title:'Chicken Hut', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    well: {x: 38, y:639, title:'Kakariko Well', desc: '', req:[], validate(items){
+    well: {x: 38, y:639, title:'Kakariko Well', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    blindhouse: {x: 193, y:632, title:'Blind\'s House', desc: '', req:[], validate(items){
+    blindhouse: {x: 193, y:632, title:'Blind\'s House', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    pegasusRock:{x:595,y:440, title:'Pegasus Rocks', desc: '', req:[], validate(items){
+    pegasusRock:{x:595,y:440, title:'Pegasus Rocks', desc: '',
+        req:['items/boots1'], validate(items){
         return items.boots;
     }},
-    bottleMerchant: {x:144,y:698, title:'Bottle Merchant (100 Rupees)', desc: '', req:[], validate(){return true;}},
-    magicBat:{x:486,y:844, title:'Magic Bat', desc: '', req:[], validate(items){
+    bottleMerchant: {x:144,y:698, title:'Bottle Merchant', desc: 'Bring 100 Rupees!', req:[], validate(){return true;}},
+    magicBat:{x:486,y:844, title:'Magic Bat', desc: '',
+        req:['items/powder1', 'items/hammer1', 'items/mirror1'], validate(items){
         return items.powder && (items.hammer || items.mirror);
     }},
-    sickKid:{x:234,y:807, title:'Sick Kid', desc: '', req:[], validate(items){
+    sickKid:{x:234,y:807, title:'Sick Kid', desc: '',
+        req:['items/jar1'], validate(items){
         return items.jar > 0;
     }},
     lwHideout:{x:283,y:194, title:'Lost Woods Hideout', desc: '', req:[], validate(){return true;}},
-    lumberjackTree:{x:115,y:451, title:'Lumberjack Tree', desc: '', req:[], validate(items, dungeons){
+    lumberjackTree:{x:115,y:451, title:'Lumberjack Tree', desc: '',
+        req:['dungeons/aga_boss0'], validate(items, dungeons){
         return dungeons.aga.boss;
     }},
-    graveyardLedge:{x:855,y:416, title:'Graveyard Ledge', desc: '', req:[], validate(items){
+    graveyardLedge:{x:855,y:416, title:'Graveyard Ledge', desc: '',
+        req:['items/mirror1','items/moonpearl1','items/glove2'], validate(items){
         return items.mirror && items.moonpearl && items.glove === 2;
     }},
     lwMushroom:{x:185,y:135, title:'Lost Woods Mushroom Location', desc: '', req:[], validate(){return true;}},
     floodChest:{x:703,y:1405, title:'Floodgate Chest', desc: '', req:[], validate(){return true;}},
     floodTreasure:{x:677,y:1394, title:'Floodgate Sunken Treasure', desc: '', req:[], validate(){return true;}},
     linkHouse: {x:820,y:1037, title:'Link\'s House', desc: '', req:[], validate(){return true;}},
-    aginahCave: {x:298,y:1242, title:'Aginah Cave', desc: '', req:[], validate(items){
+    aginahCave: {x:298,y:1242, title:'Aginah Cave', desc: 'Not the other guy',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    moldormCave: {x:978,y:1412, title:'Mini-Moldorm Cave', desc: '', req:[], validate(items){
+    moldormCave: {x:978,y:1412, title:'Mini-Moldorm Cave', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    iceRodCave: {x:1342,y:1160, title:'Ice Rod Cave', desc: '', req:[], validate(items){
+    iceRodCave: {x:1342,y:1160, title:'Ice Rod Cave', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    hobo: {x:1059,y:1045, title:'Hobo Under the Bridge', desc: '', req:[], validate(items){
+    hobo: {x:1059,y:1045, title:'Hobo Under the Bridge', desc: '',
+        req:['items/flippers1'], validate(items){
         return items.flippers;
     }},
-    bombosTablet: {x:328,y:1380, title:'Bombos Tablet', desc: '', req:[], validate(items){
+    bombosTablet: {x:328,y:1380, title:'Bombos Tablet', desc: '',
+        req:['items/glove2','items/moonpearl1','items/mirror1','items/book1'], validate(items){
         return items.glove === 2 && items.moonpearl && items.mirror && items.book;
     }},
-    cave45: {x:399,y:1242, title:'Cave 45', desc: '', req:[], validate(items){
+    cave45: {x:399,y:1242, title:'Cave 45', desc: '',
+        req:['items/glove2', 'items/moonpearl1','items/mirror1'], validate(items){
         return items.glove === 2 && items.moonpearl && items.mirror;
     }},
-    checkerCave: {x:263,y:1165, title:'Checkerboard Cave', desc: '', req:[], validate(items){
+    checkerCave: {x:263,y:1165, title:'Checkerboard Cave', desc: '',
+        req:['items/glove2', 'items/moonpearl1', 'items/mirror1', 'items/flute1'], validate(items){
         return items.glove === 2 && items.moonpearl && items.mirror && items.flute;
     }},
-    library: {x:243,y:990, title:'Library', desc: '', req:[], validate(items){
+    library: {x:243,y:990, title:'Library', desc: '',
+        req:['items/boots1'], validate(items){
         return items.boots;
     }},
-    mazeRace: {x:148,y:1080, title:'Maze Race', desc: '', req:[], validate(items){
+    mazeRace: {x:148,y:1080, title:'Maze Race', desc: '',
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
-    desertLedge: {x:38,y:1375, title:'Desert Ledge', desc: '', req:[], validate(items){
+    desertLedge: {x:38,y:1375, title:'Desert Ledge', desc: '',
+        req:['items/book1'], validate(items){
         return items.book;
     }},
-    lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '', req:[], validate(items){
-        return items.glove === 2 && items.moonpearl && items.mirror && items.flippers;
+    lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '',
+        req:['items/glove2','items/moonpearl1','items/mirror1','items/flippers1'],
+        validate(items){
+            return items.glove === 2 && items.moonpearl && items.mirror && items.flippers;
     }},
-    fluteSpot: {x:435,y:992, title:'Flute Spot', desc: '', req:[], validate(items){
+    fluteSpot: {x:435,y:992, title:'Flute Spot', desc: '',
+        req:['items/shovel1'], validate(items){
         return items.shovel;
     }},
-    oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '', req:[], validate(items){
+    oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '',
+        req:['items/glove1','items/lantern1'], validate(items){
         return items.glove > 0 && items.lantern;
     }},
-    spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', desc: '', req:[], validate(items){
+    spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', desc: '',
+        req:['items/glove1','items/lantern1'], validate(items){
         return items.glove > 0 && items.lantern;
     }},
-    etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '', req:[], validate(items){
+    etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '',
+        req:['items/glove1','items/moonpearl1','items/mirror1','items/book1','items/lantern1'], validate(items){
         return items.glove > 0 && items.moonpearl && items.mirror && items.book && items.lantern;
     }},
-    spectacleRock: {x:761,y:121, title:'Spectacle Rock', desc: '', req:[], validate(items){
+    spectacleRock: {x:761,y:121, title:'Spectacle Rock', desc: '',
+        req:['items/glove1','items/mirror1','items/lantern1'], validate(items){
         return items.glove > 0 && items.mirror && items.lantern;
     }},
-    spiralCave: {x:1195,y:140, title:'Spiral Cave', desc: '', req:[], validate(items){
+    spiralCave: {x:1195,y:140, title:'Spiral Cave', desc: '',
+        req:['items/glove1','items/lantern1','items/hookshot1'], validate(items){
         return items.glove > 0 && items.lantern && items.hookshot;
     }},
-    mimicCave: {x:1266,y:140, title:'Mimic Cave', desc: '', req:[], validate(items, dungeons){
+    mimicCave: {x:1266,y:140, title:'Mimic Cave', desc: '',
+        req:['dungeons/medallion0', 'items/hammer1','items/glove2','items/firerod1','items/moonpearl1','items/mirror1','items/redcane1','items/lantern1'], validate(items, dungeons){
         const m = (dungeons.tr.medallion === 1 && items.bombos) ||
             (dungeons.tr.medallion === 2 && items.ether) ||
             (dungeons.tr.medallion === 3 && items.quake)
         return m && items.hammer && items.glove === 2 && items.firerod && items.moonpearl && items.mirror && items.redcane && items.lantern;
     }},
-    paradoxCave: {x:1283,y:222, title:'Paradox', desc: '', req:[], validate(items){
+    paradoxCave: {x:1283,y:222, title:'Paradox', desc: '',
+        req:['items/hammer1','items/glove1','items/mirror1','items/lantern1'], validate(items){
         return items.hammer && items.glove > 0 && items.mirror && items.lantern;
     }},
-    floatingIsland: {x:1220,y:26, title:'Floating Island', desc: '', req:[], validate(items){
+    floatingIsland: {x:1220,y:26, title:'Floating Island', desc: '',
+        req:['items/glove2','items/mirror1','items/moonpearl1','items/lantern1','items/hookshot1'], validate(items){
         return items.glove === 2 && items.mirror && items.moonpearl && items.lantern && items.hookshot;
     }}
 }

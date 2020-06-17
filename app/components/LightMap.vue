@@ -172,8 +172,8 @@
                 this.$modelManager.map.lightworld.centerKey = undefined;
                 const halfWidth = Math.floor(this.getMainScreenWidth() / 2);
                 const halfHeight = Math.floor((this.getMainScreenHeight() - this.getViewHeight(this.$refs.navbar.nativeView)) / 2);
-                let newX = Math.floor(-Math.abs(locale.x) + (halfWidth));
-                let newY = Math.floor(-Math.abs(locale.y) + (halfHeight));
+                let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
+                let newY = Math.floor(-Math.abs(locale.y) + halfHeight);
                 console.log('x',locale.x, halfWidth, this.pinchHandler.currentScale,  newX);
                 console.log('y',locale.y, halfHeight, this.pinchHandler.currentScale,  newY);
                 this.keepInBounds(newX, newY);
