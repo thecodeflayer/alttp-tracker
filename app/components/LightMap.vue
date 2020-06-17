@@ -11,6 +11,12 @@
                        :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
                        :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                         @tap="onClickLocale(key)"/>
+                <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:dkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                       :class="mapHandler.dungeonValues[dkey].chests === 0 ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
+                       :width="Math.floor(50 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(50 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticDungeons[dkey].x - (25 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticDungeons[dkey].y - (25 * (1 / pinchHandler.localeScale)))" />
             </AbsoluteLayout>
             <GridLayout top="10" left="0" columns="40,*" rows="*">
                 <Image row="0" col="0" height="16" width="16" src="~/img/lightworld/compass_btn.png" style="padding-left:10" @tap="toggleMode" />
@@ -26,6 +32,7 @@
     import {staticMapLW} from "~/staticMapLW";
     import * as app from 'tns-core-modules/application'
     import LightList from "~/components/LightList";
+    import {staticMapDungeonsLW} from "~/staticMapDungeonsLW";
 
     export default {
         data: function() {
@@ -48,9 +55,13 @@
                 },
                 mapHandler: {
                     tiles: this.populateTiles(),
-                    staticLocations: staticMapLW,
                     keys: Object.keys(staticMapLW),
-                    locations: this.$modelManager.map.lightworld.locations
+                    staticLocations: staticMapLW,
+                    locations: this.$modelManager.map.lightworld.locations,
+                    dungeonKeys: Object.keys(staticMapDungeonsLW),
+                    staticDungeons: staticMapDungeonsLW,
+                    dungeons: this.$modelManager.map.lightworld.dungeons,
+                    dungeonValues: this.$modelManager.dungeons
                 },
                 mapWidth:1500,
                 mapHeight:1500,

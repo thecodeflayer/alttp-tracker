@@ -1,5 +1,5 @@
 export const staticMapLW = {
-    uncle :{x:894,y:624, title:'Dead Uncle', desc: 'Loot the body you animal!', req:[], validate() {return true;}},
+    uncle :{x:894,y:624, title:'Dead Uncle', desc: '', req:[], validate() {return true;}},
     secretPassage:{x:826,y:644, title:'Secret Passage', desc: '', req:[],  validate() {return true;}},
     backOfEscape:{x:778,y:439, title:'Back of Escape',
         desc: '', req:['items/glove1'],
@@ -29,7 +29,7 @@ export const staticMapLW = {
         validate(items){
             return items.mushroom;
     }},
-    zora:{x:1457, y:187, title:'King Zora', desc: 'Bring 500 Rupees', req:[], validate(){return true;}},
+    zora:{x:1457, y:187, title:'King Zora (500 Rupees)', desc: '', req:[], validate(){return true;}},
     zoraLedge:{x:1427, y:187, title:'Zora Ledge',
         desc: '', req:['items/flippers1'],
         validate(items){
@@ -77,7 +77,7 @@ export const staticMapLW = {
         req:['items/boots1'], validate(items){
         return items.boots;
     }},
-    bottleMerchant: {x:144,y:698, title:'Bottle Merchant', desc: 'Bring 100 Rupees!', req:[], validate(){return true;}},
+    bottleMerchant: {x:144,y:698, title:'Bottle Merchant (100 Rupees)', desc: '', req:[], validate(){return true;}},
     magicBat:{x:486,y:844, title:'Magic Bat', desc: '',
         req:['items/powder1', 'items/hammer1', 'items/mirror1'], validate(items){
         return items.powder && (items.hammer || items.mirror);

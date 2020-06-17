@@ -14,6 +14,7 @@ import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
 import {defaultMap} from "~/defaultMap";
 import {staticMapLW} from "~/staticMapLW";
+import {staticMapDungeonsLW} from "~/staticMapDungeonsLW";
 
 export class ModelManager  {
     items = {};
@@ -153,8 +154,12 @@ export class ModelManager  {
     }
     validateLocales() {
         const keys = Object.keys(staticMapLW);
+        const dkeys = Object.keys(staticMapDungeonsLW);
         for(const key of keys){
             this.map.lightworld.locations[key].klass = staticMapLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+        }
+        for(const key of dkeys){
+            this.map.lightworld.dungeons[key].klass = staticMapDungeonsLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
     }
 }
