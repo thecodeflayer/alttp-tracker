@@ -22,5 +22,13 @@ export const staticMapDungeonsLW = {
         validateBoss(items){
             return items.mirror && items.moonpearl;
         }
+    },
+    aga:{x:750, y:577,
+        validate(items){
+            return items.bluecane || items.cape || items.sword > 1;
+        },
+        validateBoss(items){
+            return items.bluecane || items.cape || items.sword > 1;
+        }
     }
 }
