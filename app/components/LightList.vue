@@ -8,12 +8,13 @@
             </StackLayout>
             <ScrollView orientation="vertical">
                 <StackLayout orientation="vertical" backgroundColor="black">
-                    <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" columns="*,52,40,40" rows="46">
-                        <StackLayout row="0" col="0" orientation="vertical">
-                            <Label class="title" :text="mapHandler.staticLocations[key].desc"/>
-                            <Label text="Add some funny stuff here for the lulz..." fontSize="14" />
+                    <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" columns="40,*,52,40" rows="46">
+                        <Image row="0" col="0" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
+                        <StackLayout row="0" col="1" orientation="vertical" style="padding-left:5">
+                            <Label class="title" :text="mapHandler.staticLocations[key].title"/>
+                            <Label :text="mapHandler.staticLocations[key].desc" fontSize="14" />
                         </StackLayout>
-                        <GridLayout row="0" col="1" columns="18,18,18" rows="18,18" verticalAlignment="center">
+                        <GridLayout row="0" col="2" columns="18,18,18" rows="18,18" verticalAlignment="center">
                             <Image row="0" col="0" width="16" height="16" src="~/img/items/bombs1.png"/>
                             <Image row="0" col="1" width="16" height="16" src="~/img/items/bombs1.png"/>
                             <Image row="0" col="2" width="16" height="16" src="~/img/items/bombs1.png"/>
@@ -21,8 +22,7 @@
                             <Image row="1" col="1" width="16" height="16" src="~/img/items/bombs1.png"/>
                             <Image row="1" col="2" width="16" height="16" src="~/img/items/bombs1.png"/>
                         </GridLayout>
-                        <Image row="0" col="2" src="~/img/dungeons/compass1.png" width="32" height="32" @tap="clickCompass(key)" />
-                        <Image row="0" col="3" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
+                        <Image row="0" col="3" src="~/img/dungeons/compass1.png" width="32" height="32" @tap="clickCompass(key)" />
                     </GridLayout>
                 </StackLayout>
             </ScrollView>
