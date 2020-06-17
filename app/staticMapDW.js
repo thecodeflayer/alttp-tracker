@@ -12,7 +12,7 @@ export const staticMapDW = {
     bumperCave: {x: 532, y: 268,title: '​Bumper Cave', desc: '', req:[], validate(){return true;}},
     blacksmith: {x: 223, y: 994,title: 'Blacksmith', desc: '', req:[], validate(){return true;}},
     purpleChest: {x: 457, y: 802,title: 'Purple Chest', desc: '', req:[], validate(){return true;}},
-    hypeCave: {x: 1236, y: 972,title: 'Hype Cave', desc: '', req:[], validate(){return true;}},
+    hypeCave: {x: 896, y: 1168,title: 'Hype Cave', desc: '', req:[], validate(){return true;}},
     stumpy: {x: 463, y: 1024,title: 'Stumpy', desc: '', req:[], validate(){return true;}},
     diggingGame: {x: 85, y: 1043,title: 'Digging Game', desc: '', req:[], validate(){return true;}},
     mireShed: {x: 59, y: 1205,title: 'Mire Shed', desc: '', req:[], validate(){return true;}},
