@@ -31,11 +31,11 @@ export const regionHelper = {
             && (items.hammer || items.flippers)))
             || this.northWestDW(items, dungeons);
     },
-    deathMtnEastDW(items) {
-        return items.glove === 2 && this.deathMtnEastLW();
+    deathMtnEastDW(items, dungeons) {
+        return items.glove === 2 && this.deathMtnEastLW(items, dungeons);
     },
-    deathMtnWestDW(items) {
-        return this.deathMtnWestLW(items);
+    deathMtnWestDW(items, dungeons) {
+        return this.deathMtnWestLW(items, dungeons);
     },
     // dungeons
     dp(items, dungeons) {
@@ -61,7 +61,7 @@ export const regionHelper = {
         let c = 0;
         const keys = Object.keys(dungeons);
         for(const key of keys) {
-            if(dungeons[key].crystal > 2){
+            if(dungeons[key].crystal > 2 && dungeons[key].boss){
                 c = c +1;
             }
         }
