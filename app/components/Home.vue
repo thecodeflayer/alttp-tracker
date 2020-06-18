@@ -10,6 +10,7 @@
                 <Button class="btn" @tap="clickRandomizer">ALTTP Randomizer</Button>
                 <Button class="btn" @tap="clickReddit">ALTTP on Reddit</Button>
                 <Button class="btn" @tap="clickDiscord">ALTTP Discord</Button>
+                <Button class="btn" @tap="clickPayPal">Buy Me A Beer!</Button>
             </StackLayout>
         </ScrollView>
     </Page>
@@ -30,6 +31,9 @@
             },
             clickDiscord() {
                 openUrl('https://discord.gg/48sauwx');
+            },
+            clickPayPal(){
+                openUrl('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCTX9KX4EJ4FY&currency_code=USD&source=url');
             }
 
         }

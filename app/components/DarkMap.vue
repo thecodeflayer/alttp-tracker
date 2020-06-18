@@ -19,7 +19,7 @@
                        :top="Math.floor(mapHandler.staticDungeons[dkey].y - (23 * (1 / pinchHandler.localeScale)))" />
                 <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:bkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                        style="border-width: 0"
-                       :class="mapHandler.dungeonValues[bkey].boss === 0 ? 'locale-gray' : mapHandler.bosses[bkey].klass"
+                       :class="mapHandler.dungeonValues[bkey].boss ? 'locale-gray' : mapHandler.bosses[bkey].klass"
                        :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticDungeons[bkey].x - (15 * (1 / pinchHandler.localeScale)))"
