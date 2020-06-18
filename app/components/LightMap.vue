@@ -12,7 +12,7 @@
                        :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                         @tap="onClickLocale(key)"/>
                 <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:dkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
-                       :class="(mapHandler.dungeonValues[dkey].maxChests > 0 && mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
+                       :class="(mapHandler.dungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                        :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticDungeons[dkey].x - (23 * (1 / pinchHandler.localeScale)))"
