@@ -4,7 +4,7 @@ export const staticMapLW = {
     uncle :{x:894,y:624, title:'Dead Uncle', desc: '', req:[], validate() {return true;}},
     secretPassage:{x:826,y:644, title:'Secret Passage', desc: '', req:[],  validate() {return true;}},
     backOfEscape:{x:778,y:439, title:'Back of Escape',
-        desc: '', req:['items/glove1'],
+        desc: '', req:[],
         validate(items) {return items.glove > 0;}},
     sahashralaHut:{x:1216,y:660, title:'Sahashrala\'s Hut',
         req: [],
