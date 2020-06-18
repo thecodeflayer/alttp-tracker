@@ -2,7 +2,8 @@ export const staticMapDW = {
     superbunnyCave: {x: 1265, y: 223,title: 'Superbunny Cave', desc: '', req:[], validate(){return true;}},
     hookshotCave: {x: 1247, y: 99,title: 'Hookshot Cave', desc: '', req:[], validate(){return true;}},
     spikeCave: {x: 862, y: 221,title: 'Spike Cave', desc: '', req:[], validate(){return true;}},
-    catfish: {x: 1341, y: 257,title: 'Catfish', desc: '', req:[], validate(){return true;}},
+    catfish: {x: 1341, y: 257,title: 'Catfish', desc: '', req:[], validate(items){
+        return items.moonpearl && items.glove > 0;}},
     pyramid: {x: 870, y: 670,title: 'Pyramid', desc: '', req:[], validate(){return true;}},
     pyramidFairy: {x: 703, y: 733,title: 'Pyramid Fairy', desc: '', req:[], validate(){return true;}},
     brewery: {x: 163, y: 878,title: 'Brewery', desc: '', req:[], validate(){return true;}},
