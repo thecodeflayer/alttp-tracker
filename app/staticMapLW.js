@@ -1,3 +1,5 @@
+import {regionHelper} from "~/regionHelper";
+
 export const staticMapLW = {
     uncle :{x:894,y:624, title:'Dead Uncle', desc: '', req:[], validate() {return true;}},
     secretPassage:{x:826,y:644, title:'Secret Passage', desc: '', req:[],  validate() {return true;}},
@@ -29,7 +31,12 @@ export const staticMapLW = {
         validate(items){
             return items.mushroom;
     }},
-    zora:{x:1457, y:187, title:'King Zora (500 Rupees)', desc: '', req:[], validate(){return true;}},
+    zora:{x:1457, y:187, title:'King Zora (500 Rupees)', desc: '',
+        req:['items/glove1', 'items/flippers1'],
+        validate(items){
+            return items.glove > 0 || items.flippers;
+        }
+    },
     zoraLedge:{x:1427, y:187, title:'Zora Ledge',
         desc: '', req:['items/flippers1'],
         validate(items){
@@ -57,8 +64,10 @@ export const staticMapLW = {
     }},
     kingTomb: {x: 902, y: 444, title:'King\'s Tomb', desc: '',
         req:['items/glove2','items/boots1'],
-        validate(items){
-            return items.glove === 2 && items.boots;
+        validate(items, dungeons){
+            return items.boots
+                && (items.glove === 2
+                || (items.mirror && regionHelper.northWestDW(items, dungeons)) && items.moonpearl);
     }},
     tavern:{x: 240, y:850, title:'Kakariko Tavern', desc: '', req:[], validate(){return true;}},
     chickenHut: {x: 814, y:146, title:'Chicken Hut', desc: '',
@@ -79,8 +88,12 @@ export const staticMapLW = {
     }},
     bottleMerchant: {x:144,y:698, title:'Bottle Merchant (100 Rupees)', desc: '', req:[], validate(){return true;}},
     magicBat:{x:486,y:844, title:'Magic Bat', desc: '',
-        req:['items/powder1', 'items/hammer1', 'items/mirror1'], validate(items){
-        return items.powder && (items.hammer || items.mirror);
+        req:['items/powder1', 'items/hammer1', 'items/mirror1'],
+        validate(items, dungeons){
+            return items.powder
+                && (items.hammer
+                    || (items.mirror && items.moonpearl
+                        && (items.glove === 2 && regionHelper.northWestDW(items, dungeons))));
     }},
     sickKid:{x:234,y:807, title:'Sick Kid', desc: '',
         req:['items/jar1'], validate(items){
@@ -88,12 +101,13 @@ export const staticMapLW = {
     }},
     lwHideout:{x:283,y:194, title:'Lost Woods Hideout', desc: '', req:[], validate(){return true;}},
     lumberjackTree:{x:450,y:110, title:'Lumberjack Tree', desc: '',
-        req:['dungeons/aga_boss0'], validate(items, dungeons){
-        return dungeons.aga.boss;
+        req:['dungeons/aga_boss0','items/boots1'], validate(items, dungeons){
+        return dungeons.aga.boss && items.boots;
     }},
     graveyardLedge:{x:855,y:416, title:'Graveyard Ledge', desc: '',
-        req:['items/mirror1','items/moonpearl1','items/glove2'], validate(items){
-        return items.mirror && items.moonpearl && items.glove === 2;
+        req:['items/mirror1','items/moonpearl1','items/glove2'],
+        validate(items, dungeons){
+        return items.mirror && items.moonpearl && regionHelper.northWestDW(items, dungeons);
     }},
     lwMushroom:{x:185,y:135, title:'Lost Woods Mushroom Location', desc: '', req:[], validate(){return true;}},
     floodChest:{x:703,y:1405, title:'Floodgate Chest', desc: '', req:[], validate(){return true;}},
@@ -116,16 +130,19 @@ export const staticMapLW = {
         return items.flippers;
     }},
     bombosTablet: {x:328,y:1380, title:'Bombos Tablet', desc: '',
-        req:['items/glove2','items/moonpearl1','items/mirror1','items/book1'], validate(items){
-        return items.glove === 2 && items.moonpearl && items.mirror && items.book;
+        req:['items/mirror1','items/book1','items.sword1'],
+        validate(items, dungeons){
+            return items.book && items.sword > 0 && items.mirror && regionHelper.southDW(items, dungeons);
     }},
     cave45: {x:399,y:1242, title:'Cave 45', desc: '',
-        req:['items/glove2', 'items/moonpearl1','items/mirror1'], validate(items){
-        return items.glove === 2 && items.moonpearl && items.mirror;
+        req:['items/mirror1'],
+        validate(items, dungeons){
+        return items.mirror && regionHelper.southDW(items, dungeons);
     }},
     checkerCave: {x:263,y:1165, title:'Checkerboard Cave', desc: '',
-        req:['items/glove2', 'items/moonpearl1', 'items/mirror1', 'items/flute1'], validate(items){
-        return items.glove === 2 && items.moonpearl && items.mirror && items.flute;
+        req:['items/mirror1'],
+        validate(items, dungeons){
+            return items.mirror && regionHelper.mireDW(items, dungeons);
     }},
     library: {x:243,y:990, title:'Library', desc: '',
         req:['items/boots1'], validate(items){
@@ -136,51 +153,50 @@ export const staticMapLW = {
         return items.bombs;
     }},
     desertLedge: {x:38,y:1375, title:'Desert Ledge', desc: '',
-        req:['items/book1'], validate(items){
-        return items.book;
+        req:[], validate(items, dungeons){
+            return regionHelper.dp(items, dungeons);
     }},
     lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '',
-        req:['items/glove2','items/moonpearl1','items/mirror1','items/flippers1'],
-        validate(items){
-            return items.glove === 2 && items.moonpearl && items.mirror && items.flippers;
+        req:['items/mirror1','items/flippers1','items/moonpearl1'],
+        validate(items, dungeons){
+            return items.mirror && items.flippers && items.moonpearl && regionHelper.northEastDW(items, dungeons);
     }},
     fluteSpot: {x:435,y:992, title:'Flute Spot', desc: '',
         req:['items/shovel1'], validate(items){
         return items.shovel;
     }},
     oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '',
-        req:['items/glove1','items/lantern1'], validate(items){
-        return items.glove > 0 && items.lantern;
+        req:['items/lantern1'],
+        validate(items, dungeons){
+            return items.lantern && regionHelper.deathMtnWestLW(items, dungeons);
     }},
     spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', desc: '',
-        req:['items/glove1','items/lantern1'], validate(items){
-        return items.glove > 0 && items.lantern;
+        req:[], validate(items, dungeons){
+        return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '',
-        req:['items/glove1','items/moonpearl1','items/mirror1','items/book1','items/lantern1'], validate(items){
-        return items.glove > 0 && items.moonpearl && items.mirror && items.book && items.lantern;
+        req:['items/book1'], validate(items, dungeons){
+        return items.book && items.sword > 0 && regionHelper.toh(items, dungeons);
     }},
     spectacleRock: {x:761,y:121, title:'Spectacle Rock', desc: '',
-        req:['items/glove1','items/mirror1','items/lantern1'], validate(items){
-        return items.glove > 0 && items.mirror && items.lantern;
+        req:['items/mirror1'], validate(items, dungeons){
+        return items.mirror && regionHelper.deathMtnWestLW(items, dungeons);
     }},
     spiralCave: {x:1195,y:140, title:'Spiral Cave', desc: '',
-        req:['items/glove1','items/lantern1','items/hookshot1'], validate(items){
-        return items.glove > 0 && items.lantern && items.hookshot;
+        req:[], validate(items, dungeons){
+        return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     mimicCave: {x:1266,y:140, title:'Mimic Cave', desc: '',
-        req:['dungeons/medallion0', 'items/hammer1','items/glove2','items/firerod1','items/moonpearl1','items/mirror1','items/redcane1','items/lantern1'], validate(items, dungeons){
-        const m = (dungeons.tr.medallion === 1 && items.bombos) ||
-            (dungeons.tr.medallion === 2 && items.ether) ||
-            (dungeons.tr.medallion === 3 && items.quake)
-        return m && items.hammer && items.glove === 2 && items.firerod && items.moonpearl && items.mirror && items.redcane && items.lantern;
+        req:['items.hammer1', 'items/mirror1'], validate(items, dungeons){
+        return items.hammer && items.mirror && regionHelper.tr(items, dungeons);
     }},
     paradoxCave: {x:1283,y:222, title:'Paradox', desc: '',
-        req:['items/hammer1','items/glove1','items/mirror1','items/lantern1'], validate(items){
-        return items.hammer && items.glove > 0 && items.mirror && items.lantern;
+        req:[], validate(items, dungeons){
+        return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     floatingIsland: {x:1220,y:26, title:'Floating Island', desc: '',
-        req:['items/glove2','items/mirror1','items/moonpearl1','items/lantern1','items/hookshot1'], validate(items){
-        return items.glove === 2 && items.mirror && items.moonpearl && items.lantern && items.hookshot;
+        req:[], validate(items, dungeons){
+        return items.mirror && items.bombs && items.glove > 0
+            && regionHelper.deathMtnEastDW(items, dungeons);
     }}
 }

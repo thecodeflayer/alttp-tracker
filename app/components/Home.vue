@@ -33,7 +33,7 @@
                 openUrl('https://discord.gg/48sauwx');
             },
             clickPayPal(){
-                openUrl('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCTX9KX4EJ4FY&currency_code=USD&source=url');
+                openUrl('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCTX9KX4EJ4FY&item_name=ALTTP+Development&currency_code=USD&source=url');
             }
 
         }
