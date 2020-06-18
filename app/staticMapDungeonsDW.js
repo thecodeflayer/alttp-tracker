@@ -12,7 +12,7 @@ export const staticMapDungeonsDW = {
         validate(items, dungeons){
             return items.flippers && items.moonpearl && items.mirror && regionHelper.southDW(items, dungeons);
         },
-        validateBoss(items){
+        validateBoss(items, dungeons){
             return items.flippers && items.moonpearl && items.mirror && regionHelper.southDW(items, dungeons);
         }}, // swamp palace
     sw: {x:59, y:74,
