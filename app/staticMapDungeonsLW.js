@@ -1,34 +1,37 @@
+import {regionHelper} from "~/regionHelper";
+
 export const staticMapDungeonsLW = {
     ep:{x:1437, y:610,
         validate(){
             return true;
         },
         validateBoss(items){
-            return items.lantern && items.bow;
+            return  items.bow && (items.lantern || items.firerod);
         }
     },
     dp:{x:111, y:1270,
-        validate(items){
-            return items.book;
+        validate(items, dungeons){
+            return regionHelper.dp(items, dungeons);
         },
-        validateBoss(items){
-            return items.book && items.glove > 0;
+        validateBoss(items, dungeons){
+            return regionHelper.dp(items, dungeons)
+                && (items.glove > 0 || (items.mirror && regionHelper.mireDW(items, dungeons)));
         }
     },
     toh:{x:840, y:40,
-        validate(items){
-            return items.mirror && items.moonpearl;
+        validate(items, dungeons){
+            return regionHelper.toh(items, dungeons);
         },
-        validateBoss(items){
-            return items.mirror && items.moonpearl;
+        validateBoss(items, dungeons){
+            return regionHelper.toh(items, dungeons);
         }
     },
     aga:{x:750, y:577,
         validate(items){
-            return items.bluecane || items.cape || items.sword > 1;
+            return items.cape || items.sword > 1;
         },
         validateBoss(items){
-            return items.bluecane || items.cape || items.sword > 1;
+            return items.cape || items.sword > 1;
         }
     }
 }
