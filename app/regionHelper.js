@@ -45,10 +45,26 @@ export const regionHelper = {
         return (items.mirror || (items.hookshot && items.hammer))
             && this.deathMtnWestLW(items);
     },
+    mm(items, dungeons) {
+        const m = (dungeons.mm.medallion === 1 && items.bombos) ||
+            (dungeons.mm.medallion === 2 && items.ether) ||
+            (dungeons.mm.medallion === 3 && items.quake)
+        return m && items.moonpearl && this.mireDW(items, dungeons);
+    },
     tr(items, dungeons) {
         const m = (dungeons.tr.medallion === 1 && items.bombos) ||
             (dungeons.tr.medallion === 2 && items.ether) ||
             (dungeons.tr.medallion === 3 && items.quake)
         return m && items.moonpearl && items.redcane && items.hammer && items.glove === 2 && this.deathMtnEastLW(items, dungeons);
+    },
+    gt(items, dungeons) {
+        let c = 0;
+        const keys = Object.keys(dungeons);
+        for(const key of keys) {
+            if(dungeons[key].crystal > 2){
+                c = c +1;
+            }
+        }
+        return c === 7 && items.moonpearl && this.deathMtnEastDW(items, dungeons);
     }
 }

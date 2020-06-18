@@ -31,7 +31,7 @@ export const staticMapDungeonsLW = {
             return items.cape || items.sword > 1;
         },
         validateBoss(items){
-            return items.cape || items.sword > 1;
+            return items.cape || items.sword > 1 && (items.sword > 0 || items.net);
         }
     }
 }
