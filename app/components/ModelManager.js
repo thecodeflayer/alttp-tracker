@@ -29,6 +29,7 @@ export class ModelManager  {
         this.items = this.validateItemsFromStorage();
         this.dungeons = this.validateDungeonsFromStorage();
         this.map = this.validateMapFromStorage();
+        this.validateLocales();
     }
     validateItemsFromStorage() {
         let retval = JSON.parse(JSON.stringify(defaultItems.data));
