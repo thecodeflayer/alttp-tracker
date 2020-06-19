@@ -9,8 +9,8 @@
     }
   },
   "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "repository": "<fill-your-repository-here>",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": "https://github.com/attensityrjones/alttp-tracker",
   "dependencies": {
     "@nativescript/theme": "~2.3.0",
     "nativescript-vue": "~2.4.0",
