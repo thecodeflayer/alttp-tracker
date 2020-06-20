@@ -38,3 +38,7 @@ typings/
 *.ipr
 *.iws
 /assets/alttp_vt_randomizer-31.0.4/
+
+# Artifacts
+*.aab
+*.apk
