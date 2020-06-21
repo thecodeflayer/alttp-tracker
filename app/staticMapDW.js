@@ -47,7 +47,7 @@ export const staticMapDW = {
     }},
     hammerPegs: {x: 474, y: 908,title: 'Hammer Pegs', desc: '', req:[],
         validate(items, dungeons){
-        return items.moonpearl && items.hammer && regionHelper.northWestDW(items, dungeons);
+        return items.moonpearl && items.hammer && items.glove === 2 && regionHelper.northWestDW(items, dungeons);
     }},
     bumperCave: {x: 532, y: 268,title: '​Bumper Cave', desc: '', req:[],
         validate(items, dungeons){

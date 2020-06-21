@@ -29,7 +29,7 @@ export class ModelManager  {
         this.items = this.validateItemsFromStorage();
         this.dungeons = this.validateDungeonsFromStorage();
         this.map = this.validateMapFromStorage();
-        this.validateLocales();
+        //this.validateLocales(); ..causes crash
     }
     validateItemsFromStorage() {
         let retval = JSON.parse(JSON.stringify(defaultItems.data));
@@ -81,7 +81,7 @@ export class ModelManager  {
                     retval = stored.data;
                     console.log('successfully got map from storage!')
                 } else {
-                    console.log('map versions do not match got:',stored.version, 'wanted:', this.dungeonsVersion);
+                    console.log('map versions do not match got:',stored.version, 'wanted:', this.mapVersion);
                 }
             } catch(err) {
                 console.error('error getting map from storage', err);

@@ -70,7 +70,7 @@ export const staticMapLW = {
                 || (items.mirror && regionHelper.northWestDW(items, dungeons)) && items.moonpearl);
     }},
     tavern:{x: 240, y:850, title:'Kakariko Tavern', desc: '', req:[], validate(){return true;}},
-    chickenHut: {x: 814, y:146, title:'Chicken Hut', desc: '',
+    chickenHut: {x: 146, y:814, title:'Chicken Hut', desc: '',
         req:[], validate(items){
         return items.bombs;
     }},
@@ -113,6 +113,7 @@ export const staticMapLW = {
     floodChest:{x:703,y:1405, title:'Floodgate Chest', desc: '', req:[], validate(){return true;}},
     floodTreasure:{x:677,y:1394, title:'Floodgate Sunken Treasure', desc: '', req:[], validate(){return true;}},
     linkHouse: {x:820,y:1037, title:'Link\'s House', desc: '', req:[], validate(){return true;}},
+    sanctuary:{x:691, y:410, title:'Sanctuary', desc: '', req:[], validate(){return true;}},
     aginahCave: {x:298,y:1242, title:'Aginah Cave', desc: 'Not the other guy',
         req:[], validate(items){
         return items.bombs;
@@ -132,7 +133,7 @@ export const staticMapLW = {
     bombosTablet: {x:328,y:1380, title:'Bombos Tablet', desc: '',
         req:[],
         validate(items, dungeons){
-            return items.book && items.sword > 0 && items.mirror && regionHelper.southDW(items, dungeons);
+            return items.book && items.sword > 1 && items.mirror && regionHelper.southDW(items, dungeons);
     }},
     cave45: {x:399,y:1242, title:'Cave 45', desc: '',
         req:[],
@@ -176,7 +177,7 @@ export const staticMapLW = {
     }},
     etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '',
         req:[], validate(items, dungeons){
-        return items.book && items.sword > 0 && regionHelper.toh(items, dungeons);
+        return items.book && items.sword > 1 && regionHelper.toh(items, dungeons);
     }},
     spectacleRock: {x:761,y:121, title:'Spectacle Rock', desc: '',
         req:[], validate(items, dungeons){
