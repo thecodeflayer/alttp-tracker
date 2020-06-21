@@ -28,10 +28,10 @@ export const staticMapDungeonsLW = {
     },
     aga:{x:750, y:577,
         validate(items){
-            return items.cape || items.sword > 1;
+            return (items.cape || items.sword > 1);
         },
         validateBoss(items){
-            return items.cape || items.sword > 1 && (items.sword > 0 || items.net);
+            return items.lantern && (items.cape || items.sword > 1) && (items.sword > 0 || items.net);
         }
     }
 }

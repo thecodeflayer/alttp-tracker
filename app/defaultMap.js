@@ -35,6 +35,7 @@ export const defaultMap = {
                 floodChest: {checked: false, klass: 'locale-green'},
                 floodTreasure: {checked: false, klass: 'locale-green'},
                 linkHouse: {checked: false, klass: 'locale-green'},
+                sanctuary: {checked: false, klass: 'locale-green'},
                 aginahCave: {checked: false, klass: 'locale-red'},
                 moldormCave: {checked: false, klass: 'locale-red'},
                 iceRodCave: {checked: false, klass: 'locale-red'},

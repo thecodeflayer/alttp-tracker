@@ -31,10 +31,10 @@ export const staticMapDungeonsDW = {
         }}, // thieves town
     ip: {x:1195, y:1294,
         validate(items, dungeons){
-            return items.firerod && items.moonpearl && items.flippers && regionHelper.southDW(items, dungeons);
+            return items.firerod && items.moonpearl && items.flippers && items.glove === 2 && regionHelper.southDW(items, dungeons);
         },
         validateBoss(items, dungeons){
-            return items.hammer && items.glove > 0 && items.firerod && items.moonpearl && items.flippers && regionHelper.southDW(items, dungeons);
+            return items.hammer && items.glove === 2 && items.firerod && items.moonpearl && items.flippers && regionHelper.southDW(items, dungeons);
         }}, // ice palace
     mm: {x:110, y:1247,
         validate(items, dungeons){
