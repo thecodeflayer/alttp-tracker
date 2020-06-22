@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "com.codeflayer.alttptracker",
+    "id": "org.nativescript.alttptracker",
     "tns-android": {
       "version": "6.5.0"
     },

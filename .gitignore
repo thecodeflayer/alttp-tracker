@@ -42,3 +42,6 @@ typings/
 # Artifacts
 *.aab
 *.apk
+
+#Keystore
+*.keystore
