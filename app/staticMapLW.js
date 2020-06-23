@@ -164,11 +164,13 @@ export const staticMapLW = {
         return items.bombs;
     }},
     desertLedge: {x:38,y:1375, title:'Desert Ledge', desc: '',
-        req:['items/book1','or','items/mirror1','items/glove2','items/flute1'], validate(items, dungeons){
+        req:['items/book1','or','items/mirror1','items/glove2','items/flute1'],
+        validate(items, dungeons){
             return regionHelper.dp(items, dungeons);
     }},
     lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '',
-        req:[],
+        req:['item/mirror1','items/flippers1','items/moonpearl1','lp','dungeons/aga_boss0','rp',
+            'or','lp','items/hammer1','items/glove1','rp'],
         validate(items, dungeons){
             return items.mirror && items.flippers && items.moonpearl && regionHelper.northEastDW(items, dungeons);
     }},
@@ -177,36 +179,50 @@ export const staticMapLW = {
         return items.shovel;
     }},
     oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '',
-        req:[],
+        req:['items/flute1','or','items/glove1','items/lantern1'],
         validate(items, dungeons){
             return items.lantern && regionHelper.deathMtnWestLW(items, dungeons);
     }},
     spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', desc: '',
-        req:[], validate(items, dungeons){
+        req:['lp','items/hookshot1','or','items/hammer1','items/mirror1','rp',
+            'and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
+        validate(items, dungeons){
         return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '',
-        req:[], validate(items, dungeons){
+        req:['lp','items/mirror1','or','items/hookshot1','items/hammer1','rp','and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
+        validate(items, dungeons){
         return items.book && items.sword > 1 && regionHelper.toh(items, dungeons);
     }},
     spectacleRock: {x:761,y:121, title:'Spectacle Rock', desc: '',
-        req:[], validate(items, dungeons){
+        req:['items/mirror1','and','items/flute1','or','items/glove1','items/lantern1'],
+        validate(items, dungeons){
         return items.mirror && regionHelper.deathMtnWestLW(items, dungeons);
     }},
     spiralCave: {x:1195,y:140, title:'Spiral Cave', desc: '',
-        req:[], validate(items, dungeons){
+        req:['lp','items/hookshot1','or','items/hammer1','items/mirror1','rp',
+            'and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
+        validate(items, dungeons){
         return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     mimicCave: {x:1266,y:140, title:'Mimic Cave', desc: '',
-        req:[], validate(items, dungeons){
+        req:['dungeons/medallion0','items/moonpearl1','items/redcane1','items/hammer1','items/glove2',
+            'lp','items/hookshot1','or','items/mirror1','rp',
+            'lp','items/flute1','or','items/lantern1','rp'],
+        validate(items, dungeons){
         return items.hammer && items.mirror && regionHelper.tr(items, dungeons);
     }},
-    paradoxCave: {x:1283,y:222, title:'Paradox', desc: '',
-        req:[], validate(items, dungeons){
+    paradoxCave: {x:1283,y:222, title:'Paradox Cave', desc: '',
+        req:['lp','items/hookshot1','or','items/hammer1','items/mirror1','rp',
+            'and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
+        validate(items, dungeons){
         return regionHelper.deathMtnEastLW(items, dungeons);
     }},
     floatingIsland: {x:1220,y:26, title:'Floating Island', desc: '',
-        req:[], validate(items, dungeons){
+        req:['items/mirror1','items/bombs1','items/glove1',
+            'and','lp','items/hookshot1','or','items/hammer1','rp',
+            'and','lp','items/flute1','or','items/lantern1','rp'],
+        validate(items, dungeons){
         return items.mirror && items.bombs && items.glove > 0
             && regionHelper.deathMtnEastDW(items, dungeons);
     }}
