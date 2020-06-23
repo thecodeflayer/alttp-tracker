@@ -13,14 +13,16 @@
                          @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
                     <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
-                                columns="40,*,40" rows="46"
+                                columns="*,40" rows="50"
                                 :backgroundColor="mapHandler.locations[key].checked ? 'gray' : mapHandler.locations[key].klass === 'locale-green' ? 'darkgreen':'darkred'">
-                        <Image row="0" col="0" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
-                        <StackLayout row="0" col="1" orientation="vertical" style="padding-left:5">
-                            <Label class="title" :text="mapHandler.staticLocations[key].title"/>
+                        <StackLayout row="0" col="0" orientation="vertical" style="padding-left:5">
+                            <StackLayout orientation="horizontal">
+                                <Image row="0" col="0" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
+                                <Label class="title" :text="mapHandler.staticLocations[key].title"/>
+                            </StackLayout>
                             <StackLayout orientation="horizontal" style="padding-right:4">
-                                <Image v-for="(img, index) in mapHandler.staticLocations[key].req" v-bind:key="img"
-                                       width="16" height="16" :src="'~/img/'+img+'.png'" />
+                                <Image v-for="img in mapHandler.staticLocations[key].req" v-bind:key="img"
+                                       height="16" :src="'~/img/'+img+'.png'" />
                             </StackLayout>
                         </StackLayout>
                         <Image row="0" col="3" src="~/img/dungeons/compass1.png" width="32" height="32" @tap="clickCompass(key)" />
@@ -110,5 +112,10 @@
         padding: 4;
         font-family: "Return of Ganon", "ReturnofGanon";
         font-size: 20
+    }
+    .title {
+        font-family: "Return of Ganon", "ReturnofGanon";
+        font-size: 20;
+        padding:5;
     }
 </style>
