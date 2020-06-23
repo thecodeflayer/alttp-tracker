@@ -135,6 +135,10 @@
                     }
                     return Math.floor(navBarHeight / this.screen.mainScreen.scale);
 
+                    // return (navBarHeight
+                    //     / app.android.currentContext
+                    //         .getResources().getDisplayMetrics().density);
+
                 }
                 return 0;
             },
