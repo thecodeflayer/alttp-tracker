@@ -4,6 +4,13 @@
         <AbsoluteLayout @pan="onPan" @pinch="onPinch">
             <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
                 <Image v-for="tile in mapHandler.tiles" v-bind:key="mapHandler.tiles" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
+                <Label v-if="mapHandler.centerKey" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
+                       class="center-key"
+                       :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+                       :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+                       :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
+                       :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
+                       @tap="onClickLocale(mapHandler.centerKey)" />
                 <Label v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
                        :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
                        :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
@@ -75,7 +82,8 @@
                     staticDungeons: staticMapDungeonsLW,
                     dungeons: this.$modelManager.map.lightworld.dungeons,
                     bosses: this.$modelManager.map.lightworld.bosses,
-                    dungeonValues: this.$modelManager.dungeons
+                    dungeonValues: this.$modelManager.dungeons,
+                    centerKey: undefined
                 },
                 mapWidth:1500,
                 mapHeight:1500,
@@ -205,6 +213,7 @@
                 this.pinchHandler.top = this.getPinchTop(newScale);
                 this.pinchHandler.left = this.getPinchLeft(newScale);
                 const locale = this.mapHandler.staticLocations[this.$modelManager.map.lightworld.centerKey];
+                this.mapHandler.centerKey = this.$modelManager.map.lightworld.centerKey;
                 this.$modelManager.map.lightworld.centerKey = undefined;
                 const halfWidth = Math.floor(this.screenWidth / 2);
                 const halfHeight = Math.floor((this.screenHeight - this.topNavHeight) / 2);
@@ -268,6 +277,7 @@
             },
             onClickLocale(key){
                 this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+                this.mapHandler.centerKey = undefined;
                 this.$modelManager.saveMap();
             }
         }
@@ -300,5 +310,10 @@
         border-width: 3;
         border-color: black;
         background-color: red;
+    }
+    .center-key{
+        border-width: 3;
+        border-color: black;
+        background-color: yellow;
     }
 </style>

@@ -75,7 +75,6 @@
                     this.$modelManager.saveMap();
                 },
                 onScroll(args){
-                    console.log('save scroll', args.scrollY, this.scrollOffsetY);
                     clearTimeout(this.scrollTimout);
                     this.scrollTimout = setTimeout(() => {
                         this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY = args.scrollY;
