@@ -1,19 +1,19 @@
 import {regionHelper} from "~/regionHelper";
 
 export const staticMapLW = {
-    uncle :{x:894,y:624, title:'Dead Uncle', desc: '', req:[], validate() {return true;}},
+    uncle :{x:894,y:624, title:'Uncle', desc: '~/locales/uncle.html', req:[], validate() {return true;}},
     secretPassage:{x:826,y:644, title:'Secret Passage', desc: '', req:[],  validate() {return true;}},
     backOfEscape:{x:778,y:439, title:'Back of Escape',
-        desc: '', req:[],
+        desc: '', req:['items/glove1'],
         validate(items) {return items.glove > 0;}},
     sahashralaHut:{x:1216,y:660, title:'Sahashrala\'s Hut',
-        req: [],
+        req: ['items/bombs1'],
         validate(items) {
             return items.bombs;
         }
     },
     sahashrala:{x:1216,y:680, title:'Sahashrala',
-        req: [],
+        req: ['dungeons/crystal1'],
         validate(items, dungeons) {
             let retval = false;
             const keys = Object.keys(dungeons);
@@ -27,28 +27,28 @@ export const staticMapLW = {
         }
     },
     potionShop:{x:1201, y:502, title:'Potion Shop',
-        desc: '', req:[],
+        desc: '', req:['items/mushroom1'],
         validate(items){
             return items.mushroom;
     }},
     zora:{x:1457, y:187, title:'King Zora (500 Rupees)', desc: '',
-        req:[],
+        req:['items/glove1','or','items/flippers1'],
         validate(items){
             return items.glove > 0 || items.flippers;
         }
     },
     zoraLedge:{x:1427, y:187, title:'Zora Ledge',
-        desc: '', req:[],
+        desc: '', req:['items/flippers1'],
         validate(items){
         return items.flippers;
     }},
     waterfallFairy: {x:1350, y:208, title:'Waterfall Fairy',
-        desc: '', req:[],
+        desc: '', req:['items/flippers1'],
         validate(items){
         return items.flippers;
     }},
     pedestal: {x:62, y:74, title:'Master Sword Pedestal',
-        desc: '', req:[],
+        desc: '', req:['crystal-green','crystal-blue','crystal-red'],
         validate(items, dungeons){
             let rb = 0;
             let g = false;
@@ -63,7 +63,9 @@ export const staticMapLW = {
             return rb === 2 && g;
     }},
     kingTomb: {x: 902, y: 444, title:'King\'s Tomb', desc: '',
-        req:[],
+        req:['items/boots1','items/glove2','or','items/boots1','items/mirror1','items/moonpearl1',
+            'lp','dungeons/aga_boss0','items/hookshot1','items/flippers1','rp','or',
+            'lp','items/glove1','items/hammer1','rp'],
         validate(items, dungeons){
             return items.boots
                 && (items.glove === 2
@@ -71,24 +73,25 @@ export const staticMapLW = {
     }},
     tavern:{x: 240, y:850, title:'Kakariko Tavern', desc: '', req:[], validate(){return true;}},
     chickenHut: {x: 146, y:814, title:'Chicken Hut', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     well: {x: 38, y:639, title:'Kakariko Well', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     blindhouse: {x: 193, y:632, title:'Blind\'s House', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     pegasusRock:{x:595,y:440, title:'Pegasus Rocks', desc: '',
-        req:[], validate(items){
+        req:['items/boots1'], validate(items){
         return items.boots;
     }},
     bottleMerchant: {x:144,y:698, title:'Bottle Merchant (100 Rupees)', desc: '', req:[], validate(){return true;}},
     magicBat:{x:486,y:844, title:'Magic Bat', desc: '',
-        req:[],
+        req:['items/powder1','items/hammer1','or',
+            'items/powder1', 'items/moonpearl1', 'dungeons/aga_boss0','items/hookshot1','items/flippers1','items/glove2'],
         validate(items, dungeons){
             return items.powder
                 && (items.hammer
@@ -96,16 +99,17 @@ export const staticMapLW = {
                         && (items.glove === 2 && regionHelper.northWestDW(items, dungeons))));
     }},
     sickKid:{x:234,y:807, title:'Sick Kid', desc: '',
-        req:[], validate(items){
+        req:['items/jar1'], validate(items){
         return items.jar > 0;
     }},
     lwHideout:{x:283,y:194, title:'Lost Woods Hideout', desc: '', req:[], validate(){return true;}},
     lumberjackTree:{x:450,y:110, title:'Lumberjack Tree', desc: '',
-        req:[], validate(items, dungeons){
+        req:['dungeons/aga_boss0','items/boots1'], validate(items, dungeons){
         return dungeons.aga.boss && items.boots;
     }},
     graveyardLedge:{x:855,y:416, title:'Graveyard Ledge', desc: '',
-        req:[],
+        req:['items/mirror1','items/moonpearl1','lp','dungeons/aga_boss0','items/hookshot1','items/flippers1','rp','or',
+            'lp','items/hammer1','items/glove1','rp','or','items/glove2'],
         validate(items, dungeons){
         return items.mirror && items.moonpearl && regionHelper.northWestDW(items, dungeons);
     }},
@@ -115,46 +119,52 @@ export const staticMapLW = {
     linkHouse: {x:820,y:1037, title:'Link\'s House', desc: '', req:[], validate(){return true;}},
     sanctuary:{x:691, y:410, title:'Sanctuary', desc: '', req:[], validate(){return true;}},
     aginahCave: {x:298,y:1242, title:'Aginah Cave', desc: 'Not the other guy',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     moldormCave: {x:978,y:1412, title:'Mini-Moldorm Cave', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     iceRodCave: {x:1342,y:1160, title:'Ice Rod Cave', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     hobo: {x:1059,y:1045, title:'Hobo Under the Bridge', desc: '',
-        req:[], validate(items){
+        req:['items/flippers1'], validate(items){
         return items.flippers;
     }},
     bombosTablet: {x:328,y:1380, title:'Bombos Tablet', desc: '',
-        req:[],
+        req:['items/book1','items/sword2','items/mirror1', 'items/moonpearl1',
+            'lp', 'dungeons/aga_boss0','items/hookshot1','items/flippers1',
+            'rp','or',
+            'lp','items/hammer1','items/glove1','rp'],
         validate(items, dungeons){
             return items.book && items.sword > 1 && items.mirror && regionHelper.southDW(items, dungeons);
     }},
     cave45: {x:399,y:1242, title:'Cave 45', desc: '',
-        req:[],
+        req:['items/mirror1', 'items/moonpearl1',
+            'lp', 'dungeons/aga_boss0','items/hookshot1','items/flippers1',
+            'rp','or',
+            'lp','items/hammer1','items/glove1','rp'],
         validate(items, dungeons){
         return items.mirror && regionHelper.southDW(items, dungeons);
     }},
     checkerCave: {x:263,y:1165, title:'Checkerboard Cave', desc: '',
-        req:[],
+        req:['items/mirror1','items/glove2','items/flute1'],
         validate(items, dungeons){
             return items.mirror && regionHelper.mireDW(items, dungeons);
     }},
     library: {x:243,y:990, title:'Library', desc: '',
-        req:[], validate(items){
+        req:['items/boots1'], validate(items){
         return items.boots;
     }},
     mazeRace: {x:148,y:1080, title:'Maze Race', desc: '',
-        req:[], validate(items){
+        req:['items/bombs1'], validate(items){
         return items.bombs;
     }},
     desertLedge: {x:38,y:1375, title:'Desert Ledge', desc: '',
-        req:[], validate(items, dungeons){
+        req:['items/book1','or','items/mirror1','items/glove2','items/flute1'], validate(items, dungeons){
             return regionHelper.dp(items, dungeons);
     }},
     lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '',
@@ -163,7 +173,7 @@ export const staticMapLW = {
             return items.mirror && items.flippers && items.moonpearl && regionHelper.northEastDW(items, dungeons);
     }},
     fluteSpot: {x:435,y:992, title:'Flute Spot', desc: '',
-        req:[], validate(items){
+        req:['items/shovel1'], validate(items){
         return items.shovel;
     }},
     oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '',
