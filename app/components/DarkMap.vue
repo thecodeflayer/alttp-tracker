@@ -51,6 +51,7 @@
     import {screen} from 'tns-core-modules/platform';
     import {staticMapDW} from "~/staticMapDW";
     import * as app from 'tns-core-modules/application'
+    import * as utils from 'tns-core-modules/utils/utils';
     import DarkList from "~/components/DarkList";
     import {staticMapDungeonsDW} from "~/staticMapDungeonsDW";
 
@@ -90,6 +91,7 @@
                 screen: screen,
                 screenWidth: 0,
                 screenHeight: 0,
+                statusBarHeight: 0,
                 topNavHeight: 0,
                 bottomNavHeight:0,
                 viewHeight:0,
@@ -99,18 +101,36 @@
             this.$modelManager.validateLocales();
             this.screenWidth = this.getMainScreenWidth();
             this.screenHeight = this.getMainScreenHeight();
-            this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
+            this.statusBarHeight = this.getStatusBarHeight();
             this.bottomNavHeight = this.getBottomNavbarHeight();
             this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x;
             this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y;
             const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale;
             this.pinchHandler.top = this.getPinchTop(newScale);
             this.pinchHandler.left = this.getPinchLeft(newScale);
-            if(this.$modelManager.map.darkworld.centerKey) {
-                this.centerOnKey();
-            }
+            setTimeout(() => {
+                this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
+                console.log('top nav height', this.topNavHeight);
+                if(this.$modelManager.map.darkworld.centerKey) {
+                    this.centerOnKey();
+                }
+            },300);
+
         },
         methods: {
+            getStatusBarHeight() {
+                let result = 0;
+                if (app.android) {
+                    const resourceId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('status_bar_height', 'dimen', 'android');
+                    if (resourceId) {
+                        result = (app.android.foregroundActivity || app.android.startActivity).getResources().getDimensionPixelSize(resourceId);
+
+                        //result = result / this.screen.mainScreen.scale;
+                        result = utils.layout.toDeviceIndependentPixels(result);
+                    }
+                }
+                return result;
+            },
             getBottomNavbarHeight() {
                 if(app.android) {
                     let navBarHeight = 0;
@@ -138,9 +158,9 @@
                         return 0;
                     }
                     // add a few pixels if height is greater than zero
-                    if(navBarHeight > 0) {
-                        navBarHeight = navBarHeight + (10 * this.screen.mainScreen.scale);
-                    }
+                    // if(navBarHeight > 0) {
+                    //     navBarHeight = navBarHeight + (10 * this.screen.mainScreen.scale);
+                    // }
                     return Math.floor(navBarHeight / this.screen.mainScreen.scale);
 
                     // return (navBarHeight
@@ -216,11 +236,9 @@
                 this.mapHandler.centerKey = this.$modelManager.map.darkworld.centerKey;
                 this.$modelManager.map.darkworld.centerKey = undefined;
                 const halfWidth = Math.floor(this.screenWidth / 2);
-                const halfHeight = Math.floor((this.screenHeight - this.topNavHeight) / 2);
+                const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
                 let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
                 let newY = Math.floor(-Math.abs(locale.y) + halfHeight);
-                console.log('x',locale.x, halfWidth, this.pinchHandler.currentScale,  newX);
-                console.log('y',locale.y, halfHeight, this.pinchHandler.currentScale,  newY);
                 this.keepInBounds(newX, newY);
                 this.$modelManager.saveMap();
             },
@@ -231,9 +249,10 @@
                 } else if(newX < minX) {
                     newX = minX;
                 }
-                const minY = -Math.abs(((this.screenHeight - this.topNavHeight - this.bottomNavHeight) + Math.abs(this.pinchHandler.top)) - (this.mapHeight + this.bottomNavHeight));
-                // console.log(this.screenHeight, this.topNavHeight, this.bottomNavHeight, this.pinchHandler.top)
-                // console.log(minY, newY);
+                const minY = -Math.abs(((this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight) + Math.abs(this.pinchHandler.top)) - (this.mapHeight));
+                //console.log(this.screenHeight, this.topNavHeight, this.statusBarHeight, this.bottomNavHeight, this.pinchHandler.top);
+                //console.log(this.getViewHeight(this.$refs.navbar.nativeView));
+                //console.log(minY, newY);
                 if(newY > this.pinchHandler.top) {
                     newY = this.pinchHandler.top;
                 } else if(newY < minY) {
@@ -260,10 +279,10 @@
                 return Math.floor(this.screen.mainScreen.heightPixels / this.screen.mainScreen.scale);
             },
             getMinScale(){
-                const height = this.screenHeight - this.topNavHeight - this.bottomNavHeight;
+                const height = this.screenHeight - this.topNavHeight -this.statusBarHeight - this.bottomNavHeight;
                 const useHeight = height > this.screenWidth;
                 if(useHeight){
-                    return height / (this.mapHeight + this.bottomNavHeight);
+                    return height / (this.mapHeight);
                 } else {
                     return this.screenWidth / this.mapWidth;
                 }
