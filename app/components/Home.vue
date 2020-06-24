@@ -8,9 +8,11 @@
                 <Label text="More features will be coming as I have time including other modes and glitches." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
                 <Label text="Special thanks to the randomizer community. Visit them!" class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
                 <Button class="btn" @tap="clickRandomizer">ALTTP Randomizer</Button>
-                <Button class="btn" @tap="clickReddit">ALTTP on Reddit</Button>
-                <Button class="btn" @tap="clickDiscord">ALTTP Discord</Button>
+                <Button class="btn" @tap="clickReddit">ALTTPR on Reddit</Button>
+                <Button class="btn" @tap="clickDiscord">ALTTPR Discord</Button>
+                <!--
                 <Button class="btn" @tap="clickPayPal">Buy Me A Beer!</Button>
+                -->
             </StackLayout>
         </ScrollView>
     </Page>
