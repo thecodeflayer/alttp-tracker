@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.alttptracker",
+    "id": "com.codeflayer.alttptracker",
     "tns-android": {
       "version": "6.5.0"
     },
@@ -10,7 +10,7 @@
   },
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN LICENSE",
-  "repository": "https://github.com/attensityrjones/alttp-tracker",
+  "repository": "https://github.com/thecodeflayer/alttp-tracker",
   "dependencies": {
     "@nativescript/theme": "~2.3.0",
     "nativescript-vue": "~2.4.0",
