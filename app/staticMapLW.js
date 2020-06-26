@@ -169,7 +169,7 @@ export const staticMapLW = {
             return regionHelper.dp(items, dungeons);
     }},
     lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', desc: '',
-        req:['item/mirror1','items/flippers1','items/moonpearl1','lp','dungeons/aga_boss0','rp',
+        req:['items/mirror1','items/flippers1','items/moonpearl1','lp','dungeons/aga_boss0','rp',
             'or','lp','items/hammer1','items/glove1','rp'],
         validate(items, dungeons){
             return items.mirror && items.flippers && items.moonpearl && regionHelper.northEastDW(items, dungeons);

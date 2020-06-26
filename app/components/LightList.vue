@@ -6,10 +6,9 @@
                 <Image height="16" width="16" src="~/img/map_btn.png" style="padding-left:10"/>
                 <Label style="padding:0 8" text="Return to Map" />
             </StackLayout>
-            <ScrollView  ref="listScrollView" orientation="vertical" @loaded="onLoadScroll"
+            <ScrollView  ref="listScrollView" orientation="vertical"
                          :height="mapHandler.keys.length * 54"
                          :scrollableHeight="mapHandler.keys.length * 54"
-                         :scrollToVerticalOffset="scrollOffsetY"
                          @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
                     <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
@@ -37,6 +36,7 @@
 
         import LightMap from "~/components/LightMap";
         import {staticMapLW} from "~/staticMapLW";
+        import {ScrollView} from "tns-core-modules/ui/scroll-view";
 
         export default {
             data: function() {
@@ -53,11 +53,16 @@
                     scrollOffsetY: this.$modelManager.map.lightworld.scrollY
                 }
             },
-            // mounted() {
-            //     this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
-            //     //this.$refs.listScrollView.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
-            //
-            // },
+            mounted() {
+                this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
+                const sv = this.$refs.listScrollView.nativeView;
+                setTimeout(() => {
+                    try{
+                        sv.scrollToVerticalOffset(this.scrollOffsetY);
+                    }catch(err){console.log(err);}
+                }, 300);
+
+            },
             methods: {
                 toggleMode(){
                     this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
