@@ -179,15 +179,14 @@ export const staticMapLW = {
         return items.shovel;
     }},
     oldMan: {x:609,y:286, title:'Rescue Old Man', desc: '',
-        req:['items/flute1','or','items/glove1','items/lantern1'],
+        req:['items/lantern1','lp','items/flute1','or','items/glove1','rp'],
         validate(items, dungeons){
             return items.lantern && regionHelper.deathMtnWestLW(items, dungeons);
     }},
     spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', desc: '',
-        req:['lp','items/hookshot1','or','items/hammer1','items/mirror1','rp',
-            'and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
+        req:['items/flute1','or','items/glove1','items/lantern1'],
         validate(items, dungeons){
-        return regionHelper.deathMtnEastLW(items, dungeons);
+        return regionHelper.deathMtnWestLW(items, dungeons);
     }},
     etherTablet: {x:630,y:28, title:'Ether Tablet', desc: '',
         req:['lp','items/mirror1','or','items/hookshot1','items/hammer1','rp','and','lp','items/flute1','or','items/glove1','items/lantern1','rp'],
