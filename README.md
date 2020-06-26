@@ -9,7 +9,9 @@ In the future, based on interest, I may add support for other modes such as inve
 Currently I'm only building APKs for Android. I still need to figure out how to build for iOS.
 
 ## Found a bug? Want a feature?
-Please file an issue!
+Please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
+
+First take a look at existing issues and make sure that it hasn't been filed before. Include descriptive information about the issue and screenshots if possible. Also include the version of the app that you're using.
 
 I have not fully vetted the logic for all locations. I am looking for help in this area, especially for late game locations. Expect some issues here until I can get more feedback from the community. (I can only do so many runs myself)
 
