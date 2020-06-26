@@ -22,7 +22,8 @@ In order to install on Android you will have to "side-load" the APK from Github.
 3. You will typically receive a warning about APK files harming your device. You will need to confirm download.
 4. Once downloaded, click on the downloaded APK file.
 5. You will typically receive a warning about installing apps from unknown providers or locations. Follow the on-screen instructions and allow installation.
-6. Enjoy tracking your rando runs!
+6. After install, it's recommended to turn off the ability to load applications from unknown locations.
+7. Enjoy tracking your rando runs!
 
 ## Why are you not on the Play Store?
 The short version is "I'm trying."
