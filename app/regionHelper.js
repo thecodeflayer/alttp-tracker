@@ -16,7 +16,8 @@ export const regionHelper = {
     },
     northEastDW(items, dungeons) {
         return dungeons.aga.boss ||
-            (items.hammer && items.glove > 0 && items.moonpearl);
+            (items.hammer && items.glove > 0 && items.moonpearl) ||
+            (items.glove === 2 && items.moonpearl && items.flippers);
     },
     northWestDW(items, dungeons) {
         return items.moonpearl
