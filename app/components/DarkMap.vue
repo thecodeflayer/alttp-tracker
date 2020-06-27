@@ -19,7 +19,7 @@
                        :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                        @tap="onClickLocale(key)"/>
                 <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:dkey="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
-                       :class="(mapHandler.dungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
+                       :class="(mapHandler.staticDungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                        :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticDungeons[dkey].x - (23 * (1 / pinchHandler.localeScale)))"
@@ -49,11 +49,12 @@
 
 <script>
     import {screen} from 'tns-core-modules/platform';
-    import {staticMapDW} from "~/staticMapDW";
+    import {staticMapDW} from "~/standard/staticMapDW";
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
     import DarkList from "~/components/DarkList";
-    import {staticMapDungeonsDW} from "~/staticMapDungeonsDW";
+    import {staticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
+    import {staticDungeons} from "~/standard/staticDungeons";
 
     export default {
         data: function() {
@@ -84,6 +85,7 @@
                     dungeons: this.$modelManager.map.darkworld.dungeons,
                     bosses: this.$modelManager.map.darkworld.bosses,
                     dungeonValues: this.$modelManager.dungeons,
+                    staticDungeonValues: staticDungeons,
                     centerKey: undefined
                 },
                 mapWidth:1500,

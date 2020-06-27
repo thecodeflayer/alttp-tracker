@@ -13,10 +13,10 @@ import {
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
 import {defaultMap} from "~/defaultMap";
-import {staticMapLW} from "~/staticMapLW";
-import {staticMapDungeonsLW} from "~/staticMapDungeonsLW";
-import {staticMapDW} from "~/staticMapDW";
-import {staticMapDungeonsDW} from "~/staticMapDungeonsDW";
+import {staticMapLW} from "~/standard/staticMapLW";
+import {staticMapDungeonsLW} from "~/standard/staticMapDungeonsLW";
+import {staticMapDW} from "~/standard/staticMapDW";
+import {staticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
 
 export class ModelManager  {
     items = {};

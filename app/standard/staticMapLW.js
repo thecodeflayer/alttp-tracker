@@ -1,4 +1,4 @@
-import {regionHelper} from "~/regionHelper";
+import {regionHelper} from "~/standard/regionHelper";
 
 export const staticMapLW = {
     uncle :{x:894,y:624, title:'Uncle', desc: '~/locales/uncle.html', req:[], validate() {return true;}},

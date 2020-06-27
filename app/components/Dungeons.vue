@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import {staticDungeons} from "~/standard/staticDungeons";
 
     export default {
         data: function() {
@@ -42,11 +43,13 @@
                     if(item === 'chests') {
                         val = this.$modelManager.getDungeonValue(key, item) - 1;
                         if(val < 0) {
-                            val = this.$modelManager.getDungeonValue(key, max);
+                            val = staticDungeons[key][max];
+                            //val = this.$modelManager.getDungeonValue(key, max);
                         }
                     } else {
                         val = this.$modelManager.getDungeonValue(key, item) + 1;
-                        if(val > this.$modelManager.getDungeonValue(key, max)) {
+                        if(val > staticDungeons[key][max]) {
+                        //if(val > this.$modelManager.getDungeonValue(key, max)) {
                             val = 0;
                         }
                     }
@@ -71,13 +74,13 @@
                 const keys = this.$modelManager.getDungeonKeys();
                 for(const key of keys) {
                     retval.bosses[key] = '~/img/dungeons/'+key+'_boss'+(dungeons[key].boss ? '1' : '0')+'.png';
-                    retval.crystals[key] = dungeons[key].maxCrystal === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
+                    retval.crystals[key] = staticDungeons[key].maxCrystal === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
                     retval.chests[key] = '~/img/dungeons/chest'+dungeons[key].chests+'.png';
                     retval.bosskeys[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/bosskey'+(dungeons[key].bosskey ? '1' : '0')+'.png';
                     retval.maps[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/map'+(dungeons[key].map ? '1' : '0')+'.png';
                     retval.compasses[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/compass'+(dungeons[key].compass ? '1' : '0')+'.png';
                     retval.smallkeys[key] = '~/img/dungeons/smallkey'+dungeons[key].smallkeys+'.png';
-                    retval.medallion[key] = dungeons[key].maxMedallion === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/medallion'+dungeons[key].medallion+'.png';
+                    retval.medallion[key] = staticDungeons[key].maxMedallion === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/medallion'+dungeons[key].medallion+'.png';
                 }
                 return retval;
             },

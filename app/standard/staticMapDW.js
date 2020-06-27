@@ -1,4 +1,4 @@
-import {regionHelper} from "~/regionHelper";
+import {regionHelper} from "~/standard/regionHelper";
 
 export const staticMapDW = {
     superbunnyCave: {x: 1265, y: 223,title: 'Superbunny Cave', desc: '',

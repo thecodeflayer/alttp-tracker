@@ -1,4 +1,4 @@
-import {regionHelper} from "~/regionHelper";
+import {regionHelper} from "~/standard/regionHelper";
 
 export const staticMapDungeonsLW = {
     ep:{x:1437, y:610,

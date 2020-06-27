@@ -35,7 +35,7 @@
 <script>
 
     import DarkMap from "~/components/DarkMap";
-    import {staticMapDW} from "~/staticMapDW";
+    import {staticMapDW} from "~/standard/staticMapDW";
 
     export default {
         data: function() {

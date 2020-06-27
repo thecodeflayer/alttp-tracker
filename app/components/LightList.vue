@@ -35,7 +35,7 @@
     <script>
 
         import LightMap from "~/components/LightMap";
-        import {staticMapLW} from "~/staticMapLW";
+        import {staticMapLW} from "~/standard/staticMapLW";
         import {ScrollView} from "tns-core-modules/ui/scroll-view";
 
         export default {
