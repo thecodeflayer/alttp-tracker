@@ -1,3 +1,5 @@
+![ALTTP - Tracker](https://github.com/thecodeflayer/alttp-tracker/blob/master/assets/feature_graphic.png)
+
 # alttp-tracker
 A mobile app for tracking ALTTP randomizer runs. You can track items collected, dungeon items and bosses and view available locations on the Light World and Dark World maps.
 
