@@ -135,6 +135,36 @@ export class ModelManager  {
         this.items[key] = value;
         this.saveItems();
     }
+    getItemCount() {
+        let retval = 0;
+        const lwMap = this.sol.getStaticMapLW(this.settings.gameMode);
+        const lwKeys = Object.keys(lwMap);
+        const savedLW = this.map.lightworld.locations;
+        for(const key of lwKeys) {
+            if(savedLW[key].checked) {
+                retval = retval + lwMap[key].itemCount;
+            }
+        }
+        const dwMap = this.sol.getStaticMapDW(this.settings.gameMode);
+        const dwKeys = Object.keys(dwMap);
+        const savedDW = this.map.darkworld.locations;
+        for(const key of dwKeys) {
+            if(savedDW[key].checked) {
+                retval = retval + dwMap[key].itemCount;
+            }
+        }
+        const dungeons = this.sol.getStaticDungeons(this.settings.gameMode);
+        const dgnKeys = Object.keys(dungeons);
+        const savedDgn = this.dungeons;
+        for(const key of dgnKeys) {
+            const chests = dungeons[key].maxChests - savedDgn[key].chests;
+            retval = retval + chests;
+            if(key !== 'aga' && key !== 'gt' && savedDgn[key].boss){
+                retval = retval +1;
+            }
+        }
+        return retval;
+    }
     saveItems() {
         const d = JSON.parse(JSON.stringify(defaultItems));
         d.data = this.items;

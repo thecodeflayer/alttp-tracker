@@ -12,25 +12,32 @@
                          @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
                     <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
-                                columns="*,40" rows="50"
+                                columns="*,48" rows="60"
                                 :backgroundColor="mapHandler.locations[key].checked ? 'gray' : mapHandler.locations[key].klass === 'locale-green' ? 'darkgreen':'darkred'">
                         <StackLayout row="0" col="0" orientation="vertical" style="padding-left:5">
                             <StackLayout orientation="horizontal">
-                                <Image row="0" col="0" :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
+                                <Image :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'" width="32" height="32" @tap="clickCheck(key)" />
                                 <Label class="title" :text="mapHandler.staticLocations[key].title"/>
                             </StackLayout>
-                            <StackLayout orientation="horizontal" style="padding-right:4">
+                            <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
                                 <Image v-for="img in mapHandler.staticLocations[key].req" v-bind:key="img"
                                        height="16" :src="'~/img/'+img+'.png'" />
                             </StackLayout>
                         </StackLayout>
-                            <Image row="0" col="2" src="~/img/dungeons/compass1.png" width="32" height="32" @tap="clickCompass(key)" />
-                        </GridLayout>
-                    </StackLayout>
-                </ScrollView>
-            </StackLayout>
-        </Page>
-    </template>
+                        <StackLayout row="0" col="1" orientation="vertical">
+                            <Image row="0" col="1" src="~/img/dungeons/compass1.png" width="32" height="32" @tap="clickCompass(key)" horizontalAlignment="center" />
+                            <StackLayout orientation="horizontal" style="margin-top:4;" horizontalAlignment="right">
+                                <Image src="~/img/chest.png" height="16" width="16" />
+                                <Label class="title" fontSize="16" :text="'x'+mapHandler.staticLocations[key].itemCount"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </Page>
+</template>
 
     <script>
 

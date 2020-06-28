@@ -2,9 +2,16 @@
     <Page backgroundColor="black">
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
-            <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
-                <Image v-for="(key, index) in itemKeys" v-bind:key="itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
-            </GridLayout>
+            <StackLayout orientation="vertical">
+                <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
+                    <Image v-for="(key, index) in itemKeys" v-bind:key="itemKeys" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
+                </GridLayout>
+                <StackLayout orientation="horizontal" class="item-count">
+                    <Image src="~/img/chest.png" width="20" height="20" verticalAlignment="bottom"/>
+                    <Label :text="'('+itemCount+'/216)'" verticalAlignment="bottom" style="padding-left:5"/>
+                </StackLayout>
+
+            </StackLayout>
         </ScrollView>
     </Page>
 </template>
@@ -16,11 +23,11 @@
             return {
                 items: this.getAllImages(),
                 itemKeys: this.$modelManager.getItemKeys(),
+                itemCount: 0
             }
         },
-        computed: {
-        },
-        created() {
+        mounted() {
+            this.itemCount = this.$modelManager.getItemCount();
         },
         methods: {
             getImage(key) {
@@ -75,6 +82,12 @@
         width: 32;
         height: 32;
         margin: 4;
+    }
+    .item-count {
+        font-family: PressStart2P-vaV7;
+        font-size: 14;
+        color: white;
+        margin: 10;
     }
 
 </style>
