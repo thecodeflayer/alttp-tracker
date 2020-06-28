@@ -49,12 +49,9 @@
 
 <script>
     import {screen} from 'tns-core-modules/platform';
-    import {staticMapLW} from "~/standard/staticMapLW";
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
     import LightList from "~/components/LightList";
-    import {staticMapDungeonsLW} from "~/standard/staticMapDungeonsLW";
-    import {staticDungeons} from "~/standard/staticDungeons";
 
     export default {
         data: function() {
@@ -77,15 +74,15 @@
                 },
                 mapHandler: {
                     tiles: this.populateTiles(),
-                    keys: Object.keys(staticMapLW),
-                    staticLocations: staticMapLW,
+                    keys: Object.keys(this.$sol.getStaticMapLW(this.$modelManager.getGameMode())),
+                    staticLocations: this.$sol.getStaticMapLW(this.$modelManager.getGameMode()),
                     locations: this.$modelManager.map.lightworld.locations,
-                    dungeonKeys: Object.keys(staticMapDungeonsLW),
-                    staticDungeons: staticMapDungeonsLW,
+                    dungeonKeys: Object.keys(this.$sol.getStaticMapDungeonsLW(this.$modelManager.getGameMode())),
+                    staticDungeons: this.$sol.getStaticMapDungeonsLW(this.$modelManager.getGameMode()),
                     dungeons: this.$modelManager.map.lightworld.dungeons,
                     bosses: this.$modelManager.map.lightworld.bosses,
                     dungeonValues: this.$modelManager.dungeons,
-                    staticDungeonValues: staticDungeons,
+                    staticDungeonValues: this.$sol.getStaticDungeons(this.$modelManager.getGameMode()),
                     centerKey: undefined
                 },
                 mapWidth:1500,
@@ -112,7 +109,6 @@
             this.pinchHandler.left = this.getPinchLeft(newScale);
             setTimeout(() => {
                 this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
-                console.log('top nav height', this.topNavHeight);
                 if(this.$modelManager.map.darkworld.centerKey) {
                     this.centerOnKey();
                 }

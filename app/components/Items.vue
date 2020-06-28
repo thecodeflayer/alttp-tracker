@@ -41,7 +41,7 @@
                     this.$modelManager.setItem(key, !this.$modelManager.getItem(key));
                 } else if (typeof this.$modelManager.getItem(key) === "number") {
                     let val = this.$modelManager.getItem(key) + 1;
-                    if(val > this.$maxItemValues[key]) {
+                    if(val > this.$sol.getStaticItems(this.$modelManager.getGameMode())[key]) {
                         val = 0;
                     }
                     this.$modelManager.setItem(key, val);

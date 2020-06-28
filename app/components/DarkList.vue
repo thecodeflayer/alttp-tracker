@@ -35,7 +35,6 @@
 <script>
 
     import DarkMap from "~/components/DarkMap";
-    import {staticMapDW} from "~/standard/staticMapDW";
 
     export default {
         data: function() {
@@ -44,8 +43,8 @@
                     mode: this.$modelManager.map.darkworld.mode
                 },
                 mapHandler: {
-                    keys: Object.keys(staticMapDW),
-                    staticLocations: staticMapDW,
+                    keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
+                    staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
                     locations: this.$modelManager.map.darkworld.locations
                 },
                 scrollTimout: undefined,

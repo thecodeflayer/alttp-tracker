@@ -13,10 +13,9 @@ import {
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
 import {defaultMap} from "~/defaultMap";
-import {staticMapLW} from "~/standard/staticMapLW";
-import {staticMapDungeonsLW} from "~/standard/staticMapDungeonsLW";
-import {staticMapDW} from "~/standard/staticMapDW";
-import {staticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
+import {defaultSettings} from "~/defaultSettings";
+
+import {StaticObjectLoader} from "~/components/StaticObjectLoader";
 
 export class ModelManager  {
     items = {};
@@ -25,11 +24,15 @@ export class ModelManager  {
     itemsVersion = '0.0.1';
     dungeonsVersion = '0.0.2';
     mapVersion = '0.0.1';
+    settingsVersion = '0.0.1';
+
     constructor() {
         this.items = this.validateItemsFromStorage();
         this.dungeons = this.validateDungeonsFromStorage();
         this.map = this.validateMapFromStorage();
-        //this.validateLocales(); ..causes crash
+        this.settings = this.validateSettingsFromStorage();
+        this.sol = new StaticObjectLoader();
+
     }
     validateItemsFromStorage() {
         let retval = JSON.parse(JSON.stringify(defaultItems.data));
@@ -88,6 +91,26 @@ export class ModelManager  {
             }
         } else {
             console.log('no map found in storage, loading default');
+        }
+        return retval;
+    }
+    validateSettingsFromStorage() {
+        let retval = JSON.parse(JSON.stringify(defaultSettings.data));
+        let stored = undefined;
+        if(hasKey('settings')){
+            try {
+                stored = JSON.parse(getString('settings'));
+                if(stored.version && stored.version === this.settingsVersion) {
+                    retval = stored.data;
+                    console.log('successfully got settings from storage!')
+                } else {
+                    console.log('settings versions do not match got:',stored.version, 'wanted:', this.mapVersion);
+                }
+            } catch(err) {
+                console.error('error getting settings from storage', err);
+            }
+        } else {
+            console.log('no settings found in storage, loading default');
         }
         return retval;
     }
@@ -156,23 +179,35 @@ export class ModelManager  {
         setString('map', JSON.stringify(d));
     }
     validateLocales() {
-        const lkeys = Object.keys(staticMapLW);
-        const ldkeys = Object.keys(staticMapDungeonsLW);
-        const dkeys = Object.keys(staticMapDW);
-        const ddkeys = Object.keys(staticMapDungeonsDW);
+        const lkeys = Object.keys(this.sol.getStaticMapLW(this.settings.gameMode));
+        const ldkeys = Object.keys(this.sol.getStaticMapDungeonsLW(this.settings.gameMode));
+        const dkeys = Object.keys(this.sol.getStaticMapDW(this.settings.gameMode));
+        const ddkeys = Object.keys(this.sol.getStaticMapDungeonsDW(this.settings.gameMode));
         for(const key of lkeys){
-            this.map.lightworld.locations[key].klass = staticMapLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
         for(const key of ldkeys){
-            this.map.lightworld.dungeons[key].klass = staticMapDungeonsLW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
-            this.map.lightworld.bosses[key].klass = staticMapDungeonsLW[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
         for(const key of dkeys){
-            this.map.darkworld.locations[key].klass = staticMapDW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.darkworld.locations[key].klass = this.sol.getStaticMapDW(this.settings.gameMode)[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
         for(const key of ddkeys){
-            this.map.darkworld.dungeons[key].klass = staticMapDungeonsDW[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
-            this.map.darkworld.bosses[key].klass = staticMapDungeonsDW[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
+            this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }
+    }
+    resetSettings() {
+        this.settings = defaultSettings.data;
+        this.saveSettings();
+    }
+    saveSettings() {
+        const d = JSON.parse(JSON.stringify(defaultSettings));
+        d.data = this.settings;
+        setString('settings', JSON.stringify(d));
+    }
+    getGameMode() {
+        return this.settings.gameMode;
     }
 }

@@ -35,8 +35,6 @@
     <script>
 
         import LightMap from "~/components/LightMap";
-        import {staticMapLW} from "~/standard/staticMapLW";
-        import {ScrollView} from "tns-core-modules/ui/scroll-view";
 
         export default {
             data: function() {
@@ -45,8 +43,8 @@
                         mode: this.$modelManager.map.lightworld.mode
                     },
                     mapHandler: {
-                        keys: Object.keys(staticMapLW),
-                        staticLocations: staticMapLW,
+                        keys: Object.keys(this.$sol.getStaticMapLW(this.$modelManager.getGameMode())),
+                        staticLocations: this.$sol.getStaticMapLW(this.$modelManager.getGameMode()),
                         locations: this.$modelManager.map.lightworld.locations
                     },
                     scrollTimout: undefined,

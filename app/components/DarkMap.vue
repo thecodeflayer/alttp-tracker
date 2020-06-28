@@ -49,12 +49,9 @@
 
 <script>
     import {screen} from 'tns-core-modules/platform';
-    import {staticMapDW} from "~/standard/staticMapDW";
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
     import DarkList from "~/components/DarkList";
-    import {staticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
-    import {staticDungeons} from "~/standard/staticDungeons";
 
     export default {
         data: function() {
@@ -77,15 +74,15 @@
                 },
                 mapHandler: {
                     tiles: this.populateTiles(),
-                    keys: Object.keys(staticMapDW),
-                    staticLocations: staticMapDW,
+                    keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
+                    staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
                     locations: this.$modelManager.map.darkworld.locations,
-                    dungeonKeys: Object.keys(staticMapDungeonsDW),
-                    staticDungeons: staticMapDungeonsDW,
+                    dungeonKeys: Object.keys(this.$sol.getStaticMapDungeonsDW(this.$modelManager.getGameMode())),
+                    staticDungeons: this.$sol.getStaticMapDungeonsDW(this.$modelManager.getGameMode()),
                     dungeons: this.$modelManager.map.darkworld.dungeons,
                     bosses: this.$modelManager.map.darkworld.bosses,
                     dungeonValues: this.$modelManager.dungeons,
-                    staticDungeonValues: staticDungeons,
+                    staticDungeonValues: this.$sol.getStaticDungeons(this.$modelManager.getGameMode()),
                     centerKey: undefined
                 },
                 mapWidth:1500,
@@ -112,7 +109,6 @@
             this.pinchHandler.left = this.getPinchLeft(newScale);
             setTimeout(() => {
                 this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
-                console.log('top nav height', this.topNavHeight);
                 if(this.$modelManager.map.darkworld.centerKey) {
                     this.centerOnKey();
                 }

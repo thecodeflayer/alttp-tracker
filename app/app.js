@@ -2,19 +2,12 @@ import Vue from 'nativescript-vue';
 import Home from './components/Home'
 import Navbar from '~/components/Navbar';
 import {ModelManager} from "~/components/ModelManager";
-import Items from "~/components/Items";
+import {StaticObjectLoader} from "~/components/StaticObjectLoader";
 //Vue.config.silent = false;
 Vue.component('Navbar', Navbar);
 Vue.prototype.$modelManager = new ModelManager();
-Vue.prototype.$maxItemValues = {
-    bow: 2,
-    boomerang: 2,
-    jar: 4,
-    glove: 2,
-    sword: 4,
-    shield: 3,
-    tunic: 2
-}
+Vue.prototype.$sol = new StaticObjectLoader();
+
 new Vue({
     render: h => h('frame', [h(Home)]),
 }).$start();
