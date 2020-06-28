@@ -172,7 +172,7 @@
                 const retval = [];
                 for(let i = 0; i < 25; i ++) {
                     const obj = {};
-                    obj.src = '~/img/darkworld/map'+(i+1)+'.png';
+                    obj.src = '~/img/darkworld/'+this.$modelManager.getGameModeMap()+'/map'+(i+1)+'.png';
                     obj.width = 300;
                     obj.height = 300;
                     obj.top = Math.floor(i / 5) * 300;

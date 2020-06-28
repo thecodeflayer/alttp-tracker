@@ -210,4 +210,9 @@ export class ModelManager  {
     getGameMode() {
         return this.settings.gameMode;
     }
+    getGameModeMap() {
+        if(this.settings.gameMode === this.sol.STANDARD) {
+            return this.sol.STANDARD;
+        }
+    }
 }

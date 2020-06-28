@@ -5,41 +5,40 @@ import {staticMapDungeonsDW as standardStaticMapDungeonsDW} from "~/standard/sta
 import {staticDungeons as standardStaticDungeons} from "~/standard/staticDungeons";
 import {staticItems as standardStaticItems} from '~/standard/staticItems';
 
-const STANDARD = 'standard';
-
 export class StaticObjectLoader {
-    dgm = STANDARD;
+    STANDARD = 'standard';
 
     constructor() {
+        this.dgm = this.STANDARD;
     }
 
     getStaticMapLW(gm) {
-        if(gm === STANDARD){
+        if(gm === this.STANDARD){
             return standardStaticMapLW;
         }
     }
     getStaticMapDungeonsLW(gm) {
-        if(gm === STANDARD){
+        if(gm === this.STANDARD){
             return standardStaticMapDungeonsLW;
         }
     }
     getStaticMapDW(gm) {
-        if(gm === STANDARD) {
+        if(gm === this.STANDARD) {
             return standardStaticMapDW;
         }
     }
     getStaticMapDungeonsDW(gm) {
-        if(gm === STANDARD) {
+        if(gm === this.STANDARD) {
             return standardStaticMapDungeonsDW;
         }
     }
     getStaticDungeons(gm) {
-        if(gm === STANDARD) {
+        if(gm === this.STANDARD) {
             return standardStaticDungeons;
         }
     }
     getStaticItems(gm) {
-        if(gm === STANDARD) {
+        if(gm === this.STANDARD) {
             return standardStaticItems;
         }
     }
