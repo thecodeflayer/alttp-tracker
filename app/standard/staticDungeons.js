@@ -20,7 +20,7 @@ export const staticDungeons  = {
     aga:{
         maxCrystal: 0,
         maxChests: 0,
-        maxSmallkeys: 7,
+        maxSmallkeys: 4,
         maxMedallion: 0
     },
     pod:{

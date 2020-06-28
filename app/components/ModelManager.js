@@ -159,11 +159,26 @@ export class ModelManager  {
         for(const key of dgnKeys) {
             const chests = dungeons[key].maxChests - savedDgn[key].chests;
             retval = retval + chests;
-            if(key !== 'aga' && key !== 'gt' && savedDgn[key].boss){
-                retval = retval +1;
-            }
+            // if(key !== 'aga' && key !== 'gt' && savedDgn[key].boss){
+            //     retval = retval +1;
+            // }
+            // retval = retval + savedDgn[key].smallkeys;
+            // if(savedDgn[key].bosskey) {
+            //     retval = retval+1;
+            // }
+            // if(savedDgn[key].compass) {
+            //     retval = retval+1;
+            // }
+            // if(savedDgn[key].map) {
+            //     retval = retval+1;
+            // }
         }
         return retval;
+    }
+    getItemMax() {
+        if(this.settings.gameMode === this.sol.STANDARD) {
+            return 152;
+        }
     }
     saveItems() {
         const d = JSON.parse(JSON.stringify(defaultItems));

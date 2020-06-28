@@ -8,7 +8,7 @@
                 </GridLayout>
                 <StackLayout orientation="horizontal" class="item-count">
                     <Image src="~/img/chest.png" width="20" height="20" verticalAlignment="bottom"/>
-                    <Label :text="'('+itemCount+'/216)'" verticalAlignment="bottom" style="padding-left:5"/>
+                    <Label :text="'('+itemCount+'/'+itemMax+')'" verticalAlignment="bottom" style="padding-left:5"/>
                 </StackLayout>
 
             </StackLayout>
@@ -23,7 +23,8 @@
             return {
                 items: this.getAllImages(),
                 itemKeys: this.$modelManager.getItemKeys(),
-                itemCount: 0
+                itemCount: 0,
+                itemMax: this.$modelManager.getItemMax()
             }
         },
         mounted() {
