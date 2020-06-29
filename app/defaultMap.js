@@ -8,6 +8,7 @@ export const defaultMap = {
             y: 0,
             centerKey: undefined,
             scrollY: 0,
+            filterList: 0,
             locations: {
                 uncle: {checked: false, klass:'locale-green'},
                 secretPassage: {checked: false, klass:'locale-green'},
@@ -77,6 +78,7 @@ export const defaultMap = {
             y: 0,
             centerKey: undefined,
             scrollY: 0,
+            filterList: 0,
             locations: {
                 superbunnyCave: {checked: false, klass: 'locale-red'},
                 hookshotCave: {checked: false, klass: 'locale-red'},
