@@ -186,7 +186,14 @@ export class ModelManager  {
         setString('items', JSON.stringify(d));
     }
     resetDungeons() {
-        this.dungeons = defaultDungeons.data;
+        this.dungeons = JSON.parse(JSON.stringify(defaultDungeons.data));
+        const staticDungeons = this.sol.getStaticDungeons(this.settings.gameMode);
+        const keys = Object.keys(this.dungeons);
+        for(const key of keys){
+            this.dungeons[key].smallkeys = staticDungeons[key].maxSmallkeys;
+            this.dungeons[key].chests = staticDungeons[key].maxChests;
+        }
+
         this.saveDungeons();
     }
     getDungeons() {

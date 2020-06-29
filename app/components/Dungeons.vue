@@ -40,7 +40,7 @@
                 } else if (typeof this.$modelManager.getDungeonValue(key, item) === "number") {
                     let val = -1;
                     let max = 'max'+item.substr(0, 1).toUpperCase()+item.substr(1);
-                    if(item === 'chests') {
+                    if(item === 'chests' || item === 'smallkeys') {
                         val = this.$modelManager.getDungeonValue(key, item) - 1;
                         if(val < 0) {
                             val = this.$sol.getStaticDungeons(this.$modelManager.getGameMode())[key][max];
