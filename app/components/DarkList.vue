@@ -2,16 +2,19 @@
     <Page>
         <Navbar></Navbar>
         <StackLayout orientation="vertical">
-            <StackLayout orientation="horizontal" class="top-header"  @tap="toggleMode">
-                <Image height="16" width="16" src="~/img/map_btn.png" style="padding-left:10"/>
-                <Label style="padding:0 8" text="Return to Map" />
-            </StackLayout>
+            <GridLayout columns="28,*,*" rows="16" class="top-header">
+                <Image col="0" row="0" height="16" width="16" src="~/img/map_btn.png" style="padding-left:10" @tap="toggleMode" verticalAlignment="top"/>
+                <Label col="1" row="0" style="padding:0 8 0 0" text="Return to Map" @tap="toggleMode"/>
+                <Label col="2" row="0" style="padding:0 8" horizontalAlignment="right" @tap="setFilterList"
+                       :text="'Filter: '+(filterList === 3 ? 'Unavailable' : filterList === 2 ? 'Available' : filterList === 1 ? 'Checked' : 'All')"/>
+            </GridLayout>
             <ScrollView  ref="listScrollView" orientation="vertical"
                          :height="mapHandler.keys.length * 54"
                          :scrollableHeight="mapHandler.keys.length * 54"
                          @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
                     <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
+                                :visibility="getVisible(key)"
                                 columns="*,48" rows="60"
                                 :backgroundColor="mapHandler.locations[key].checked ? 'gray' : mapHandler.locations[key].klass === 'locale-green' ? 'darkgreen':'darkred'">
                         <StackLayout row="0" col="0" orientation="vertical" style="padding-left:5">
@@ -55,7 +58,8 @@
                     locations: this.$modelManager.map.darkworld.locations
                 },
                 scrollTimout: undefined,
-                scrollOffsetY: this.$modelManager.map.darkworld.scrollY
+                scrollOffsetY: this.$modelManager.map.darkworld.scrollY,
+                filterList: this.$modelManager.map.darkworld.filterList
             }
         },
         mounted() {
@@ -91,6 +95,24 @@
                     this.$modelManager.saveMap();
                 }, 300);
             },
+                getVisible(key) {
+                    return ((this.filterList === 3 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-red')
+                        || (this.filterList === 2 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-green')
+                        || (this.filterList === 1 && this.mapHandler.locations[key].checked)
+                        || this.filterList === 0) ? 'visible' : 'collapsed'
+                },
+                setFilterList() {
+                    let val = this.filterList;
+                    if(val === null || val === undefined){
+                        val = 0;
+                    }
+                    val = val + 1;
+                    if(val > 3) {
+                        val = 0;
+                    }
+                    this.filterList = this.$modelManager.map.darkworld.filterList = val;
+                    this.$modelManager.saveMap();
+                }
         }
     };
 </script>
@@ -107,10 +129,10 @@
     }
     .top-header {
         background-color: black;
-        padding:8;
         font-family: "Return of Ganon", "ReturnofGanon";
         font-size: 18;
         color: white;
+        padding-top: 6;
     }
     .locale-wrapper {
         background-color: darkgreen;
