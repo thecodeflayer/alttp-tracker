@@ -218,7 +218,7 @@
                     } else {
                         this.momentumHandler.x = 'none';
                     }
-                    if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.3){
+                    if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.2){
                         this.momentumHandler.y = y<0?'up':'down';
                     } else {
                         this.momentumHandler.y = 'none'
