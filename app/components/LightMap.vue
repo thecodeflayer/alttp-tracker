@@ -182,10 +182,14 @@
                 }
                 return retval;
             },
-            onPan(args) {
+            onPan(args,fromMomentum) {
                 if(args.state === 1) {
+                    this.panHandler.ticks = 0;
                 }
                 if(args.state === 2) {
+                    if(!fromMomentum) {
+                        this.panHandler.ticks++;
+                    }
                     let newX = this.$refs.mapWrapper.nativeView.left + ((args.deltaX - this.panHandler.lastX));
                     let newY = this.$refs.mapWrapper.nativeView.top + ((args.deltaY - this.panHandler.lastY));
                     this.keepInBounds(newX, newY);
@@ -201,9 +205,36 @@
                     //     ' screen scale:' + this.screen.mainScreen.scale;this.panHandler.lastX = args.deltaX;
                     // '';
                 } else if(args.state === 3) {
+                    if(!fromMomentum){
+                        this.calcMomentum(args.deltaX,args.deltaY,this.panHandler.ticks);
+                    }
                     this.panHandler.lastX = 0;
                     this.panHandler.lastY = 0;
+                    this.panHandler.ticks = 0;
                     this.$modelManager.saveMap();
+                }
+            },
+            calcMomentum(x,y,ticks){
+                console.log('momentum',x, y, ticks);
+                if(ticks < 10) {
+                    if (Math.abs(x) > this.screenWidth * 0.3){
+                        console.log(x<0?'left':'right');
+                    }
+                    if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.3){
+                        console.log(y<0?'up':'down');
+                    }
+                    this.panHandler.momentums = 100;
+                    this.momentumTimer = setTimeout(this.doMomentum,100);
+                }
+            },
+            doMomentum(){
+                console.log('doing momentum', this.panHandler.momentums);
+                this.onPan({deltaX:20*this.panHandler.momentums,deltaY:20*this.panHandler.momentums,state:2},true);
+                this.panHandler.momentums = Math.floor(this.panHandler.momentums / 2);
+                if(this.panHandler.momentums > 1) {
+                    this.momentumTimer = setTimeout(this.doMomentum,100);
+                } else {
+                    this.onPan({deltaX:0,deltaY:0,state:3},true);
                 }
             },
             onPinch(args) {
