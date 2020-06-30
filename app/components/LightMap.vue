@@ -51,6 +51,7 @@
     import {screen} from 'tns-core-modules/platform';
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
+    import * as enums from 'tns-core-modules/ui/enums';
     import LightList from "~/components/LightList";
     import DarkMap from "~/components/DarkMap";
 
@@ -95,6 +96,7 @@
                 topNavHeight: 0,
                 bottomNavHeight:0,
                 viewHeight:0,
+                momentumHandler:{}
             }
         },
         mounted() {
@@ -156,10 +158,6 @@
                         //navBarHeight = realWidth - displayWidth;
                         return 0;
                     }
-                    // add a few pixels if height is greater than zero
-                    // if(navBarHeight > 0) {
-                    //     navBarHeight = navBarHeight + (10 * this.screen.mainScreen.scale);
-                    // }
                     return Math.floor(navBarHeight / this.screen.mainScreen.scale);
 
                     // return (navBarHeight
@@ -215,25 +213,42 @@
                 }
             },
             calcMomentum(x,y,ticks){
-                console.log('momentum',x, y, ticks);
                 if(ticks < 10) {
                     if (Math.abs(x) > this.screenWidth * 0.3){
-                        console.log(x<0?'left':'right');
+                        this.momentumHandler.x = x<0?'left':'right';
+                    } else {
+                        this.momentumHandler.x = 'none';
                     }
-                    if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.3){
-                        console.log(y<0?'up':'down');
+                    if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.2){
+                        this.momentumHandler.y = y<0?'up':'down';
+                    } else {
+                        this.momentumHandler.y = 'none'
                     }
-                    this.panHandler.momentums = 100;
-                    this.momentumTimer = setTimeout(this.doMomentum,100);
+                    this.momentumHandler.ticks = 0;
+                    this.momentumHandler.prevX = 0;
+                    this.momentumHandler.prevY = 0;
+
+                    this.momentumHandler.timer = setTimeout(this.doMomentum,10);
                 }
             },
             doMomentum(){
-                console.log('doing momentum', this.panHandler.momentums);
-                this.onPan({deltaX:20*this.panHandler.momentums,deltaY:20*this.panHandler.momentums,state:2},true);
-                this.panHandler.momentums = Math.floor(this.panHandler.momentums / 2);
-                if(this.panHandler.momentums > 1) {
-                    this.momentumTimer = setTimeout(this.doMomentum,100);
+                const degrade = (30 - this.momentumHandler.ticks)/30;
+                const x = this.momentumHandler.x === 'none' ? 0
+                    : this.momentumHandler.x === 'left' ? Math.floor((-30 * degrade) + this.momentumHandler.prevX)
+                        : Math.floor((30 * degrade) + this.momentumHandler.prevX);
+                const y = this.momentumHandler.y === 'none' ? 0
+                    : this.momentumHandler.y === 'up' ? Math.floor((-30 * degrade) + this.momentumHandler.prevY)
+                        : Math.floor((30 * degrade) + this.momentumHandler.prevY);
+                this.onPan({deltaX: x, deltaY: y, state: 2},true);
+                this.momentumHandler.prevX = x;
+                this.momentumHandler.prevY = y;
+                this.momentumHandler.ticks++;
+                if(this.momentumHandler.ticks < 30) {
+                    this.momentumHandler.timer = setTimeout(this.doMomentum,10);
                 } else {
+                    this.momentumHandler.ticks = 0;
+                    this.momentumHandler.prevX = 0;
+                    this.momentumHandler.prevY = 0;
                     this.onPan({deltaX:0,deltaY:0,state:3},true);
                 }
             },
@@ -280,9 +295,6 @@
                     newX = minX;
                 }
                 const minY = -Math.abs(((this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight) + Math.abs(this.pinchHandler.top)) - (this.mapHeight));
-                //console.log(this.screenHeight, this.topNavHeight, this.statusBarHeight, this.bottomNavHeight, this.pinchHandler.top);
-                //console.log(this.getViewHeight(this.$refs.navbar.nativeView));
-                //console.log(minY, newY);
                 if(newY > this.pinchHandler.top) {
                     newY = this.pinchHandler.top;
                 } else if(newY < minY) {
