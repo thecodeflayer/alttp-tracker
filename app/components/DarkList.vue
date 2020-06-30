@@ -74,7 +74,7 @@
         },
         methods: {
             toggleMode(){
-                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
+                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 0;
                 this.$modelManager.saveMap();
                 this.$navigateTo(DarkMap);
             },

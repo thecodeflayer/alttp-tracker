@@ -1,7 +1,7 @@
 <template>
     <Page backgroundColor="black">
         <Navbar ref="navbar"></Navbar>
-        <AbsoluteLayout @pan="onPan" @pinch="onPinch">
+        <AbsoluteLayout @pan="onPan" @pinch="onPinch" @doubletap="onDoubleTap">
             <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
                 <Image v-for="tile in mapHandler.tiles" v-bind:key="mapHandler.tiles" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
                 <Label v-if="mapHandler.centerKey" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
@@ -52,6 +52,7 @@
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
     import DarkList from "~/components/DarkList";
+    import LightMap from "~/components/LightMap";
 
     export default {
         data: function() {
@@ -260,7 +261,7 @@
                 this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y = newY;
             },
             toggleMode(){
-                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 1;
+                this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 1;
                 this.$modelManager.saveMap();
                 this.$navigateTo(DarkList);
             },
@@ -296,6 +297,14 @@
                 this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
                 this.mapHandler.centerKey = undefined;
                 this.$modelManager.saveMap();
+            },
+            onDoubleTap(){
+                this.$modelManager.map.lightworld.scale = this.$modelManager.map.darkworld.scale;
+                this.$modelManager.map.lightworld.x = this.$modelManager.map.darkworld.x;
+                this.$modelManager.map.lightworld.y = this.$modelManager.map.darkworld.y;
+                this.$modelManager.map.lightworld.mode = 0;
+                this.$modelManager.saveMap();
+                this.$navigateTo(LightMap);
             }
         }
     };

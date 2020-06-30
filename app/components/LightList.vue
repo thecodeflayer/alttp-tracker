@@ -74,7 +74,7 @@
             },
             methods: {
                 toggleMode(){
-                    this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
+                    this.menuHandler.mode = this.$modelManager.map.lightworld.mode = 0;
                     this.$modelManager.saveMap();
                     this.$navigateTo(LightMap);
                 },
