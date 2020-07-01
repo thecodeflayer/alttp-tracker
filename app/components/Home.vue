@@ -7,6 +7,7 @@
                 <Label text="Track item collection and dungeon progress as well as find locations using the maps." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
                 <Label text="More features will be coming as I have time including other modes and glitches." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
                 <Label text="Special thanks to the randomizer community. Visit them!" class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
+                <Button :visibility="this.showUpgradeBtn?'visible':'collapsed'" class="btn" @tap="clickUpgrade" backgroundColor="#8b0000">New Version! {{this.upgradeVersion}}</Button>
                 <Button class="btn" @tap="clickRandomizer">ALTTP Randomizer</Button>
                 <Button class="btn" @tap="clickReddit">ALTTPR on Reddit</Button>
                 <Button class="btn" @tap="clickDiscord">ALTTPR Discord</Button>
@@ -17,11 +18,34 @@
 
 <script>
     import {openUrl} from 'tns-core-modules/utils/utils';
-    export default {
-        computed: {
+    import * as convert from 'xml-js';
 
+    export default {
+        data: function() {
+            return {
+                showUpgradeBtn: false,
+                upgradeLink: '',
+                upgradeVersion: '',
+                appVersion: this.$modelManager.appVersion
+            }
+        },
+        mounted() {
+            fetch('https://github.com/thecodeflayer/alttp-tracker/releases.atom')
+                .then((response) => response.text())
+                .then((xml) => {
+                    const res = JSON.parse(convert.xml2json(xml, {compact: true, spaces: 2}));
+                    this.upgradeVersion = res.feed.entry[0].title._text;
+                    this.upgradeLink = res.feed.entry[0].link._attributes.href;
+                    this.showUpgradeBtn = (this.upgradeVersion !== this.appVersion);
+                    console.log(this.appVersion, this.upgradeVersion, this.upgradeLink, this.showUpgradeBtn);
+                }).catch((err) => {
+                    console.log(err);
+                });
         },
         methods: {
+            clickUpgrade() {
+                openUrl(this.upgradeLink);
+            },
             clickRandomizer() {
                 openUrl('https://alttpr.com/');
             },

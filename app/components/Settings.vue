@@ -5,15 +5,17 @@
             <Button row="0" col="0" class="btn" @tap="resetItems">Reset Items</Button>
             <Button row="1" col="0" class="btn" @tap="resetDungeons">Reset Dungeons</Button>
             <Button row="2" col="0" class="btn" @tap="resetMap">Reset Map</Button>
-            <Label row="3" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" text="Version: 0.8.12"/>
+            <Label row="3" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" :text="'Version: '+appVersion"/>
         </GridLayout>
     </Page>
 </template>
 
 <script>
     export default {
-        computed: {
-
+        data: function() {
+            return {
+                appVersion: this.$modelManager.appVersion
+            }
         },
         methods: {
             resetItems() {

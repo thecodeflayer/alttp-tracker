@@ -14,7 +14,8 @@
   "dependencies": {
     "@nativescript/theme": "~2.3.0",
     "nativescript-vue": "~2.4.0",
-    "tns-core-modules": "~6.5.0"
+    "tns-core-modules": "~6.5.0",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@babel/core": "~7.1.0",
