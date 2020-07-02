@@ -21,7 +21,7 @@ export class ModelManager  {
     items = {};
     dungeons = {};
     map = {};
-    appVersion = '0.9.1'
+    appVersion = '0.9.2'
     itemsVersion = '0.0.1';
     dungeonsVersion = '0.0.2';
     mapVersion = '0.0.1';
