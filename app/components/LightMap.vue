@@ -51,7 +51,6 @@
     import {screen} from 'tns-core-modules/platform';
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
-    import * as enums from 'tns-core-modules/ui/enums';
     import LightList from "~/components/LightList";
     import DarkMap from "~/components/DarkMap";
 
@@ -112,7 +111,7 @@
             this.pinchHandler.left = this.getPinchLeft(newScale);
             setTimeout(() => {
                 this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
-                if(this.$modelManager.map.darkworld.centerKey) {
+                if(this.$modelManager.map.lightworld.centerKey) {
                     this.centerOnKey();
                 }
             },300);
