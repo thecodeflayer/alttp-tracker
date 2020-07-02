@@ -114,57 +114,52 @@
                 if(this.$modelManager.map.lightworld.centerKey) {
                     this.centerOnKey();
                 }
+                this.debugInfo = this.getDebugInfo();
             },300);
 
         },
         methods: {
+            getDebugInfo() {
+                return  '' +
+                        //'pinch:' + this.pinchHandler.left + ', ' +this.pinchHandler.top +
+                        //' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
+                        //' screen calc:' + (this.screenHeight - this.topNavHeight) +
+                        //' map raw:'+ this.$refs.mapWrapper.nativeView.getMeasuredHeight() +
+                        //' scale:'+ (this.pinchHandler.currentScale+'').substr(0,4) +
+                        //' minscale' + this.getMinScale() +
+                        //' newy:'+ (newY +'').substr(0,4) +
+                        ' screen scale: ' + this.screen.mainScreen.scale +
+                        ' screenWidth: ' + this.screenWidth +
+                        ' screenHeight: ' + this.screenHeight +
+                        ' statusBarHeight: ' + this.statusBarHeight +
+                        ' topNavHeight: ' + this.topNavHeight +
+                        ' bottomNavHeight: ' + this.bottomNavHeight +
+                        ' viewHeight: ' + this.viewHeight +
+                        '';
+            },
             getStatusBarHeight() {
                 let result = 0;
                 if (app.android) {
                     const resourceId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('status_bar_height', 'dimen', 'android');
                     if (resourceId) {
                         result = (app.android.foregroundActivity || app.android.startActivity).getResources().getDimensionPixelSize(resourceId);
-
-                        //result = result / this.screen.mainScreen.scale;
-                        result = utils.layout.toDeviceIndependentPixels(result);
+                        result = Math.ceil(utils.layout.toDeviceIndependentPixels(result));
                     }
                 }
                 return result;
             },
-            getBottomNavbarHeight() {
-                if(app.android) {
-                    let navBarHeight = 0;
-                    let windowManager = app.android.context
-                        .getSystemService(android.content.Context.WINDOW_SERVICE);
-                    let d = windowManager.getDefaultDisplay();
-
-                    let realDisplayMetrics = new android.util.DisplayMetrics();
-                    d.getRealMetrics(realDisplayMetrics);
-
-                    let realHeight = realDisplayMetrics.heightPixels;
-                    let realWidth = realDisplayMetrics.widthPixels;
-
-                    let displayMetrics = new android.util.DisplayMetrics();
-                    d.getMetrics(displayMetrics);
-
-                    let displayHeight = displayMetrics.heightPixels;
-                    let displayWidth = displayMetrics.widthPixels;
-
-                    if((realHeight - displayHeight) > 0) { // Portrait
-                        navBarHeight = realHeight - displayHeight;
-                    } else if ((realWidth - displayWidth) > 0) { // Landscape
-                        //return zero for now. only so many wonky things to deal with at a time.
-                        //navBarHeight = realWidth - displayWidth;
-                        return 0;
+            getBottomNavbarHeight(){
+                let result = 0;
+                if (app.android) {
+                    const navId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier("config_showNavigationBar", "bool", "android");
+                    const navShown = navId > 0 && (app.android.foregroundActivity || app.android.startActivity).getResources().getBoolean(navId);
+                    const resourceId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('navigation_bar_height', 'dimen', 'android');
+                    if (resourceId && navShown) {
+                        result = (app.android.foregroundActivity || app.android.startActivity).getResources().getDimensionPixelSize(resourceId);
+                        result = Math.ceil(utils.layout.toDeviceIndependentPixels(result));
                     }
-                    return Math.floor(navBarHeight / this.screen.mainScreen.scale);
-
-                    // return (navBarHeight
-                    //     / app.android.currentContext
-                    //         .getResources().getDisplayMetrics().density);
-
                 }
-                return 0;
+                return result;
             },
             populateTiles() {
                 const retval = [];
@@ -192,15 +187,7 @@
                     this.keepInBounds(newX, newY);
                     this.panHandler.lastX = args.deltaX;
                     this.panHandler.lastY = args.deltaY;
-                    // this.debugInfo = 'pinch:' + this.pinchHandler.left + ', ' +this.pinchHandler.top +
-                    //     ' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
-                    //     ' screen calc:' + (this.screenHeight - this.topNavHeight) +
-                    //     ' map raw:'+ this.$refs.mapWrapper.nativeView.getMeasuredHeight() +
-                    //     ' scale:'+ (this.pinchHandler.currentScale+'').substr(0,4) +
-                    //     ' minscale' + this.getMinScale() +
-                    //     ' newy:'+ (newY +'').substr(0,4) +
-                    //     ' screen scale:' + this.screen.mainScreen.scale;this.panHandler.lastX = args.deltaX;
-                    // '';
+                    //this.debugInfo = this.getDebugInfo();
                 } else if(args.state === 3) {
                     if(!fromMomentum){
                         this.calcMomentum(args.deltaX,args.deltaY,this.panHandler.ticks);
