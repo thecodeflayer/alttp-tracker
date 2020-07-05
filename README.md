@@ -19,7 +19,7 @@ I have not fully vetted the logic for all locations. I am looking for help in th
 
 ## Installation
 In order to install on Android you will have to "side-load" the APK from Github. On most modern Android platforms you can follow these steps:
-1. Navigate to the latest release page on the Android device you want to install the app on. Current release is [0.9.2](https://github.com/thecodeflayer/alttp-tracker/releases/tag/0.9.2)
+1. Navigate to the latest release page on the Android device you want to install the app on. Current release is [0.9.3](https://github.com/thecodeflayer/alttp-tracker/releases/tag/0.9.3)
 2. Under the Assets section, click on the APK file listed on the release page.
 3. You will typically receive a warning about APK files harming your device. You will need to confirm download.
 4. Once downloaded, click on the downloaded APK file.
