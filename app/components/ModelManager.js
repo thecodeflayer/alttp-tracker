@@ -16,6 +16,7 @@ import {defaultMap} from "~/defaultMap";
 import {defaultSettings} from "~/defaultSettings";
 
 import {StaticObjectLoader} from "~/components/StaticObjectLoader";
+import {defaultGameSaves} from "~/defaultGameSaves";
 
 export class ModelManager  {
     items = {};
@@ -26,12 +27,15 @@ export class ModelManager  {
     dungeonsVersion = '0.0.2';
     mapVersion = '0.0.1';
     settingsVersion = '0.0.1';
+    gameSavesVersion = '0.0.1';
 
     constructor() {
         this.items = this.validateItemsFromStorage();
         this.dungeons = this.validateDungeonsFromStorage();
         this.map = this.validateMapFromStorage();
         this.settings = this.validateSettingsFromStorage();
+        this.gameSaves = this.validateGameSavesFromStorage();
+        this.initEmptyGameSave();
         this.sol = new StaticObjectLoader();
 
     }
@@ -112,6 +116,26 @@ export class ModelManager  {
             }
         } else {
             console.log('no settings found in storage, loading default');
+        }
+        return retval;
+    }
+    validateGameSavesFromStorage() {
+        let retval = JSON.parse(JSON.stringify(defaultGameSaves.data));
+        let stored = undefined;
+        if(hasKey('gameSaves')){
+            try {
+                stored = JSON.parse(getString('gameSaves'));
+                if(stored.version && stored.version === this.settingsVersion) {
+                    retval = stored.data;
+                    console.log('successfully got game saves from storage!')
+                } else {
+                    console.log('game saves versions do not match got:',stored.version, 'wanted:', this.mapVersion);
+                }
+            } catch(err) {
+                console.error('error getting game saves from storage', err);
+            }
+        } else {
+            console.log('no game saves found in storage, loading default');
         }
         return retval;
     }
@@ -266,6 +290,27 @@ export class ModelManager  {
     getGameModeMap() {
         if(this.settings.gameMode === this.sol.STANDARD) {
             return this.sol.STANDARD;
+        }
+    }
+    saveGameStates() {
+        const n = this.settings.gameSlot +'';
+        this.gameSaves['game'+n].items = JSON.parse(JSON.stringify(this.items));
+        this.gameSaves['game'+n].dungeons = JSON.parse(JSON.stringify(this.dungeons));
+        this.gameSaves['game'+n].map = JSON.parse(JSON.stringify(this.map));
+        this.gameSaves['game'+n].settings = JSON.parse(JSON.stringify(this.settings));
+        this.gameSaves['game'+n].ts = Date.now();
+        const d = JSON.parse(JSON.stringify(defaultGameSaves));
+        d.data = this.gameSaves;
+        setString('gameSaves', JSON.stringify(d));
+    }
+    initEmptyGameSave() {
+        if (this.gameSaves.fromDefault) {
+            if(isNaN(this.settings.gameSlot)) {
+                this.settings.gameSlot = 0;
+            }
+            //game saves loaded from default so init first slot with loaded values
+            this.saveGameStates();
+
         }
     }
 }

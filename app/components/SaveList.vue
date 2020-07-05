@@ -2,7 +2,7 @@
     <Page backgroundColor="black">
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
-
+            <Label color="white" :text="'time:'+gameSaves.game0.timestamp"/>
         </ScrollView>
     </Page>
 </template>
@@ -11,7 +11,7 @@
     export default {
         data: function() {
             return {
-
+                gameSaves: this.$modelManager.gameSaves
             }
         },
         methods: {
