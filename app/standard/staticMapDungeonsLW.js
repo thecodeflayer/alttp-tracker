@@ -15,7 +15,8 @@ export const staticMapDungeonsLW = {
         },
         validateBoss(items, dungeons){
             return regionHelper.dp(items, dungeons)
-                && (items.glove > 0 || (items.mirror && regionHelper.mireDW(items, dungeons)));
+                && (items.glove > 0 || (items.mirror && regionHelper.mireDW(items, dungeons)))
+                && (items.lantern || items.firerod);
         }
     },
     toh:{x:840, y:40,
