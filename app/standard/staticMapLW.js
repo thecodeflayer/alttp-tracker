@@ -13,7 +13,7 @@ export const staticMapLW = {
         }
     },
     sahashrala:{x:1216,y:680, title:'Sahashrala', itemCount: 1,
-        req: ['dungeons/crystal1'],
+        req: ['crystal-green'],
         validate(items, dungeons) {
             let retval = false;
             const keys = Object.keys(dungeons);
