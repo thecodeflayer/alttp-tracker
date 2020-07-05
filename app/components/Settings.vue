@@ -1,16 +1,19 @@
 <template>
     <Page backgroundColor="black">
         <Navbar></Navbar>
-        <GridLayout columns="*", rows="50,50,50,50" style="margin-top:10">
-            <Button row="0" col="0" class="btn" @tap="resetItems">Reset Items</Button>
-            <Button row="1" col="0" class="btn" @tap="resetDungeons">Reset Dungeons</Button>
-            <Button row="2" col="0" class="btn" @tap="resetMap">Reset Map</Button>
-            <Label row="3" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" :text="'Version: '+appVersion"/>
+        <GridLayout columns="*", rows="50,50,50,50,50" style="margin-top:10">
+            <Button row="0" col="0" class="btn" @tap="navSaveList">Saved Games</Button>
+            <Button row="1" col="0" class="btn" @tap="resetItems">Reset Items</Button>
+            <Button row="2" col="0" class="btn" @tap="resetDungeons">Reset Dungeons</Button>
+            <Button row="3" col="0" class="btn" @tap="resetMap">Reset Map</Button>
+            <Label row="4" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" :text="'Version: '+appVersion"/>
         </GridLayout>
     </Page>
 </template>
 
 <script>
+    import SaveList from "~/components/SaveList";
+
     export default {
         data: function() {
             return {
@@ -18,6 +21,9 @@
             }
         },
         methods: {
+            navSaveList() {
+                this.$navigateTo(SaveList);
+            },
             resetItems() {
                 this.$modelManager.resetItems();
             },
