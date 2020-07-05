@@ -2,7 +2,7 @@
     <Page>
         <Navbar></Navbar>
         <StackLayout orientation="vertical">
-            <GridLayout columns="28,*,*" rows="16" class="top-header">
+            <GridLayout columns="28,*,*" rows="20" class="top-header">
                 <Image col="0" row="0" height="16" width="16" src="~/img/map_btn.png" style="padding-left:10" @tap="toggleMode" verticalAlignment="top"/>
                 <Label col="1" row="0" style="padding:0 8 0 0" text="Return to Map" @tap="toggleMode"/>
                 <Label col="2" row="0" style="padding:0 8" horizontalAlignment="right" @tap="setFilterList"
