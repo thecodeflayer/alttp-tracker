@@ -2,7 +2,7 @@
     <Page backgroundColor="black">
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
-            <Label color="white" :text="'time:'+gameSaves.game0.timestamp"/>
+            <Label color="white" :text="'Time: '+gameSaves.game0.timestamp"/>
         </ScrollView>
     </Page>
 </template>
@@ -11,11 +11,34 @@
     export default {
         data: function() {
             return {
-                gameSaves: this.$modelManager.gameSaves
+                gameSaves: this.parseGameSaves()
             }
         },
+        mounted() {
+            //this.gameSaves =
+        },
         methods: {
-
+            parseGameSaves() {
+                const retval = {};
+                for(let i = 0; i< 5; i++) {
+                    const g = {
+                        timestamp: this.parseDate(this.$modelManager.gameSaves['game'+i].timestamp)
+                    }
+                    retval['game'+i]=g;
+                }
+                return retval;
+            },
+            parseDate(ts){
+                if(!ts){return ''; }
+                const d = new Date(ts);
+                return d.getFullYear()+'-'+
+                    this.pad(d.getMonth()+1)+
+                    '-'+this.pad(d.getDate())
+                    +' '+this.pad(d.getHours())+':'+this.pad(d.getMinutes());
+            },
+            pad(n) {
+                return n<10 ? '0'+n : n;
+            }
         }
     };
 </script>

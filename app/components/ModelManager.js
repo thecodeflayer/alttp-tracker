@@ -299,18 +299,27 @@ export class ModelManager  {
         this.gameSaves['game'+n].map = JSON.parse(JSON.stringify(this.map));
         this.gameSaves['game'+n].settings = JSON.parse(JSON.stringify(this.settings));
         this.gameSaves['game'+n].ts = Date.now();
+        this.gameSaves['game'+n].versions = {
+            items: JSON.parse(JSON.stringify(this.itemsVersion)),
+            dungeons: JSON.parse(JSON.stringify(this.dungeonsVersion)),
+            map: JSON.parse(JSON.stringify(this.mapVersion)),
+            settings: JSON.parse(JSON.stringify(this.settingsVersion)),
+        };
+        this.gameSaves.fromDefault = false;
         const d = JSON.parse(JSON.stringify(defaultGameSaves));
         d.data = this.gameSaves;
         setString('gameSaves', JSON.stringify(d));
     }
     initEmptyGameSave() {
         if (this.gameSaves.fromDefault) {
+            console.log('init from default game saves');
             if(isNaN(this.settings.gameSlot)) {
                 this.settings.gameSlot = 0;
             }
             //game saves loaded from default so init first slot with loaded values
             this.saveGameStates();
-
+        } else {
+            console.log('not from default game saves!');
         }
     }
 }
