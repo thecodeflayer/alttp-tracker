@@ -2,7 +2,13 @@
     <Page backgroundColor="black">
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
-            <Label color="white" :text="'Time: '+gameSaves.game0.timestamp"/>
+            <StackLayout orientation="vertical">
+                <StackLayout orientation="vertical" class="btn" v-for="game in gameSaves" v-bind="game.id"
+                             :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">
+                    <Label :text="game.name"/>
+                    <Label :text="'Last Saved: '+game.timestamp" fontSize="16"/>
+                </StackLayout>
+            </StackLayout>
         </ScrollView>
     </Page>
 </template>
@@ -15,16 +21,25 @@
             }
         },
         mounted() {
-            //this.gameSaves =
+            this.gameSaves = this.parseGameSaves();
         },
         methods: {
             parseGameSaves() {
                 const retval = {};
-                for(let i = 0; i< 5; i++) {
+                const keys = Object.keys(this.$modelManager.gameSaves);
+                let i = 0;
+                for(const key of keys) {
                     const g = {
-                        timestamp: this.parseDate(this.$modelManager.gameSaves['game'+i].timestamp)
+                        id:key,
+                        name:'Game '+(i+1)
+                    };
+                    if(this.$modelManager.gameSaves[key].timestamp){
+                        g.timestamp = this.parseDate(this.$modelManager.gameSaves[key].timestamp);
+                        g.valid = this.$modelManager.validateGame(this.$modelManager.gameSaves[key]);
+                        g.loaded = this.$modelManager.settings.gameSlot === i;
                     }
-                    retval['game'+i]=g;
+                    retval[key]=g;
+                    i++;
                 }
                 return retval;
             },
@@ -57,12 +72,22 @@
     }
     .btn {
         font-size: 20;
-        background-color: darkgreen;
-        padding: 10;
+        margin: 5;
         color: white;
-        horizontal-align: center;
-        vertical-align: center;
+        vertical-align: top;
         font-family: "Return of Ganon", "ReturnofGanon";
-        width: 90%
+        &.loaded {
+            background-color: #b68000;
+            color: black;
+        }
+        &.empty {
+            background-color: gray;
+        }
+        &.valid {
+            background-color: darkgreen;
+        }
+        &.invalid {
+            background-color: darkred;
+        }
     }
 </style>

@@ -1,7 +1,6 @@
 export const defaultGameSaves = {
     version: '0.0.1',
     data:{
-        fromDefault: true,
         game0:{},
         game1:{},
         game2:{},

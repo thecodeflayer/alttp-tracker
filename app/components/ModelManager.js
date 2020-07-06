@@ -209,6 +209,7 @@ export class ModelManager  {
         const d = JSON.parse(JSON.stringify(defaultItems));
         d.data = this.items;
         setString('items', JSON.stringify(d));
+        this.saveCurrentGame();
     }
     resetDungeons() {
         this.dungeons = JSON.parse(JSON.stringify(defaultDungeons.data));
@@ -245,6 +246,7 @@ export class ModelManager  {
         const d = JSON.parse(JSON.stringify(defaultDungeons));
         d.data = this.dungeons;
         setString('dungeons', JSON.stringify(d));
+        this.saveCurrentGame();
     }
     resetMap() {
         this.map = defaultMap.data;
@@ -254,6 +256,7 @@ export class ModelManager  {
         const d = JSON.parse(JSON.stringify(defaultMap));
         d.data = this.map;
         setString('map', JSON.stringify(d));
+        this.saveCurrentGame();
     }
     validateLocales() {
         const lkeys = Object.keys(this.sol.getStaticMapLW(this.settings.gameMode));
@@ -283,6 +286,7 @@ export class ModelManager  {
         const d = JSON.parse(JSON.stringify(defaultSettings));
         d.data = this.settings;
         setString('settings', JSON.stringify(d));
+        this.saveCurrentGame();
     }
     getGameMode() {
         return this.settings.gameMode;
@@ -292,34 +296,37 @@ export class ModelManager  {
             return this.sol.STANDARD;
         }
     }
-    saveGameStates() {
+    saveCurrentGame() {
         const n = this.settings.gameSlot +'';
         this.gameSaves['game'+n].items = JSON.parse(JSON.stringify(this.items));
         this.gameSaves['game'+n].dungeons = JSON.parse(JSON.stringify(this.dungeons));
         this.gameSaves['game'+n].map = JSON.parse(JSON.stringify(this.map));
         this.gameSaves['game'+n].settings = JSON.parse(JSON.stringify(this.settings));
-        this.gameSaves['game'+n].ts = Date.now();
+        this.gameSaves['game'+n].timestamp = Date.now();
         this.gameSaves['game'+n].versions = {
             items: JSON.parse(JSON.stringify(this.itemsVersion)),
             dungeons: JSON.parse(JSON.stringify(this.dungeonsVersion)),
             map: JSON.parse(JSON.stringify(this.mapVersion)),
             settings: JSON.parse(JSON.stringify(this.settingsVersion)),
         };
-        this.gameSaves.fromDefault = false;
         const d = JSON.parse(JSON.stringify(defaultGameSaves));
         d.data = this.gameSaves;
         setString('gameSaves', JSON.stringify(d));
     }
+    validateGame(game) { // validate versions are currently acceptable
+        return (game.versions.items === this.itemsVersion)
+                && (game.versions.dungeons === this.dungeonsVersion)
+                && (game.versions.map  === this.mapVersion)
+                && (game.versions.settings === this.settingsVersion);
+    }
     initEmptyGameSave() {
-        if (this.gameSaves.fromDefault) {
+        if (!this.gameSaves.game0.timestamp) {
             console.log('init from default game saves');
             if(isNaN(this.settings.gameSlot)) {
                 this.settings.gameSlot = 0;
             }
             //game saves loaded from default so init first slot with loaded values
-            this.saveGameStates();
-        } else {
-            console.log('not from default game saves!');
+            this.saveCurrentGame();
         }
     }
 }
