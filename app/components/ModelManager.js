@@ -296,6 +296,15 @@ export class ModelManager  {
             return this.sol.STANDARD;
         }
     }
+    createGame(id) {
+        console.log('create game');
+    }
+    loadGame(id) {
+        console.log('load game');
+    }
+    deleteGame(id) {
+        console.log('delete game');
+    }
     saveCurrentGame() {
         const n = this.settings.gameSlot +'';
         this.gameSaves['game'+n].items = JSON.parse(JSON.stringify(this.items));

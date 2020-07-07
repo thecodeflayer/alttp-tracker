@@ -3,17 +3,33 @@
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
             <StackLayout orientation="vertical">
-                <StackLayout orientation="vertical" class="btn" v-for="game in gameSaves" v-bind="game.id"
-                             :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">
-                    <Label :text="game.name"/>
-                    <Label :text="'Last Saved: '+game.timestamp" fontSize="16"/>
-                </StackLayout>
+                <GridLayout columns="52,*,80" rows="*" orientation="horizontal" class="save-wrapper" v-for="game in gameSaves" v-bind="game.id"
+                             :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'"
+                              @tap="navToEdit(game.id)" >
+                    <Image :src="'~/img/game-'+(game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid')+'.png'"
+                           col="0" row="0" width="48"/>
+                    <StackLayout col="1" row="0" orientation="vertical" verticalAlignment="center">
+                        <Label v-if="game.timestamp" :text="game.gameMode"/>
+                        <Label v-else text="Create New Game" />
+                        <Label v-if="game.timestamp" :text="'Last Saved: '+game.timestamp" fontSize="16" verticalAlignment="bottom"/>
+                        <Label v-else text=" " fontSize="16" verticalAlignment="bottom" />
+                    </StackLayout>
+                    <StackLayout col="2" row="0" orientation="vertical" horizontalAlignment="right">
+
+                    </StackLayout>
+                </GridLayout>
             </StackLayout>
         </ScrollView>
     </Page>
 </template>
 
 <script>
+    import GameEdit from "~/components/GameEdit";
+
+    const labels = {
+        standard: 'Standard',
+        inverted: 'Inverted'
+    }
     export default {
         data: function() {
             return {
@@ -37,6 +53,7 @@
                         g.timestamp = this.parseDate(this.$modelManager.gameSaves[key].timestamp);
                         g.valid = this.$modelManager.validateGame(this.$modelManager.gameSaves[key]);
                         g.loaded = this.$modelManager.settings.gameSlot === i;
+                        g.gameMode = labels[this.$modelManager.settings.gameMode];
                     }
                     retval[key]=g;
                     i++;
@@ -53,6 +70,13 @@
             },
             pad(n) {
                 return n<10 ? '0'+n : n;
+            },
+            navToEdit(game) {
+                this.$navigateTo(GameEdit, {
+                    props:{
+                        game:game
+                    }
+                })
             }
         }
     };
@@ -70,14 +94,17 @@
         font-family: "Return of Ganon", "ReturnofGanon";
         color: white;
     }
-    .btn {
+    .save-wrapper {
         font-size: 20;
-        margin: 5;
+        margin: 4;
+        padding: 4;
         color: white;
+        border-width: 2;
+        border-color: #003400;
         vertical-align: top;
         font-family: "Return of Ganon", "ReturnofGanon";
         &.loaded {
-            background-color: #b68000;
+            background-color: forestgreen;
             color: black;
         }
         &.empty {
