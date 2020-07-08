@@ -5,12 +5,14 @@
             <StackLayout orientation="vertical">
                 <GridLayout columns="52,*,80" rows="*" orientation="horizontal" class="save-wrapper" v-for="game in gameSaves" v-bind="game.id"
                              :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'"
-                              @tap="navToEdit(game.id)" >
+                              @tap="navToEdit(game)" >
                     <Image :src="'~/img/game-'+(game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid')+'.png'"
                            col="0" row="0" width="48"/>
                     <StackLayout col="1" row="0" orientation="vertical" verticalAlignment="center">
-                        <Label v-if="game.timestamp" :text="game.gameMode"/>
-                        <Label v-else text="Create New Game" />
+                        <Label v-if="game.timestamp" :text="game.name + (game.loaded?': Active Game':'')"/>
+                        <Label v-else text="Empty"/>
+                        <Label v-if="game.timestamp" :text="game.gameMode" fontSize="16"/>
+                        <Label v-else text="Create New Game" fontSize="16" />
                         <Label v-if="game.timestamp" :text="'Last Saved: '+game.timestamp" fontSize="16" verticalAlignment="bottom"/>
                         <Label v-else text=" " fontSize="16" verticalAlignment="bottom" />
                     </StackLayout>
@@ -25,52 +27,18 @@
 
 <script>
     import GameEdit from "~/components/GameEdit";
+    import {GameSaveHelper} from '~/GameSaveHelper'
 
-    const labels = {
-        standard: 'Standard',
-        inverted: 'Inverted'
-    }
     export default {
         data: function() {
             return {
-                gameSaves: this.parseGameSaves()
+                gameSaves: GameSaveHelper.parseGameSaves(this.$modelManager)
             }
         },
         mounted() {
-            this.gameSaves = this.parseGameSaves();
+            this.gameSaves = GameSaveHelper.parseGameSaves(this.$modelManager);
         },
         methods: {
-            parseGameSaves() {
-                const retval = {};
-                const keys = Object.keys(this.$modelManager.gameSaves);
-                let i = 0;
-                for(const key of keys) {
-                    const g = {
-                        id:key,
-                        name:'Game '+(i+1)
-                    };
-                    if(this.$modelManager.gameSaves[key].timestamp){
-                        g.timestamp = this.parseDate(this.$modelManager.gameSaves[key].timestamp);
-                        g.valid = this.$modelManager.validateGame(this.$modelManager.gameSaves[key]);
-                        g.loaded = this.$modelManager.settings.gameSlot === i;
-                        g.gameMode = labels[this.$modelManager.settings.gameMode];
-                    }
-                    retval[key]=g;
-                    i++;
-                }
-                return retval;
-            },
-            parseDate(ts){
-                if(!ts){return ''; }
-                const d = new Date(ts);
-                return d.getFullYear()+'-'+
-                    this.pad(d.getMonth()+1)+
-                    '-'+this.pad(d.getDate())
-                    +' '+this.pad(d.getHours())+':'+this.pad(d.getMinutes());
-            },
-            pad(n) {
-                return n<10 ? '0'+n : n;
-            },
             navToEdit(game) {
                 this.$navigateTo(GameEdit, {
                     props:{
@@ -105,7 +73,6 @@
         font-family: "Return of Ganon", "ReturnofGanon";
         &.loaded {
             background-color: forestgreen;
-            color: black;
         }
         &.empty {
             background-color: gray;

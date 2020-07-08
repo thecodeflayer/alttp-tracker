@@ -3,6 +3,6 @@ export const defaultSettings = {
     data: {
         gameMode: 'standard',
         itemShuffle: 'standard',
-        gameSlot: 0
+        gameSlot: 'game0'
     }
 }
