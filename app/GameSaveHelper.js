@@ -12,11 +12,11 @@ export class GameSaveHelper {
             id:'mc',
             label: 'Maps and Compasses'
         },
-        'mcsk': {
+        mcsk: {
             id: 'mcsk',
             label: 'Maps, Compasses and Small Keys'
         },
-        'keysanity': {
+        keysanity: {
             id: 'keysanity',
             label: 'Keysanity'
         }

@@ -19,7 +19,6 @@
 </template>
 
 <script>
-    //import {staticDungeons} from "~/standard/staticDungeons";
 
     export default {
         data: function() {
@@ -43,11 +42,11 @@
                     if(item === 'chests' || item === 'smallkeys') {
                         val = this.$modelManager.getDungeonValue(key, item) - 1;
                         if(val < 0) {
-                            val = this.$sol.getStaticDungeons(this.$modelManager.getGameMode())[key][max];
+                            val = this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle())[key][max];
                         }
                     } else {
                         val = this.$modelManager.getDungeonValue(key, item) + 1;
-                        if(val > this.$sol.getStaticDungeons(this.$modelManager.getGameMode())[key][max]) {
+                        if(val > this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle())[key][max]) {
                             val = 0;
                         }
                     }
@@ -72,13 +71,13 @@
                 const keys = this.$modelManager.getDungeonKeys();
                 for(const key of keys) {
                     retval.bosses[key] = '~/img/dungeons/'+key+'_boss'+(dungeons[key].boss ? '1' : '0')+'.png';
-                    retval.crystals[key] = this.$sol.getStaticDungeons(this.$modelManager.getGameMode())[key].maxCrystal === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
+                    retval.crystals[key] = this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle())[key].maxCrystal === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/crystal'+dungeons[key].crystal+'.png';
                     retval.chests[key] = '~/img/dungeons/chest'+dungeons[key].chests+'.png';
                     retval.bosskeys[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/bosskey'+(dungeons[key].bosskey ? '1' : '0')+'.png';
                     retval.maps[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/map'+(dungeons[key].map ? '1' : '0')+'.png';
                     retval.compasses[key] = key === 'aga' ? '~/img/dungeons/blank.png' : '~/img/dungeons/compass'+(dungeons[key].compass ? '1' : '0')+'.png';
                     retval.smallkeys[key] = '~/img/dungeons/smallkey'+dungeons[key].smallkeys+'.png';
-                    retval.medallion[key] = this.$sol.getStaticDungeons(this.$modelManager.getGameMode())[key].maxMedallion === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/medallion'+dungeons[key].medallion+'.png';
+                    retval.medallion[key] = this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle())[key].maxMedallion === 0 ? '~/img/dungeons/blank.png' : '~/img/dungeons/medallion'+dungeons[key].medallion+'.png';
                 }
                 return retval;
             },
