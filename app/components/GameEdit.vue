@@ -6,7 +6,14 @@
             <Label :text="game.name +(game.loaded ? ': Active Game':'')" fontSize="24" />
             <Label v-if="!game.timestamp" text="Game Slot Empty"/>
             <Label v-if="game.timestamp" :text="'Game Mode: '+game.gameMode"/>
-            <Label v-if="game.timestamp" :text="'Item Shuffle: '+game.itemShuffle"/>
+            <Label v-if="game.timestamp" :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+            <StackLayout orientation="vertical" v-if="!game.timestamp">
+                <Label text="Item Shuffle:"/>
+                <StackLayout orientation="horizontal" v-for="option in itemShuffleOptions" v-bind:key="option.id" @tap="clickItemShuffle(option.id)">
+                    <Image :src="option.id === game.itemShuffle ? '~/img/checked.png' : '~/img/unchecked.png'" width="20" height="20" />
+                    <Label :text="option.label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+                </StackLayout>
+            </StackLayout>
             <Label height="15"/>
             <Button v-if="!game.loaded && game.valid && game.timestamp" class="btn" @tap="loadGame"
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Load Game</Button>
@@ -39,14 +46,19 @@
     import {GameSaveHelper} from "~/GameSaveHelper";
 
     export default {
-        props:['game'],
+        props:['game_id'],
         data: function() {
             return {
-                allowDelete: this.$modelManager.allowGameDelete()
+                allowDelete: this.$modelManager.allowGameDelete(),
+                itemShuffleOptions: GameSaveHelper.itemShuffleOptions,
+                game: GameSaveHelper.parseGameSaves(this.$modelManager)[this.$props.game_id]
             }
         },
         mounted() {
-
+            if(!this.game.timestamp) {
+                this.game.itemShuffle = this.itemShuffleOptions.standard.id;
+                this.$forceUpdate();
+            }
         },
         methods: {
             loadGame() {
@@ -54,12 +66,14 @@
                 this.$navigateTo(SaveList);
             },
             createGame() {
-                this.$modelManager.createGame(this.game.id);
+                this.$modelManager.createGame(this.game.id, this.game.itemShuffle);
                 this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
+                this.$forceUpdate();
             },
             deleteGame() {
                 this.$modelManager.deleteGame(this.game.id);
                 this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
+                this.$forceUpdate();
             },
             cancel() {
                 this.$navigateTo(SaveList);
@@ -72,6 +86,10 @@
             },
             resetMap() {
                 this.$modelManager.resetMap();
+            },
+            clickItemShuffle(id) {
+                this.game.itemShuffle = id;
+                this.$forceUpdate();
             }
         }
     };

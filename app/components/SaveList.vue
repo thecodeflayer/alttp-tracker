@@ -3,7 +3,7 @@
         <Navbar></Navbar>
         <ScrollView orientation="vertical">
             <StackLayout orientation="vertical">
-                <GridLayout columns="52,*" rows="*" orientation="horizontal" class="save-wrapper" v-for="game in gameSaves" v-bind="game.id"
+                <GridLayout columns="52,*" rows="*" orientation="horizontal" class="save-wrapper" v-for="game in gameSaves" v-bind:key="game.id"
                              :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'"
                               @tap="navToEdit(game)" >
                     <Image :src="'~/img/game-'+(game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid')+'.png'"
@@ -13,7 +13,7 @@
                         <Label v-else text="Empty"/>
                         <Label v-if="game.timestamp" :text="'Game Mode: '+game.gameMode" fontSize="16"/>
                         <Label v-else text="Create New Game" fontSize="16" />
-                        <Label v-if="game.timestamp" :text="'Item Shuffle: '+game.itemShuffle" fontSize="16"/>
+                        <Label v-if="game.timestamp" :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label" fontSize="16"/>
                         <Label v-if="game.timestamp" :text="'Last Saved: '+game.timestamp" fontSize="16" verticalAlignment="bottom"/>
                         <Label v-else text=" " fontSize="16" verticalAlignment="bottom" />
                     </StackLayout>
@@ -30,7 +30,8 @@
     export default {
         data: function() {
             return {
-                gameSaves: GameSaveHelper.parseGameSaves(this.$modelManager)
+                gameSaves: GameSaveHelper.parseGameSaves(this.$modelManager),
+                itemShuffleOptions: GameSaveHelper.itemShuffleOptions,
             }
         },
         mounted() {
@@ -40,7 +41,7 @@
             navToEdit(game) {
                 this.$navigateTo(GameEdit, {
                     props:{
-                        game:game
+                        game_id:game.id
                     }
                 })
             }

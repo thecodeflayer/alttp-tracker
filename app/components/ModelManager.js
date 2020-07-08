@@ -296,7 +296,8 @@ export class ModelManager  {
             return this.sol.STANDARD;
         }
     }
-    createGame(id) {
+    createGame(id, itemShuffle) {
+        console.log(itemShuffle);
         const game = {
             items: JSON.parse(JSON.stringify(defaultItems.data)),
             dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
@@ -311,10 +312,11 @@ export class ModelManager  {
             }
         };
         game.settings.gameSlot = id;
-        console.log(game.settings);
+        game.settings.itemShuffle = itemShuffle;
         this.gameSaves[id]=game;
         const d = JSON.parse(JSON.stringify(defaultGameSaves));
         d.data = this.gameSaves;
+        console.log('saving...', d.data[id].settings.itemShuffle);
         setString('gameSaves', JSON.stringify(d));
     }
     loadGame(id) {
