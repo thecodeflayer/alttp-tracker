@@ -20,6 +20,7 @@ export class GameSaveHelper {
                 g.valid = modelManager.validateGame(modelManager.gameSaves[key]);
                 g.loaded = modelManager.settings.gameSlot === key;
                 g.gameMode = this.labels[modelManager.settings.gameMode];
+                g.itemShuffle = this.labels[modelManager.settings.itemShuffle];
             }
             retval[key]=g;
             i++;

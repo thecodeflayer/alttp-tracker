@@ -311,6 +311,7 @@ export class ModelManager  {
             }
         };
         game.settings.gameSlot = id;
+        console.log(game.settings);
         this.gameSaves[id]=game;
         const d = JSON.parse(JSON.stringify(defaultGameSaves));
         d.data = this.gameSaves;

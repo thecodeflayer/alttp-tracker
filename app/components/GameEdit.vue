@@ -6,15 +6,12 @@
             <Label :text="game.name +(game.loaded ? ': Active Game':'')" fontSize="24" />
             <Label v-if="!game.timestamp" text="Game Slot Empty"/>
             <Label v-if="game.timestamp" :text="'Game Mode: '+game.gameMode"/>
-            <Label v-if="allowDelete && game.timestamp && game.loaded" textWrap="true" fontSize="16"
-                   text="Cannot delete active game. Load another game before deleting this one."/>
-            <Label v-if="!allowDelete && game.timestamp" textWrap="true" fontSize="16"
-                   text="At least one game must be active. Create another game using an empty game slot before deleting this game."/>
-            <Label fontSize="10" text=" "/>
+            <Label v-if="game.timestamp" :text="'Item Shuffle: '+game.itemShuffle"/>
+            <Label height="15"/>
             <Button v-if="!game.loaded && game.valid && game.timestamp" class="btn" @tap="loadGame"
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Load Game</Button>
             <Button v-if="!game.timestamp" class="btn" @tap="createGame"
-                    :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Create</Button>
+                    :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Create New Game</Button>
             <Button v-if="allowDelete && game.timestamp && !game.loaded" class="btn" @tap="deleteGame"
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Delete</Button>
             <Button v-if="game.loaded" class="btn" @tap="resetItems"
@@ -25,6 +22,13 @@
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Reset Map</Button>
             <Button class="btn" @tap="cancel"
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'">Back</Button>
+            <Label height="15"/>
+            <Label v-if="!game.timestamp" textWrap="true" fontSize="16" textAlignment="center"
+                   text="NOTE: Game options coming soon! For now all games are Standard."/>
+            <Label v-if="allowDelete && game.timestamp && game.loaded" textWrap="true" fontSize="16" textAlignment="center"
+                   text="NOTE: You cannot delete the active game. Load another game before deleting this one."/>
+            <Label v-if="!allowDelete && game.timestamp" textWrap="true" fontSize="16" textAlignment="center"
+                   text="NOTE: At least one game must be active. Create another game using an empty game slot before deleting this game."/>
 
         </StackLayout>
     </Page>
@@ -110,7 +114,7 @@
     .save-wrapper {
         font-size: 20;
         margin: 4;
-        padding: 4;
+        padding: 10;
         color: white;
         border-width: 2;
         border-color: #003400;
