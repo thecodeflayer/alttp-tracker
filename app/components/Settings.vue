@@ -3,13 +3,16 @@
         <Navbar></Navbar>
         <GridLayout columns="*", rows="50,50,50,50,50" style="margin-top:10">
             <Button row="0" col="0" class="btn" @tap="navSaveList">Saved Games</Button>
-            <Label row="1" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" :text="'Version: '+appVersion"/>
+            <Label row="2" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center" :text="'Version: '+appVersion"/>
+            <Button row="3" col="0" class="btn" @tap="mailme">Email Me!</Button>
+
         </GridLayout>
     </Page>
 </template>
 
 <script>
     import SaveList from "~/components/SaveList";
+    import {openUrl} from 'tns-core-modules/utils/utils';
 
     export default {
         data: function() {
@@ -20,6 +23,9 @@
         methods: {
             navSaveList() {
                 this.$navigateTo(SaveList);
+            },
+            mailme() {
+                openUrl('mailto:alttp@codeflayer.com');
             }
         }
     };
