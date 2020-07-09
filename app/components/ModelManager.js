@@ -203,7 +203,10 @@ export class ModelManager  {
     }
     getItemMax() {
         if(this.settings.gameMode === this.sol.STANDARD) {
-            return 152;
+            return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 152
+                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (152 + 20)
+                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (152 + 20 + 28)
+                : (152 + 30 + 28);
         }
     }
     saveItems() {
@@ -301,7 +304,6 @@ export class ModelManager  {
         }
     }
     createGame(id, itemShuffle) {
-        console.log(itemShuffle);
         const game = {
             items: JSON.parse(JSON.stringify(defaultItems.data)),
             dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
@@ -326,7 +328,6 @@ export class ModelManager  {
         this.gameSaves[id]=game;
         const d = JSON.parse(JSON.stringify(defaultGameSaves));
         d.data = this.gameSaves;
-        console.log('saving...', d.data[id].settings.itemShuffle);
         setString('gameSaves', JSON.stringify(d));
     }
     loadGame(id) {
