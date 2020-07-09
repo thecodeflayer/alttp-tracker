@@ -3,6 +3,24 @@ export class GameSaveHelper {
         standard: 'Standard',
         inverted: 'Inverted'
     }
+    static itemShuffleOptions = {
+        standard : {
+            id:'standard',
+            label: 'Standard'
+        },
+        mc: {
+            id:'mc',
+            label: 'Maps and Compasses'
+        },
+        mcsk: {
+            id: 'mcsk',
+            label: 'Maps, Compasses and Small Keys'
+        },
+        keysanity: {
+            id: 'keysanity',
+            label: 'Keysanity'
+        }
+    }
     constructor() {
     }
 
@@ -19,8 +37,8 @@ export class GameSaveHelper {
                 g.timestamp = this.parseDate(modelManager.gameSaves[key].timestamp);
                 g.valid = modelManager.validateGame(modelManager.gameSaves[key]);
                 g.loaded = modelManager.settings.gameSlot === key;
-                g.gameMode = this.labels[modelManager.settings.gameMode];
-                g.itemShuffle = this.labels[modelManager.settings.itemShuffle];
+                g.gameMode = this.labels[modelManager.gameSaves[key].settings.gameMode];
+                g.itemShuffle = this.itemShuffleOptions[modelManager.gameSaves[key].settings.itemShuffle].id;
             }
             retval[key]=g;
             i++;

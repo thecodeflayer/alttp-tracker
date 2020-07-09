@@ -83,7 +83,7 @@
                     dungeons: this.$modelManager.map.lightworld.dungeons,
                     bosses: this.$modelManager.map.lightworld.bosses,
                     dungeonValues: this.$modelManager.dungeons,
-                    staticDungeonValues: this.$sol.getStaticDungeons(this.$modelManager.getGameMode()),
+                    staticDungeonValues: this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle()),
                     centerKey: undefined
                 },
                 mapWidth:1500,

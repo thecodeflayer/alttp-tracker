@@ -32,9 +32,40 @@ export class StaticObjectLoader {
             return standardStaticMapDungeonsDW;
         }
     }
-    getStaticDungeons(gm) {
+    getStaticDungeons(gm, iShuff) {
+        if(!iShuff) {throw new Error('itemShuffle value required!')}
+        let retval = undefined;
         if(gm === this.STANDARD) {
-            return standardStaticDungeons;
+            retval = JSON.parse(JSON.stringify(standardStaticDungeons));
+        }
+        if(iShuff === 'standard'){
+            return retval;
+        } else if(iShuff === 'mc') {
+            const keys = Object.keys(retval);
+            for(const key of keys) {
+                if(key !== 'aga') {
+                    retval[key].maxChests = retval[key].maxChests + 2;
+                }
+            }
+            return retval;
+        } else if(iShuff === 'mcsk') {
+            const keys = Object.keys(retval);
+            for(const key of keys) {
+                if(key !== 'aga') {
+                    retval[key].maxChests = retval[key].maxChests + 2;
+                }
+                retval[key].maxChests = retval[key].maxChests + retval[key].chestSmallkeys;
+            }
+            return retval;
+        } else if(iShuff === 'keysanity') {
+            const keys = Object.keys(retval);
+            for(const key of keys) {
+                if(key !== 'aga') {
+                    retval[key].maxChests = retval[key].maxChests + 3;
+                }
+                retval[key].maxChests = retval[key].maxChests + retval[key].chestSmallkeys;
+            }
+            return retval;
         }
     }
     getStaticItems(gm) {
