@@ -2,9 +2,9 @@ import {regionHelper} from "~/standard/regionHelper";
 
 export const staticMapLW = {
     uncle :{x:894,y:624, title:'Uncle', itemCount: 1, req:[], validate() {return true;}},
-    secretPassage:{x:826,y:644, title:'Secret Passage', itemCount: 2, req:[],  validate() {return true;}},
+    secretPassage:{x:826,y:644, title:'Secret Passage', itemCount: 1, req:[],  validate() {return true;}},
     backOfEscape:{x:778,y:439, title:'Back of Escape',
-        itemCount: 3, req:['items/glove1'],
+        itemCount: 6, req:['items/glove1'],
         validate(items) {return items.glove > 0;}},
     sahashralaHut:{x:1216,y:660, title:'Sahashrala\'s Hut', itemCount: 3,
         req: ['items/bombs1'],

@@ -203,10 +203,10 @@ export class ModelManager  {
     }
     getItemMax() {
         if(this.settings.gameMode === this.sol.STANDARD) {
-            return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 152
-                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (152 + 20)
-                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (152 + 20 + 28)
-                : (152 + 30 + 28);
+            return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 155
+                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20)
+                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
+                : (155 + 30 + 28);
         }
     }
     saveItems() {
