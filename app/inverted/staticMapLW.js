@@ -178,7 +178,7 @@ export const staticMapLW = {
         req:['items/shovel1'], validate(items){
         return items.shovel;
     }},
-    bumperCave: {x:609,y:286, title:'Bumper Cave', itemCount: 1,
+    bumperCave: {x:532,y:268, title:'Bumper Cave', itemCount: 1,
         req:['items/lantern1','lp','items/flute1','or','items/glove1','rp'],
         validate(items, dungeons){
             return items.lantern && regionHelper.deathMtnWestLW(items, dungeons);
