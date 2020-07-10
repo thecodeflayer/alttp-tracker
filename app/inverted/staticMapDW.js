@@ -76,7 +76,7 @@ export const staticMapDW = {
         validate(items, dungeons){
         return items.moonpearl && items.hammer && items.glove === 2 && regionHelper.northWestDW(items, dungeons);
     }},
-    bumperCave: {x: 532, y: 268,title: '​Bumper Cave', itemCount: 1,
+    oldMan: {x: 532, y: 268,title: 'Rescue Old Man', itemCount: 1,
         req:['items/moonpearl1','and','lp','items/hammer1','or','items/flippers1','rp','and',
             'lp','items/glove1','or','dungeons/aga_boss0','rp'],
         validate(items, dungeons){

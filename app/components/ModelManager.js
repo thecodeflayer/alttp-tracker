@@ -12,7 +12,8 @@ import {
 
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
-import {defaultMap} from "~/defaultMap";
+import {defaultMap as standardDefaultMap} from "~/standard/defaultMap";
+import {defaultMap as invertedDefaultMap} from "~/inverted/defaultMap";
 import {defaultSettings} from "~/defaultSettings";
 
 import {StaticObjectLoader} from "~/components/StaticObjectLoader";
@@ -26,18 +27,18 @@ export class ModelManager  {
     appVersion = '0.9.5'
     itemsVersion = '0.0.1';
     dungeonsVersion = '0.0.2';
-    mapVersion = '0.0.1';
+    mapVersion = '0.1.0';
     settingsVersion = '0.0.1';
     gameSavesVersion = '0.0.1';
 
     constructor() {
+        this.sol = new StaticObjectLoader();
+        this.gameSaves = this.validateGameSavesFromStorage();
+        this.settings = this.validateSettingsFromStorage();
         this.items = this.validateItemsFromStorage();
         this.dungeons = this.validateDungeonsFromStorage();
         this.map = this.validateMapFromStorage();
-        this.settings = this.validateSettingsFromStorage();
-        this.gameSaves = this.validateGameSavesFromStorage();
         this.initEmptyGameSave();
-        this.sol = new StaticObjectLoader();
 
     }
     validateItemsFromStorage() {
@@ -80,8 +81,8 @@ export class ModelManager  {
         }
         return retval;
     }
-    validateMapFromStorage() {
-        let retval = JSON.parse(JSON.stringify(defaultMap.data));
+    validateMapFromStorage(gameMode) {
+        let retval = JSON.parse(JSON.stringify(this.settings.gameMode == this.sol.STANDARD ? standardDefaultMap.data : invertedDefaultMap.data));
         let stored = undefined;
         if(hasKey('map')){
             try {
@@ -110,7 +111,7 @@ export class ModelManager  {
                     retval = stored.data;
                     console.log('successfully got settings from storage!')
                 } else {
-                    console.log('settings versions do not match got:',stored.version, 'wanted:', this.mapVersion);
+                    console.log('settings versions do not match got:',stored.version, 'wanted:', this.settingsVersion);
                 }
             } catch(err) {
                 console.error('error getting settings from storage', err);
@@ -126,11 +127,11 @@ export class ModelManager  {
         if(hasKey('gameSaves')){
             try {
                 stored = JSON.parse(getString('gameSaves'));
-                if(stored.version && stored.version === this.settingsVersion) {
+                if(stored.version && stored.version === this.gameSavesVersion) {
                     retval = stored.data;
                     console.log('successfully got game saves from storage!')
                 } else {
-                    console.log('game saves versions do not match got:',stored.version, 'wanted:', this.mapVersion);
+                    console.log('game saves versions do not match got:',stored.version, 'wanted:', this.gameSavesVersion);
                 }
             } catch(err) {
                 console.error('error getting game saves from storage', err);
@@ -258,11 +259,11 @@ export class ModelManager  {
         this.saveCurrentGame();
     }
     resetMap() {
-        this.map = defaultMap.data;
+        this.map = this.settings.gameMode == this.sol.STANDARD ? standardDefaultMap.data : invertedDefaultMap.data;
         this.saveMap();
     }
     saveMap() {
-        const d = JSON.parse(JSON.stringify(defaultMap));
+        const d = JSON.parse(JSON.stringify(this.settings.gameMode == this.sol.STANDARD ? standardDefaultMap : invertedDefaultMap));
         d.data = this.map;
         setString('map', JSON.stringify(d));
         this.saveCurrentGame();
@@ -314,7 +315,7 @@ export class ModelManager  {
         const game = {
             items: JSON.parse(JSON.stringify(defaultItems.data)),
             dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
-            map: JSON.parse(JSON.stringify(defaultMap.data)),
+            map: JSON.parse(JSON.stringify(gameMode == this.sol.STANDARD ? standardDefaultMap.data : invertedDefaultMap.data)),
             settings: JSON.parse(JSON.stringify(defaultSettings.data)),
             timestamp: Date.now(),
             versions: {

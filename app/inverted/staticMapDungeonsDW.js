@@ -50,7 +50,7 @@ export const staticMapDungeonsDW = {
         validateBoss(items, dungeons){
             return items.firerod && items.icerod && regionHelper.tr(items, dungeons);
         }}, // turtle rock
-    gt: {x:844, y:35,
+    aga: {x:844, y:35,
         validate(items, dungeons){
             return regionHelper.gt(items, dungeons);
         },

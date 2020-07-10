@@ -27,7 +27,7 @@ export const staticMapDungeonsLW = {
             return regionHelper.toh(items, dungeons);
         }
     },
-    aga:{x:750, y:577,
+    gt:{x:750, y:577,
         validate(items){
             return (items.cape || items.sword > 1);
         },
