@@ -207,6 +207,11 @@ export class ModelManager  {
                 : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20)
                 : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
                 : (155 + 30 + 28);
+        } else if(this.settings.gameMode === this.sol.INVERTED) {
+            return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 155
+                : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20)
+                    : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
+                        : (155 + 30 + 28);
         }
     }
     saveItems() {
@@ -301,9 +306,11 @@ export class ModelManager  {
     getGameModeMap() {
         if(this.settings.gameMode === this.sol.STANDARD) {
             return this.sol.STANDARD;
+        } else if(this.settings.gameMode === this.sol.INVERTED) {
+            return this.sol.INVERTED;
         }
     }
-    createGame(id, itemShuffle) {
+    createGame(id, itemShuffle, gameMode) {
         const game = {
             items: JSON.parse(JSON.stringify(defaultItems.data)),
             dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
@@ -319,6 +326,7 @@ export class ModelManager  {
         };
         game.settings.gameSlot = id;
         game.settings.itemShuffle = itemShuffle;
+        game.settings.gameMode = gameMode;
         const staticDungeons = this.sol.getStaticDungeons(game.settings.gameMode, game.settings.itemShuffle);
         const keys = Object.keys(game.dungeons);
         for(const key of keys){
