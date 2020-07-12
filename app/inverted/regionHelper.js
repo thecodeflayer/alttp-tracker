@@ -32,10 +32,6 @@ export const regionHelper = {
     deathMtnWestDW(items, dungeons) {
         return items.flute || (items.glove > 0 && items.lantern);
     },
-    // dungeons
-    dp(items, dungeons) {
-        return items.book || (items.mirror && this.mireDW(items, dungeons));
-    },
     toh(items) {
         return (items.mirror || (items.hookshot && items.hammer))
             && this.deathMtnWestLW(items);
@@ -60,6 +56,6 @@ export const regionHelper = {
                 c = c +1;
             }
         }
-        return c === 7 && items.moonpearl && this.deathMtnEastDW(items, dungeons);
+        return c === 7 && items.moonpearl && this.northEastLW(items, dungeons);
     }
 }
