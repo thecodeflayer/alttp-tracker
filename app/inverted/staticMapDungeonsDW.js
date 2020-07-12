@@ -1,4 +1,4 @@
-import {regionHelper} from "~/standard/regionHelper";
+import {regionHelper} from "~/inverted/regionHelper";
 
 export const staticMapDungeonsDW = {
     pod: {x:1438, y:603,

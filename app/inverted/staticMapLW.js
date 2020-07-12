@@ -1,4 +1,4 @@
-import {regionHelper} from "~/standard/regionHelper";
+import {regionHelper} from "~/inverted/regionHelper";
 
 export const staticMapLW = {
     uncle :{x:894,y:624, title:'Uncle', itemCount: 1, req:[], validate() {return true;}},
@@ -179,9 +179,9 @@ export const staticMapLW = {
         return items.shovel;
     }},
     bumperCave: {x:532,y:268, title:'Bumper Cave', itemCount: 1,
-        req:['items/lantern1','lp','items/flute1','or','items/glove1','rp'],
+        req:[],
         validate(items, dungeons){
-            return items.lantern && regionHelper.deathMtnWestLW(items, dungeons);
+            return items.cape && items.moonpearl && items.mirror && regionHelper.northEastLW(items, dungeons);
     }},
     spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', itemCount: 1,
         req:['items/flute1','or','items/glove1','items/lantern1'],
