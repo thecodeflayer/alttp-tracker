@@ -60,11 +60,10 @@ export const staticMapDW = {
             || (items.mirror && regionHelper.northWestLW(items, dungeons)));
     }},
     oldMan: {x: 532, y: 268,title: 'Rescue Old Man', itemCount: 1,
-        req:['items/moonpearl1','and','lp','items/hammer1','or','items/flippers1','rp','and',
-            'lp','items/glove1','or','dungeons/aga_boss0','rp'],
+        req:[],
         validate(items, dungeons){
-        return items.moonpearl && items.hookshot && items.glove > 0 && items.cape
-            &&regionHelper.northWestDW(items, dungeons);
+        return items.lantern
+            && regionHelper.northWestDW(items, dungeons);
     }},
     blacksmith: {x: 223, y: 994,title: 'Blacksmith', itemCount: 1,
         req:[],

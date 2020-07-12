@@ -1,11 +1,13 @@
 export const regionHelper = {
     // light world
-    northEastLW() {return true;},
-    northWestLW() {return true;},
-    southLW() {return true;},
+    northEastLW(items, dungeons) {
+        return dungeons.aga.boss
+            || (items.hammer && items.glove > 0 || items.glove === 2);
+    },
+    northWestLW(items, dungeons) {return this.northEastLW(items, dungeons)},
+    southLW(items, dungeons) {return this.northEastLW(items, dungeons);},
     deathMtnEastLW(items, dungeons) {
-        return (items.hookshot && this.deathMtnWestLW(items, dungeons))
-            || (items.hammer && this.toh(items));
+        return items.glove === 2 && regionHelper.deathMtnEastDW(items, dungeons) && items.moonpearl;
     },
     deathMtnWestLW(items) {
         return items.flute || (items.glove > 0 && items.lantern);
