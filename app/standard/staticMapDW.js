@@ -1,6 +1,6 @@
 import {regionHelper} from "~/standard/regionHelper";
 
-export const staticMapDW = {
+export const standardStaticMapDW = {
     superbunnyCave: {x: 1265, y: 223,title: 'Superbunny Cave', itemCount: 2,
         req:['items/moonpearl1','items/glove2',
             'lp','items/hookshot1','or','items/hammer1','items/mirror1','rp',

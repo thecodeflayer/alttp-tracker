@@ -1,4 +1,4 @@
-export const staticDungeons  = {
+export const invertedStaticDungeons  = {
     ep:{
         maxCrystal: 4,
         maxChests: 3,

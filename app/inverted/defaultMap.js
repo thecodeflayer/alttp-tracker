@@ -1,4 +1,4 @@
-export const defaultMap = {
+export const invertedDefaultMap = {
     version: '0.1.0',
     data: {
         lightworld: {
@@ -86,11 +86,11 @@ export const defaultMap = {
                 catfish: {checked: false, klass: 'locale-red'},
                 pyramid: {checked: false, klass: 'locale-red'},
                 pyramidFairy: {checked: false, klass: 'locale-red'},
-                oldMan: {checked: false, klass: 'locale-red'},
                 brewery: {checked: false, klass: 'locale-red'},
                 cShapeHouse: {checked: false, klass: 'locale-red'},
                 chestGame: {checked: false, klass: 'locale-red'},
                 hammerPegs: {checked: false, klass: 'locale-red'},
+                oldMan: {checked: false, klass: 'locale-red'},
                 blacksmith: {checked: false, klass: 'locale-red'},
                 purpleChest: {checked: false, klass: 'locale-red'},
                 hypeCave: {checked: false, klass: 'locale-red'},

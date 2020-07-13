@@ -1,6 +1,6 @@
 import {regionHelper} from "~/standard/regionHelper";
 
-export const staticMapDungeonsLW = {
+export const standardStaticMapDungeonsLW = {
     ep:{x:1437, y:610,
         validate(){
             return true;

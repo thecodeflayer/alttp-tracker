@@ -1,6 +1,6 @@
 import {regionHelper} from "~/standard/regionHelper";
 
-export const staticMapDungeonsDW = {
+export const standardStaticMapDungeonsDW = {
     pod: {x:1438, y:603,
         validate(items, dungeons){
             return items.moonpearl && regionHelper.northEastDW(items, dungeons);

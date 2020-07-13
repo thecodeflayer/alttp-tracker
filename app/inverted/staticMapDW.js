@@ -1,6 +1,6 @@
 import {regionHelper} from "~/inverted/regionHelper";
 
-export const staticMapDW = {
+export const invertedStaticMapDW = {
     superbunnyCave: {x: 1265, y: 223,title: 'Superbunny Cave', itemCount: 2,
         req:[],
         validate(items, dungeons){

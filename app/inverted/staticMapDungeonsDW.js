@@ -1,6 +1,6 @@
 import {regionHelper} from "~/inverted/regionHelper";
 
-export const staticMapDungeonsDW = {
+export const invertedStaticMapDungeonsDW = {
     pod: {x:1438, y:603,
         validate(items, dungeons){
             return regionHelper.northEastDW(items, dungeons);

@@ -1,4 +1,4 @@
-export const defaultMap = {
+export const standardDefaultMap = {
     version: '0.1.0',
     data: {
         lightworld: {

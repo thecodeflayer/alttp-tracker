@@ -1,6 +1,6 @@
 import {regionHelper} from "~/standard/regionHelper";
 
-export const staticMapLW = {
+export const standardStaticMapLW = {
     uncle :{x:894,y:624, title:'Uncle', itemCount: 1, req:[], validate() {return true;}},
     secretPassage:{x:826,y:644, title:'Secret Passage', itemCount: 1, req:[],  validate() {return true;}},
     backOfEscape:{x:778,y:439, title:'Escape',

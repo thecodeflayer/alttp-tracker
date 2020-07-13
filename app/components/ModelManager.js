@@ -12,8 +12,8 @@ import {
 
 import {defaultItems} from "~/defaultItems";
 import {defaultDungeons} from "~/defaultDungeons";
-import {defaultMap as standardDefaultMap} from "~/standard/defaultMap";
-import {defaultMap as invertedDefaultMap} from "~/inverted/defaultMap";
+import {standardDefaultMap} from "~/standard/defaultMap";
+import {invertedDefaultMap} from "~/inverted/defaultMap";
 import {defaultSettings} from "~/defaultSettings";
 
 import {StaticObjectLoader} from "~/components/StaticObjectLoader";
@@ -350,6 +350,7 @@ export class ModelManager  {
         this.map = JSON.parse(JSON.stringify(this.gameSaves[id].map));
         this.dungeons = JSON.parse(JSON.stringify(this.gameSaves[id].dungeons));
         this.items = JSON.parse(JSON.stringify(this.gameSaves[id].items));
+        this.saveSettings();
         this.saveCurrentGame();
     }
     deleteGame(id) {

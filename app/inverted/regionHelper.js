@@ -7,14 +7,14 @@ export const regionHelper = {
     northWestLW(items, dungeons) {return this.northEastLW(items, dungeons)},
     southLW(items, dungeons) {return this.northEastLW(items, dungeons);},
     deathMtnEastLW(items, dungeons) {
-        return items.glove === 2 && regionHelper.deathMtnEastDW(items, dungeons) && items.moonpearl;
+        return items.glove === 2 && this.deathMtnEastDW(items, dungeons) && items.moonpearl;
     },
-    deathMtnWestLW(items) {
+    deathMtnWestLW(items, dungeons) {
         return items.flute || (items.glove > 0 && items.lantern);
     },
     // dark world
-    mireDW(items) {
-        return items.flute || (items.mirror && regionHelper.southLW(items, dungeons));
+    mireDW(items, dungeons) {
+        return items.flute || (items.mirror && this.southLW(items, dungeons));
     },
     northEastDW(items, dungeons) {
         return items.flute || items.hammer || items.flippers || (items.mirror && this.northEastLW(items, dungeons));
@@ -32,9 +32,9 @@ export const regionHelper = {
     deathMtnWestDW(items, dungeons) {
         return items.flute || (items.glove > 0 && items.lantern);
     },
-    toh(items) {
+    toh(items, dungeons) {
         return (items.mirror || (items.hookshot && items.hammer))
-            && this.deathMtnWestLW(items);
+            && this.deathMtnWestLW(items, dungeons);
     },
     mm(items, dungeons) {
         const m = (dungeons.mm.medallion === 1 && items.bombos) ||

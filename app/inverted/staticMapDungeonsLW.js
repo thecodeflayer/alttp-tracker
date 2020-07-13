@@ -1,6 +1,6 @@
 import {regionHelper} from "~/inverted/regionHelper";
 
-export const staticMapDungeonsLW = {
+export const invertedStaticMapDungeonsLW = {
     ep:{x:1437, y:610,
         validate(items, dungeons){
             return items.moonpearl && regionHelper.northEastLW(items, dungeons);

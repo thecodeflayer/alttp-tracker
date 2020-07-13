@@ -1,16 +1,16 @@
-import {staticMapLW as standardStaticMapLW} from "~/standard/staticMapLW";
-import {staticMapDungeonsLW as standardStaticMapDungeonsLW} from "~/standard/staticMapDungeonsLW";
-import {staticMapDW as standardStaticMapDW} from "~/standard/staticMapDW";
-import {staticMapDungeonsDW as standardStaticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
-import {staticDungeons as standardStaticDungeons} from "~/standard/staticDungeons";
-import {staticItems as standardStaticItems} from '~/standard/staticItems';
+import {standardStaticMapLW} from "~/standard/staticMapLW";
+import {standardStaticMapDungeonsLW} from "~/standard/staticMapDungeonsLW";
+import {standardStaticMapDW} from "~/standard/staticMapDW";
+import {standardStaticMapDungeonsDW} from "~/standard/staticMapDungeonsDW";
+import {standardStaticDungeons} from "~/standard/staticDungeons";
+import {standardStaticItems} from '~/standard/staticItems';
 
-import {staticMapLW as invertedStaticMapLW} from "~/inverted/staticMapLW";
-import {staticMapDungeonsLW as invertedStaticMapDungeonsLW} from "~/inverted/staticMapDungeonsLW";
-import {staticMapDW as invertedStaticMapDW} from "~/inverted/staticMapDW";
-import {staticMapDungeonsDW as invertedStaticMapDungeonsDW} from "~/inverted/staticMapDungeonsDW";
-import {staticDungeons as invertedStaticDungeons} from "~/inverted/staticDungeons";
-import {staticItems as invertedStaticItems} from '~/inverted/staticItems';
+import {invertedStaticMapLW} from "~/inverted/staticMapLW";
+import {invertedStaticMapDungeonsLW} from "~/inverted/staticMapDungeonsLW";
+import {invertedStaticMapDW} from "~/inverted/staticMapDW";
+import {invertedStaticMapDungeonsDW} from "~/inverted/staticMapDungeonsDW";
+import {invertedStaticDungeons} from "~/inverted/staticDungeons";
+import {invertedStaticItems} from '~/inverted/staticItems';
 
 export class StaticObjectLoader {
     STANDARD = 'standard';
