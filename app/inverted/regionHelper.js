@@ -1,4 +1,4 @@
-export const regionHelper = {
+export const invertedRegionHelper = {
     // light world
     northEastLW(items, dungeons) {
         return dungeons.aga.boss
@@ -7,7 +7,7 @@ export const regionHelper = {
     northWestLW(items, dungeons) {return this.northEastLW(items, dungeons)},
     southLW(items, dungeons) {return this.northEastLW(items, dungeons);},
     deathMtnEastLW(items, dungeons) {
-        return items.glove === 2 && this.deathMtnEastDW(items, dungeons) && items.moonpearl;
+        return items.glove === 2 && this.deathMtnWestDW(items, dungeons) && items.moonpearl;
     },
     deathMtnWestLW(items, dungeons) {
         return items.flute || (items.glove > 0 && items.lantern);
@@ -26,7 +26,7 @@ export const regionHelper = {
         return true;
     },
     deathMtnEastDW(items, dungeons) {
-        return this.deathMtnEastDW(items, dungeons)
+        return this.deathMtnWestDW(items, dungeons)
             || (items.mirror && items.moonpearl && items.hookshot && this.deathMtnEastLW(items, dungeons));
     },
     deathMtnWestDW(items, dungeons) {

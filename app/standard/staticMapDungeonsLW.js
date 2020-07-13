@@ -1,4 +1,4 @@
-import {regionHelper} from "~/standard/regionHelper";
+import {standardRegionHelper} from "~/standard/regionHelper";
 
 export const standardStaticMapDungeonsLW = {
     ep:{x:1437, y:610,
@@ -11,20 +11,20 @@ export const standardStaticMapDungeonsLW = {
     },
     dp:{x:111, y:1270,
         validate(items, dungeons){
-            return regionHelper.dp(items, dungeons);
+            return standardRegionHelper.dp(items, dungeons);
         },
         validateBoss(items, dungeons){
-            return regionHelper.dp(items, dungeons)
-                && (items.glove > 0 || (items.mirror && regionHelper.mireDW(items, dungeons)))
+            return standardRegionHelper.dp(items, dungeons)
+                && (items.glove > 0 || (items.mirror && standardRegionHelper.mireDW(items, dungeons)))
                 && (items.lantern || items.firerod);
         }
     },
     toh:{x:840, y:40,
         validate(items, dungeons){
-            return regionHelper.toh(items, dungeons);
+            return standardRegionHelper.toh(items, dungeons);
         },
         validateBoss(items, dungeons){
-            return regionHelper.toh(items, dungeons);
+            return standardRegionHelper.toh(items, dungeons);
         }
     },
     aga:{x:750, y:577,

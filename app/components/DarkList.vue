@@ -63,6 +63,7 @@
             }
         },
         mounted() {
+            this.$modelManager.validateLocales();
             this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
             const sv = this.$refs.listScrollView.nativeView;
             setTimeout(() => {

@@ -2,7 +2,7 @@ export const invertedDefaultMap = {
     version: '0.1.0',
     data: {
         lightworld: {
-            mode:0, //0 for map, 1 for location list
+            mode:1, //0 for map, 1 for location list
             scale: 1,
             x: 0,
             y: 0,
@@ -72,7 +72,7 @@ export const invertedDefaultMap = {
             }
         },
         darkworld: {
-            mode:0, //0 for map, 1 for location list
+            mode:1, //0 for map, 1 for location list
             scale: 1,
             x: 0,
             y: 0,
