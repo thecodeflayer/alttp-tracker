@@ -21,6 +21,7 @@ export class StaticObjectLoader {
     }
 
     getStaticMapLW(gm) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(gm === this.STANDARD){
             return standardStaticMapLW;
         } else if(gm === this.INVERTED) {
@@ -28,6 +29,7 @@ export class StaticObjectLoader {
         }
     }
     getStaticMapDungeonsLW(gm) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(gm === this.STANDARD){
             return standardStaticMapDungeonsLW;
         } else if(gm === this.INVERTED){
@@ -35,6 +37,7 @@ export class StaticObjectLoader {
         }
     }
     getStaticMapDW(gm) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(gm === this.STANDARD) {
             return standardStaticMapDW;
         } else if(gm === this.INVERTED){
@@ -42,6 +45,7 @@ export class StaticObjectLoader {
         }
     }
     getStaticMapDungeonsDW(gm) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(gm === this.STANDARD) {
             return standardStaticMapDungeonsDW;
         } else if(gm === this.INVERTED){
@@ -49,6 +53,7 @@ export class StaticObjectLoader {
         }
     }
     getStaticDungeons(gm, iShuff) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(!iShuff) {throw new Error('itemShuffle value required!')}
         let retval = undefined;
         if(gm === this.STANDARD) {
@@ -87,6 +92,7 @@ export class StaticObjectLoader {
         }
     }
     getStaticItems(gm) {
+        if(!gm) {throw new Error('game mode not provided!')}
         if(gm === this.STANDARD) {
             return standardStaticItems;
         } else if(gm === this.INVERTED) {

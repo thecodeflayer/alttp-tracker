@@ -312,6 +312,8 @@ export class ModelManager  {
         }
     }
     createGame(id, itemShuffle, gameMode) {
+        console.log(id,itemShuffle,gameMode);
+        if(!id || !itemShuffle || !gameMode) {throw new Error('create game failed!')}
         const game = {
             items: JSON.parse(JSON.stringify(defaultItems.data)),
             dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
