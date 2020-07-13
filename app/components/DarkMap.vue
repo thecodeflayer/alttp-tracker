@@ -3,7 +3,7 @@
         <Navbar ref="navbar"></Navbar>
         <AbsoluteLayout @pan="onPan" @pinch="onPinch" @doubletap="onDoubleTap">
             <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
-                <Image v-for="tile in mapHandler.tiles" v-bind:key="mapHandler.tiles" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
+                <Image v-for="(tile, idx) in mapHandler.tiles" v-bind:key="idx" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
                 <Label v-if="mapHandler.centerKey" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
                        class="center-key"
                        :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
@@ -11,27 +11,27 @@
                        :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
                        :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
                        @tap="onClickLocale(mapHandler.centerKey)" />
-                <Label v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
+                <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="pinchHandler.pinching ? 'collapsed': 'visible'"
                        :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
                        :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
                        :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                        @tap="onClickLocale(key)"/>
-                <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="dkey" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                        :class="(mapHandler.staticDungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                        :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(46 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticDungeons[dkey].x - (23 * (1 / pinchHandler.localeScale)))"
                        :top="Math.floor(mapHandler.staticDungeons[dkey].y - (23 * (1 / pinchHandler.localeScale)))" />
-                <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:key="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_boss'" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                        style="border-width: 0"
                        :class="mapHandler.dungeonValues[bkey].boss ? 'locale-gray' : mapHandler.bosses[bkey].klass"
                        :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                        :left="Math.floor(mapHandler.staticDungeons[bkey].x - (15 * (1 / pinchHandler.localeScale)))"
                        :top="Math.floor(mapHandler.staticDungeons[bkey].y - (15 * (1 / pinchHandler.localeScale)))" />
-                <Image v-for="bkey in mapHandler.dungeonKeys" v-bind:key="mapHandler.dungeonKeys" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+                <Image v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_img'" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                        :src="'~/img/dungeons/'+bkey+'_boss0.png'"
                        :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                        :height="Math.floor(20 * (1 / pinchHandler.localeScale))"

@@ -2,7 +2,6 @@ import {standardRegionHelper} from "~/standard/regionHelper";
 
 export const standardStaticMapLW = {
     uncle :{x:894,y:624, title:'Uncle', itemCount: 1, req:[], validate() {
-        console.log('validating standard way');
         return true;
     }},
     secretPassage:{x:826,y:644, title:'Secret Passage', itemCount: 1, req:[],  validate() {return true;}},

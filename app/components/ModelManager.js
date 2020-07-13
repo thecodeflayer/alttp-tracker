@@ -273,7 +273,6 @@ export class ModelManager  {
         const ldkeys = Object.keys(this.sol.getStaticMapDungeonsLW(this.settings.gameMode));
         const dkeys = Object.keys(this.sol.getStaticMapDW(this.settings.gameMode));
         const ddkeys = Object.keys(this.sol.getStaticMapDungeonsDW(this.settings.gameMode));
-        console.log(JSON.stringify(this.dungeons));
         for(const key of lkeys){
             this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items,this.dungeons) ? 'locale-green' : 'locale-red';
         }

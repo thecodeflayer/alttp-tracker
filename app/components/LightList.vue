@@ -13,7 +13,7 @@
                          :scrollableHeight="mapHandler.keys.length * 54"
                          @scroll="onScroll">
                 <StackLayout orientation="vertical" backgroundColor="black">
-                    <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="mapHandler.keys"
+                    <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="key"
                                 :visibility="getVisible(key)"
                                 columns="*,48" rows="60"
                                 :backgroundColor="mapHandler.locations[key].checked ? 'gray' : mapHandler.locations[key].klass === 'locale-green' ? 'darkgreen':'darkred'">
