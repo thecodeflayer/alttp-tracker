@@ -5,16 +5,26 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 ### Contents
 - [General Questions](#general-questions)
-    - [Can I quickly navigate between the light world and the dark world maps?]
+    - [Can I quickly navigate between the light world and dark world maps?](#can-i-quickly-navigate-between-the-light-world-and-dark-world-maps)
+    - [A location should/should not be accessible with the items I have! What gives?](#a-location-shouldshould-not-be-accessible-with-the-items-i-have-what-gives)
     - [There should be 216 items. Where are the missing items?](#there-should-be-216-items-where-are-the-missing-items)
+    - [Why are you not on the Play Store?](#why-are-you-not-on-the-play-store)
 - [New Game Settings](#new-game-settings)
     - [Item Shuffle Settings](#item-shuffle-settings)
+    - [Game Mode Settings](#game-mode-settings)
 
 ## General Questions
 
-#### Can I quickly navigate between the light world and the dark world maps?
+#### Can I quickly navigate between the light world and dark world maps?
 
 Yes! You can double-tap the map to toggle between worlds at the same position and scale.
+
+### A location should/should not be accessible with the items I have! What gives?
+
+If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
+In coding location logic I attempted to follow the randomizer logic as closely as I could and have even done several runs to try and test
+the logic. However, I am only one person and can only do so much on my own. Inverted mode has not been tested nearly enough and I welcome
+any help finding and squashing the logic bugs.
 
 #### There should be 216 items. Where are the missing items?
 
@@ -26,9 +36,15 @@ As described, the [Item Shuffle Settings](#item-shuffle-settings) only count rel
 
 If you feel there is an error in item counts, please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
 
+#### Why are you not on the Play Store?
+The short version is "I'm trying."
+
+The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immidiate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
+
+
 ## New Game Settings
 
-### Item Shuffle Settings
+#### Item Shuffle Settings
 Item Shuffle Settings are selectable when creating a new game.
 The primary effect this has on the tracker is the number of available chests and whether small keys increment or decrement when clicked.
 Additionally, the total number of items on the Items page will change depending on the Item Shuffle option chosen.
@@ -70,5 +86,21 @@ The overall item count in this mode is 212.
 In this mode small keys will increment from zero. Note that, like the Maps, Compasses and Small Keys option, the small key counter does not affect the item count.
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
 To increment item count when you find a small key in a chest you should click the chest icon to decrement the chest count.
+
+#### Game Mode Settings
+
+**Standard**
+
+The Standard mode covers Standard and Open modes in the randomizer. These modes are generally what new players will start out with.
+
+**Inverted**
+
+In this mode Link starts in the Dark World and must navigate to the Light World.
+The map in this mode is slightly different and logic to access locations has changed.
+
+To learn more about the randomizer options for these modes please read World State section of
+[alttpr.com/en/options](https://alttpr.com/en/options).
+
+
 
 

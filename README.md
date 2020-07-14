@@ -27,7 +27,5 @@ In order to install on Android you will have to "side-load" the APK from Github.
 6. After install, it's recommended to turn off the ability to load applications from unknown locations.
 7. Enjoy tracking your rando runs!
 
-## Why are you not on the Play Store?
-The short version is "I'm trying."
-
-The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immidiate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
+## FAQ
+Please see the new [FAQ](https://github.com/thecodeflayer/alttp-tracker/FAQ.md) Page!
