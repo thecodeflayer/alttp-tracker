@@ -34,7 +34,7 @@ any help finding and squashing the logic bugs.
 
 #### There should be 216 items. Where are the missing items?
 
-As described, the [Item Shuffle Settings](#item-shuffle-settings) only count relevant items and never count Hyrule Castle items. The three Hyrule Castle items not counted are:
+As described in the [Item Shuffle Settings](#item-shuffle-settings) only count relevant items and never count Hyrule Castle items. The three Hyrule Castle items not counted are:
 
 - Hyrule Castle Map
 - Hyrule Castle Big Key
