@@ -1,8 +1,8 @@
-export const defaultMap = {
+export const invertedDefaultMap = {
     version: '0.0.1',
     data: {
         lightworld: {
-            mode:0, //0 for map, 1 for location list
+            mode:1, //0 for map, 1 for location list
             scale: 1,
             x: 0,
             y: 0,
@@ -49,7 +49,7 @@ export const defaultMap = {
                 desertLedge: {checked: false, klass: 'locale-red'},
                 lakeIsland: {checked: false, klass: 'locale-red'},
                 fluteSpot: {checked: false, klass: 'locale-red'},
-                oldMan: {checked: false, klass: 'locale-red'},
+                bumperCave: {checked: false, klass: 'locale-red'},
                 spectacleRockCave: {checked: false, klass: 'locale-red'},
                 etherTablet: {checked: false, klass: 'locale-red'},
                 spectacleRock: {checked: false, klass: 'locale-red'},
@@ -62,17 +62,17 @@ export const defaultMap = {
                 ep:{klass:'locale-red'},
                 dp:{klass: 'locale-red'},
                 toh:{klass: 'locale-red'},
-                aga:{klass: 'locale-red'}
+                gt: {klass:'locale-red'}
             },
             bosses: {
                 ep:{klass:'locale-red'},
                 dp:{klass: 'locale-red'},
                 toh:{klass: 'locale-red'},
-                aga:{klass: 'locale-red'}
+                gt: {klass:'locale-red'}
             }
         },
         darkworld: {
-            mode:0, //0 for map, 1 for location list
+            mode:1, //0 for map, 1 for location list
             scale: 1,
             x: 0,
             y: 0,
@@ -90,7 +90,7 @@ export const defaultMap = {
                 cShapeHouse: {checked: false, klass: 'locale-red'},
                 chestGame: {checked: false, klass: 'locale-red'},
                 hammerPegs: {checked: false, klass: 'locale-red'},
-                bumperCave: {checked: false, klass: 'locale-red'},
+                oldMan: {checked: false, klass: 'locale-red'},
                 blacksmith: {checked: false, klass: 'locale-red'},
                 purpleChest: {checked: false, klass: 'locale-red'},
                 hypeCave: {checked: false, klass: 'locale-red'},
@@ -106,7 +106,7 @@ export const defaultMap = {
                 ip: {klass:'locale-red'}, // ice palace
                 mm: {klass:'locale-red'}, // misery mire
                 tr: {klass:'locale-red'}, // turtle rock
-                gt: {klass:'locale-red'}
+                aga:{klass: 'locale-red'}
             },
             bosses: {
                 pod: {klass:'locale-red'}, // palace of darkness
@@ -116,7 +116,7 @@ export const defaultMap = {
                 ip: {klass:'locale-red'}, // ice palace
                 mm: {klass:'locale-red'}, // misery mire
                 tr: {klass:'locale-red'}, // turtle rock
-                gt: {klass:'locale-red'}
+                aga:{klass: 'locale-red'}
             }
         }
     }

@@ -42,7 +42,11 @@
                 <Label :text="game.name" fontSize="24" />
                 <Label text="Game Slot Empty"/>
                 <StackLayout orientation="vertical">
-                    <Label text="Game Mode: Standard"/>
+                    <Label text="Game Mode:"/>
+                    <StackLayout orientation="horizontal" v-for="mode in gameModes" @tap="clickGameMode(mode)">
+                        <Image :key="updateKey" :src="getGameModeCheckImage(mode)" width="20" height="20" />
+                        <Label :text="gameModeLabels[mode]" verticalAlignment="center" marginLeft="5" fontSize="20" />
+                    </StackLayout>
                     <Label text="Item Shuffle:"/>
                     <StackLayout orientation="horizontal" v-for="key in itemShuffleKeys" @tap="clickItemShuffle(key)">
                         <Image :key="updateKey" :src="getItemShuffleCheckImage(key)" width="20" height="20" />
@@ -98,13 +102,14 @@
                 screen: screen,
                 modalWidth: 0,
                 modalAnimating: false,
-                modalAction: undefined
+                modalAction: undefined,
+                gameModes: Object.keys(GameSaveHelper.labels),
+                gameModeLabels: GameSaveHelper.labels
             }
         },
         created() {
             this.checkEmptyGameState();
             this.modalWidth = (this.screen.mainScreen.widthPixels / this.screen.mainScreen.scale) - 40;
-            console.log(this.modalWidth);
         },
         mounted() {
 
@@ -139,8 +144,8 @@
                 this.$navigateTo(SaveList);
             },
             createGame() {
-                if(!this.game.itemShuffle) {return; }
-                this.$modelManager.createGame(this.game.id, this.game.itemShuffle);
+                if(!this.game.itemShuffle || !this.game.gameMode) {return; }
+                this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode);
                 this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
                 this.updateKey = Date.now();
             },
@@ -165,14 +170,22 @@
                 this.game.itemShuffle = id;
                 this.updateKey = Date.now();
             },
+            clickGameMode(id) {
+                this.game.gameMode = id;
+                this.updateKey = Date.now();
+            },
             checkEmptyGameState(){
                 if(!this.game.timestamp) {
                     this.game.itemShuffle = this.itemShuffleOptions.standard.id;
+                    this.game.gameMode = this.gameModes[0];
                 }
                 this.updateKey = Date.now();
             },
             getItemShuffleCheckImage(key) {
                 return this.game.itemShuffle === key ? '~/img/checked.png' : '~/img/unchecked.png';
+            },
+            getGameModeCheckImage(key) {
+                return this.game.gameMode === key ? '~/img/checked.png' : '~/img/unchecked.png';
             }
         }
     };

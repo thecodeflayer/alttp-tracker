@@ -5,9 +5,9 @@
             <StackLayout orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
                 <Label text="Welcome to the ALLTP Tracker!" class="welcome" fontSize="24" textAlignment="center"/>
                 <Label text="Track item collection and dungeon progress as well as find locations using the maps." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
-                <Label text="More features will be coming as I have time including other modes and glitches." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
-                <Label text="Special thanks to the randomizer community. Visit them!" class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
+                <Button :visibility="this.showUpgradeBtn?'collapsed':'visible'" class="btn" @tap="showWhatsNew">What's New</Button>
                 <Button :visibility="this.showUpgradeBtn?'visible':'collapsed'" class="btn" @tap="clickUpgrade" backgroundColor="#8b0000">New Version! {{this.upgradeVersion}}</Button>
+                <Label text="Special thanks to the randomizer community. Visit them!" class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
                 <Button class="btn" @tap="clickRandomizer">ALTTP Randomizer</Button>
                 <Button class="btn" @tap="clickReddit">ALTTPR on Reddit</Button>
                 <Button class="btn" @tap="clickDiscord">ALTTPR Discord</Button>
@@ -43,6 +43,9 @@
                 });
         },
         methods: {
+            showWhatsNew() {
+                openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/'+this.upgradeVersion+'/WHATSNEW.md');
+            },
             clickUpgrade() {
                 openUrl(this.upgradeLink);
             },

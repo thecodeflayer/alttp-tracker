@@ -8,7 +8,7 @@ The tracker currently only supports standard, no glitch runs and is geared towar
 In the future, based on interest, I may add support for other modes such as inverted, ~keysanity~ (Keysanity support is now available!) and more.
 
 ## Supported Platforms
-Currently I'm only building APKs for Android. I still need to figure out how to build for iOS.
+Currently, I'm only building APKs for Android. I still need to figure out how to build for iOS.
 
 ## Found a bug? Want a feature?
 Please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!

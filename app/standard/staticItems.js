@@ -1,4 +1,4 @@
-export const staticItems = {
+export const standardStaticItems = {
     bow: 2,
     boomerang: 2,
     jar: 4,

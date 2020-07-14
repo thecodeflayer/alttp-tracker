@@ -1,4 +1,4 @@
-export const staticDungeons  = {
+export const standardStaticDungeons  = {
     ep:{
         maxCrystal: 4,
         maxChests: 3,

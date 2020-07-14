@@ -1,4 +1,4 @@
-export const regionHelper = {
+export const standardRegionHelper = {
     // light world
     northEastLW() {return true;},
     northWestLW() {return true;},
