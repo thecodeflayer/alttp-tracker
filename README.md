@@ -28,4 +28,4 @@ In order to install on Android you will have to "side-load" the APK from Github.
 7. Enjoy tracking your rando runs!
 
 ## FAQ
-Please see the new [FAQ](https://github.com/thecodeflayer/alttp-tracker/FAQ.md) Page!
+Please see the new [FAQ](https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md) Page!
