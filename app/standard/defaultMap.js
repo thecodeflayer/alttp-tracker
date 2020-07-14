@@ -1,5 +1,5 @@
 export const standardDefaultMap = {
-    version: '0.1.0',
+    version: '0.0.1',
     data: {
         lightworld: {
             mode:0, //0 for map, 1 for location list

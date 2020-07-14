@@ -27,7 +27,7 @@ export class ModelManager  {
     appVersion = '0.9.5'
     itemsVersion = '0.0.1';
     dungeonsVersion = '0.0.2';
-    mapVersion = '0.1.0';
+    mapVersion = '0.0.1';
     settingsVersion = '0.0.1';
     gameSavesVersion = '0.0.1';
 
