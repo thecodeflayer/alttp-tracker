@@ -5,6 +5,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 ### Contents
 - [General Questions](#general-questions)
+    - [I clicked on items, but the item count doesn't increase. Why?](#i-clicked-on-items-but-the-item-count-doesnt-increase-why)
     - [Can I quickly navigate between the light world and dark world maps?](#can-i-quickly-navigate-between-the-light-world-and-dark-world-maps)
     - [A location should/should not be accessible with the items I have! What gives?](#a-location-shouldshould-not-be-accessible-with-the-items-i-have-what-gives)
     - [There should be 216 items. Where are the missing items?](#there-should-be-216-items-where-are-the-missing-items)
@@ -15,6 +16,11 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 ## General Questions
 
+#### I clicked on items, but the item count doesn't increase. Why?
+
+There are several items that contribute to the count that are not present on the items screen (rupees, hearts, arrows etc.).
+Therefore, the Item Count is based on locations checked. To increase the item count, check off locations and dungeon chests.
+
 #### Can I quickly navigate between the light world and dark world maps?
 
 Yes! You can double-tap the map to toggle between worlds at the same position and scale.
@@ -23,7 +29,7 @@ Yes! You can double-tap the map to toggle between worlds at the same position an
 
 If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
 In coding location logic I attempted to follow the randomizer logic as closely as I could and have even done several runs to try and test
-the logic. However, I am only one person and can only do so much on my own. Inverted mode has not been tested nearly enough and I welcome
+the logic. However, I am only one person and can only do so much on my own. Inverted mode has not been tested nearly enough, and I welcome
 any help finding and squashing the logic bugs.
 
 #### There should be 216 items. Where are the missing items?
@@ -69,8 +75,8 @@ In this mode small keys will increment from zero.
 
 **Maps, Compasses and Small Keys**
 
-In this mode, maps, compasses and the 28 small keys found in dungeons (excluding Hyrule Castle) are added to the item pool.
-The chest count for dungeons is increased as in the Maps and Compasses option with the inclusion of small keys.
+In this mode, maps, compasses, and the 28 small keys found in dungeons (excluding Hyrule Castle) are added to the item pool.
+The chest count for dungeons will be increased as in the Maps and Compasses option with the inclusion of small keys.
 The overall item count in this mode is 203.
 
 In this mode small keys will increment from zero. Note that the small key counter does not affect the item count.
@@ -80,7 +86,7 @@ To increment item count when you find a small key in a chest you should click th
 **Keysanity**
 
 In this mode, maps, compasses, small keys and big keys (excluding Hyrule Castle) are added to the item pool.
-The chest count for dungeons is increased as in the Maps, Compasses and Small Keys option with the inclusion of big keys.
+The chest count for dungeons will be increased as in the Maps, Compasses and Small Keys option with the inclusion of big keys.
 The overall item count in this mode is 212.
 
 In this mode small keys will increment from zero. Note that, like the Maps, Compasses and Small Keys option, the small key counter does not affect the item count.
@@ -98,7 +104,7 @@ The Standard mode covers Standard and Open modes in the randomizer. These modes 
 In this mode Link starts in the Dark World and must navigate to the Light World.
 The map in this mode is slightly different and logic to access locations has changed.
 
-To learn more about the randomizer options for these modes please read World State section of
+To learn more about the randomizer options for these modes please read the 'World State' section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
 
 
