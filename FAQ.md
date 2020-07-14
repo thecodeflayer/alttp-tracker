@@ -19,7 +19,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 Yes! You can double-tap the map to toggle between worlds at the same position and scale.
 
-### A location should/should not be accessible with the items I have! What gives?
+#### A location should/should not be accessible with the items I have! What gives?
 
 If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
 In coding location logic I attempted to follow the randomizer logic as closely as I could and have even done several runs to try and test
@@ -44,7 +44,7 @@ The Play Store has very strict policies regarding popular IPs. Navigating this h
 
 ## New Game Settings
 
-#### Item Shuffle Settings
+### Item Shuffle Settings
 Item Shuffle Settings are selectable when creating a new game.
 The primary effect this has on the tracker is the number of available chests and whether small keys increment or decrement when clicked.
 Additionally, the total number of items on the Items page will change depending on the Item Shuffle option chosen.
@@ -87,7 +87,7 @@ In this mode small keys will increment from zero. Note that, like the Maps, Comp
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
 To increment item count when you find a small key in a chest you should click the chest icon to decrement the chest count.
 
-#### Game Mode Settings
+### Game Mode Settings
 
 **Standard**
 
