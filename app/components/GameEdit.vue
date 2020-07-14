@@ -110,7 +110,6 @@
         created() {
             this.checkEmptyGameState();
             this.modalWidth = (this.screen.mainScreen.widthPixels / this.screen.mainScreen.scale) - 40;
-            console.log(this.modalWidth);
         },
         mounted() {
 
