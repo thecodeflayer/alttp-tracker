@@ -87,7 +87,7 @@ To increment item count when you find a small key in a chest you should click th
 
 In this mode, maps, compasses, small keys and big keys (excluding Hyrule Castle) are added to the item pool.
 The chest count for dungeons will be increased as in the Maps, Compasses and Small Keys option with the inclusion of big keys.
-The overall item count in this mode is 212.
+The overall item count in this mode is 213.
 
 In this mode small keys will increment from zero. Note that, like the Maps, Compasses and Small Keys option, the small key counter does not affect the item count.
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
