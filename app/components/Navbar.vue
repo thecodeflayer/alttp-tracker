@@ -29,15 +29,15 @@
     </ActionBar>
 </template>
 
-<script>
-    import Home from "~/components/Home";
-    import LightMap from "~/components/LightMap";
-    import DarkMap from "~/components/DarkMap";
-    import Items from "~/components/Items";
-    import Settings from "~/components/Settings";
-    import Dungeons from "~/components/Dungeons";
-    import LightList from "~/components/LightList";
-    import DarkList from "~/components/DarkList";
+<script type="ts">
+    import Home from "@/components/Home.vue";
+    import LightMap from "@/components/LightMap.vue";
+    import DarkMap from "~/components/DarkMap.vue";
+    import Items from "~/components/Items.vue";
+    import Settings from "~/components/Settings.vue";
+    import Dungeons from "@/components/Dungeons.vue";
+    import LightList from "@/components/LightList.vue";
+    import DarkList from "@/components/DarkList.vue";
 
     export default {
         methods: {

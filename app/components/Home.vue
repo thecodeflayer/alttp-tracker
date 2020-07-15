@@ -16,7 +16,7 @@
     </Page>
 </template>
 
-<script>
+<script lang="ts">
     import {openUrl} from 'tns-core-modules/utils/utils';
     import * as convert from 'xml-js';
 
