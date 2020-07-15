@@ -47,16 +47,18 @@
   </Page>
 </template>
 
-<script>
+<script type="ts">
     import {Component, Vue, Ref} from 'vue-property-decorator';
     import {screen} from 'tns-core-modules/platform';
     import * as app from 'tns-core-modules/application'
     import * as utils from 'tns-core-modules/utils/utils';
-    import DarkList from "~/components/DarkList";
-    import LightMap from "~/components/LightMap";
+    import DarkList from "@/components/DarkList.vue";
+    import LightMap from "@/components/LightMap.vue";
 
     @Component
     export default class DarkMap extends Vue {
+        @Ref('mapWrapper') mapWrapper;
+        @Ref('navbar') navbar;
 
         debugInfo = 'Debug info here';
         menuHandler = {
@@ -64,7 +66,8 @@
         };
         panHandler = {
             lastX: 0,
-            lastY: 0
+            lastY: 0,
+            ticks: undefined
         };
         pinchHandler = {
             top: 0,
@@ -96,7 +99,14 @@
         topNavHeight = 0;
         bottomNavHeight = 0;
         viewHeight = 0;
-        momentumHandler = {};
+        momentumHandler = {
+            x: undefined,
+            y: undefined,
+            ticks: 0,
+            prevX: 0,
+            prevY: 0,
+            timer: undefined
+        };
 
         mounted() {
             this.$modelManager.validateLocales();
@@ -104,22 +114,23 @@
             this.screenHeight = this.getMainScreenHeight();
             this.statusBarHeight = this.getStatusBarHeight();
             this.bottomNavHeight = this.getBottomNavbarHeight();
-            this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x;
-            this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y;
+            this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x;
+            this.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y;
             const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale;
             this.pinchHandler.top = this.getPinchTop(newScale);
             this.pinchHandler.left = this.getPinchLeft(newScale);
             setTimeout(() => {
-                this.topNavHeight = this.getViewHeight(this.$refs.navbar.nativeView);
-                if(this.$modelManager.map.darkworld.centerKey) {
+                this.topNavHeight = this.getViewHeight(this.navbar.nativeView);
+                if (this.$modelManager.map.darkworld.centerKey) {
                     this.centerOnKey();
                 }
                 this.debugInfo = this.getDebugInfo();
-            },300);
+            }, 300);
 
         }
+
         getDebugInfo() {
-            return  '' +
+            return '' +
                 //'pinch:' + this.pinchHandler.left + ', ' +this.pinchHandler.top +
                 //' screen raw:' + (this.screen.mainScreen.heightPixels - this.$refs.navbar.nativeView.getMeasuredHeight()) +
                 //' screen calc:' + (this.screenHeight - this.topNavHeight) +
@@ -136,6 +147,7 @@
                 ' viewHeight: ' + this.viewHeight +
                 '';
         }
+
         getStatusBarHeight() {
             let result = 0;
             if (app.android) {
@@ -147,7 +159,8 @@
             }
             return result;
         }
-        getBottomNavbarHeight(){
+
+        getBottomNavbarHeight() {
             let result = 0;
             if (app.android) {
                 const navId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier("config_showNavigationBar", "bool", "android");
@@ -160,36 +173,39 @@
             }
             return result;
         }
+
         populateTiles() {
             const retval = [];
-            for(let i = 0; i < 25; i ++) {
-                const obj = {};
-                obj.src = '~/img/darkworld/'+this.$modelManager.getGameModeMap()+'/map'+(i+1)+'.png';
-                obj.width = 300;
-                obj.height = 300;
-                obj.top = Math.floor(i / 5) * 300;
-                obj.left = (i % 5) * 300;
+            for (let i = 0; i < 25; i++) {
+                const obj = {
+                    src: '~/img/darkworld/' + this.$modelManager.getGameModeMap() + '/map' + (i + 1) + '.png',
+                    width: 300,
+                    height: 300,
+                    top: Math.floor(i / 5) * 300,
+                    left: (i % 5) * 300
+                }
                 retval.push(obj);
             }
             return retval;
         }
+
         onPan(args, fromMomentum) {
-            if(args.state === 1) {
+            if (args.state === 1) {
                 this.panHandler.ticks = 0;
             }
-            if(args.state === 2) {
-                if(!fromMomentum) {
+            if (args.state === 2) {
+                if (!fromMomentum) {
                     this.panHandler.ticks++;
                 }
-                let newX = this.$refs.mapWrapper.nativeView.left + ((args.deltaX - this.panHandler.lastX));
-                let newY = this.$refs.mapWrapper.nativeView.top + ((args.deltaY - this.panHandler.lastY));
+                let newX = this.mapWrapper.nativeView.left + ((args.deltaX - this.panHandler.lastX));
+                let newY = this.mapWrapper.nativeView.top + ((args.deltaY - this.panHandler.lastY));
                 this.keepInBounds(newX, newY);
                 this.panHandler.lastX = args.deltaX;
                 this.panHandler.lastY = args.deltaY;
                 // this.debugInfo = this.getDebugInfo();
-            } else if(args.state === 3) {
-                if(!fromMomentum){
-                    this.calcMomentum(args.deltaX,args.deltaY,this.panHandler.ticks);
+            } else if (args.state === 3) {
+                if (!fromMomentum) {
+                    this.calcMomentum(args.deltaX, args.deltaY, this.panHandler.ticks);
                 }
                 this.panHandler.lastX = 0;
                 this.panHandler.lastY = 0;
@@ -197,15 +213,16 @@
                 this.$modelManager.saveMap();
             }
         }
-        calcMomentum(x,y,ticks){
-            if(ticks < 10) {
-                if (Math.abs(x) > this.screenWidth * 0.3){
-                    this.momentumHandler.x = x<0?'left':'right';
+
+        calcMomentum(x, y, ticks) {
+            if (ticks < 10) {
+                if (Math.abs(x) > this.screenWidth * 0.3) {
+                    this.momentumHandler.x = x < 0 ? 'left' : 'right';
                 } else {
                     this.momentumHandler.x = 'none';
                 }
-                if(Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight)* 0.2){
-                    this.momentumHandler.y = y<0?'up':'down';
+                if (Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight) * 0.2) {
+                    this.momentumHandler.y = y < 0 ? 'up' : 'down';
                 } else {
                     this.momentumHandler.y = 'none'
                 }
@@ -213,37 +230,39 @@
                 this.momentumHandler.prevX = 0;
                 this.momentumHandler.prevY = 0;
 
-                this.momentumHandler.timer = setTimeout(this.doMomentum,10);
+                this.momentumHandler.timer = setTimeout(this.doMomentum, 10);
             }
         }
-        doMomentum(){
-            const degrade = (30 - this.momentumHandler.ticks)/30;
+
+        doMomentum() {
+            const degrade = (30 - this.momentumHandler.ticks) / 30;
             const x = this.momentumHandler.x === 'none' ? 0
                 : this.momentumHandler.x === 'left' ? Math.floor((-30 * degrade) + this.momentumHandler.prevX)
                     : Math.floor((30 * degrade) + this.momentumHandler.prevX);
             const y = this.momentumHandler.y === 'none' ? 0
                 : this.momentumHandler.y === 'up' ? Math.floor((-30 * degrade) + this.momentumHandler.prevY)
                     : Math.floor((30 * degrade) + this.momentumHandler.prevY);
-            this.onPan({deltaX: x, deltaY: y, state: 2},true);
+            this.onPan({deltaX: x, deltaY: y, state: 2}, true);
             this.momentumHandler.prevX = x;
             this.momentumHandler.prevY = y;
             this.momentumHandler.ticks++;
-            if(this.momentumHandler.ticks < 30) {
-                this.momentumHandler.timer = setTimeout(this.doMomentum,10);
+            if (this.momentumHandler.ticks < 30) {
+                this.momentumHandler.timer = setTimeout(this.doMomentum, 10);
             } else {
                 this.momentumHandler.ticks = 0;
                 this.momentumHandler.prevX = 0;
                 this.momentumHandler.prevY = 0;
-                this.onPan({deltaX:0,deltaY:0,state:3},true);
+                this.onPan({deltaX: 0, deltaY: 0, state: 3}, true);
             }
         }
+
         onPinch(args) {
-            if(args.state === 1) {
+            if (args.state === 1) {
                 this.pinchHandler.pinching = true;
             }
             let lastScale = this.pinchHandler.lastScale === -1 ? this.pinchHandler.currentScale : this.pinchHandler.lastScale;
             let newScale = lastScale * args.scale;
-            if(newScale < this.getMinScale()) {
+            if (newScale < this.getMinScale()) {
                 newScale = this.getMinScale();
             } else if (newScale > 1) {
                 newScale = 1
@@ -252,12 +271,13 @@
             this.pinchHandler.top = this.getPinchTop(newScale);
             this.pinchHandler.left = this.getPinchLeft(newScale);
 
-            if(args.state === 3) {
+            if (args.state === 3) {
                 this.pinchHandler.lastScale = newScale;
                 this.pinchHandler.localeScale = this.pinchHandler.currentScale;
                 this.pinchHandler.pinching = false;
             }
         }
+
         centerOnKey() {
             const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale = 1;
             this.pinchHandler.top = this.getPinchTop(newScale);
@@ -272,61 +292,72 @@
             this.keepInBounds(newX, newY);
             this.$modelManager.saveMap();
         }
+
         keepInBounds(newX, newY) {
             const minX = -Math.abs((this.screenWidth + Math.abs(this.pinchHandler.left)) - this.mapWidth);
-            if(newX > this.pinchHandler.left) {
+            if (newX > this.pinchHandler.left) {
                 newX = this.pinchHandler.left;
-            } else if(newX < minX) {
+            } else if (newX < minX) {
                 newX = minX;
             }
             const minY = -Math.abs(((this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight) + Math.abs(this.pinchHandler.top)) - (this.mapHeight));
-            if(newY > this.pinchHandler.top) {
+            if (newY > this.pinchHandler.top) {
                 newY = this.pinchHandler.top;
-            } else if(newY < minY) {
+            } else if (newY < minY) {
                 newY = minY;
             }
-            this.$refs.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x = newX;
-            this.$refs.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y = newY;
+            this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x = newX;
+            this.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y = newY;
         }
-        toggleMode(){
+
+        toggleMode() {
             this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 1;
             this.$modelManager.saveMap();
             this.$navigateTo(DarkList);
         }
+
         getViewWidth(view) {
             return Math.floor(view.getMeasuredWidth() / this.screen.mainScreen.scale);
         }
+
         getViewHeight(view) {
             return Math.floor(view.getMeasuredHeight() / this.screen.mainScreen.scale);
         }
+
         getMainScreenWidth() {
             return Math.floor(this.screen.mainScreen.widthPixels / this.screen.mainScreen.scale);
         }
+
         getMainScreenHeight() {
             return Math.floor(this.screen.mainScreen.heightPixels / this.screen.mainScreen.scale);
         }
-        getMinScale(){
-            const height = this.screenHeight - this.topNavHeight -this.statusBarHeight - this.bottomNavHeight;
+
+        getMinScale() {
+            const height = this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight;
             const useHeight = height > this.screenWidth;
-            if(useHeight){
+            if (useHeight) {
                 return height / (this.mapHeight);
             } else {
                 return this.screenWidth / this.mapWidth;
             }
         }
+
         getPinchLeft(newScale) {
             return -Math.abs(Math.floor((this.mapWidth * 0.5) - ((this.mapWidth * newScale) * 0.5)));
         }
+
         getPinchTop(newScale) {
             const val = (((this.mapHeight) * 0.5) * newScale);
             return -Math.abs(Math.floor(((this.mapHeight) * 0.5) - val));
         }
-        onClickLocale(key){
+
+        onClickLocale(key) {
             this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
             this.mapHandler.centerKey = undefined;
             this.$modelManager.saveMap();
         }
-        onDoubleTap(){
+
+        onDoubleTap() {
             this.$modelManager.map.lightworld.scale = this.$modelManager.map.darkworld.scale;
             this.$modelManager.map.lightworld.x = this.$modelManager.map.darkworld.x;
             this.$modelManager.map.lightworld.y = this.$modelManager.map.darkworld.y;
@@ -334,7 +365,7 @@
             this.$modelManager.saveMap();
             this.$navigateTo(LightMap);
         }
-    };
+    }
 </script>
 
 <style scoped lang="scss">

@@ -49,12 +49,13 @@
 <script type="ts">
 
     import {Component, Vue, Ref} from 'vue-property-decorator';
-    import DarkMap from "@/components/DarkMap.vue";
-    import {ScrollView} from  'tns-core-modules/ui/scroll-view';
+    import DarkMap from '@/components/DarkMap.vue';
+    import {ScrollView} from 'tns-core-modules/ui/scroll-view';
 
     @Component
     export default class DarkList extends Vue {
-        @Ref() listScrollView!: ScrollView;
+        @Ref('listScrollView') listScrollView;
+
         menuHandler = {
             mode: this.$modelManager.map.darkworld.mode
         };
@@ -70,10 +71,10 @@
         mounted() {
             this.$modelManager.validateLocales();
             this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
-            const sv = this.listScrollView;
+            const sv = this.listScrollView.nativeView;
             setTimeout(() => {
                 try{
-                    sv.scrollToVerticalOffset(this.scrollOffsetY, false);
+                    sv.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
                 }catch(err){console.log(err);}
             }, 300);
 
