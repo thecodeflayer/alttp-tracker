@@ -3,7 +3,5 @@
     "v8Flags": "--expose_gc",
     "markingMode": "none"
   },
-  "main": "main",
-  "name": "nsts1",
-  "version": "1.0.0"
+  "main": "main"
 }
