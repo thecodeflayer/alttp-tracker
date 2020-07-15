@@ -1,6 +1,7 @@
 {
   "nativescript": {
     "id": "com.codeflayer.alttptracker",
+    "templateVersion": "v2",
     "tns-android": {
       "version": "6.5.0"
     },
@@ -12,21 +13,30 @@
   "license": "SEE LICENSE IN LICENSE",
   "repository": "https://github.com/thecodeflayer/alttp-tracker",
   "dependencies": {
-    "@nativescript/theme": "~2.3.0",
-    "nativescript-vue": "~2.4.0",
-    "tns-core-modules": "~6.5.0",
+    "@vue/devtools": "^5.3.3",
+    "nativescript-socketio": "^3.3.1",
+    "nativescript-vue-devtools": "^1.4.0",
+    "nativescript-toasty": "^3.0.0-alpha.2",
+    "@nativescript/theme": "^2.2.1",
+    "nativescript-vue": "^2.6.1",
+    "tns-core-modules": "^6.5.1",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@babel/core": "~7.1.0",
-    "@babel/preset-env": "~7.1.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "babel-loader": "~8.0.0",
-    "nativescript-dev-webpack": "~1.5.0",
-    "nativescript-vue-template-compiler": "~2.4.0",
-    "node-sass": "^4.7.1",
-    "vue-loader": "~15.4.0"
+    "babel-loader": "^8.1.0",
+    "nativescript-dev-webpack": "^1.5.1",
+    "nativescript-vue-template-compiler": "^2.6.0",
+    "nativescript-worker-loader": "~0.11.0",
+    "node-sass": "^4.13.1",
+    "tns-platform-declarations": "^6.5.1",
+    "typescript": "^3.8.3",
+    "@types/node": "^13.11.1",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.1"
   },
   "gitHead": "20a65d338ae8f8911087ab6615b89363f864b07b",
   "readme": "NativeScript Application"
