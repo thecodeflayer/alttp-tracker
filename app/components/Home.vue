@@ -17,18 +17,18 @@
 </template>
 
 <script lang="ts">
+    import {Component, Vue} from 'vue-property-decorator';
     import {openUrl} from 'tns-core-modules/utils/utils';
     import * as convert from 'xml-js';
 
-    export default {
-        data: function() {
-            return {
-                showUpgradeBtn: false,
-                upgradeLink: '',
-                upgradeVersion: '',
-                appVersion: this.$modelManager.appVersion
-            }
-        },
+    @Component
+    export default class Home extends Vue {
+
+        showUpgradeBtn = false;
+        upgradeLink = '';
+        upgradeVersion = '';
+        appVersion = this.$modelManager.appVersion;
+
         mounted() {
             fetch('https://github.com/thecodeflayer/alttp-tracker/releases.atom')
                 .then((response) => response.text())
@@ -41,25 +41,23 @@
                 }).catch((err) => {
                     console.log(err);
                 });
-        },
-        methods: {
-            showWhatsNew() {
-                openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/'+this.upgradeVersion+'/WHATSNEW.md');
-            },
-            clickUpgrade() {
-                openUrl(this.upgradeLink);
-            },
-            clickRandomizer() {
-                openUrl('https://alttpr.com/');
-            },
-            clickReddit() {
-                openUrl('https://www.reddit.com/r/alttpr/');
-            },
-            clickDiscord() {
-                openUrl('https://discord.gg/48sauwx');
-            }
         }
-    };
+        showWhatsNew() {
+            openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/'+this.upgradeVersion+'/WHATSNEW.md');
+        }
+        clickUpgrade() {
+            openUrl(this.upgradeLink);
+        }
+        clickRandomizer() {
+            openUrl('https://alttpr.com/');
+        }
+        clickReddit() {
+            openUrl('https://www.reddit.com/r/alttpr/');
+        }
+        clickDiscord() {
+            openUrl('https://discord.gg/48sauwx');
+        }
+    }
 </script>
 
 <style scoped lang="scss">
