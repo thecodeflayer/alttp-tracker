@@ -30,43 +30,44 @@
 </template>
 
 <script type="ts">
+    import {Component, Vue} from 'vue-property-decorator';
     import Home from "@/components/Home.vue";
     import LightMap from "@/components/LightMap.vue";
-    import DarkMap from "~/components/DarkMap.vue";
-    import Items from "~/components/Items.vue";
-    import Settings from "~/components/Settings.vue";
+    import DarkMap from "@/components/DarkMap.vue";
+    import Items from "@/components/Items.vue";
+    import Settings from "@/components/Settings.vue";
     import Dungeons from "@/components/Dungeons.vue";
     import LightList from "@/components/LightList.vue";
     import DarkList from "@/components/DarkList.vue";
 
-    export default {
-        methods: {
-            navHome() {
-                this.$navigateTo(Home);
-            },
-            navLightMap() {
-                if(this.$modelManager.map.lightworld.mode === 1) {
-                    this.$navigateTo(LightList);
-                } else {
-                    this.$navigateTo(LightMap);
-                }
-            },
-            navDarkMap() {
-                if(this.$modelManager.map.darkworld.mode === 1) {
-                    this.$navigateTo(DarkList);
-                } else {
-                    this.$navigateTo(DarkMap);
-                }
-            },
-            navItems() {
-                this.$navigateTo(Items);
-            },
-            navSettings() {
-                this.$navigateTo(Settings);
-            },
-            navDungeons() {
-                this.$navigateTo(Dungeons);
+    @Component
+    export default class Navbar extends Vue {
+
+        navHome() {
+            this.$navigateTo(Home);
+        }
+        navLightMap() {
+            if(this.$modelManager.map.lightworld.mode === 1) {
+                this.$navigateTo(LightList);
+            } else {
+                this.$navigateTo(LightMap);
             }
+        }
+        navDarkMap() {
+            if(this.$modelManager.map.darkworld.mode === 1) {
+                this.$navigateTo(DarkList);
+            } else {
+                this.$navigateTo(DarkMap);
+            }
+        }
+        navItems() {
+            this.$navigateTo(Items);
+        }
+        navSettings() {
+            this.$navigateTo(Settings);
+        }
+        navDungeons() {
+            this.$navigateTo(Dungeons);
         }
     };
 </script>
