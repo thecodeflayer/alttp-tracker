@@ -85,113 +85,129 @@
 </template>
 
 <script type="ts">
-    import {Component, Vue, Ref, Prop} from 'vue-property-decorator';
-    import SaveList from '@/components/SaveList.vue';
-    import {GameSaveHelper} from '@/GameSaveHelper';
-    import {screen} from 'tns-core-modules/platform';
+  import {Component, Vue, Ref, Prop} from 'vue-property-decorator';
+  import SaveList from '@/components/SaveList.vue';
+  import {GameSaveHelper} from '@/GameSaveHelper';
+  import {screen} from 'tns-core-modules/platform';
 
-    @Component
-    export default class GameEdit extends Vue {
-        @Prop({type: String, default: 'game0'}) game_id;
-        //$props = ['game_id'];
+  @Component
+  export default class GameEdit extends Vue {
+    @Prop({type: String, default: 'game0'}) game_id;
 
-        allowDelete = this.$modelManager.allowGameDelete();
-        itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
-        itemShuffleKeys = Object.keys(GameSaveHelper.itemShuffleOptions);
-        game = undefined; // GameSaveHelper.parseGameSaves(this.$modelManager)[this.game_id];
-        updateKey = Date.now();
-        modalOpen = false;
-        screen = screen;
-        modalWidth = 0;
-        modalAnimating = false;
-        modalAction = undefined;
-        gameModes = Object.keys(GameSaveHelper.labels);
-        gameModeLabels = GameSaveHelper.labels;
-        constructor() {
-            super();
-            console.log(this.game_id);
-            this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game_id];
-        }
-        created() {
-            this.checkEmptyGameState();
-            this.modalWidth = (this.screen.mainScreen.widthPixels / this.screen.mainScreen.scale) - 40;
-        }
-        mounted() {
+    allowDelete = this.$modelManager.allowGameDelete();
+    itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    itemShuffleKeys = Object.keys(GameSaveHelper.itemShuffleOptions);
+    game = undefined;
+    updateKey = Date.now();
+    modalOpen = false;
+    screen = screen;
+    modalWidth = 0;
+    modalAnimating = false;
+    modalAction = undefined;
+    gameModes = Object.keys(GameSaveHelper.labels);
+    gameModeLabels = GameSaveHelper.labels;
 
+    created() {
+      this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game_id];
+      this.checkEmptyGameState();
+      this.modalWidth = (this.screen.mainScreen.widthPixels / this.screen.mainScreen.scale) - 40;
+    }
+
+    mounted() {
+
+    }
+
+    interceptClick() {
+      console.log('no clicky!');
+    }
+
+    openModal(opt) {
+      this.modalAction = opt;
+      this.modalOpen = true;
+      this.modalAnimating = true;
+    }
+
+    closeModal(doAction) {
+      if (doAction) {
+        if (this.modalAction === 'deleteGame') {
+          this.deleteGame();
+        } else if (this.modalAction === 'resetItems') {
+          this.resetItems();
+        } else if (this.modalAction === 'resetDungeons') {
+          this.resetDungeons();
+        } else if (this.modalAction === 'resetMap') {
+          this.resetMap();
         }
-        interceptClick() {
-            console.log('no clicky!');
-        }
-        openModal(opt) {
-            this.modalAction = opt;
-            this.modalOpen = true;
-            this.modalAnimating=true;
-        }
-        closeModal(doAction) {
-            if(doAction){
-                if(this.modalAction === 'deleteGame') {
-                    this.deleteGame();
-                } else if(this.modalAction === 'resetItems'){
-                    this.resetItems();
-                } else if(this.modalAction === 'resetDungeons'){
-                    this.resetDungeons();
-                } else if(this.modalAction === 'resetMap'){
-                    this.resetMap();
-                }
-            }
-            this.modalAction = undefined;
-            this.modalOpen = false;
-            setTimeout(()=>{this.modalAnimating=false;},500);
-        }
-        loadGame() {
-            this.$modelManager.loadGame(this.game.id);
-            this.$navigateTo(SaveList);
-        }
-        createGame() {
-            if(!this.game.itemShuffle || !this.game.gameMode) {return; }
-            this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode);
-            this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
-            this.updateKey = Date.now();
-        }
-        deleteGame() {
-            this.$modelManager.deleteGame(this.game.id);
-            this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
-            this.checkEmptyGameState();
-        }
-        cancel() {
-            this.$navigateTo(SaveList);
-        }
-        resetItems() {
-            this.$modelManager.resetItems();
-        }
-        resetDungeons() {
-            this.$modelManager.resetDungeons();
-        }
-        resetMap() {
-            this.$modelManager.resetMap();
-        }
-        clickItemShuffle(id) {
-            this.game.itemShuffle = id;
-            this.updateKey = Date.now();
-        }
-        clickGameMode(id) {
-            this.game.gameMode = id;
-            this.updateKey = Date.now();
-        }
-        checkEmptyGameState(){
-            if(!this.game.timestamp) {
-                this.game.itemShuffle = this.itemShuffleOptions.standard.id;
-                this.game.gameMode = this.gameModes[0];
-            }
-            this.updateKey = Date.now();
-        }
-        getItemShuffleCheckImage(key) {
-            return this.game.itemShuffle === key ? '~/img/checked.png' : '~/img/unchecked.png';
-        }
-        getGameModeCheckImage(key) {
-            return this.game.gameMode === key ? '~/img/checked.png' : '~/img/unchecked.png';
-        }
-    };
+      }
+      this.modalAction = undefined;
+      this.modalOpen = false;
+      setTimeout(() => {
+        this.modalAnimating = false;
+      }, 500);
+    }
+
+    loadGame() {
+      this.$modelManager.loadGame(this.game.id);
+      this.$navigateTo(SaveList);
+    }
+
+    createGame() {
+      if (!this.game.itemShuffle || !this.game.gameMode) {
+        return;
+      }
+      this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode);
+      this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
+      this.updateKey = Date.now();
+    }
+
+    deleteGame() {
+      this.$modelManager.deleteGame(this.game.id);
+      this.game = GameSaveHelper.parseGameSaves(this.$modelManager)[this.game.id];
+      this.checkEmptyGameState();
+    }
+
+    cancel() {
+      this.$navigateTo(SaveList);
+    }
+
+    resetItems() {
+      this.$modelManager.resetItems();
+    }
+
+    resetDungeons() {
+      this.$modelManager.resetDungeons();
+    }
+
+    resetMap() {
+      this.$modelManager.resetMap();
+    }
+
+    clickItemShuffle(id) {
+      this.game.itemShuffle = id;
+      this.updateKey = Date.now();
+    }
+
+    clickGameMode(id) {
+      this.game.gameMode = id;
+      this.updateKey = Date.now();
+    }
+
+    checkEmptyGameState() {
+      if (!this.game.timestamp) {
+        this.game.itemShuffle = this.itemShuffleOptions.standard.id;
+        this.game.gameMode = this.gameModes[0];
+      }
+      this.updateKey = Date.now();
+    }
+
+    getItemShuffleCheckImage(key) {
+      return this.game.itemShuffle === key ? '~/img/checked.png' : '~/img/unchecked.png';
+    }
+
+    getGameModeCheckImage(key) {
+      return this.game.gameMode === key ? '~/img/checked.png' : '~/img/unchecked.png';
+    }
+  };
 </script>
 
 <style scoped lang="scss">

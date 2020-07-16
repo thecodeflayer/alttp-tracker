@@ -22,11 +22,6 @@ module.exports = {
             'always'
         ],
         'nativescript/no-short-imports': 'error',
-        'nativescript/script-indent': ['error', 4, {
-            'baseIndent': 1,
-            'switchCase': 1,
-            'ignores': []
-        }],
         'space-before-function-paren': ['error', 'never'],
     }
 };

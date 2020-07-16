@@ -48,78 +48,86 @@
 
 <script type="ts">
 
-    import {Component, Vue, Ref} from 'vue-property-decorator';
-    import DarkMap from '@/components/DarkMap.vue';
-    import {ScrollView} from 'tns-core-modules/ui/scroll-view';
+  import {Component, Vue, Ref} from 'vue-property-decorator';
+  import DarkMap from '@/components/DarkMap.vue';
+  import {ScrollView} from 'tns-core-modules/ui/scroll-view';
 
-    @Component
-    export default class DarkList extends Vue {
-        @Ref('listScrollView') listScrollView;
+  @Component
+  export default class DarkList extends Vue {
+    @Ref('listScrollView') listScrollView;
 
-        menuHandler = {
-            mode: this.$modelManager.map.darkworld.mode
-        };
-        mapHandler = {
-            keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
-            staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
-            locations: this.$modelManager.map.darkworld.locations
-        };
-        scrollTimout = undefined;
-        scrollOffsetY = this.$modelManager.map.darkworld.scrollY;
-        filterList = this.$modelManager.map.darkworld.filterList;
-
-        mounted() {
-            this.$modelManager.validateLocales();
-            this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
-            const sv = this.listScrollView.nativeView;
-            setTimeout(() => {
-                try{
-                    sv.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
-                }catch(err){console.log(err);}
-            }, 300);
-
-        }
-        toggleMode(){
-            this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 0;
-            this.$modelManager.saveMap();
-            this.$navigateTo(DarkMap);
-        }
-        clickCompass(key) {
-            this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
-            this.$modelManager.map.darkworld.centerKey = key;
-            this.$modelManager.saveMap();
-            this.$navigateTo(DarkMap);
-        }
-        clickCheck(key) {
-            this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
-            this.$modelManager.saveMap();
-        }
-        onScroll(args){
-            clearTimeout(this.scrollTimout);
-            this.scrollTimout = setTimeout(() => {
-                this.scrollOffsetY = this.$modelManager.map.darkworld.scrollY = args.scrollY;
-                this.$modelManager.saveMap();
-            }, 300);
-        }
-        getVisible(key) {
-            return ((this.filterList === 3 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-red')
-                || (this.filterList === 2 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-green')
-                || (this.filterList === 1 && this.mapHandler.locations[key].checked)
-                || this.filterList === 0) ? 'visible' : 'collapsed'
-        }
-        setFilterList() {
-            let val = this.filterList;
-            if(val === null || val === undefined){
-                val = 0;
-            }
-            val = val + 1;
-            if(val > 3) {
-                val = 0;
-            }
-            this.filterList = this.$modelManager.map.darkworld.filterList = val;
-            this.$modelManager.saveMap();
-        }
+    menuHandler = {
+      mode: this.$modelManager.map.darkworld.mode
     };
+    mapHandler = {
+      keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
+      staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
+      locations: this.$modelManager.map.darkworld.locations
+    };
+    scrollTimout = undefined;
+    scrollOffsetY = this.$modelManager.map.darkworld.scrollY;
+    filterList = this.$modelManager.map.darkworld.filterList;
+
+    mounted() {
+      this.$modelManager.validateLocales();
+      this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
+      const sv = this.listScrollView.nativeView;
+      setTimeout(() => {
+        try {
+          sv.nativeView.scrollToVerticalOffset(this.scrollOffsetY, false);
+        } catch (err) {
+          console.log(err);
+        }
+      }, 300);
+
+    }
+
+    toggleMode() {
+      this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 0;
+      this.$modelManager.saveMap();
+      this.$navigateTo(DarkMap);
+    }
+
+    clickCompass(key) {
+      this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
+      this.$modelManager.map.darkworld.centerKey = key;
+      this.$modelManager.saveMap();
+      this.$navigateTo(DarkMap);
+    }
+
+    clickCheck(key) {
+      this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+      this.$modelManager.saveMap();
+    }
+
+    onScroll(args) {
+      clearTimeout(this.scrollTimout);
+      this.scrollTimout = setTimeout(() => {
+        this.scrollOffsetY = this.$modelManager.map.darkworld.scrollY = args.scrollY;
+        this.$modelManager.saveMap();
+      }, 300);
+    }
+
+    getVisible(key) {
+      return ((this.filterList === 3 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-red')
+        || (this.filterList === 2 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-green')
+        || (this.filterList === 1 && this.mapHandler.locations[key].checked)
+        || this.filterList === 0) ? 'visible' : 'collapsed'
+    }
+
+    setFilterList() {
+      let val = this.filterList;
+      if (val === null || val === undefined) {
+        val = 0;
+      }
+      val = val + 1;
+      if (val > 3) {
+        val = 0;
+      }
+      this.filterList = this.$modelManager.map.darkworld.filterList = val;
+      this.$modelManager.saveMap();
+    }
+  };
 </script>
 
 <style scoped lang="scss">
