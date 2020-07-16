@@ -10,8 +10,6 @@ import {
   clear
 } from 'tns-core-modules/application-settings';
 
-import {defaultGameSaves} from '@/defaultGameSaves';
-
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
 import {GameSaveHelper} from '@/GameSaveHelper';
 
@@ -20,13 +18,15 @@ import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSet
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
 import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDefaultMap';
 import {InvertedDefaultMap, InvertedMapData} from '@/default-objects/InvertedDefaultMap';
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
 
 export class ModelManager {
   items: DefaultItemsData;
   dungeons: DefaultDungeonsData;
   map: DefaultMapData;
   settings: DefaultSettingsData;
+  gameSaves: DefaultGameSavesData;
 
   appVersion = '0.9.6';
   itemsVersion = '0.0.1';
@@ -36,7 +36,6 @@ export class ModelManager {
   gameSavesVersion = '0.0.1';
 
   sol: StaticObjectLoader;
-  gameSaves: any;
 
   constructor() {
     this.sol = new StaticObjectLoader();
@@ -45,7 +44,7 @@ export class ModelManager {
     this.items = this.validateItemsFromStorage();
     this.dungeons = this.validateDungeonsFromStorage();
     this.map = this.validateMapFromStorage();
-    //this.initEmptyGameSave();
+    this.initEmptyGameSave();
   }
 
   validateItemsFromStorage() : DefaultItemsData{
@@ -95,7 +94,7 @@ export class ModelManager {
     let stored = undefined;
     if (hasKey('map')) {
       try {
-        stored = DefaultMap.fromJSON(getString('map'));
+        stored = this.settings.gameMode == this.sol.STANDARD ? StandardDefaultMap.fromJSON(getString('map')) : InvertedDefaultMap.fromJSON(getString('map'));
         if (stored.version && stored.version === this.mapVersion) {
           retval = stored.data;
           console.log('successfully got map from storage!');
@@ -132,12 +131,12 @@ export class ModelManager {
     return retval;
   }
 
-  validateGameSavesFromStorage() {
-    let retval = JSON.parse(JSON.stringify(defaultGameSaves.data));
+  validateGameSavesFromStorage() :DefaultGameSavesData{
+    let retval = new DefaultGameSavesData();
     let stored = undefined;
     if (hasKey('gameSaves')) {
       try {
-        stored = JSON.parse(getString('gameSaves'));
+        stored = DefaultGameSaves.fromJSON(getString('gameSaves'));
         if (stored.version && stored.version === this.gameSavesVersion) {
           retval = stored.data;
           console.log('successfully got game saves from storage!');
@@ -335,19 +334,17 @@ export class ModelManager {
     if (!id || !itemShuffle || !gameMode) {
       throw new Error('create game failed!');
     }
-    const game = {
-      items: new DefaultItemsData(),
-      dungeons: new DefaultDungeonsData(),
-      map: gameMode == this.sol.STANDARD ? new StandardMapData() : new InvertedMapData(),
-      settings: new DefaultSettingsData(),
-      timestamp: Date.now(),
-      versions: {
-        items: this.itemsVersion,
-        dungeons: this.dungeonsVersion,
-        map: this.mapVersion,
-        settings: this.settingsVersion
-      }
-    };
+    const game = new Game();
+    game.items = new DefaultItemsData();
+    game.dungeons = new DefaultDungeonsData();
+    game.map = gameMode == this.sol.STANDARD ? new StandardMapData() : new InvertedMapData();
+    game.settings = new DefaultSettingsData();
+    game.timestamp = Date.now();
+    game.versions = new GameVersions(
+      this.itemsVersion,
+      this.dungeonsVersion,
+      this.mapVersion,
+      this.settingsVersion);
     game.settings.gameSlot = id;
     game.settings.itemShuffle = itemShuffle;
     game.settings.gameMode = gameMode;
@@ -358,9 +355,9 @@ export class ModelManager {
       game.dungeons[key].chests = staticDungeons[key].maxChests;
     }
     this.gameSaves[id] = game;
-    const d = JSON.parse(JSON.stringify(defaultGameSaves));
+    const d = new DefaultGameSaves();
     d.data = this.gameSaves;
-    setString('gameSaves', JSON.stringify(d));
+    setString('gameSaves', d.toJSONString());
   }
 
   loadGame(id) {
@@ -372,6 +369,7 @@ export class ModelManager {
     this.map = DefaultMapData.fromObject(this.gameSaves[id].map);
     this.dungeons = DefaultDungeonsData.fromObject(this.gameSaves[id].dungeons);
     this.items = DefaultItemsData.fromObject(this.gameSaves[id].items);
+    console.log(JSON.stringify(this.items));
     this.saveSettings();
     this.saveCurrentGame();
   }
@@ -382,9 +380,9 @@ export class ModelManager {
       return;
     }
     this.gameSaves[id] = {};
-    const d = JSON.parse(JSON.stringify(defaultGameSaves));
+    const d = new DefaultGameSaves();
     d.data = this.gameSaves;
-    setString('gameSaves', JSON.stringify(d));
+    setString('gameSaves', d.toJSONString());
   }
 
   allowGameDelete() {
@@ -402,18 +400,18 @@ export class ModelManager {
     const game = this.settings.gameSlot;
     this.gameSaves[game].items = this.items.getCopy();
     this.gameSaves[game].dungeons = this.dungeons.getCopy();
-    this.gameSaves[game].map = JSON.parse(JSON.stringify(this.map));
+    this.gameSaves[game].map = this.map.getCopy();
     this.gameSaves[game].settings = this.settings.getCopy();
     this.gameSaves[game].timestamp = Date.now();
-    this.gameSaves[game].versions = {
-      items: this.itemsVersion,
-      dungeons: this.dungeonsVersion,
-      map: this.mapVersion,
-      settings: this.settingsVersion
-    };
-    const d = JSON.parse(JSON.stringify(defaultGameSaves));
+    this.gameSaves[game].versions = new GameVersions(
+      this.itemsVersion,
+      this.dungeonsVersion,
+      this.mapVersion,
+      this.settingsVersion
+    );
+    const d = new DefaultGameSaves();
     d.data = this.gameSaves;
-    setString('gameSaves', JSON.stringify(d));
+    setString('gameSaves', d.toJSONString());
   }
 
   validateGame(game) { // validate versions are currently acceptable
@@ -421,5 +419,12 @@ export class ModelManager {
       && (game.versions.dungeons === this.dungeonsVersion)
       && (game.versions.map === this.mapVersion)
       && (game.versions.settings === this.settingsVersion);
+  }
+
+  initEmptyGameSave() {
+    if (!this.gameSaves.game0.timestamp) {
+      console.log('init a default game save in game0');
+      this.saveCurrentGame();
+    }
   }
 }
