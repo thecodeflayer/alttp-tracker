@@ -11,19 +11,22 @@ import {
 } from 'tns-core-modules/application-settings';
 
 import {defaultItems} from '@/defaultItems';
-import {defaultDungeons} from '@/defaultDungeons';
+//import {defaultDungeons} from '@/defaultDungeons';
 import {standardDefaultMap} from '@/standard/defaultMap';
 import {invertedDefaultMap} from '@/inverted/defaultMap';
-import {defaultSettings} from '@/defaultSettings';
+import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
 
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
 import {defaultGameSaves} from '@/defaultGameSaves';
 import {GameSaveHelper} from '@/GameSaveHelper';
+import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
 
 export class ModelManager {
   items: any;
-  dungeons: any;
+  dungeons: DefaultDungeonsData;
   map: any;
+  settings: DefaultSettingsData;
+
   appVersion = '0.9.6';
   itemsVersion = '0.0.1';
   dungeonsVersion = '0.0.2';
@@ -33,7 +36,6 @@ export class ModelManager {
 
   sol: StaticObjectLoader;
   gameSaves: any;
-  settings: any;
 
   constructor() {
     this.sol = new StaticObjectLoader();
@@ -42,8 +44,7 @@ export class ModelManager {
     this.items = this.validateItemsFromStorage();
     this.dungeons = this.validateDungeonsFromStorage();
     this.map = this.validateMapFromStorage();
-    this.initEmptyGameSave();
-
+    //this.initEmptyGameSave();
   }
 
   validateItemsFromStorage() {
@@ -67,12 +68,12 @@ export class ModelManager {
     return retval;
   }
 
-  validateDungeonsFromStorage() {
-    let retval = JSON.parse(JSON.stringify(defaultDungeons.data));
+  validateDungeonsFromStorage() :DefaultDungeonsData{
+    let retval = new DefaultDungeonsData();
     let stored = undefined;
     if (hasKey('dungeons')) {
       try {
-        stored = JSON.parse(getString('dungeons'));
+        stored = DefaultDungeons.fromJSON(getString('dungeons'));
         if (stored.version && stored.version === this.dungeonsVersion) {
           retval = stored.data;
           console.log('successfully got dungeons from storage!');
@@ -109,12 +110,12 @@ export class ModelManager {
     return retval;
   }
 
-  validateSettingsFromStorage() {
-    let retval = JSON.parse(JSON.stringify(defaultSettings.data));
+  validateSettingsFromStorage() :DefaultSettingsData{
+    let retval = new DefaultSettingsData();
     let stored = undefined;
     if (hasKey('settings')) {
       try {
-        stored = JSON.parse(getString('settings'));
+        stored = DefaultSettings.fromJSON(getString('settings'));
         if (stored.version && stored.version === this.settingsVersion) {
           retval = stored.data;
           console.log('successfully got settings from storage!');
@@ -201,19 +202,6 @@ export class ModelManager {
     for (const key of dgnKeys) {
       const chests = dungeons[key].maxChests - savedDgn[key].chests;
       retval = retval + chests;
-      // if(key !== 'aga' && key !== 'gt' && savedDgn[key].boss){
-      //     retval = retval +1;
-      // }
-      // retval = retval + savedDgn[key].smallkeys;
-      // if(savedDgn[key].bosskey) {
-      //     retval = retval+1;
-      // }
-      // if(savedDgn[key].compass) {
-      //     retval = retval+1;
-      // }
-      // if(savedDgn[key].map) {
-      //     retval = retval+1;
-      // }
     }
     return retval;
   }
@@ -235,7 +223,7 @@ export class ModelManager {
   }
 
   resetDungeons() {
-    this.dungeons = JSON.parse(JSON.stringify(defaultDungeons.data));
+    this.dungeons = new DefaultDungeonsData();
     const staticDungeons = this.sol.getStaticDungeons(this.settings.gameMode, this.settings.itemShuffle);
     const keys = Object.keys(this.dungeons);
     for (const key of keys) {
@@ -251,6 +239,7 @@ export class ModelManager {
   }
 
   getDungeonKeys() {
+    console.log(Object.keys(this.dungeons));
     return Object.keys(this.dungeons);
   }
 
@@ -272,7 +261,7 @@ export class ModelManager {
   }
 
   saveDungeons() {
-    const d = JSON.parse(JSON.stringify(defaultDungeons));
+    const d = new DefaultDungeons();
     d.data = this.dungeons;
     setString('dungeons', JSON.stringify(d));
     this.saveCurrentGame();
@@ -312,14 +301,15 @@ export class ModelManager {
   }
 
   resetSettings() {
-    this.settings = defaultSettings.data;
+    this.settings = new DefaultSettingsData();
     this.saveSettings();
   }
 
   saveSettings() {
-    const d = JSON.parse(JSON.stringify(defaultSettings));
+    const d = new DefaultSettings();
     d.data = this.settings;
-    setString('settings', JSON.stringify(d));
+    console.log('saving game');
+    setString('settings', d.toJSONString());
     this.saveCurrentGame();
   }
 
@@ -346,15 +336,15 @@ export class ModelManager {
     }
     const game = {
       items: JSON.parse(JSON.stringify(defaultItems.data)),
-      dungeons: JSON.parse(JSON.stringify(defaultDungeons.data)),
+      dungeons: new DefaultDungeonsData(),
       map: JSON.parse(JSON.stringify(gameMode == this.sol.STANDARD ? standardDefaultMap.data : invertedDefaultMap.data)),
-      settings: JSON.parse(JSON.stringify(defaultSettings.data)),
+      settings: new DefaultSettingsData(),
       timestamp: Date.now(),
       versions: {
-        items: JSON.parse(JSON.stringify(this.itemsVersion)),
-        dungeons: JSON.parse(JSON.stringify(this.dungeonsVersion)),
-        map: JSON.parse(JSON.stringify(this.mapVersion)),
-        settings: JSON.parse(JSON.stringify(this.settingsVersion)),
+        items: this.itemsVersion,
+        dungeons: this.dungeonsVersion,
+        map: this.mapVersion,
+        settings: this.settingsVersion
       }
     };
     game.settings.gameSlot = id;
@@ -377,9 +367,9 @@ export class ModelManager {
       console.log('invalid game, cannot load');
       return;
     }
-    this.settings = JSON.parse(JSON.stringify(this.gameSaves[id].settings));
+    this.settings = DefaultSettingsData.fromObject(this.gameSaves[id].settings);
     this.map = JSON.parse(JSON.stringify(this.gameSaves[id].map));
-    this.dungeons = JSON.parse(JSON.stringify(this.gameSaves[id].dungeons));
+    this.dungeons = DefaultDungeonsData.fromObject(this.gameSaves[id].dungeons);
     this.items = JSON.parse(JSON.stringify(this.gameSaves[id].items));
     this.saveSettings();
     this.saveCurrentGame();
@@ -410,15 +400,15 @@ export class ModelManager {
   saveCurrentGame() {
     const game = this.settings.gameSlot;
     this.gameSaves[game].items = JSON.parse(JSON.stringify(this.items));
-    this.gameSaves[game].dungeons = JSON.parse(JSON.stringify(this.dungeons));
+    this.gameSaves[game].dungeons = this.dungeons.getCopy();
     this.gameSaves[game].map = JSON.parse(JSON.stringify(this.map));
-    this.gameSaves[game].settings = JSON.parse(JSON.stringify(this.settings));
+    this.gameSaves[game].settings = this.settings.getCopy();
     this.gameSaves[game].timestamp = Date.now();
     this.gameSaves[game].versions = {
-      items: JSON.parse(JSON.stringify(this.itemsVersion)),
-      dungeons: JSON.parse(JSON.stringify(this.dungeonsVersion)),
-      map: JSON.parse(JSON.stringify(this.mapVersion)),
-      settings: JSON.parse(JSON.stringify(this.settingsVersion)),
+      items: this.itemsVersion,
+      dungeons: this.dungeonsVersion,
+      map: this.mapVersion,
+      settings: this.settingsVersion
     };
     const d = JSON.parse(JSON.stringify(defaultGameSaves));
     d.data = this.gameSaves;
@@ -432,14 +422,14 @@ export class ModelManager {
       && (game.versions.settings === this.settingsVersion);
   }
 
-  initEmptyGameSave() {
-    if (!this.gameSaves.game0.timestamp) {
-      console.log('init from default game saves');
-      if (!this.settings.gameSlot) {
-        this.settings.gameSlot = 'game0';
-      }
-      //game saves loaded from default so init first slot with loaded values
-      this.saveCurrentGame();
-    }
-  }
+  // initEmptyGameSave() {
+  //   if (!this.gameSaves.game0.timestamp) {
+  //     console.log('init from default game saves');
+  //     if (!this.settings.gameSlot) {
+  //       this.settings.gameSlot = 'game0';
+  //     }
+  //     //game saves loaded from default so init first slot with loaded values
+  //     this.saveCurrentGame();
+  //   }
+  // }
 }
