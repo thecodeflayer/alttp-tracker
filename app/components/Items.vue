@@ -6,11 +6,14 @@
         <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
           <Image v-for="(key, index) in itemKeys" v-bind:key="key" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
         </GridLayout>
-        <StackLayout orientation="horizontal" class="item-count">
-          <Image src="~/img/chest.png" width="20" height="20" verticalAlignment="bottom"/>
-          <Label :text="'('+itemCount+'/'+itemMax+')'" verticalAlignment="bottom" style="padding-left:5"/>
-        </StackLayout>
-
+        <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40">
+          <StackLayout row="0" col="0" colSpan="4" orientation="horizontal" class="item-count">
+            <Image src="~/img/chest.png" width="20" height="20" verticalAlignment="bottom"/>
+            <Label :text="'('+itemCount+'/'+itemMax+')'" verticalAlignment="bottom" style="padding-left:5"/>
+          </StackLayout>
+          <Image class="item" row="0" col="4" src="~/img/items/req-crystals1.png" height="32" width="32"/>
+          <Image class="item" row="0" col="5" src="~/img/items/req-ganon1.png" height="32" width="32"/>
+        </GridLayout>
       </StackLayout>
     </ScrollView>
   </Page>
