@@ -30,7 +30,7 @@
 
 <script type="ts">
 
-  import {Component, Vue} from "vue-property-decorator";
+  import {Component, Vue} from 'vue-property-decorator';
 
   @Component
   export default class Items extends Vue {
@@ -49,22 +49,22 @@
         this.itemCount = this.$modelManager.getItemCount();
     }
     getImage(key) {
-      if (typeof this.$modelManager.getItem(key) === "boolean") {
+      if (typeof this.$modelManager.getItem(key) === 'boolean') {
         if (this.$modelManager.getItem(key)){
           return '~/img/items/'+key+'1.png';
         } else {
           return '~/img/items/'+key+'0.png';
         }
-      } else if (typeof this.$modelManager.getItem(key) === "number") {
+      } else if (typeof this.$modelManager.getItem(key) === 'number') {
         return '~/img/items/'+key+this.$modelManager.getItem(key)+'.png';
       } else {
         return '~/img/items/unknown.png';
       }
     }
     clickItem(key) {
-      if (typeof this.$modelManager.getItem(key) === "boolean") {
+      if (typeof this.$modelManager.getItem(key) === 'boolean') {
         this.$modelManager.setItem(key, !this.$modelManager.getItem(key));
-      } else if (typeof this.$modelManager.getItem(key) === "number") {
+      } else if (typeof this.$modelManager.getItem(key) === 'number') {
         let val = this.$modelManager.getItem(key) + 1;
         if(val > this.$sol.getStaticItems(this.$modelManager.getGameMode())[key]) {
           val = 0;
@@ -82,7 +82,7 @@
       }
       return retval;
     }
-  };
+  }
 </script>
 
 <style scoped lang="scss">

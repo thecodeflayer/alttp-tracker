@@ -1,18 +1,19 @@
 module.exports = {
-    'root': true,
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"],
-    "parser": "@typescript-eslint/parser",
+        "plugin:vue/essential"],
+    "parser": "vue-eslint-parser",
     "parserOptions": {
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module"
     },
     "plugins": ["nativescript","@typescript-eslint"],
     "rules": {
-        'indent': [
-            'error',
-            2
-        ],
+        "vue/script-indent": ["error", 2, {
+            "baseIndent": 1,
+            "switchCase": 1,
+            "ignores": []
+        }],
         'linebreak-style': [
             'error',
             'unix'
@@ -31,5 +32,13 @@ module.exports = {
         "@typescript-eslint/brace-style": ["error"],
         "comma-spacing": "off",
         "@typescript-eslint/comma-spacing": ["error"],
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.vue"],
+            "rules": {
+                "indent": "off"
+            }
+        }
+    ]
 };
