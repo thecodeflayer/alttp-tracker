@@ -1,4 +1,4 @@
-import {MapLocation, MapWorld, MapDungeon, MapBoss, DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
 
 export class InvertedDefaultMap extends DefaultMap{
   data = new InvertedMapData();
@@ -12,16 +12,22 @@ export class InvertedDefaultMap extends DefaultMap{
 }
 
 export class InvertedMapData extends DefaultMapData{
-  lightworld = new MapWorld();
-  darkworld = new MapWorld();
   constructor() {
     super();
-    this.darkworld.addLocation('oldMan', new MapLocation());
-    this.darkworld.addDungeon('aga', new MapDungeon());
-    this.darkworld.addBoss('aga',new MapBoss());
-    this.lightworld.addLocation('bumperCave', new MapLocation());
-    this.lightworld.addDungeon('gt', new MapDungeon());
-    this.lightworld.addBoss('gt', new MapBoss());
+    this.darkworld.addLocation('oldMan');
+    this.darkworld.addDungeon('aga');
+    this.darkworld.addBoss('aga');
+    this.lightworld.addLocation('bumperCave');
+    this.lightworld.addDungeon('gt');
+    this.lightworld.addBoss('gt');
+  }
+  static fromObject(obj:any):InvertedMapData {
+    const data = new InvertedMapData();
+    const keys = Object.keys(obj);
+    for(const key of keys){
+      data[key] = obj[key];
+    }
+    return data;
   }
 
 }

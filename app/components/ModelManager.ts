@@ -239,7 +239,6 @@ export class ModelManager {
   }
 
   getDungeonKeys() {
-    console.log(Object.keys(this.dungeons));
     return Object.keys(this.dungeons);
   }
 
@@ -366,10 +365,9 @@ export class ModelManager {
       return;
     }
     this.settings = DefaultSettingsData.fromObject(this.gameSaves[id].settings);
-    this.map = DefaultMapData.fromObject(this.gameSaves[id].map);
+    this.map = this.settings.gameMode == this.sol.STANDARD ? StandardMapData.fromObject(this.gameSaves[id].map) : InvertedMapData.fromObject(this.gameSaves[id].map);
     this.dungeons = DefaultDungeonsData.fromObject(this.gameSaves[id].dungeons);
     this.items = DefaultItemsData.fromObject(this.gameSaves[id].items);
-    console.log(JSON.stringify(this.items));
     this.saveSettings();
     this.saveCurrentGame();
   }

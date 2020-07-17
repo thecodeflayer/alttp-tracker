@@ -12,103 +12,95 @@ export class DefaultMapData {
   lightworld = new MapWorld();
   darkworld = new MapWorld();
   constructor() {
-    this.lightworld.addLocation('uncle', new MapLocation());
-    this.lightworld.addLocation('secretPassage', new MapLocation());
-    this.lightworld.addLocation('backOfEscape', new MapLocation());
-    this.lightworld.addLocation('sahashralaHut', new MapLocation());
-    this.lightworld.addLocation('sahashrala', new MapLocation());
-    this.lightworld.addLocation('potionShop', new MapLocation());
-    this.lightworld.addLocation('zora', new MapLocation());
-    this.lightworld.addLocation('zoraLedge', new MapLocation());
-    this.lightworld.addLocation('waterfallFairy', new MapLocation());
-    this.lightworld.addLocation('pedestal', new MapLocation());
-    this.lightworld.addLocation('kingTomb', new MapLocation());
-    this.lightworld.addLocation('tavern', new MapLocation());
-    this.lightworld.addLocation('chickenHut', new MapLocation());
-    this.lightworld.addLocation('well', new MapLocation());
-    this.lightworld.addLocation('blindhouse', new MapLocation());
-    this.lightworld.addLocation('pegasusRock', new MapLocation());
-    this.lightworld.addLocation('bottleMerchant', new MapLocation());
-    this.lightworld.addLocation('magicBat', new MapLocation());
-    this.lightworld.addLocation('sickKid', new MapLocation());
-    this.lightworld.addLocation('lwHideout', new MapLocation());
-    this.lightworld.addLocation('lumberjackTree', new MapLocation());
-    this.lightworld.addLocation('graveyardLedge', new MapLocation());
-    this.lightworld.addLocation('lwMushroom', new MapLocation());
-    this.lightworld.addLocation('floodChest', new MapLocation());
-    this.lightworld.addLocation('floodTreasure', new MapLocation());
-    this.lightworld.addLocation('linkHouse', new MapLocation());
-    this.lightworld.addLocation('sanctuary', new MapLocation());
-    this.lightworld.addLocation('aginahCave', new MapLocation());
-    this.lightworld.addLocation('moldormCave', new MapLocation());
-    this.lightworld.addLocation('iceRodCave', new MapLocation());
-    this.lightworld.addLocation('hobo', new MapLocation());
-    this.lightworld.addLocation('bombosTablet', new MapLocation());
-    this.lightworld.addLocation('cave45', new MapLocation());
-    this.lightworld.addLocation('checkerCave', new MapLocation());
-    this.lightworld.addLocation('library', new MapLocation());
-    this.lightworld.addLocation('mazeRace', new MapLocation());
-    this.lightworld.addLocation('desertLedge', new MapLocation());
-    this.lightworld.addLocation('lakeIsland', new MapLocation());
-    this.lightworld.addLocation('fluteSpot', new MapLocation());
-    this.lightworld.addLocation('spectacleRockCave', new MapLocation());
-    this.lightworld.addLocation('etherTablet', new MapLocation());
-    this.lightworld.addLocation('spectacleRock', new MapLocation());
-    this.lightworld.addLocation('spiralCave', new MapLocation());
-    this.lightworld.addLocation('mimicCave', new MapLocation());
-    this.lightworld.addLocation('paradoxCave', new MapLocation());
-    this.lightworld.addLocation('floatingIsland', new MapLocation());
+    this.lightworld.addLocation('uncle');
+    this.lightworld.addLocation('secretPassage');
+    this.lightworld.addLocation('backOfEscape');
+    this.lightworld.addLocation('sahashralaHut');
+    this.lightworld.addLocation('sahashrala');
+    this.lightworld.addLocation('potionShop');
+    this.lightworld.addLocation('zora');
+    this.lightworld.addLocation('zoraLedge');
+    this.lightworld.addLocation('waterfallFairy');
+    this.lightworld.addLocation('pedestal');
+    this.lightworld.addLocation('kingTomb');
+    this.lightworld.addLocation('tavern');
+    this.lightworld.addLocation('chickenHut');
+    this.lightworld.addLocation('well');
+    this.lightworld.addLocation('blindhouse');
+    this.lightworld.addLocation('pegasusRock');
+    this.lightworld.addLocation('bottleMerchant');
+    this.lightworld.addLocation('magicBat');
+    this.lightworld.addLocation('sickKid');
+    this.lightworld.addLocation('lwHideout');
+    this.lightworld.addLocation('lumberjackTree');
+    this.lightworld.addLocation('graveyardLedge');
+    this.lightworld.addLocation('lwMushroom');
+    this.lightworld.addLocation('floodChest');
+    this.lightworld.addLocation('floodTreasure');
+    this.lightworld.addLocation('linkHouse');
+    this.lightworld.addLocation('sanctuary');
+    this.lightworld.addLocation('aginahCave');
+    this.lightworld.addLocation('moldormCave');
+    this.lightworld.addLocation('iceRodCave');
+    this.lightworld.addLocation('hobo');
+    this.lightworld.addLocation('bombosTablet');
+    this.lightworld.addLocation('cave45');
+    this.lightworld.addLocation('checkerCave');
+    this.lightworld.addLocation('library');
+    this.lightworld.addLocation('mazeRace');
+    this.lightworld.addLocation('desertLedge');
+    this.lightworld.addLocation('lakeIsland');
+    this.lightworld.addLocation('fluteSpot');
+    this.lightworld.addLocation('spectacleRockCave');
+    this.lightworld.addLocation('etherTablet');
+    this.lightworld.addLocation('spectacleRock');
+    this.lightworld.addLocation('spiralCave');
+    this.lightworld.addLocation('mimicCave');
+    this.lightworld.addLocation('paradoxCave');
+    this.lightworld.addLocation('floatingIsland');
 
-    this.lightworld.addDungeon('ep', new MapDungeon());
-    this.lightworld.addDungeon('dp', new MapDungeon());
-    this.lightworld.addDungeon('toh', new MapDungeon());
+    this.lightworld.addDungeon('ep');
+    this.lightworld.addDungeon('dp');
+    this.lightworld.addDungeon('toh');
 
-    this.lightworld.addBoss('ep',new MapBoss());
-    this.lightworld.addBoss('dp',new MapBoss());
-    this.lightworld.addBoss('toh',new MapBoss());
+    this.lightworld.addBoss('ep');
+    this.lightworld.addBoss('dp');
+    this.lightworld.addBoss('toh');
 
-    this.darkworld.addLocation('superbunnyCave', new MapLocation());
-    this.darkworld.addLocation('hookshotCave', new MapLocation());
-    this.darkworld.addLocation('spikeCave', new MapLocation());
-    this.darkworld.addLocation('catfish', new MapLocation());
-    this.darkworld.addLocation('pyramid', new MapLocation());
-    this.darkworld.addLocation('pyramidFairy', new MapLocation());
-    this.darkworld.addLocation('brewery', new MapLocation());
-    this.darkworld.addLocation('cShapeHouse', new MapLocation());
-    this.darkworld.addLocation('chestGame', new MapLocation());
-    this.darkworld.addLocation('hammerPegs', new MapLocation());
-    this.darkworld.addLocation('blacksmith', new MapLocation());
-    this.darkworld.addLocation('purpleChest', new MapLocation());
-    this.darkworld.addLocation('hypeCave', new MapLocation());
-    this.darkworld.addLocation('stumpy', new MapLocation());
-    this.darkworld.addLocation('diggingGame', new MapLocation());
-    this.darkworld.addLocation('mireShed', new MapLocation());
+    this.darkworld.addLocation('superbunnyCave');
+    this.darkworld.addLocation('hookshotCave');
+    this.darkworld.addLocation('spikeCave');
+    this.darkworld.addLocation('catfish');
+    this.darkworld.addLocation('pyramid');
+    this.darkworld.addLocation('pyramidFairy');
+    this.darkworld.addLocation('brewery');
+    this.darkworld.addLocation('cShapeHouse');
+    this.darkworld.addLocation('chestGame');
+    this.darkworld.addLocation('hammerPegs');
+    this.darkworld.addLocation('blacksmith');
+    this.darkworld.addLocation('purpleChest');
+    this.darkworld.addLocation('hypeCave');
+    this.darkworld.addLocation('stumpy');
+    this.darkworld.addLocation('diggingGame');
+    this.darkworld.addLocation('mireShed');
 
-    this.darkworld.addDungeon('pod', new MapDungeon());
-    this.darkworld.addDungeon('sp', new MapDungeon());
-    this.darkworld.addDungeon('sw', new MapDungeon());
-    this.darkworld.addDungeon('tt', new MapDungeon());
-    this.darkworld.addDungeon('ip', new MapDungeon());
-    this.darkworld.addDungeon('mm', new MapDungeon());
-    this.darkworld.addDungeon('tr', new MapDungeon());
+    this.darkworld.addDungeon('pod');
+    this.darkworld.addDungeon('sp');
+    this.darkworld.addDungeon('sw');
+    this.darkworld.addDungeon('tt');
+    this.darkworld.addDungeon('ip');
+    this.darkworld.addDungeon('mm');
+    this.darkworld.addDungeon('tr');
 
 
-    this.darkworld.addBoss('pod', new MapBoss());
-    this.darkworld.addBoss('sp', new MapBoss());
-    this.darkworld.addBoss('sw', new MapBoss());
-    this.darkworld.addBoss('tt', new MapBoss());
-    this.darkworld.addBoss('ip', new MapBoss());
-    this.darkworld.addBoss('mm', new MapBoss());
-    this.darkworld.addBoss('tr', new MapBoss());
+    this.darkworld.addBoss('pod');
+    this.darkworld.addBoss('sp');
+    this.darkworld.addBoss('sw');
+    this.darkworld.addBoss('tt');
+    this.darkworld.addBoss('ip');
+    this.darkworld.addBoss('mm');
+    this.darkworld.addBoss('tr');
 
-  }
-  static fromObject(obj:any):DefaultMapData {
-    const data = new DefaultMapData();
-    const keys = Object.keys(obj);
-    for(const key of keys){
-      data[key] = obj[key];
-    }
-    return data;
   }
   getCopy(): DefaultMapData {
     return JSON.parse(JSON.stringify(this));
@@ -125,23 +117,16 @@ export class MapWorld {
   locations = {};
   dungeons ={};
   bosses ={};
-  addLocation(key: string, location: MapLocation) {
-    this.locations[key] = location;
+  addLocation(key: string) {
+    this.locations[key] = {
+      klass: 'locale-red',
+      checked: false
+    };
   }
-  addDungeon(key: string, dungeon: MapDungeon) {
-    this.dungeons[key] = dungeon;
+  addDungeon(key: string) {
+    this.dungeons[key] = {klass: 'locale-red'};
   }
-  addBoss(key: string, boss: MapBoss) {
-    this.bosses[key] = boss;
+  addBoss(key: string) {
+    this.bosses[key] = {klass: 'locale-red'};
   }
-}
-export class MapLocation {
-  klass: 'locale-red';
-  checked: false;
-}
-export class MapDungeon {
-  klass: 'locale-red';
-}
-export class MapBoss {
-  klass: 'locale-red';
 }
