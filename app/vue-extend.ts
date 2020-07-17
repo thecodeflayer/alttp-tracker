@@ -1,5 +1,5 @@
 import { Vue } from 'vue-property-decorator';
-import {ModelManager} from '@/components/ModelManager';
+import {ModelManager} from '@/utils/ModelManager';
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
 
 declare module 'vue-property-decorator' {

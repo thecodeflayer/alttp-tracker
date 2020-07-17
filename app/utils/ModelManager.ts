@@ -1,13 +1,7 @@
 import {
-  getBoolean,
-  setBoolean,
-  getNumber,
-  setNumber,
   getString,
   setString,
-  hasKey,
-  remove,
-  clear
+  hasKey
 } from 'tns-core-modules/application-settings';
 
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
@@ -118,6 +112,7 @@ export class ModelManager {
         stored = DefaultSettings.fromJSON(getString('settings'));
         if (stored.version && stored.version === this.settingsVersion) {
           retval = stored.data;
+          console.log('settings game is ', JSON.stringify(retval));
           console.log('successfully got settings from storage!');
         } else {
           console.log('settings versions do not match got:', stored.version, 'wanted:', this.settingsVersion);
@@ -152,12 +147,12 @@ export class ModelManager {
     return retval;
   }
 
-  resetItems() {
+  resetItems() :void{
     this.items = new DefaultItemsData();
     this.saveItems();
   }
 
-  getItems() {
+  getItems() :DefaultItemsData {
     return this.items;
   }
 
