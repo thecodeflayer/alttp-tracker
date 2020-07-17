@@ -1,30 +1,30 @@
-import {invertedRegionHelper} from '@/inverted/regionHelper';
+import {InvertedRegionHelper} from '@/inverted/InvertedRegionHelper';
 
 export const invertedStaticMapDW = {
   superbunnyCave: {x: 1265, y: 223,title: 'Superbunny Cave', itemCount: 2,
     req:[],
     validate(items, dungeons){
-      return invertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
   hookshotCave: {x: 1247, y: 99,title: 'Hookshot Cave', itemCount: 4,
     req:[],
     validate(items, dungeons){
-      return items.hookshot && invertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return items.hookshot && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
   spikeCave: {x: 862, y: 221,title: 'Spike Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.hammer && items.glove > 0 && invertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return items.hammer && items.glove > 0 && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
   catfish: {x: 1341, y: 257,title: 'Catfish', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.glove && invertedRegionHelper.northEastDW(items, dungeons);
+      return items.glove && InvertedRegionHelper.northEastDW(items, dungeons);
     }},
   pyramid: {x: 870, y: 670,title: 'Pyramid', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return invertedRegionHelper.northEastDW(items, dungeons);
+      return InvertedRegionHelper.northEastDW(items, dungeons);
     }},
   pyramidFairy: {x: 703, y: 733,title: 'Pyramid Fairy', itemCount: 2,
     req:[],
@@ -36,7 +36,7 @@ export const invertedStaticMapDW = {
           c = c + 1;
         }
       }
-      return c === 2 && items.mirror && invertedRegionHelper.northEastDW(items, dungeons);
+      return c === 2 && items.mirror && InvertedRegionHelper.northEastDW(items, dungeons);
     }},
   brewery: {x: 163, y: 878,title: 'Brewery', itemCount: 1,
     req:[],
@@ -57,25 +57,25 @@ export const invertedStaticMapDW = {
     req:[],
     validate(items, dungeons){
       return items.hammer && (items.glove === 2
-            || (items.mirror && invertedRegionHelper.northWestLW(items, dungeons)));
+            || (items.mirror && InvertedRegionHelper.northWestLW(items, dungeons)));
     }},
   oldMan: {x: 532, y: 268,title: 'Rescue Old Man', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.lantern
-            && invertedRegionHelper.northWestDW(items, dungeons);
+            && InvertedRegionHelper.northWestDW(items, dungeons);
     }},
   blacksmith: {x: 223, y: 994,title: 'Blacksmith', itemCount: 1,
     req:[],
     validate(items, dungeons) {
-      return (items.glove === 2 || items.mirror) && invertedRegionHelper.northWestLW(items, dungeons);
+      return (items.glove === 2 || items.mirror) && InvertedRegionHelper.northWestLW(items, dungeons);
     }
   },
   purpleChest: {x: 457, y: 802,title: 'Purple Chest', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return ((items.glove === 2 || items.mirror) && invertedRegionHelper.northWestLW(items, dungeons))
-            && invertedRegionHelper.southLW(items, dungeons);
+      return ((items.glove === 2 || items.mirror) && InvertedRegionHelper.northWestLW(items, dungeons))
+            && InvertedRegionHelper.southLW(items, dungeons);
     }},
   hypeCave: {x: 896, y: 1168,title: 'Hype Cave', itemCount: 5,
     req:[],
@@ -95,6 +95,6 @@ export const invertedStaticMapDW = {
   mireShed: {x: 59, y: 1205,title: 'Mire Shed', itemCount: 2,
     req:[],
     validate(items, dungeons){
-      return invertedRegionHelper.mireDW(items, dungeons);
+      return InvertedRegionHelper.mireDW(items, dungeons);
     }},
 };

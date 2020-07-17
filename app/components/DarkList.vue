@@ -47,7 +47,6 @@
 </template>
 
 <script type="ts">
-
   import {Component, Vue, Ref} from 'vue-property-decorator';
   import DarkMap from '@/components/DarkMap.vue';
   import {ScrollView} from 'tns-core-modules/ui/scroll-view';
