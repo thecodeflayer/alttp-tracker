@@ -180,7 +180,6 @@ export class ModelManager {
     const lwKeys = Object.keys(lwMap);
     const savedLW = this.map.lightworld.locations;
     for (const key of lwKeys) {
-      console.log(key, savedLW[key]);
       if (savedLW[key].checked) {
         retval = retval + lwMap[key].itemCount;
       }

@@ -14,10 +14,6 @@ module.exports = {
             "switchCase": 1,
             "ignores": []
         }],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
         'quotes': [
             'error',
             'single'

@@ -3,7 +3,7 @@ export class DefaultMap {
   data: DefaultMapData;
   toJSONString():string{
     throw new Error('override this method.');
-  };
+  }
   static fromJSON(str: string):DefaultMap{
     throw new Error('override this method.');
   }

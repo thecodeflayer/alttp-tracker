@@ -3,12 +3,16 @@ export class InvertedRegionHelper {
   static northEastLW(items, dungeons) {
     return dungeons.aga.boss
             || (items.hammer && items.glove > 0 || items.glove === 2);
-  };
-  static northWestLW(items, dungeons) {return this.northEastLW(items, dungeons); }
-  static southLW(items, dungeons) {return this.northEastLW(items, dungeons); }
+  }
+  static northWestLW(items, dungeons) {
+    return this.northEastLW(items, dungeons);
+  }
+  static southLW(items, dungeons) {
+    return this.northEastLW(items, dungeons);
+  }
   static deathMtnEastLW(items, dungeons) {
     return items.glove === 2 && this.deathMtnWestDW(items, dungeons) && items.moonpearl;
-  };
+  }
   static deathMtnWestLW(items, dungeons) {
     return items.flute || (items.glove > 0 && items.lantern);
   }

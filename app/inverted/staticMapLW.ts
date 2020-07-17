@@ -1,11 +1,11 @@
 import {InvertedRegionHelper} from '@/inverted/InvertedRegionHelper';
 
 export const invertedStaticMapLW = {
-  uncle :{x:894,y:624, title:'Inverted Uncle', itemCount: 1,
+  uncle :{x:894, y:624, title:'Inverted Uncle', itemCount: 1,
     req:[], validate(items, dungeons) {
       return InvertedRegionHelper.northEastLW(items, dungeons);
     }},
-  secretPassage:{x:826,y:644, title:'Secret Passage', itemCount: 1,
+  secretPassage:{x:826, y:644, title:'Secret Passage', itemCount: 1,
     req:[],  validate(items, dungeons) {
       return InvertedRegionHelper.northEastLW(items, dungeons);
     }},

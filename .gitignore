@@ -6,6 +6,7 @@ platforms/
 
 # NativeScript Template
 *.js.map
+app/components/*.vue.js
 !webpack.config.js
 *.css
 

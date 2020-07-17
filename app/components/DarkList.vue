@@ -49,7 +49,6 @@
 <script type="ts">
   import {Component, Vue, Ref} from 'vue-property-decorator';
   import DarkMap from '@/components/DarkMap.vue';
-  import {ScrollView} from 'tns-core-modules/ui/scroll-view';
 
   @Component
   export default class DarkList extends Vue {
@@ -111,7 +110,7 @@
       return ((this.filterList === 3 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-red')
         || (this.filterList === 2 && !this.mapHandler.locations[key].checked && this.mapHandler.locations[key].klass === 'locale-green')
         || (this.filterList === 1 && this.mapHandler.locations[key].checked)
-        || this.filterList === 0) ? 'visible' : 'collapsed'
+        || this.filterList === 0) ? 'visible' : 'collapsed';
     }
 
     setFilterList() {
@@ -126,7 +125,7 @@
       this.filterList = this.$modelManager.map.darkworld.filterList = val;
       this.$modelManager.saveMap();
     }
-  };
+  }
 </script>
 
 <style scoped lang="scss">
