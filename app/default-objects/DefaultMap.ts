@@ -2,11 +2,11 @@ export class DefaultMap {
   version = '0.0.1';
   data: DefaultMapData;
   toJSONString():string{
-    return JSON.stringify(this);
+    throw new Error('override this method.');
   };
   static fromJSON(str: string):DefaultMap{
     throw new Error('override this method.');
-  };
+  }
 }
 export class DefaultMapData {
   lightworld = new MapWorld();

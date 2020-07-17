@@ -2,6 +2,7 @@ import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
 
 export class StandardDefaultMap extends DefaultMap{
   data = new StandardMapData();
+
   toJSONString() :string {
     return JSON.stringify(this);
   }

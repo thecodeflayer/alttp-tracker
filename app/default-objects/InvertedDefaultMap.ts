@@ -2,6 +2,9 @@ import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
 
 export class InvertedDefaultMap extends DefaultMap{
   data = new InvertedMapData();
+  toJSONString():string{
+    return JSON.stringify(this);
+  }
   static fromJSON(str: string) :InvertedDefaultMap {
     const obj = JSON.parse(str);
     const retval =  new InvertedDefaultMap();
