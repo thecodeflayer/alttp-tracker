@@ -1,25 +1,25 @@
-export const standardRegionHelper = {
+export class StandardRegionHelper {
   // light world
-  northEastLW() {return true;},
-  northWestLW() {return true;},
-  southLW() {return true;},
-  deathMtnEastLW(items, dungeons) {
+  static northEastLW() {return true;};
+  static northWestLW() {return true;};
+  static southLW() {return true;};
+  static deathMtnEastLW(items, dungeons) {
     return (items.hookshot && this.deathMtnWestLW(items, dungeons))
-            || (items.hammer && this.toh(items));
-  },
-  deathMtnWestLW(items, dungeons) {
+            || (items.hammer && this.toh(items, dungeons));
+  }
+  static deathMtnWestLW(items, dungeons) {
     return items.flute || (items.glove > 0 && items.lantern);
-  },
+  }
   // dark world
-  mireDW(items, dungeons) {
+  static mireDW(items, dungeons) {
     return items.glove === 2 && items.flute;
-  },
-  northEastDW(items, dungeons) {
+  }
+  static northEastDW(items, dungeons) {
     return dungeons.aga.boss ||
             (items.hammer && items.glove > 0 && items.moonpearl) ||
             (items.glove === 2 && items.moonpearl && items.flippers);
-  },
-  northWestDW(items, dungeons) {
+  }
+  static northWestDW(items, dungeons) {
     return items.moonpearl
             && (this.northEastDW(items, dungeons)
                 && ((items.hookshot
@@ -27,39 +27,39 @@ export const standardRegionHelper = {
                     || items.flippers))
                 || (items.hammer && items.glove > 0)
                 || items.glove === 2);
-  },
-  southDW(items, dungeons) {
+  }
+  static southDW(items, dungeons) {
     return (items.moonpearl && (this.northEastDW(items, dungeons)
             && (items.hammer || items.flippers)))
             || this.northWestDW(items, dungeons);
-  },
-  deathMtnEastDW(items, dungeons) {
+  }
+  static deathMtnEastDW(items, dungeons) {
     return items.glove === 2 && this.deathMtnEastLW(items, dungeons);
-  },
-  deathMtnWestDW(items, dungeons) {
+  }
+  static deathMtnWestDW(items, dungeons) {
     return this.deathMtnWestLW(items, dungeons);
-  },
+  }
   // dungeons
-  dp(items, dungeons) {
+  static dp(items, dungeons) {
     return items.book || (items.mirror && this.mireDW(items, dungeons));
-  },
-  toh(items, dungeons) {
+  }
+  static toh(items, dungeons) {
     return (items.mirror || (items.hookshot && items.hammer))
-            && this.deathMtnWestLW(items);
-  },
-  mm(items, dungeons) {
+            && this.deathMtnWestLW(items, dungeons);
+  }
+  static mm(items, dungeons) {
     const m = (dungeons.mm.medallion === 1 && items.bombos) ||
             (dungeons.mm.medallion === 2 && items.ether) ||
             (dungeons.mm.medallion === 3 && items.quake);
     return m && items.moonpearl && this.mireDW(items, dungeons);
-  },
-  tr(items, dungeons) {
+  }
+  static tr(items, dungeons) {
     const m = (dungeons.tr.medallion === 1 && items.bombos) ||
             (dungeons.tr.medallion === 2 && items.ether) ||
             (dungeons.tr.medallion === 3 && items.quake);
     return m && items.moonpearl && items.redcane && items.hammer && items.glove === 2 && this.deathMtnEastLW(items, dungeons);
-  },
-  gt(items, dungeons) {
+  }
+  static gt(items, dungeons) {
     let c = 0;
     const keys = Object.keys(dungeons);
     for(const key of keys) {

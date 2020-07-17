@@ -87,7 +87,7 @@
 <script type="ts">
   import {Component, Vue, Ref, Prop} from 'vue-property-decorator';
   import SaveList from '@/components/SaveList.vue';
-  import {GameSaveHelper} from '@/GameSaveHelper';
+  import {GameSaveHelper} from '@/utils/GameSaveHelper';
   import {screen} from 'tns-core-modules/platform';
 
   @Component

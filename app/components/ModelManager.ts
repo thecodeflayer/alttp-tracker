@@ -11,7 +11,7 @@ import {
 } from 'tns-core-modules/application-settings';
 
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
-import {GameSaveHelper} from '@/GameSaveHelper';
+import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';

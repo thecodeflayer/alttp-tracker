@@ -30,7 +30,7 @@
 <script type="ts">
   import {Component, Vue, Ref} from 'vue-property-decorator';
   import GameEdit from '@/components/GameEdit.vue';
-  import {GameSaveHelper} from '@/GameSaveHelper'
+  import {GameSaveHelper} from '@/utils/GameSaveHelper'
 
   @Component
   export default class SaveList extends Vue {
