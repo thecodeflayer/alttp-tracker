@@ -2,15 +2,15 @@ import {standardStaticMapLW} from '@/standard/staticMapLW';
 import {standardStaticMapDungeonsLW} from '@/standard/staticMapDungeonsLW';
 import {standardStaticMapDW} from '@/standard/staticMapDW';
 import {standardStaticMapDungeonsDW} from '@/standard/staticMapDungeonsDW';
-import {standardStaticDungeons} from '@/standard/staticDungeons';
-import {standardStaticItems} from '@/standard/staticItems';
+import {StandardStaticDungeons} from '@/standard/StandardStaticDungeons';
+import {StandardStaticItems} from '@/standard/StandardStaticItems';
 
 import {invertedStaticMapLW} from '@/inverted/staticMapLW';
 import {invertedStaticMapDungeonsLW} from '@/inverted/staticMapDungeonsLW';
 import {invertedStaticMapDW} from '@/inverted/staticMapDW';
 import {invertedStaticMapDungeonsDW} from '@/inverted/staticMapDungeonsDW';
-import {invertedStaticDungeons} from '@/inverted/staticDungeons';
-import {invertedStaticItems} from '@/inverted/staticItems';
+import {InvertedStaticDungeons} from '@/inverted/InvertedStaticDungeons';
+import {InvertedStaticItems} from '@/inverted/InvertedStaticItems';
 
 export class StaticObjectLoader {
     STANDARD = 'standard';
@@ -58,9 +58,9 @@ export class StaticObjectLoader {
       if(!iShuff) {throw new Error('itemShuffle value required!');}
       let retval = undefined;
       if(gm === this.STANDARD) {
-        retval = JSON.parse(JSON.stringify(standardStaticDungeons));
+        retval = new StandardStaticDungeons();
       } else if(gm === this.INVERTED){
-        retval = JSON.parse(JSON.stringify(invertedStaticDungeons));
+        retval = new InvertedStaticDungeons();
       }
       if(iShuff === 'standard'){
         return retval;
@@ -95,9 +95,9 @@ export class StaticObjectLoader {
     getStaticItems(gm) {
       if(!gm) {throw new Error('game mode not provided!');}
       if(gm === this.STANDARD) {
-        return standardStaticItems;
+        return new StandardStaticItems();
       } else if(gm === this.INVERTED) {
-        return invertedStaticItems;
+        return new InvertedStaticItems();
       }
     }
 }
