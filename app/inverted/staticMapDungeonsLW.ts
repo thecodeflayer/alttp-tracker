@@ -12,10 +12,10 @@ export const invertedStaticMapDungeonsLW = {
   },
   dp:{x:111, y:1270,
     validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.book;
     },
     validateBoss(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.book
                 && items.glove > 0 && (items.lantern || items.firerod);
     }
   },

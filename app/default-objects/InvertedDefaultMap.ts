@@ -20,6 +20,7 @@ export class InvertedMapData extends DefaultMapData{
     this.darkworld.addLocation('oldMan');
     this.darkworld.addDungeon('aga');
     this.darkworld.addBoss('aga');
+    this.darkworld.addLocation('linkHouse');
     this.lightworld.addLocation('bumperCave');
     this.lightworld.addDungeon('gt');
     this.lightworld.addBoss('gt');

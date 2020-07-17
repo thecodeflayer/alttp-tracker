@@ -6,14 +6,14 @@ export const invertedStaticMapDungeonsDW = {
       return InvertedRegionHelper.northEastDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && InvertedRegionHelper.northEastDW(items, dungeons);
+      return items.hammer && items.bow && InvertedRegionHelper.northEastDW(items, dungeons);
     }}, // palace of darkness
   sp: {x:703, y:1402,
     validate(items, dungeons){
-      return items.flippers && InvertedRegionHelper.southDW(items, dungeons);
+      return items.flippers && items.moonpearl && items.mirror && InvertedRegionHelper.southDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.flippers && InvertedRegionHelper.southDW(items, dungeons);
+      return items.flippers && items.moonpearl && items.mirror && items.hookshot && InvertedRegionHelper.southDW(items, dungeons);
     }}, // swamp palace
   sw: {x:149, y:164,
     validate(items, dungeons){
@@ -31,10 +31,10 @@ export const invertedStaticMapDungeonsDW = {
     }}, // thieves town
   ip: {x:1195, y:1294,
     validate(items, dungeons){
-      return items.firerod && items.flippers && items.glove === 2 && InvertedRegionHelper.southDW(items, dungeons);
+      return items.firerod && items.flippers && InvertedRegionHelper.southDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && items.glove === 2 && items.firerod && items.flippers && InvertedRegionHelper.southDW(items, dungeons);
+      return items.hammer && items.glove > 0 && items.firerod && items.flippers && InvertedRegionHelper.southDW(items, dungeons);
     }}, // ice palace
   mm: {x:110, y:1247,
     validate(items, dungeons){
@@ -52,9 +52,9 @@ export const invertedStaticMapDungeonsDW = {
     }}, // turtle rock
   aga: {x:844, y:35,
     validate(items, dungeons){
-      return InvertedRegionHelper.gt(items, dungeons);
+      return InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return (items.sword > 0 || items.net) && InvertedRegionHelper.gt(items, dungeons);
+      return (items.sword > 0 || items.net) && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }}
 };

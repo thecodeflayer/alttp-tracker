@@ -21,6 +21,10 @@ export const invertedStaticMapDW = {
     validate(items, dungeons){
       return items.glove && InvertedRegionHelper.northEastDW(items, dungeons);
     }},
+  linkHouse: {x:820, y:1037, title:'Bomb Merchant', itemCount: 1,
+    req:[], validate(items, dungeons) {
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+    }},
   pyramid: {x: 870, y: 670, title: 'Pyramid', itemCount: 1,
     req:[],
     validate(items, dungeons){

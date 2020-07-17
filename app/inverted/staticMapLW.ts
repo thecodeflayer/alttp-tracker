@@ -7,20 +7,20 @@ export const invertedStaticMapLW = {
     }},
   secretPassage:{x:826, y:644, title:'Secret Passage', itemCount: 1,
     req:[],  validate(items, dungeons) {
-      return InvertedRegionHelper.northEastLW(items, dungeons);
+      return items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons);
     }},
-  backOfEscape:{x:778,y:439, title:'Escape',
+  backOfEscape:{x:778, y:439, title:'Escape',
     itemCount: 6, req:[],
     validate(items, dungeons) {
       return InvertedRegionHelper.northEastLW(items, dungeons) && items.moonpearl && items.glove > 0;
     }},
-  sahashralaHut:{x:1216,y:660, title:'Sahashrala\'s Hut', itemCount: 3,
+  sahashralaHut:{x:1216, y:660, title:'Sahashrala\'s Hut', itemCount: 3,
     req: [],
     validate(items, dungeons) {
       return InvertedRegionHelper.northEastLW(items, dungeons) && items.moonpearl && items.bombs;
     }
   },
-  sahashrala:{x:1216,y:680, title:'Sahashrala', itemCount: 1,
+  sahashrala:{x:1216, y:680, title:'Sahashrala', itemCount: 1,
     req: [],
     validate(items, dungeons) {
       let retval = false;
@@ -94,152 +94,148 @@ export const invertedStaticMapLW = {
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons) && items.moonpearl && items.bombs;
     }},
-  pegasusRock:{x:595,y:440, title:'Pegasus Rocks', itemCount: 1,
+  pegasusRock:{x:595, y:440, title:'Pegasus Rocks', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons) && items.moonpearl && items.boots;
     }},
-  bottleMerchant: {x:144,y:698, title:'Bottle Merchant (100 Rupees)', itemCount: 1,
+  bottleMerchant: {x:144, y:698, title:'Bottle Merchant (100 Rupees)', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons);
     }},
-  magicBat:{x:486,y:844, title:'Magic Bat', itemCount: 1,
+  magicBat:{x:486, y:844, title:'Magic Bat', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons)
                 && items.powder && items.moonpearl;
     }},
-  sickKid:{x:234,y:807, title:'Sick Kid', itemCount: 1,
+  sickKid:{x:234, y:807, title:'Sick Kid', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons) && items.jar > 0;
     }},
-  lwHideout:{x:283,y:194, title:'Lost Woods Hideout', itemCount: 1,
+  lwHideout:{x:283, y:194, title:'Lost Woods Hideout', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons);
     }
   },
-  lumberjackTree:{x:450,y:110, title:'Lumberjack Tree', itemCount: 1,
+  lumberjackTree:{x:450, y:110, title:'Lumberjack Tree', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons) && dungeons.aga.boss && items.boots;
     }
   },
-  graveyardLedge:{x:855,y:416, title:'Graveyard Ledge', itemCount: 1,
+  graveyardLedge:{x:855, y:416, title:'Graveyard Ledge', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.moonpearl && items.bombs && InvertedRegionHelper.northWestLW(items, dungeons);
     }},
-  lwMushroom:{x:185,y:135, title:'Lost Woods Mushroom Location', itemCount: 1,
+  lwMushroom:{x:185, y:135, title:'Lost Woods Mushroom Location', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons) && items.moonpearl;
     }
   },
-  floodChest:{x:703,y:1405, title:'Floodgate Chest', itemCount: 1,
+  floodChest:{x:703, y:1405, title:'Floodgate Chest', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  floodTreasure:{x:677,y:1394, title:'Floodgate Sunken Treasure', itemCount: 1,
+  floodTreasure:{x:677, y:1394, title:'Floodgate Sunken Treasure', itemCount: 1,
     req:[], validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
-    }},
-  linkHouse: {x:820,y:1037, title:'Bomb Merchant', itemCount: 1,
-    req:[], validate(items, dungeons) {
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
   sanctuary:{x:691, y:410, title:'Sanctuary', itemCount: 1,
     req:[], validate(items, dungeons){
-      return InvertedRegionHelper.northEastLW(items, dungeons);
+      return items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons);
     }},
-  aginahCave: {x:298,y:1242, title:'Aginah Cave', itemCount: 1,
+  aginahCave: {x:298, y:1242, title:'Aginah Cave', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.bombs;
     }},
-  moldormCave: {x:978,y:1412, title:'Mini-Moldorm Cave', itemCount: 5,
+  moldormCave: {x:978, y:1412, title:'Mini-Moldorm Cave', itemCount: 5,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  iceRodCave: {x:1342,y:1160, title:'Ice Rod Cave', itemCount: 1,
+  iceRodCave: {x:1342, y:1160, title:'Ice Rod Cave', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.bombs;
     }},
-  hobo: {x:1059,y:1045, title:'Hobo Under the Bridge', itemCount: 1,
+  hobo: {x:1059, y:1045, title:'Hobo Under the Bridge', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.flippers;
     }},
-  bombosTablet: {x:328,y:1380, title:'Bombos Tablet', itemCount: 1,
+  bombosTablet: {x:328, y:1380, title:'Bombos Tablet', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.book && items.sword > 1 && InvertedRegionHelper.southLW(items, dungeons);
     }},
-  cave45: {x:399,y:1242, title:'Cave 45', itemCount: 1,
+  cave45: {x:399, y:1242, title:'Cave 45', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  checkerCave: {x:263,y:1165, title:'Checkerboard Cave', itemCount: 1,
+  checkerCave: {x:263, y:1165, title:'Checkerboard Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  library: {x:243,y:990, title:'Library', itemCount: 1,
+  library: {x:243, y:990, title:'Library', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.boots;
     }},
-  mazeRace: {x:148,y:1080, title:'Maze Race', itemCount: 1,
+  mazeRace: {x:148, y:1080, title:'Maze Race', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  desertLedge: {x:38,y:1375, title:'Desert Ledge', itemCount: 1,
+  desertLedge: {x:38, y:1375, title:'Desert Ledge', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  lakeIsland: {x:1091,y:1244, title:'Lake Hylia Island', itemCount: 1,
+  lakeIsland: {x:1091, y:1244, title:'Lake Hylia Island', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
     }},
-  fluteSpot: {x:435,y:992, title:'Flute Spot', itemCount: 1,
+  fluteSpot: {x:435, y:992, title:'Flute Spot', itemCount: 1,
     req:[], validate(items, dungeons){
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.shovel;
     }},
-  bumperCave: {x:532,y:268, title:'Bumper Cave', itemCount: 1,
+  bumperCave: {x:532, y:268, title:'Bumper Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.cape && items.moonpearl && items.mirror && InvertedRegionHelper.northEastLW(items, dungeons);
     }},
-  spectacleRockCave: {x:732,y:220, title:'Spectacle Rock Cave', itemCount: 1,
+  spectacleRockCave: {x:732, y:220, title:'Spectacle Rock Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
-  etherTablet: {x:630,y:28, title:'Ether Tablet', itemCount: 1,
+  etherTablet: {x:630, y:28, title:'Ether Tablet', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons)
             && items.book && items.sword > 1 && items.hammer;
     }},
-  spectacleRock: {x:761,y:121, title:'Spectacle Rock', itemCount: 1,
+  spectacleRock: {x:761, y:121, title:'Spectacle Rock', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
-  spiralCave: {x:1195,y:140, title:'Spiral Cave', itemCount: 1,
+  spiralCave: {x:1195, y:140, title:'Spiral Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
-  mimicCave: {x:1266,y:140, title:'Mimic Cave', itemCount: 1,
+  mimicCave: {x:1266, y:140, title:'Mimic Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
     }},
-  paradoxCave: {x:1283,y:222, title:'Paradox Cave', itemCount: 7,
+  paradoxCave: {x:1283, y:222, title:'Paradox Cave', itemCount: 7,
     req:[],
     validate(items, dungeons){
       return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons)
             && items.bombs;
     }},
-  floatingIsland: {x:1220,y:26, title:'Floating Island', itemCount: 1,
+  floatingIsland: {x:1220, y:26, title:'Floating Island', itemCount: 1,
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.deathMtnEastDW(items, dungeons);

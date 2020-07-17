@@ -37,7 +37,6 @@ export class DefaultMapData {
     this.lightworld.addLocation('lwMushroom');
     this.lightworld.addLocation('floodChest');
     this.lightworld.addLocation('floodTreasure');
-    this.lightworld.addLocation('linkHouse');
     this.lightworld.addLocation('sanctuary');
     this.lightworld.addLocation('aginahCave');
     this.lightworld.addLocation('moldormCave');

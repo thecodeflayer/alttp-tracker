@@ -6,14 +6,14 @@ export const standardStaticMapDungeonsDW = {
       return items.moonpearl && StandardRegionHelper.northEastDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && items.moonpearl && StandardRegionHelper.northEastDW(items, dungeons);
+      return items.hammer && items.moonpearl && items.bow && StandardRegionHelper.northEastDW(items, dungeons);
     }}, // palace of darkness
   sp: {x:703, y:1402,
     validate(items, dungeons){
       return items.flippers && items.moonpearl && items.mirror && StandardRegionHelper.southDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.flippers && items.moonpearl && items.mirror && StandardRegionHelper.southDW(items, dungeons);
+      return items.flippers && items.moonpearl && items.mirror && items.hookshot && StandardRegionHelper.southDW(items, dungeons);
     }}, // swamp palace
   sw: {x:149, y:164,
     validate(items, dungeons){

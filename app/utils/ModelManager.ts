@@ -91,7 +91,6 @@ export class ModelManager {
         stored = this.settings.gameMode == this.sol.STANDARD ? StandardDefaultMap.fromJSON(getString('map')) : InvertedDefaultMap.fromJSON(getString('map'));
         if (stored.version && stored.version === this.mapVersion) {
           retval = stored.data;
-          console.log('map', retval.lightworld.locations);
           console.log('successfully got map from storage!');
         } else {
           console.log('map versions do not match got:', stored.version, 'wanted:', this.mapVersion);
@@ -113,7 +112,6 @@ export class ModelManager {
         stored = DefaultSettings.fromJSON(getString('settings'));
         if (stored.version && stored.version === this.settingsVersion) {
           retval = stored.data;
-          console.log('settings game is ', JSON.stringify(retval));
           console.log('successfully got settings from storage!');
         } else {
           console.log('settings versions do not match got:', stored.version, 'wanted:', this.settingsVersion);

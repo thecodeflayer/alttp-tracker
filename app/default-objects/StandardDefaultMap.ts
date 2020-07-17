@@ -20,6 +20,7 @@ export class StandardMapData extends DefaultMapData{
     this.lightworld.addLocation('oldMan');
     this.lightworld.addDungeon('aga');
     this.lightworld.addBoss('aga');
+    this.lightworld.addLocation('linkHouse');
     this.darkworld.addLocation('bumperCave');
     this.darkworld.addDungeon('gt');
     this.darkworld.addBoss('gt');
