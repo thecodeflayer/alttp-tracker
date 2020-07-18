@@ -34,4 +34,5 @@ export class InvertedMapData extends DefaultMapData{
     return data;
   }
 
+
 }

@@ -61,6 +61,22 @@
         const val = this[id+'Field'].nativeView.text;
         console.log(val);
         setString(id, val);
+        if(id === 'settings') {
+          console.log('loading settings');
+          this.$modelManager.validateSettingsFromStorage();
+        } else if(id === 'items') {
+          console.log('loading items');
+          this.$modelManager.validateItemsFromStorage();
+        } else if(id === 'dungeons') {
+          console.log('loading dungeons');
+          this.$modelManager.validateDungeonsFromStorage();
+        } else if(id === 'map') {
+          console.log('loading map');
+          this.$modelManager.validateMapFromStorage();
+        } else if(id === 'gameSaves') {
+          console.log('loading game saves');
+          this.$modelManager.validateGameSavesFromStorage();
+        }
       } else {
         console.log(id+'Field', 'not found!');
       }
