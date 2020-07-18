@@ -26,9 +26,11 @@ export class DefaultSettingsData {
 
   static fromObject(obj:any):DefaultSettingsData {
     const data = new DefaultSettingsData();
-    const keys = Object.keys(obj);
+    const keys = Object.keys(data);
     for(const key of keys){
-      data[key] = obj[key];
+      if(obj[key]) {
+        data[key] = obj[key];
+      }
     }
     return data;
   }

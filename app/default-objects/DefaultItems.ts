@@ -47,9 +47,11 @@ export class DefaultItemsData {
 
   static fromObject(obj:any):DefaultItemsData {
     const data = new DefaultItemsData();
-    const keys = Object.keys(obj);
+    const keys = Object.keys(data);
     for(const key of keys){
-      data[key] = obj[key];
+      if(obj[key]) {
+        data[key] = obj[key];
+      }
     }
     return data;
   }

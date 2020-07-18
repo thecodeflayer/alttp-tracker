@@ -6,15 +6,17 @@
       <Label row="2" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center"
              :text="'Version: '+appVersion"/>
       <Button row="3" col="0" class="btn" @tap="mailme">Email Me!</Button>
+      <Button row="4" col="0" class="btn" @tap="navDebugger">Debugger</Button>
 
     </GridLayout>
   </Page>
 </template>
 
 <script type="ts">
-  import {Component, Vue, Ref} from 'vue-property-decorator';
+  import {Component, Vue} from 'vue-property-decorator';
   import SaveList from '@/components/SaveList.vue';
   import {openUrl} from 'tns-core-modules/utils/utils';
+  import Debugger from '@/components/Debugger.vue';
 
   @Component
   export default class Settings extends Vue {
@@ -22,6 +24,9 @@
     appVersion = this.$modelManager.appVersion;
     navSaveList() {
       this.$navigateTo(SaveList);
+    }
+    navDebugger() {
+      this.$navigateTo(Debugger);
     }
     mailme() {
       openUrl('mailto:alttp@codeflayer.com');
