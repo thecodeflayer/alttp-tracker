@@ -27,7 +27,7 @@
   import GameEditModal from '@/components/GameEditModal.vue';
 
   @Component
-  export default class GameEdit extends Vue {
+  export default class GameEditLoaded extends Vue {
 
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;

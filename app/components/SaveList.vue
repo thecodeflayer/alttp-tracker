@@ -29,10 +29,11 @@
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import GameEdit from '@/components/GameEdit.vue';
   import GameEditValid from '@/components/GameEditValid.vue';
   import GameEditLoaded from '@/components/GameEditLoaded.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import GameEditInvalid from '@/components/GameEditInvalid.vue';
+  import GameEditEmpty from '@/components/GameEditEmpty.vue';
 
   @Component
   export default class SaveList extends Vue {
@@ -50,8 +51,10 @@
         this.$navigateTo(GameEditValid);
       } else if (game.loaded && game.valid) {
         this.$navigateTo(GameEditLoaded);
-      } else {
-        this.$navigateTo(GameEdit);
+      } else if (game.timestamp && !game.valid) {
+        this.$navigateTo(GameEditInvalid);
+      } else if(!game.timestamp) {
+        this.$navigateTo(GameEditEmpty);
       }
     }
   }

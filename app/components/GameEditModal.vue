@@ -1,6 +1,4 @@
 <template>
-  <Page backgroundColor="black">
-    <Navbar></Navbar>
     <ScrollView>
       <StackLayout orientation="vertical" class="modal-dialog">
         <Label :visibility="modalAction === 'deleteGame' ? 'visible':'collapsed'" textWrap="true"
@@ -20,15 +18,13 @@
         <Button class="btn invalid" @tap="closeModal(false)">Cancel</Button>
       </StackLayout>
     </ScrollView>
-
-  </Page>
 </template>
 
 <script type="ts">
   import {Component, Vue, Prop} from 'vue-property-decorator';
 
   @Component
-  export default class GameEdit extends Vue {
+  export default class GameEditModal extends Vue {
     @Prop({type: String, default: ''}) modalAction;
     game = this.$modelManager.editGame;
 
