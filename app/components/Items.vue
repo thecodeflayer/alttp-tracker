@@ -8,7 +8,8 @@
         </GridLayout>
         <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="80">
           <StackLayout orientation="vertical" row="0" col="0" colSpan="3" height="80" paddingTop="4" paddingLeft="10">
-            <StackLayout :visibility="goal === 'triforce' ? 'visible':'collapsed'" orientation="horizontal" class="item-count" height="32" horizontalAlignment="left">
+            <StackLayout :visibility="goal === 'triforce' ? 'visible':'collapsed'" orientation="horizontal" class="item-count" height="32"
+                         horizontalAlignment="left" @tap="clickTriforce">
               <Image src="~/img/items/triforce.png" width="20" height="20" verticalAlignment="center" />
               <Label :text="'('+triforceCount+'/'+triforceGoal+')'" verticalAlignment="center" style="padding-left:5"/>
             </StackLayout>
@@ -18,7 +19,9 @@
             </StackLayout>
           </StackLayout>
           <Image class="item" row="0" col="3" height="32" width="32" verticalAlignment="top"
-                 :src="goal === 'triforce' ? '~/img/items/triforce.png' : goal === 'pedestal' ? '~/img/items/pedestal.png' : '~/img/items/ganon.png'"/>
+                 :src="goal === 'triforce' ? '~/img/items/triforce.png' : goal === 'pedestal'
+                 ? '~/img/items/pedestal.png' : goal === 'fastGanon' ? '~/img/items/fast-ganon.png'
+                 : goal === 'allDungeons' ? '~/img/items/all-dungeons.png' : '~/img/items/ganon.png'" />
           <Image class="item" row="0" col="4" :src="'~/img/items/req-crystals'+openGT+'.png'" height="32" width="32" verticalAlignment="top"/>
           <Image class="item" row="0" col="5" :src="'~/img/items/req-ganon'+openGanon+'.png'" height="32" width="32" verticalAlignment="top"/>
         </GridLayout>
@@ -72,6 +75,14 @@
       }
       this.items[key] = this.getImage(key);
       this.$modelManager.validateLocales();
+    }
+    clickTriforce(){
+      this.$modelManager.settings.triforceCount++;
+      if(this.$modelManager.settings.triforceCount > this.$modelManager.settings.triforceGoal) {
+        this.$modelManager.settings.triforceCount = 0;
+      }
+      this.triforceCount = this.$modelManager.settings.triforceCount;
+      this.$modelManager.saveSettings();
     }
     getAllImages() {
       const retval = {};
