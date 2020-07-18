@@ -1,13 +1,15 @@
 <template>
   <Page backgroundColor="black">
     <Navbar></Navbar>
-    <GridLayout columns="*" , rows="50,50,50,50,50" style="margin-top:10">
+    <GridLayout columns="*" , rows="50,50,50,50,50,50" style="margin-top:10">
       <Button row="0" col="0" class="btn" @tap="navSaveList">Saved Games</Button>
       <Label row="2" col="0" class="lbl" horizontalAlignment="center" verticalAlignment="center"
              :text="'Version: '+appVersion"/>
-      <Button row="3" col="0" class="btn" @tap="mailme">Email Me!</Button>
-      <Button row="4" col="0" class="btn" @tap="navDebugger">Debugger</Button>
-
+      <Button row="3" col="0" class="btn" @tap="navFAQ">FAQ Page</Button>
+      <Button row="4" col="0" class="btn" @tap="mailme">Email Me!</Button>
+      <!--
+      <Button row="5" col="0" class="btn" @tap="navDebugger">Debugger</Button>
+      -->
     </GridLayout>
   </Page>
 </template>
@@ -30,6 +32,9 @@
     }
     mailme() {
       openUrl('mailto:alttp@codeflayer.com');
+    }
+    navFAQ(){
+      openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md');
     }
   }
 </script>
