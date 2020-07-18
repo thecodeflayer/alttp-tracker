@@ -63,19 +63,19 @@
         setString(id, val);
         if(id === 'settings') {
           console.log('loading settings');
-          this.$modelManager.validateSettingsFromStorage();
+          this.$modelManager.settings = this.$modelManager.validateSettingsFromStorage();
         } else if(id === 'items') {
           console.log('loading items');
-          this.$modelManager.validateItemsFromStorage();
+          this.$modelManager.items = this.$modelManager.validateItemsFromStorage();
         } else if(id === 'dungeons') {
           console.log('loading dungeons');
-          this.$modelManager.validateDungeonsFromStorage();
+          this.$modelManager.dungeons = this.$modelManager.validateDungeonsFromStorage();
         } else if(id === 'map') {
           console.log('loading map');
-          this.$modelManager.validateMapFromStorage();
+          this.$modelManager.map = this.$modelManager.validateMapFromStorage();
         } else if(id === 'gameSaves') {
           console.log('loading game saves');
-          this.$modelManager.validateGameSavesFromStorage();
+          this.$modelManager.gameSaves = this.$modelManager.validateGameSavesFromStorage();
         }
       } else {
         console.log(id+'Field', 'not found!');

@@ -29,9 +29,11 @@ export class DefaultDungeonsData {
 
   static fromObject(obj:any):DefaultDungeonsData {
     const data = new DefaultDungeonsData();
-    const keys = Object.keys(obj);
+    const keys = Object.keys(data);
     for(const key of keys){
-      data[key] = obj[key];
+      if(obj[key]) {
+        data[key].setFromObject(obj[key]);
+      }
     }
     return data;
   }
@@ -66,5 +68,13 @@ export class Dungeon {
     this.bosskey = bosskey;
     this.smallkeys = smallkeys;
     this.medallion = medallion;
+  }
+  setFromObject(obj:any): void{
+    const keys = Object.keys(this);
+    for(const key of keys) {
+      if(obj[key]) {
+        this[key] = obj[key];
+      }
+    }
   }
 }

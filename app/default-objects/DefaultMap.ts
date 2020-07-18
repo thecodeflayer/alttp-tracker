@@ -128,4 +128,5 @@ export class MapWorld {
   addBoss(key: string) {
     this.bosses[key] = {klass: 'locale-red'};
   }
+
 }

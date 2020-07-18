@@ -2,8 +2,8 @@ import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
 import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
-import {InvertedMapData} from "@/default-objects/InvertedDefaultMap";
-import {StandardMapData} from "@/default-objects/StandardDefaultMap";
+import {InvertedMapData} from '@/default-objects/InvertedDefaultMap';
+import {StandardMapData} from '@/default-objects/StandardDefaultMap';
 
 export class DefaultGameSaves {
   version = '0.0.1';
@@ -30,9 +30,11 @@ export class DefaultGameSavesData {
 
   static fromObject(obj:any):DefaultGameSavesData {
     const data = new DefaultGameSavesData();
-    const keys = Object.keys(obj);
+    const keys = Object.keys(data);
     for(const key of keys){
-      data[key] = Game.fromObject(obj[key]);
+      if(obj[key]) {
+        data[key] = Game.fromObject(obj[key]);
+      }
     }
     return data;
   }

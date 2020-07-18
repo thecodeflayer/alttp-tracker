@@ -50,6 +50,7 @@ export class ModelManager {
         stored = DefaultItems.fromJSON(getString('items'));
         if (stored.version && stored.version === this.itemsVersion) {
           retval = stored.data;
+          console.log('tunic:', retval.tunic);
           console.log('successfully got items from storage!');
         } else {
           console.log('item versions do not match got:', stored.version, 'wanted:', this.itemsVersion);
@@ -210,11 +211,13 @@ export class ModelManager {
     }
   }
 
-  saveItems() {
+  saveItems(skipGameSave?:boolean) {
     const d = new DefaultItems();
     d.data = this.items;
     setString('items', d.toJSONString());
-    this.saveCurrentGame();
+    if(!skipGameSave){
+      this.saveCurrentGame();
+    }
   }
 
   resetDungeons() {
@@ -254,11 +257,13 @@ export class ModelManager {
     this.saveDungeons();
   }
 
-  saveDungeons() {
+  saveDungeons(skipGameSave?:boolean) {
     const d = new DefaultDungeons();
     d.data = this.dungeons;
     setString('dungeons', d.toJSONString());
-    this.saveCurrentGame();
+    if(!skipGameSave){
+      this.saveCurrentGame();
+    }
   }
 
   resetMap() {
@@ -266,11 +271,13 @@ export class ModelManager {
     this.saveMap();
   }
 
-  saveMap() {
+  saveMap(skipGameSave?:boolean) {
     const d = this.settings.gameMode == this.sol.STANDARD ? new StandardDefaultMap() : new InvertedDefaultMap();
     d.data = this.map;
     setString('map', d.toJSONString());
-    this.saveCurrentGame();
+    if(!skipGameSave){
+      this.saveCurrentGame();
+    }
   }
 
   validateLocales() {
@@ -299,12 +306,14 @@ export class ModelManager {
     this.saveSettings();
   }
 
-  saveSettings() {
+  saveSettings(skipGameSave?:boolean) {
     const d = new DefaultSettings();
     d.data = this.settings;
     console.log('saving game');
     setString('settings', d.toJSONString());
-    this.saveCurrentGame();
+    if(!skipGameSave) {
+      this.saveCurrentGame();
+    }
   }
 
   getGameMode() {
@@ -410,6 +419,10 @@ export class ModelManager {
     );
     const d = new DefaultGameSaves();
     d.data = this.gameSaves;
+    this.saveSettings(true);
+    this.saveItems(true);
+    this.saveDungeons(true);
+    this.saveMap(true);
     setString('gameSaves', d.toJSONString());
   }
 

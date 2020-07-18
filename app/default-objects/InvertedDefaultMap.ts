@@ -25,12 +25,27 @@ export class InvertedMapData extends DefaultMapData{
     this.lightworld.addDungeon('gt');
     this.lightworld.addBoss('gt');
   }
+  private static fromObjectHelper(data: InvertedMapData, obj: any, world: string, mapkey: string) {
+    const keys = Object.keys(data[world][mapkey]);
+    for(const key of keys) {
+      if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
+        data[world][mapkey][key] = obj[world][mapkey][key];
+      }
+    }
+  }
+
   static fromObject(obj:any):InvertedMapData {
     const data = new InvertedMapData();
-    const keys = Object.keys(obj);
-    for(const key of keys){
-      data[key] = obj[key];
-    }
+    //do locations
+    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'locations');
+    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'locations');
+    //do dungeons
+    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'dungeons');
+    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'dungeons');
+    //do bosses
+    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
+    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
+
     return data;
   }
 

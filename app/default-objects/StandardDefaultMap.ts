@@ -25,12 +25,27 @@ export class StandardMapData extends DefaultMapData{
     this.darkworld.addDungeon('gt');
     this.darkworld.addBoss('gt');
   }
+  private static fromObjectHelper(data: StandardMapData, obj: any, world: string, mapkey: string) {
+    const keys = Object.keys(data[world][mapkey]);
+    for(const key of keys) {
+      if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
+        data[world][mapkey][key] = obj[world][mapkey][key];
+      }
+    }
+  }
+
   static fromObject(obj:any):StandardMapData {
     const data = new StandardMapData();
-    const keys = Object.keys(obj);
-    for(const key of keys){
-      data[key] = obj[key];
-    }
+    //do locations
+    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'locations');
+    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'locations');
+    //do dungeons
+    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'dungeons');
+    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'dungeons');
+    //do bosses
+    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
+    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
+
     return data;
   }
 }
