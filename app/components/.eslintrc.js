@@ -28,6 +28,8 @@ module.exports = {
         "@typescript-eslint/brace-style": ["error"],
         "comma-spacing": "off",
         "@typescript-eslint/comma-spacing": ["error"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     },
     "overrides": [
         {

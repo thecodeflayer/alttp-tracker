@@ -5,7 +5,7 @@ import {
 } from 'tns-core-modules/application-settings';
 
 import {StaticObjectLoader} from '@/components/StaticObjectLoader';
-import {GameSaveHelper} from '@/utils/GameSaveHelper';
+import {GameEditObj, GameSaveHelper} from '@/utils/GameSaveHelper';
 
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
@@ -21,6 +21,7 @@ export class ModelManager {
   map: DefaultMapData;
   settings: DefaultSettingsData;
   gameSaves: DefaultGameSavesData;
+  editGame: GameEditObj;
 
   appVersion = '0.9.6';
   itemsVersion = '0.0.1';
@@ -322,9 +323,9 @@ export class ModelManager {
     }
   }
 
-  createGame(id, itemShuffle, gameMode) {
-    console.log(id, itemShuffle, gameMode);
-    if (!id || !itemShuffle || !gameMode) {
+  createGame(id, itemShuffle, gameMode, goal, triforceGoal, openGT, openGanon) {
+    console.log(id, itemShuffle, gameMode, goal);
+    if (!id || !itemShuffle || !gameMode || !goal) {
       throw new Error('create game failed!');
     }
     const game = new Game();
@@ -341,6 +342,10 @@ export class ModelManager {
     game.settings.gameSlot = id;
     game.settings.itemShuffle = itemShuffle;
     game.settings.gameMode = gameMode;
+    game.settings.goal = goal;
+    game.settings.triforceGoal = triforceGoal;
+    game.settings.openGT = openGT;
+    game.settings.openGanon = openGanon;
     const staticDungeons = this.sol.getStaticDungeons(game.settings.gameMode, game.settings.itemShuffle);
     const keys = Object.keys(game.dungeons);
     for (const key of keys) {
@@ -351,6 +356,7 @@ export class ModelManager {
     const d = new DefaultGameSaves();
     d.data = this.gameSaves;
     setString('gameSaves', d.toJSONString());
+    this.editGame = GameSaveHelper.parseGameSaves(this)[id];
   }
 
   loadGame(id) {
@@ -371,10 +377,11 @@ export class ModelManager {
       console.log('cannot delete game');
       return;
     }
-    this.gameSaves[id] = {};
+    this.gameSaves[id] = new Game();
     const d = new DefaultGameSaves();
     d.data = this.gameSaves;
     setString('gameSaves', d.toJSONString());
+    this.editGame = GameSaveHelper.parseGameSaves(this)[id];
   }
 
   allowGameDelete() {
