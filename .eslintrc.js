@@ -7,11 +7,14 @@ module.exports = {
     "parserOptions": {
         "sourceType": "module"
     },
-    "plugins": ["nativescript","@typescript-eslint"],
+    "plugins": [
+        "nativescript",
+        "@typescript-eslint",
+    ],
     "rules": {
-        'indent': [
-            'error',
-            2
+        '@typescript-eslint/indent': [
+          'error',
+           2
         ],
         'quotes': [
             'error',
