@@ -47,10 +47,7 @@ export class InvertedRegionHelper {
     return m && items.moonpearl && this.mireDW(items, dungeons);
   }
   static tr(items, dungeons) {
-    const m = (dungeons.tr.medallion === 1 && items.bombos) ||
-            (dungeons.tr.medallion === 2 && items.ether) ||
-            (dungeons.tr.medallion === 3 && items.quake);
-    return m && items.moonpearl && items.redcane && items.hammer && items.glove === 2 && this.deathMtnEastLW(items, dungeons);
+    return this.deathMtnEastDW(items, dungeons);
   }
   static gt(items, dungeons) {
     let c = 0;

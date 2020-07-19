@@ -187,12 +187,12 @@ export const invertedStaticMapLW = {
   desertLedge: {x:38, y:1375, title:'Desert Ledge', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.book;
     }},
   lakeIsland: {x:1091, y:1244, title:'Lake Hylia Island', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.flippers;
     }},
   fluteSpot: {x:435, y:992, title:'Flute Spot', itemCount: 1,
     req:[], validate(items, dungeons){
