@@ -50,7 +50,6 @@ export class ModelManager {
         stored = DefaultItems.fromJSON(getString('items'));
         if (stored.version && stored.version === this.itemsVersion) {
           retval = stored.data;
-          console.log('tunic:', retval.tunic);
           console.log('successfully got items from storage!');
         } else {
           console.log('item versions do not match got:', stored.version, 'wanted:', this.itemsVersion);

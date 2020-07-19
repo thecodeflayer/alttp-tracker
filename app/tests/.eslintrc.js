@@ -1,5 +1,8 @@
 module.exports = {
-  "env": {"jasmine": true},
+  "env": {
+    "node": true,
+    "jasmine": true
+  },
   "extends": [
     "plugin:jasmine/recommended"],
   "plugins": [
@@ -14,6 +17,7 @@ module.exports = {
       'error',
       'always'
     ],
+    '@typescript-eslint/no-var-requires': 'off',
     'space-before-function-paren': ['error', 'never'],
   }
 };

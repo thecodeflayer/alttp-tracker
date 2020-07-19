@@ -35,7 +35,7 @@ module.exports = {
         {
             "files": ["*.vue"],
             "rules": {
-                "indent": "off"
+                "@typescript-eslint/indent": "off"
             }
         }
     ]

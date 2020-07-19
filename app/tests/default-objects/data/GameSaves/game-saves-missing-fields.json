@@ -1,0 +1,536 @@
+{
+  "version": "0.0.1",
+  "data": {
+    "game1": {
+      "timestamp": 1595073896963,
+      "items": {
+        "bow": 0,
+        "boomerang": 0,
+        "hookshot": false,
+        "bombs": false,
+        "powder": false,
+        "mushroom": false,
+        "firerod": false,
+        "icerod": false,
+        "bombos": false,
+        "ether": false,
+        "quake": false,
+        "shovel": false,
+        "lantern": false,
+        "hammer": false,
+        "flute": false,
+        "net": false,
+        "book": false,
+        "moonpearl": false,
+        "jar": 0,
+        "redcane": false,
+        "bluecane": false,
+        "cape": false,
+        "mirror": false,
+        "glove": 0,
+        "boots": false,
+        "flippers": false,
+        "halfmagic": false,
+        "sword": 0,
+        "shield": 0,
+        "tunic": 0
+      },
+      "dungeons": {
+        "ep": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 3,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "dp": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 2,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "toh": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 2,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "aga": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 0,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "pod": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 5,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "sp": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 6,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "sw": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 2,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "tt": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 4,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "ip": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 3,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "mm": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 2,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "tr": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 5,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        },
+        "gt": {
+          "boss": false,
+          "crystal": 0,
+          "chests": 20,
+          "map": false,
+          "compass": false,
+          "bosskey": false,
+          "smallkeys": 0,
+          "medallion": 0
+        }
+      },
+      "map": {
+        "lightworld": {
+          "mode": 0,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "scrollY": 0,
+          "filterList": 0,
+          "locations": {
+            "uncle": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "secretPassage": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "backOfEscape": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "sahashralaHut": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "sahashrala": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "potionShop": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "zora": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "zoraLedge": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "waterfallFairy": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "pedestal": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "kingTomb": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "tavern": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "chickenHut": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "well": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "blindhouse": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "pegasusRock": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "bottleMerchant": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "magicBat": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "sickKid": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "lwHideout": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "lumberjackTree": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "graveyardLedge": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "lwMushroom": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "floodChest": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "floodTreasure": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "sanctuary": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "aginahCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "moldormCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "iceRodCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "hobo": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "bombosTablet": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "cave45": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "checkerCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "library": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "mazeRace": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "desertLedge": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "lakeIsland": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "fluteSpot": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "spectacleRockCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "etherTablet": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "spectacleRock": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "spiralCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "mimicCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "paradoxCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "floatingIsland": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "oldMan": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "linkHouse": {
+              "klass": "locale-red",
+              "checked": false
+            }
+          },
+          "dungeons": {
+            "ep": {
+              "klass": "locale-red"
+            },
+            "dp": {
+              "klass": "locale-red"
+            },
+            "toh": {
+              "klass": "locale-red"
+            },
+            "aga": {
+              "klass": "locale-red"
+            }
+          },
+          "bosses": {
+            "ep": {
+              "klass": "locale-red"
+            },
+            "dp": {
+              "klass": "locale-red"
+            },
+            "toh": {
+              "klass": "locale-red"
+            },
+            "aga": {
+              "klass": "locale-red"
+            }
+          }
+        },
+        "darkworld": {
+          "mode": 0,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "scrollY": 0,
+          "filterList": 0,
+          "locations": {
+            "superbunnyCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "hookshotCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "spikeCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "catfish": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "pyramid": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "pyramidFairy": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "brewery": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "cShapeHouse": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "chestGame": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "hammerPegs": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "blacksmith": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "purpleChest": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "hypeCave": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "stumpy": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "diggingGame": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "mireShed": {
+              "klass": "locale-red",
+              "checked": false
+            },
+            "bumperCave": {
+              "klass": "locale-red",
+              "checked": false
+            }
+          },
+          "dungeons": {
+            "pod": {
+              "klass": "locale-red"
+            },
+            "sp": {
+              "klass": "locale-red"
+            },
+            "sw": {
+              "klass": "locale-red"
+            },
+            "tt": {
+              "klass": "locale-red"
+            },
+            "ip": {
+              "klass": "locale-red"
+            },
+            "mm": {
+              "klass": "locale-red"
+            },
+            "tr": {
+              "klass": "locale-red"
+            },
+            "gt": {
+              "klass": "locale-red"
+            }
+          },
+          "bosses": {
+            "pod": {
+              "klass": "locale-red"
+            },
+            "sp": {
+              "klass": "locale-red"
+            },
+            "sw": {
+              "klass": "locale-red"
+            },
+            "tt": {
+              "klass": "locale-red"
+            },
+            "ip": {
+              "klass": "locale-red"
+            },
+            "mm": {
+              "klass": "locale-red"
+            },
+            "tr": {
+              "klass": "locale-red"
+            },
+            "gt": {
+              "klass": "locale-red"
+            }
+          }
+        }
+      },
+      "settings": {
+        "gameMode": "standard",
+        "itemShuffle": "standard",
+        "gameSlot": "game0",
+        "goal": "ganon",
+        "openGT": 7,
+        "openGanon": 7,
+        "triforceGoal": 20,
+        "triforceCount": 0
+      },
+      "versions": {
+        "items": "0.0.1",
+        "dungeons": "0.0.2",
+        "map": "0.0.1",
+        "settings": "0.0.1"
+      }
+    }
+  }
+}
