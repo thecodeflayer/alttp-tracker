@@ -12,14 +12,16 @@ export class StandardStaticMapDW {
     req:['items/hookshot1', 'items/moonpearl1', 'items/glove2',
       'and', 'lp', 'items/flute1', 'or', 'items/lantern1', 'rp'],
     validate(items, dungeons){
-      return items.hookshot && items.moonpearl && StandardRegionHelper.deathMtnEastDW(items, dungeons);
+      return (items.hookshot || items.boots) && items.moonpearl && StandardRegionHelper.deathMtnEastDW(items, dungeons);
     }};
   spikeCave = {x: 862, y: 221, title: 'Spike Cave', itemCount: 1,
     req:['items/hammer1', 'items/moonpearl1', 'items/glove2',
       'lp', 'items/hookshot1', 'or', 'items/mirror1', 'rp',
       'and', 'lp', 'items/flute1', 'or', 'items/lantern1', 'rp'],
     validate(items, dungeons){
-      return items.hammer && items.moonpearl && StandardRegionHelper.deathMtnEastDW(items, dungeons);
+      return (items.jar > 0 || items.halfmagic) && items.hammer
+        && items.glove>0 && items.moonpearl && (items.cape || items.bluecane)
+        && StandardRegionHelper.deathMtnWestDW(items, dungeons);
     }};
   catfish = {x: 1341, y: 257, title: 'Catfish', itemCount: 1,
     req:['items/moonpearl1', 'items/glove1', 'and',
@@ -80,19 +82,19 @@ export class StandardStaticMapDW {
     req:['items/moonpearl1', 'and', 'lp', 'items/hammer1', 'or', 'items/flippers1', 'rp', 'and',
       'lp', 'items/glove1', 'or', 'dungeons/aga_boss0', 'rp'],
     validate(items, dungeons){
-      return items.moonpearl && items.hookshot && items.glove > 0 && items.cape
+      return items.moonpearl && items.glove > 0 && items.cape
             &&StandardRegionHelper.northWestDW(items, dungeons);
     }};
   blacksmith = {x: 223, y: 994, title: 'Blacksmith', itemCount: 1,
     req:['items/mirror1', 'items/moonpearl1', 'items/glove2'],
     validate(items, dungeons){
-      return items.mirror && items.moonpearl && items.glove === 2
+      return items.moonpearl && items.glove === 2
             && StandardRegionHelper.northWestDW(items, dungeons);
     }};
   purpleChest = {x: 457, y: 802, title: 'Purple Chest', itemCount: 1,
     req:['items/mirror1', 'items/moonpearl1', 'items/glove2'],
     validate(items, dungeons){
-      return items.mirror && items.moonpearl && items.glove === 2
+      return items.moonpearl && items.glove === 2
             && StandardRegionHelper.northWestDW(items, dungeons);
     }};
   hypeCave = {x: 896, y: 1168, title: 'Hype Cave', itemCount: 5,

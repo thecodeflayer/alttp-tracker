@@ -23,7 +23,8 @@ export class StandardRegionHelper {
   static northEastDW(items, dungeons) {
     return dungeons.aga.boss ||
             (items.hammer && items.glove > 0 && items.moonpearl) ||
-            (items.glove === 2 && items.moonpearl && items.flippers);
+            (items.glove === 2 && items.moonpearl &&
+            (items.hammer || items.flippers));
   }
   static northWestDW(items, dungeons) {
     return items.moonpearl
