@@ -1,6 +1,6 @@
 import { Vue } from 'vue-property-decorator';
 import {ModelManager} from '@/utils/ModelManager';
-import {StaticObjectLoader} from '@/components/StaticObjectLoader';
+import {StaticObjectLoader} from '@/utils/StaticObjectLoader';
 
 declare module 'vue-property-decorator' {
     interface Vue {

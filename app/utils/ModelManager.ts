@@ -4,7 +4,7 @@ import {
   hasKey
 } from 'tns-core-modules/application-settings';
 
-import {StaticObjectLoader} from '@/components/StaticObjectLoader';
+import {StaticObjectLoader} from '@/utils/StaticObjectLoader';
 import {GameEditObj, GameSaveHelper} from '@/utils/GameSaveHelper';
 
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
