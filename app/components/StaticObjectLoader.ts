@@ -5,10 +5,10 @@ import {StandardStaticMapDungeonsDW} from '@/standard/StandardStaticMapDungeonsD
 import {StandardStaticDungeons} from '@/standard/StandardStaticDungeons';
 import {StandardStaticItems} from '@/standard/StandardStaticItems';
 
-import {invertedStaticMapLW} from '@/inverted/staticMapLW';
-import {invertedStaticMapDungeonsLW} from '@/inverted/staticMapDungeonsLW';
-import {invertedStaticMapDW} from '@/inverted/staticMapDW';
-import {invertedStaticMapDungeonsDW} from '@/inverted/staticMapDungeonsDW';
+import {InvertedStaticMapLW} from '@/inverted/InvertedStaticMapLW';
+import {InvertedStaticMapDungeonsLW} from '@/inverted/InvertedStaticMapDungeonsLW';
+import {InvertedStaticMapDW} from '@/inverted/InvertedStaticMapDW';
+import {InvertedStaticMapDungeonsDW} from '@/inverted/InvertedStaticMapDungeonsDW';
 import {InvertedStaticDungeons} from '@/inverted/InvertedStaticDungeons';
 import {InvertedStaticItems} from '@/inverted/InvertedStaticItems';
 
@@ -28,7 +28,7 @@ export class StaticObjectLoader {
     if(gm === this.STANDARD){
       return new StandardStaticMapLW();
     } else if(gm === this.INVERTED) {
-      return invertedStaticMapLW;
+      return new InvertedStaticMapLW();
     }
   }
   getStaticMapDungeonsLW(gm) {
@@ -38,7 +38,7 @@ export class StaticObjectLoader {
     if(gm === this.STANDARD){
       return new StandardStaticMapDungeonsLW();
     } else if(gm === this.INVERTED){
-      return invertedStaticMapDungeonsLW;
+      return new InvertedStaticMapDungeonsLW();
     }
   }
   getStaticMapDW(gm) {
@@ -48,7 +48,7 @@ export class StaticObjectLoader {
     if(gm === this.STANDARD) {
       return new StandardStaticMapDW();
     } else if(gm === this.INVERTED){
-      return invertedStaticMapDW;
+      return new InvertedStaticMapDW();
     }
   }
   getStaticMapDungeonsDW(gm) {
@@ -58,7 +58,7 @@ export class StaticObjectLoader {
     if(gm === this.STANDARD) {
       return new StandardStaticMapDungeonsDW();
     } else if(gm === this.INVERTED){
-      return invertedStaticMapDungeonsDW;
+      return new InvertedStaticMapDungeonsDW();
     }
   }
   getStaticDungeons(gm, iShuff) {
