@@ -170,7 +170,77 @@ describe('StaticMapLW', () => {
     ['waterfallFairy', false, {}, {}],
     ['waterfallFairy', true, {flippers:true}, {}],
 
+    ['mimicCave', false, {}, {}],
+    ['mimicCave', false, {bombos:true}, {}],
+    ['mimicCave', false, {ether:true}, {}],
+    ['mimicCave', false, {quake:true}, {}],
+
+    ['spiralCave', false, {}, {}],
+    ['spiralCave', false, {glove:1, lantern:true, mirror:true}, {}],
+    ['spiralCave', false, {glove:1, hookshot:true}, {}],
+    ['spiralCave', false, {flute:true, mirror:true}, {}],
+    ['spiralCave', true, {flute:true, hookshot: true}, {}],
+    ['spiralCave', true, {glove:1, lantern:true, hookshot:true}, {}],
+    ['spiralCave', true, {glove:2, lantern:true, hookshot:true}, {}],
+    ['spiralCave', true, {glove:1, lantern:true, mirror:true, hammer:true}, {}],
+    ['spiralCave', true, {glove:2, lantern:true, mirror:true, hammer:true}, {}],
+    ['spiralCave', true, {flute:true, mirror:true, hammer:true}, {}],
+
+    ['paradoxCave', false, {}, {}],
+    ['paradoxCave', false, {glove:1, lantern:true, mirror:true}, {}],
+    ['paradoxCave', false, {glove:1, hookshot:true}, {}],
+    ['paradoxCave', false, {flute:true, mirror:true}, {}],
+    ['paradoxCave', false, {flute:true, hammer:true}, {}],
+    ['paradoxCave', true, {flute:true, hookshot: true}, {}],
+    ['paradoxCave', true, {glove:1, lantern: true, hookshot: true}, {}],
+    ['paradoxCave', true, {glove:2, lantern: true, hookshot: true}, {}],
+    ['paradoxCave', true, {glove:1, lantern:true, mirror:true, hammer:true}, {}],
+    ['paradoxCave', true, {glove:2, lantern:true, mirror:true, hammer:true}, {}],
+    ['paradoxCave', true, {flute:true, mirror:true, hammer:true}, {}],
+
+    ['etherTablet', false, {}, {}],
+    ['etherTablet', false, {flute:true, mirror:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {flute:true, mirror:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {flute:true, mirror:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {flute:true, mirror:true, book:true, sword:4}, {}],
+    ['etherTablet', false, {glove:1, lantern:true, mirror:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, mirror:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, mirror:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, mirror:true, book:true, sword:4}, {}],
+    ['etherTablet', false, {glove:2, lantern:true, mirror:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, mirror:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, mirror:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, mirror:true, book:true, sword:4}, {}],
+    ['etherTablet', false, {flute:true, hammer:true, hookshot:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {flute:true, hammer:true, hookshot:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {flute:true, hammer:true, hookshot:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {flute:true, hammer:true, hookshot:true, book:true, sword:4}, {}],
+    ['etherTablet', false, {glove:1, lantern:true, hammer:true, hookshot:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, hammer:true, hookshot:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, hammer:true, hookshot:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {glove:1, lantern:true, hammer:true, hookshot:true, book:true, sword:4}, {}],
+    ['etherTablet', false, {glove:2, lantern:true, hammer:true, hookshot:true, book:true, sword:1}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, hammer:true, hookshot:true, book:true, sword:2}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, hammer:true, hookshot:true, book:true, sword:3}, {}],
+    ['etherTablet', true, {glove:2, lantern:true, hammer:true, hookshot:true, book:true, sword:4}, {}],
+
+    ['oldMan', false, {}, {}],
+    ['oldMan', true, {flute:true, lantern:true}, {}],
+    ['oldMan', true, {glove:1, lantern:true}, {}],
+    ['oldMan', true, {glove:2, lantern: true}, {}],
+
+    ['spectacleRockCave', false, {}, {}],
+    ['spectacleRockCave', true, {flute:true}, {}],
+    ['spectacleRockCave', true, {glove:1, lantern:true}, {}],
+    ['spectacleRockCave', true, {glove:2, lantern:true}, {}],
+
+    ['spectacleRock', false, {}, {}],
+    ['spectacleRock', true, {flute:true, mirror:true}, {}],
+    ['spectacleRock', true, {glove:1, lantern: true, mirror:true}, {}],
+    ['spectacleRock', true, {glove:2, lantern: true, mirror: true}, {}],
+
     //negative tests
+
     ['pedestal', false, {}, {}, true],
     ['kingTomb', false, {boots:false}, {}, true],
     ['pegasusRock', false, {boots:false}, {}, true],
@@ -200,9 +270,39 @@ describe('StaticMapLW', () => {
     ['zoraLedge', false, {flippers:false}, {}, true],
     ['fluteSpot', false, {shovel:false}, {}, true],
     ['waterfallFairy', false, {flippers:false}, {}, true],
-  ];
+    ['mimicCave', true, {ether:true}, {tr:{medallion:2}}, true],
+    ['mimicCave', true, {bombos:true}, {tr:{medallion:1}}, true],
+    ['mimicCave', true, {quake:true}, {tr:{medallion:3}}, true],
+    ['mimicCave', false, {ether:true, glove:0, flute:false}, {tr:{medallion:2}}, true],
+    ['mimicCave', false, {ether:true, hammer:false}, {tr:{medallion:2}}, true],
+    ['mimicCave', false, {ether:true, mirror:false}, {tr:{medallion:2}}, true],
+    ['mimicCave', false, {ether:true, moonpearl:false}, {tr:{medallion:2}}, true],
+    ['mimicCave', false, {ether:true, redcane:false}, {tr:{medallion:2}}, true],
 
-  const negTests = [];
+    ['spiralCave', false, {glove:0, flute:false}, {}, true],
+    ['spiralCave', false, {mirror:false, hammer:false, hookshot: false}, {}, true],
+    ['spiralCave', false, {mirror:false, hookshot: false}, {}, true],
+    ['spiralCave', false, {hammer:false, hookshot:false}, {}, true],
+
+    ['paradoxCave', false, {glove:0, flute:false}, {}, true],
+    ['paradoxCave', false, {mirror:false, hammer:false, hookshot: false}, {}, true],
+    ['paradoxCave', false, {mirror:false, hookshot: false}, {}, true],
+    ['paradoxCave', false, {hammer:false, hookshot: false}, {}, true],
+
+    ['etherTablet', false, {glove:0, flute:false}, {}, true],
+    ['etherTablet', false, {lantern:false, flute:false}, {}, true],
+    ['etherTablet', false, {mirror:false, hookshot: false}, {}, true],
+    ['etherTablet', false, {mirror:false, hammer: false}, {}, true],
+    ['etherTablet', false, {sword:0}, {}, true],
+    ['etherTablet', false, {book:false}, {}, true],
+
+    ['oldMan', false, {glove:0, flute:false}, {}, true],
+    ['oldMan', false, {lantern:false}, {}, true],
+
+    ['spectacleRockCave', false, {glove:0, flute:false}, {}, true],
+    ['spectacleRock', false, {glove:0, flute:false}, {}, true],
+    ['spectacleRock', false, {mirror:false}, {}, true],
+  ];
 
   tests.forEach((test)=> {
     const items =  test[2];
@@ -212,7 +312,7 @@ describe('StaticMapLW', () => {
     const location = new StandardStaticMapLW()[test[0]];
     const itemKeys = Object.keys(test[2]);
     const dungeonKeys = Object.keys(test[3]);
-    it('should'+(isNeg?' negative ':'')+'test location access for '+test[0]+' with '+
+    it('should'+(isNeg?' negative':'')+' test location access for '+test[0]+' with '+
       (itemKeys.length>0 ? ('items '+stringifyItem(items)): 'no items')+' and '+
       (dungeonKeys.length>0 ? ('dungeons '+stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
       const itemsObj = new DefaultItemsData();

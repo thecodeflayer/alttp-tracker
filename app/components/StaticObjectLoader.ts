@@ -1,6 +1,6 @@
 import {StandardStaticMapLW} from '@/standard/StandardStaticMapLW';
 import {standardStaticMapDungeonsLW} from '@/standard/staticMapDungeonsLW';
-import {standardStaticMapDW} from '@/standard/staticMapDW';
+import {StandardStaticMapDW} from '@/standard/StandardStaticMapDW';
 import {standardStaticMapDungeonsDW} from '@/standard/staticMapDungeonsDW';
 import {StandardStaticDungeons} from '@/standard/StandardStaticDungeons';
 import {StandardStaticItems} from '@/standard/StandardStaticItems';
@@ -46,7 +46,7 @@ export class StaticObjectLoader {
       throw new Error('game mode not provided!');
     }
     if(gm === this.STANDARD) {
-      return standardStaticMapDW;
+      return new StandardStaticMapDW();
     } else if(gm === this.INVERTED){
       return invertedStaticMapDW;
     }
