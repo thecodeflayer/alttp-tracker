@@ -1,8 +1,14 @@
 export class StandardRegionHelper {
   // light world
-  static northEastLW() {return true;};
-  static northWestLW() {return true;};
-  static southLW() {return true;};
+  static northEastLW() {
+    return true;
+  }
+  static northWestLW() {
+    return true;
+  }
+  static southLW() {
+    return true;
+  }
   static deathMtnEastLW(items, dungeons) {
     return (items.hookshot && this.deathMtnWestLW(items, dungeons))
             || (items.hammer && this.toh(items, dungeons));
@@ -69,4 +75,4 @@ export class StandardRegionHelper {
     }
     return c === 7 && items.moonpearl && this.deathMtnEastDW(items, dungeons);
   }
-};
+}
