@@ -2,7 +2,7 @@ import {StandardStaticMapDW} from '~/standard/StandardStaticMapDW';
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 
-describe('StaticMapDW', () => {
+describe('StandardStaticMapDW', () => {
 
   const tests = [
     ['mireShed', false, {}, {}],

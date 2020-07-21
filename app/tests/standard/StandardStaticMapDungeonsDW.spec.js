@@ -3,7 +3,7 @@ import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 import {DefaultSettingsData} from '~/default-objects/DefaultSettings';
 
-describe('StaticMapDuneonsDW', () => {
+describe('StandardStaticMapDuneonsDW', () => {
 
   const tests = [
     ['pod', false, {}, {}],

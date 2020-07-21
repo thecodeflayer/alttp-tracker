@@ -2,7 +2,7 @@ import {StandardStaticMapLW} from '~/standard/StandardStaticMapLW';
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 
-describe('StaticMapLW', () => {
+describe('StandardStaticMapLW', () => {
 
   const tests = [
     ['pedestal', false, {}, {}],

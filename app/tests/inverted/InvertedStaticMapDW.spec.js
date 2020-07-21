@@ -2,7 +2,7 @@ import {InvertedStaticMapDW} from '~/inverted/InvertedStaticMapDW';
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 
-describe('StaticMapDW', () => {
+describe('InvertedStaticMapDW', () => {
 
   const tests = [
     ['mireShed', false, {}, {}],
