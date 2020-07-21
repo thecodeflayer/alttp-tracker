@@ -3,7 +3,7 @@ import {InvertedRegionHelper} from '@/inverted/InvertedRegionHelper';
 export class InvertedStaticMapLW {
   uncle = {x:894, y:624, title:'Inverted Uncle', itemCount: 1,
     req:[], validate(items, dungeons) {
-      return InvertedRegionHelper.northEastLW(items, dungeons);
+      return items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons);
     }};
   secretPassage = {x:826, y:644, title:'Secret Passage', itemCount: 1,
     req:[],  validate(items, dungeons) {
@@ -106,7 +106,7 @@ export class InvertedStaticMapLW {
     req:[],
     validate(items, dungeons){
       return InvertedRegionHelper.northWestLW(items, dungeons)
-                && items.powder && items.moonpearl;
+                && items.hammer && items.powder && items.moonpearl;
     }};
   sickKid = {x:234, y:807, title:'Sick Kid', itemCount: 1,
     req:[], validate(items, dungeons){
@@ -115,12 +115,12 @@ export class InvertedStaticMapLW {
   lwHideout = {x:283, y:194, title:'Lost Woods Hideout', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return InvertedRegionHelper.northWestLW(items, dungeons);
+      return items.moonpearl && InvertedRegionHelper.northWestLW(items, dungeons);
     }
   };
   lumberjackTree = {x:450, y:110, title:'Lumberjack Tree', itemCount: 1,
     req:[], validate(items, dungeons){
-      return InvertedRegionHelper.northWestLW(items, dungeons) && dungeons.aga.boss && items.boots;
+      return InvertedRegionHelper.northWestLW(items, dungeons) && dungeons.aga.boss && items.boots && items.moonpearl;
     }
   };
   graveyardLedge = {x:855, y:416, title:'Graveyard Ledge', itemCount: 1,
@@ -174,7 +174,7 @@ export class InvertedStaticMapLW {
   checkerCave = {x:263, y:1165, title:'Checkerboard Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.glove>0;
     }};
   library = {x:243, y:990, title:'Library', itemCount: 1,
     req:[], validate(items, dungeons){
@@ -182,7 +182,7 @@ export class InvertedStaticMapLW {
     }};
   mazeRace = {x:148, y:1080, title:'Maze Race', itemCount: 1,
     req:[], validate(items, dungeons){
-      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.bombs;
     }};
   desertLedge = {x:38, y:1375, title:'Desert Ledge', itemCount: 1,
     req:[],
@@ -206,38 +206,38 @@ export class InvertedStaticMapLW {
   spectacleRockCave = {x:732, y:220, title:'Spectacle Rock Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return InvertedRegionHelper.deathMtnWestLW(items, dungeons);
     }};
   etherTablet = {x:630, y:28, title:'Ether Tablet', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons)
+      return items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons)
             && items.book && items.sword > 1 && items.hammer;
     }};
   spectacleRock = {x:761, y:121, title:'Spectacle Rock', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons);
     }};
   spiralCave = {x:1195, y:140, title:'Spiral Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons);
     }};
   mimicCave = {x:1266, y:140, title:'Mimic Cave', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return items.hammer && items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons);
     }};
   paradoxCave = {x:1283, y:222, title:'Paradox Cave', itemCount: 7,
     req:[],
     validate(items, dungeons){
-      return items.moonpearl && InvertedRegionHelper.deathMtnEastDW(items, dungeons)
+      return items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons)
             && items.bombs;
     }};
   floatingIsland = {x:1220, y:26, title:'Floating Island', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+      return InvertedRegionHelper.deathMtnEastLW(items, dungeons);
     }};
 }

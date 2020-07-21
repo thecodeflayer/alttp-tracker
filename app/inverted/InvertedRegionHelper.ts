@@ -11,7 +11,9 @@ export class InvertedRegionHelper {
     return this.northEastLW(items, dungeons);
   }
   static deathMtnEastLW(items, dungeons) {
-    return items.glove === 2 && this.deathMtnWestDW(items, dungeons) && items.moonpearl;
+    return (items.glove === 2 && this.deathMtnEastDW(items, dungeons))
+      || (this.deathMtnWestLW(items, dungeons)
+      && items.moonpearl && items.hookshot);
   }
   static deathMtnWestLW(items, dungeons) {
     return this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern);
@@ -30,8 +32,8 @@ export class InvertedRegionHelper {
     return true;
   }
   static deathMtnEastDW(items, dungeons) {
-    return this.deathMtnWestDW(items, dungeons)
-            || (items.mirror && items.moonpearl && items.hookshot && this.deathMtnEastLW(items, dungeons));
+    return (this.deathMtnWestDW(items, dungeons))
+      || (items.mirror && items.moonpearl && items.hookshot && this.deathMtnWestLW(items, dungeons));
   }
   static deathMtnWestDW(items, dungeons) {
     return (this.activeFlute(items, dungeons) && this.northWestLW(items, dungeons)) || (items.glove > 0 && items.lantern);
