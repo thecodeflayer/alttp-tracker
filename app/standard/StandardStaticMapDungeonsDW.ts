@@ -6,14 +6,15 @@ export class StandardStaticMapDungeonsDW {
       return items.moonpearl && StandardRegionHelper.northEastDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && items.moonpearl && items.bow && StandardRegionHelper.northEastDW(items, dungeons);
+      return items.hammer && items.moonpearl && items.bow > 0
+        && (items.lantern || items.firerod) && StandardRegionHelper.northEastDW(items, dungeons);
     }}; // palace of darkness
   sp = {x:703, y:1402,
     validate(items, dungeons){
       return items.flippers && items.moonpearl && items.mirror && StandardRegionHelper.southDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.flippers && items.moonpearl && items.mirror && items.hookshot && StandardRegionHelper.southDW(items, dungeons);
+      return items.flippers && items.moonpearl && items.mirror && items.hookshot && items.hammer && StandardRegionHelper.southDW(items, dungeons);
     }}; // swamp palace
   sw = {x:149, y:164,
     validate(items, dungeons){
@@ -31,10 +32,10 @@ export class StandardStaticMapDungeonsDW {
     }}; // thieves town
   ip = {x:1195, y:1294,
     validate(items, dungeons){
-      return items.firerod && items.moonpearl && items.flippers && items.glove === 2 && StandardRegionHelper.southDW(items, dungeons);
+      return (items.firerod || items.bombos) && items.moonpearl && items.flippers && items.glove === 2 && StandardRegionHelper.southDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && items.glove === 2 && items.firerod && items.moonpearl && items.flippers && StandardRegionHelper.southDW(items, dungeons);
+      return items.hammer && items.glove === 2 && (items.firerod || items.bombos) && items.moonpearl && items.flippers && StandardRegionHelper.southDW(items, dungeons);
     }}; // ice palace
   mm = {x:110, y:1247,
     validate(items, dungeons){
