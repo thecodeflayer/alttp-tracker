@@ -52,10 +52,12 @@ export class StandardStaticMapDungeonsDW {
       return items.firerod && items.icerod && StandardRegionHelper.tr(items, dungeons);
     }}; // turtle rock
   gt = {x:844, y:35,
-    validate(items, dungeons){
-      return StandardRegionHelper.gt(items, dungeons);
+    validate(items, dungeons, settings){
+      return StandardRegionHelper.gt(items, dungeons, settings);
     },
-    validateBoss(items, dungeons){
-      return (items.sword > 0 || items.net) && StandardRegionHelper.gt(items, dungeons);
+    validateBoss(items, dungeons, settings){
+      return (items.sword > 0 || items.net) && items.bow > 0
+        && (items.lantern || items.firerod)
+        && StandardRegionHelper.gt(items, dungeons, settings);
     }};
 }

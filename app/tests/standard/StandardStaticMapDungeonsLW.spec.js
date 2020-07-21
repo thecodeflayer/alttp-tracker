@@ -190,4 +190,5 @@ function stringifyDungeon(obj) {
   for(const key of keys) {
     retval = retval + key+'['+stringifyItem(obj[key])+'] ';
   }
+  return retval;
 }

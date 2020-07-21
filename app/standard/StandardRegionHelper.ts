@@ -66,7 +66,7 @@ export class StandardRegionHelper {
             (dungeons.tr.medallion === 3 && items.quake);
     return m && items.moonpearl && items.redcane && items.hammer && items.glove === 2 && this.deathMtnEastLW(items, dungeons);
   }
-  static gt(items, dungeons) {
+  static gt(items, dungeons, settings) {
     let c = 0;
     const keys = Object.keys(dungeons);
     for(const key of keys) {
@@ -74,6 +74,6 @@ export class StandardRegionHelper {
         c = c +1;
       }
     }
-    return c === 7 && items.moonpearl && this.deathMtnEastDW(items, dungeons);
+    return (c >= settings.openGT && items.moonpearl && this.deathMtnEastDW(items, dungeons));
   }
 }

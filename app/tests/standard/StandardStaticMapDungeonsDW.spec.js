@@ -1,8 +1,9 @@
 import {StandardStaticMapDungeonsDW} from '~/standard/StandardStaticMapDungeonsDW';
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
+import {DefaultSettingsData} from '~/default-objects/DefaultSettings';
 
-describe('StaticMapDuneonsLW', () => {
+fdescribe('StaticMapDuneonsDW', () => {
 
   const tests = [
     ['pod', false, {}, {}],
@@ -45,6 +46,37 @@ describe('StaticMapDuneonsLW', () => {
     ['ip', true, {moonpearl: true, flippers: true, glove:2, firerod: true}, {}],
     ['ip', true, {moonpearl: true, flippers: true, glove:2, bombos: true}, {}],
 
+    ['mm', false, {}, {}],
+    ['mm', false, {glove:1}, {}, true],
+    ['mm', false, {moonpearl: false}, {}, true],
+    ['mm', false, {flute:false}, {}, true],
+    ['mm', true, {glove:2, moonpearl: true, flute: true, bombos: true}, {mm:{medallion:1}}],
+    ['mm', true, {glove:2, moonpearl: true, flute: true, ether: true}, {mm:{medallion:2}}],
+    ['mm', true, {glove:2, moonpearl: true, flute: true, quake: true}, {mm:{medallion:3}}],
+
+    ['tr', false, {}, {}],
+    ['tr', false, {glove:1}, {}, true],
+    ['tr', false, {moonpearl:false}, {}, true],
+    ['tr', false, {hammer:false}, {}, true],
+    ['tr', false, {redcane:false}, {}, true],
+    ['tr', true, {flute:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, bombos: true}, {tr:{medallion:1}}],
+    ['tr', true, {flute:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, ether: true}, {tr:{medallion:2}}],
+    ['tr', true, {flute:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+    ['tr', true, {lantern:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+    ['tr', true, {flute:true, hookshot: true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+    ['tr', true, {lantern:true, hookshot:true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+
+    ['gt', false, {}, {}],
+    ['gt', false, {glove:1}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {moonpearl: false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {lantern: false, mirror:false, flute:false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {hookshot: false, hammer:false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, lantern: true, hookshot: true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, lantern: true, hammer:true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, mirror: true, hookshot: true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, mirror: true, hammer: true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, flute: true, hookshot: true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, flute: true, hammer: true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
   ];
 
   const bossTests = [
@@ -87,37 +119,48 @@ describe('StaticMapDuneonsLW', () => {
     ['tt', true, {moonpearl: true, glove:1, hookshot: true}, {aga:{boss:true}}],
     ['tt', true, {moonpearl: true, flippers:true, hookshot: true}, {aga:{boss:true}}],
 
-    // ["Ice Palace - Boss", false, []],
-    // ["Ice Palace - Boss", false, [], ['TitansMitt']],
-    // ["Ice Palace - Boss", false, [], ['MoonPearl']],
-    // ["Ice Palace - Boss", false, [], ['Flippers']],
-    // ["Ice Palace - Boss", false, [], ['Hammer']],
-    // ["Ice Palace - Boss", false, [], ['BigKeyD5']],
-    // ["Ice Palace - Boss", false, [], ['FireRod', 'Bombos', 'AnySword']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'FireRod', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'FireRod', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'FireRod', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'FireRod', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'UncleSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'UncleSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'UncleSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'UncleSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'ProgressiveSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'ProgressiveSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'ProgressiveSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'ProgressiveSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'MasterSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'MasterSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'MasterSword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'MasterSword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'L3Sword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'L3Sword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'L3Sword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'L3Sword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'L4Sword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'ProgressiveGlove', 'ProgressiveGlove', 'Bombos', 'L4Sword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'L4Sword', 'Hammer', 'KeyD5', 'KeyD5']],
-    // ["Ice Palace - Boss", true, ['BigKeyD5', 'MoonPearl', 'Flippers', 'TitansMitt', 'Bombos', 'L4Sword', 'Hammer', 'CaneOfSomaria', 'KeyD5']],
+    ['ip', false, {}, {}],
+    ['ip', false, {glove:1}, {}, true],
+    ['ip', false, {moonpearl: false}, {}, true],
+    ['ip', false, {flippers:false}, {}, true],
+    ['ip', false, {hammer:false}, {}, true],
+    ['ip', false, {firerod:false, bombos:false}, {}, true],
+    ['ip', true, {moonpearl: true, flippers: true, glove:2, firerod: true, hammer: true}, {}],
+    ['ip', true, {moonpearl: true, flippers: true, glove:2, bombos: true, hammer:true}, {}],
+
+    ['mm', false, {}, {}],
+    ['mm', false, {glove:1}, {}, true],
+    ['mm', false, {moonpearl: false}, {}, true],
+    ['mm', false, {flute:false}, {}, true],
+    ['mm', false, {lantern:false}, {}, true],
+    ['mm', false, {redcane:false}, {}, true],
+    ['mm', true, {lantern:true, redcane:true, glove:2, moonpearl: true, flute: true, bombos: true}, {mm:{medallion:1}}],
+    ['mm', true, {lantern:true, redcane:true, glove:2, moonpearl: true, flute: true, ether: true}, {mm:{medallion:2}}],
+    ['mm', true, {lantern:true, redcane:true, glove:2, moonpearl: true, flute: true, quake: true}, {mm:{medallion:3}}],
+
+    ['tr', false, {}, {}],
+    ['tr', false, {glove:1}, {}, true],
+    ['tr', false, {moonpearl:false}, {}, true],
+    ['tr', false, {hammer:false}, {}, true],
+    ['tr', false, {redcane:false}, {}, true],
+    ['tr', false, {icerod:false}, {}, true],
+    ['tr', false, {firerod:false}, {}, true],
+    ['tr', false, {lantern:false}, {}, true],
+    ['tr', true, {icerod:true, firerod:true, lantern:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, bombos: true}, {tr:{medallion:1}}],
+    ['tr', true, {icerod:true, firerod:true, lantern:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, ether: true}, {tr:{medallion:2}}],
+    ['tr', true, {icerod:true, firerod:true, lantern:true, mirror:true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+    ['tr', true, {icerod:true, firerod:true, lantern:true, hookshot:true, glove:2, moonpearl: true, hammer:true, redcane:true, quake: true}, {tr:{medallion:3}}],
+
+    ['gt', false, {}, {}],
+    ['gt', false, {glove:1}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {moonpearl: false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {lantern: false, mirror:false, flute:false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {hookshot: false, hammer:false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {lantern: false, firerod:false}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', false, {bow:0}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, lantern: true, hookshot: true, bow:1, sword:1}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, lantern: true, hookshot: true, bow:1, net:true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
+    ['gt', true, {moonpearl: true, glove:2, firerod: true, hookshot: true, bow:1, net:true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
   ];
 
   const negTests = [];
@@ -131,6 +174,7 @@ describe('StaticMapDuneonsLW', () => {
     const itemKeys = Object.keys(test[2]);
     const dungeonKeys = Object.keys(test[3]);
     const itemsObj = new DefaultItemsData();
+    const settingsObj = new DefaultSettingsData();
     if(isNeg) {
       itemsObj.bow = 2;
       itemsObj.boomerang = 3;
@@ -175,7 +219,7 @@ describe('StaticMapDuneonsLW', () => {
       for(const key of dungeonKeys) {
         dungeonsObj[key] = dungeons[key];
       }
-      expect(location.validate(itemsObj, dungeonsObj)).toBe(result);
+      expect(location.validate(itemsObj, dungeonsObj, settingsObj)).toBe(result);
     });
   });
 
@@ -188,6 +232,7 @@ describe('StaticMapDuneonsLW', () => {
     const itemKeys = Object.keys(test[2]);
     const dungeonKeys = Object.keys(test[3]);
     const itemsObj = new DefaultItemsData();
+    const settingsObj = new DefaultSettingsData();
     if(isNeg) {
       itemsObj.bow = 2;
       itemsObj.boomerang = 3;
@@ -232,7 +277,7 @@ describe('StaticMapDuneonsLW', () => {
       for(const key of dungeonKeys) {
         dungeonsObj[key] = dungeons[key];
       }
-      expect(location.validateBoss(itemsObj, dungeonsObj)).toBe(result);
+      expect(location.validateBoss(itemsObj, dungeonsObj, settingsObj)).toBe(result);
     });
   });
 });
@@ -251,4 +296,5 @@ function stringifyDungeon(obj) {
   for(const key of keys) {
     retval = retval + key+'['+stringifyItem(obj[key])+'] ';
   }
+  return retval;
 }
