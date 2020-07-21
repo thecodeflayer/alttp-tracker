@@ -2,7 +2,7 @@ export class InvertedRegionHelper {
   // light world
   static northEastLW(items, dungeons) {
     return dungeons.aga.boss
-            || (items.hammer && items.glove > 0 || items.glove === 2);
+            || items.moonpearl && (items.hammer && items.glove > 0 || items.glove === 2);
   }
   static northWestLW(items, dungeons) {
     return this.northEastLW(items, dungeons);
@@ -14,14 +14,14 @@ export class InvertedRegionHelper {
     return items.glove === 2 && this.deathMtnWestDW(items, dungeons) && items.moonpearl;
   }
   static deathMtnWestLW(items, dungeons) {
-    return items.flute || (items.glove > 0 && items.lantern);
+    return this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern);
   }
   // dark world
   static mireDW(items, dungeons) {
-    return items.flute || (items.mirror && this.southLW(items, dungeons));
+    return this.activeFlute(items, dungeons) || (items.mirror && this.southLW(items, dungeons));
   }
   static northEastDW(items, dungeons) {
-    return items.flute || items.hammer || items.flippers || (items.mirror && this.northEastLW(items, dungeons));
+    return this.activeFlute(items, dungeons) || items.hammer || items.flippers || (items.mirror && this.northEastLW(items, dungeons));
   }
   static northWestDW(items, dungeons) {
     return true;
@@ -34,7 +34,7 @@ export class InvertedRegionHelper {
             || (items.mirror && items.moonpearl && items.hookshot && this.deathMtnEastLW(items, dungeons));
   }
   static deathMtnWestDW(items, dungeons) {
-    return items.flute || (items.glove > 0 && items.lantern);
+    return (this.activeFlute(items, dungeons) && this.northWestLW(items, dungeons)) || (items.glove > 0 && items.lantern);
   }
   static toh(items, dungeons) {
     return (items.mirror || (items.hookshot && items.hammer))
@@ -58,5 +58,9 @@ export class InvertedRegionHelper {
       }
     }
     return c >= settings.openGT && items.moonpearl && this.northEastLW(items, dungeons);
+  }
+  static activeFlute(items, dungeons) {
+    return items.flute && (dungeons.aga.boss
+    || items.moonpearl && (items.hammer && items.glove > 0 || items.glove === 2));
   }
 }
