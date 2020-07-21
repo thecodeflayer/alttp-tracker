@@ -1,4 +1,5 @@
 import {InvertedRegionHelper} from '@/inverted/InvertedRegionHelper';
+import {StandardRegionHelper} from '@/standard/StandardRegionHelper';
 
 export class InvertedStaticMapDungeonsLW {
   ep = {x:1437, y:610,
@@ -28,11 +29,13 @@ export class InvertedStaticMapDungeonsLW {
     }
   };
   gt = {x:750, y:577,
-    validate(items, dungeons){
-      return InvertedRegionHelper.gt(items, dungeons);
+    validate(items, dungeons, settings){
+      return InvertedRegionHelper.gt(items, dungeons, settings);
     },
-    validateBoss(items, dungeons){
-      return (items.sword > 0 || items.net) && InvertedRegionHelper.gt(items, dungeons);
+    validateBoss(items, dungeons, settings){
+      return (items.sword > 0 || items.net) && items.bow > 0
+        && (items.lantern || items.firerod)
+        && StandardRegionHelper.gt(items, dungeons, settings);
     }
   };
 }

@@ -49,7 +49,7 @@ export class InvertedRegionHelper {
   static tr(items, dungeons) {
     return this.deathMtnEastDW(items, dungeons);
   }
-  static gt(items, dungeons) {
+  static gt(items, dungeons, settings) {
     let c = 0;
     const keys = Object.keys(dungeons);
     for(const key of keys) {
@@ -57,6 +57,6 @@ export class InvertedRegionHelper {
         c = c +1;
       }
     }
-    return c === 7 && items.moonpearl && this.northEastLW(items, dungeons);
+    return c >= settings.openGT && items.moonpearl && this.northEastLW(items, dungeons);
   }
 }
