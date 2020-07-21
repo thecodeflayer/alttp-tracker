@@ -6,7 +6,7 @@ export class StandardStaticMapDungeonsLW {
       return true;
     },
     validateBoss(items){
-      return  items.bow && (items.lantern || items.firerod);
+      return  items.bow > 0 && (items.lantern || items.firerod);
     }
   };
   dp = {x:111, y:1270,
