@@ -57,7 +57,7 @@ export class StandardStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons, settings){
       return (items.sword > 0 || items.net) && items.bow > 0
-        && (items.lantern || items.firerod)
+        && (items.lantern || items.firerod) && items.hookshot
         && StandardRegionHelper.gt(items, dungeons, settings);
     }};
 }

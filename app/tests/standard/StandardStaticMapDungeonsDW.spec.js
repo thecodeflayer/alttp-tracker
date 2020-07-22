@@ -163,8 +163,6 @@ describe('StandardStaticMapDuneonsDW', () => {
     ['gt', true, {moonpearl: true, glove:2, firerod: true, hookshot: true, bow:1, net:true}, {pod:{crystal:3, boss:true}, sp:{crystal:3, boss:true}, sw:{crystal:3, boss:true}, tt:{crystal:3, boss:true}, ip:{crystal:3, boss:true}, mm:{crystal:4, boss:true}, tr:{crystal:4, boss:true}}, true],
   ];
 
-  const negTests = [];
-
   tests.forEach((test)=> {
     const items =  test[2];
     const dungeons = test[3];

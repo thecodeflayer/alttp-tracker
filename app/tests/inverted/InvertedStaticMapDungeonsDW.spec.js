@@ -3,7 +3,7 @@ import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 import {DefaultSettingsData} from '~/default-objects/DefaultSettings';
 
-fdescribe('InvertedStaticMapDuneonsDW', () => {
+describe('InvertedStaticMapDuneonsDW', () => {
 
   const tests = [
     ['pod', false, {}, {}],
@@ -141,38 +141,13 @@ fdescribe('InvertedStaticMapDuneonsDW', () => {
     ['tr', false, {firerod:false}, {tr:{medallion: 1}, aga:{boss:true}}, true],
     ['tr', true, {icerod:true, firerod:true, redcane:true, mirror:true, glove:1, lantern: true, moonpearl: true, hookshot: true}, {}],
     ['tr', true, {icerod:true, firerod:true, redcane:true, mirror:true, glove:2, lantern: true, moonpearl: true}, {}],
-
     ['tr', true, {icerod: true, firerod: true, lantern:true, mirror: true, glove:2, redcane: true, bombos: true}, {tr:{medallion: 1}}],
-
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'UncleSword', 'Bottle', 'Bottle', 'Bottle', 'Bottle', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'ProgressiveSword', 'Bottle', 'Bottle', 'Bottle', 'Bottle', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'MasterSword', 'Bottle', 'Bottle', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'ProgressiveSword', 'ProgressiveSword', 'Bottle', 'Bottle', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'L3Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'L4Sword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'MagicMirror', 'TitansMitt', 'Quake', 'Hammer', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'TitansMitt', 'Hammer', 'Quake', 'UncleSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
-    // ["Turtle Rock - Boss", true, ['IceRod', 'FireRod', 'Lamp', 'Hookshot', 'TitansMitt', 'Hammer', 'Quake', 'ProgressiveSword', 'CaneOfSomaria', 'KeyD7', 'KeyD7', 'KeyD7', 'KeyD7', 'BigKeyD7']],
+    ['tr', true, {icerod:true, firerod:true, lantern:true, hookshot:true, glove:2, hammer:true, bombos:true, redcane:true}, {tr:{medallion: 1}}],
 
     ['aga', false, {}, {}],
-    // [false, []],
-    // [false, [], ['Lamp']],
-    // [false, [], ['AnySword']],
-    // [true, ['KeyA1', 'KeyA1', 'ProgressiveGlove', 'Lamp', 'UncleSword']],
-    // [true, ['KeyA1', 'KeyA1', 'PowerGlove', 'Lamp', 'UncleSword']],
-    // [true, ['KeyA1', 'KeyA1', 'TitansMitt', 'Lamp', 'UncleSword']],
-    // [true, ['KeyA1', 'KeyA1', 'ProgressiveGlove', 'Lamp', 'ProgressiveSword']],
-    // [true, ['KeyA1', 'KeyA1', 'PowerGlove', 'Lamp', 'ProgressiveSword']],
-    // [true, ['KeyA1', 'KeyA1', 'TitansMitt', 'Lamp', 'ProgressiveSword']],
-    // [true, ['KeyA1', 'KeyA1', 'ProgressiveGlove', 'Lamp', 'MasterSword']],
-    // [true, ['KeyA1', 'KeyA1', 'PowerGlove', 'Lamp', 'MasterSword']],
-    // [true, ['KeyA1', 'KeyA1', 'TitansMitt', 'Lamp', 'MasterSword']],
-    // [true, ['KeyA1', 'KeyA1', 'ProgressiveGlove', 'Lamp', 'L3Sword']],
-    // [true, ['KeyA1', 'KeyA1', 'PowerGlove', 'Lamp', 'L3Sword']],
-    // [true, ['KeyA1', 'KeyA1', 'TitansMitt', 'Lamp', 'L3Sword']],
-    // [true, ['KeyA1', 'KeyA1', 'ProgressiveGlove', 'Lamp', 'L4Sword']],
-    // [true, ['KeyA1', 'KeyA1', 'PowerGlove', 'Lamp', 'L4Sword']],
-    // [true, ['KeyA1', 'KeyA1', 'TitansMitt', 'Lamp', 'L4Sword']],
+    ['aga', false, {lantern:false}, {}, true],
+    ['aga', true, {glove:1, lantern: true, sword:1}, {}],
+    ['aga', true, {glove:1, lantern: true, net:true}, {}],
   ];
 
   const negTests = [];

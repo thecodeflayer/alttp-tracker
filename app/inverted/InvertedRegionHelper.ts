@@ -39,7 +39,7 @@ export class InvertedRegionHelper {
     return (this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern));
   }
   static toh(items, dungeons) {
-    return (items.mirror || (items.hookshot && items.hammer))
+    return (items.hookshot || items.glove === 2) && items.hammer
             && this.deathMtnWestLW(items, dungeons);
   }
   static mm(items, dungeons) {
@@ -66,9 +66,7 @@ export class InvertedRegionHelper {
     return c >= settings.openGT && items.moonpearl && this.northEastLW(items, dungeons);
   }
   static activeFlute(items, dungeons) {
-    const retval = items.flute && (dungeons.aga.boss
+    return items.flute && (dungeons.aga.boss
     || items.moonpearl && (items.hammer && items.glove > 0 || items.glove === 2));
-    console.log('Inverted.activeFlute', retval);
-    return retval;
   }
 }

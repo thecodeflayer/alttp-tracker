@@ -1,5 +1,4 @@
 import {InvertedRegionHelper} from '@/inverted/InvertedRegionHelper';
-import {StandardRegionHelper} from '@/standard/StandardRegionHelper';
 
 export class InvertedStaticMapDungeonsLW {
   ep = {x:1437, y:610,
@@ -8,7 +7,7 @@ export class InvertedStaticMapDungeonsLW {
     },
     validateBoss(items, dungeons){
       return  items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons)
-            && items.bow && (items.lantern || items.firerod);
+            && items.bow > 0 && (items.lantern || items.firerod);
     }
   };
   dp = {x:111, y:1270,
@@ -22,10 +21,10 @@ export class InvertedStaticMapDungeonsLW {
   };
   toh = {x:840, y:40,
     validate(items, dungeons){
-      return InvertedRegionHelper.deathMtnWestLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.toh(items, dungeons) && items.moonpearl;
     },
     validateBoss(items, dungeons){
-      return InvertedRegionHelper.deathMtnWestLW(items, dungeons) && items.moonpearl;
+      return InvertedRegionHelper.toh(items, dungeons) && items.moonpearl;
     }
   };
   gt = {x:750, y:577,
@@ -34,8 +33,8 @@ export class InvertedStaticMapDungeonsLW {
     },
     validateBoss(items, dungeons, settings){
       return (items.sword > 0 || items.net) && items.bow > 0
-        && (items.lantern || items.firerod)
-        && StandardRegionHelper.gt(items, dungeons, settings);
+        && (items.lantern || items.firerod) && items.hookshot
+        && InvertedRegionHelper.gt(items, dungeons, settings);
     }
   };
 }

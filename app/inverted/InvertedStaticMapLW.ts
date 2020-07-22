@@ -211,7 +211,7 @@ export class InvertedStaticMapLW {
   etherTablet = {x:630, y:28, title:'Ether Tablet', itemCount: 1,
     req:[],
     validate(items, dungeons){
-      return items.moonpearl && InvertedRegionHelper.deathMtnEastLW(items, dungeons)
+      return items.moonpearl && InvertedRegionHelper.toh(items, dungeons)
             && items.book && items.sword > 1 && items.hammer;
     }};
   spectacleRock = {x:761, y:121, title:'Spectacle Rock', itemCount: 1,
