@@ -30,13 +30,14 @@ Yes! You can double-tap the map to toggle between worlds at the same position an
 #### A location should/should not be accessible with the items I have! What gives?
 
 If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
-In coding location logic I attempted to follow the randomizer logic as closely as I could and have even done several runs to try and test
-the logic. However, I am only one person and can only do so much on my own. Inverted mode has not been tested nearly enough, and I welcome
-any help finding and squashing the logic bugs.
+In coding location logic I attempted to follow the randomizer logic as closely as possible. I have even done several runs to manuall test
+the logic and have implemented unit tests using the tests from the randomizer as a guide. 
+
+That said, there still may be placed that have been missed and I welcome your feedback.
 
 #### There should be 216 items. Where are the missing items?
 
-As described in the [Item Shuffle Settings](#item-shuffle-settings). The tracker only counts relevant items and never counts Hyrule Castle items. The three Hyrule Castle items not counted are:
+As described in the [Item Shuffle Settings](#item-shuffle-settings), the tracker only counts relevant items and never counts Hyrule Castle items. The three Hyrule Castle items not counted are:
 
 - Hyrule Castle Map
 - Hyrule Castle Big Key

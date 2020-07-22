@@ -4,7 +4,7 @@ import {
   hasKey
 } from 'tns-core-modules/application-settings';
 
-import {StaticObjectLoader} from '@/components/StaticObjectLoader';
+import {StaticObjectLoader} from '@/utils/StaticObjectLoader';
 import {GameEditObj, GameSaveHelper} from '@/utils/GameSaveHelper';
 
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
@@ -288,15 +288,15 @@ export class ModelManager {
       this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
     }
     for (const key of ldkeys) {
-      this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
-      this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
     }
     for (const key of dkeys) {
       this.map.darkworld.locations[key].klass = this.sol.getStaticMapDW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
     }
     for (const key of ddkeys) {
-      this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
-      this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
     }
   }
 

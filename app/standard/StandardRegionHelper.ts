@@ -1,8 +1,14 @@
 export class StandardRegionHelper {
   // light world
-  static northEastLW() {return true;};
-  static northWestLW() {return true;};
-  static southLW() {return true;};
+  static northEastLW() {
+    return true;
+  }
+  static northWestLW() {
+    return true;
+  }
+  static southLW() {
+    return true;
+  }
   static deathMtnEastLW(items, dungeons) {
     return (items.hookshot && this.deathMtnWestLW(items, dungeons))
             || (items.hammer && this.toh(items, dungeons));
@@ -17,7 +23,8 @@ export class StandardRegionHelper {
   static northEastDW(items, dungeons) {
     return dungeons.aga.boss ||
             (items.hammer && items.glove > 0 && items.moonpearl) ||
-            (items.glove === 2 && items.moonpearl && items.flippers);
+            (items.glove === 2 && items.moonpearl &&
+            (items.hammer || items.flippers));
   }
   static northWestDW(items, dungeons) {
     return items.moonpearl
@@ -59,7 +66,7 @@ export class StandardRegionHelper {
             (dungeons.tr.medallion === 3 && items.quake);
     return m && items.moonpearl && items.redcane && items.hammer && items.glove === 2 && this.deathMtnEastLW(items, dungeons);
   }
-  static gt(items, dungeons) {
+  static gt(items, dungeons, settings) {
     let c = 0;
     const keys = Object.keys(dungeons);
     for(const key of keys) {
@@ -67,6 +74,6 @@ export class StandardRegionHelper {
         c = c +1;
       }
     }
-    return c === 7 && items.moonpearl && this.deathMtnEastDW(items, dungeons);
+    return (c >= settings.openGT && items.moonpearl && this.deathMtnEastDW(items, dungeons));
   }
-};
+}

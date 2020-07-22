@@ -44,7 +44,7 @@
     }
 
     showWhatsNew() {
-      openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/' + this.upgradeVersion + '/WHATSNEW.md');
+      openUrl('https://github.com/thecodeflayer/alttp-tracker/blob/' + this.upgradeVersion + '/CHANGELOG.md');
     }
 
     clickUpgrade() {
