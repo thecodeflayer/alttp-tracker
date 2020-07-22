@@ -1,4 +1,4 @@
-import {InvertedStaticMapDungeonsLW} from '~/inverted/InvertedStaticMapDungeonslW';
+import {InvertedStaticMapDungeonsLW} from '~/inverted/InvertedStaticMapDungeonsLW';
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 

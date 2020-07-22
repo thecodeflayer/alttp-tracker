@@ -16,7 +16,7 @@ export class InvertedRegionHelper {
       && items.moonpearl && items.hookshot);
   }
   static deathMtnWestLW(items, dungeons) {
-    return this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern);
+    return (this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern));
   }
   // dark world
   static mireDW(items, dungeons) {
@@ -36,7 +36,7 @@ export class InvertedRegionHelper {
       || (items.mirror && items.moonpearl && items.hookshot && this.deathMtnWestLW(items, dungeons));
   }
   static deathMtnWestDW(items, dungeons) {
-    return (this.activeFlute(items, dungeons) && this.northWestLW(items, dungeons)) || (items.glove > 0 && items.lantern);
+    return (this.activeFlute(items, dungeons) || (items.glove > 0 && items.lantern));
   }
   static toh(items, dungeons) {
     return (items.mirror || (items.hookshot && items.hammer))
@@ -46,10 +46,14 @@ export class InvertedRegionHelper {
     const m = (dungeons.mm.medallion === 1 && items.bombos) ||
             (dungeons.mm.medallion === 2 && items.ether) ||
             (dungeons.mm.medallion === 3 && items.quake);
-    return m && items.moonpearl && this.mireDW(items, dungeons);
+    return m && this.mireDW(items, dungeons);
   }
   static tr(items, dungeons) {
-    return this.deathMtnEastDW(items, dungeons);
+    const m = (dungeons.tr.medallion === 1 && items.bombos) ||
+      (dungeons.tr.medallion === 2 && items.ether) ||
+      (dungeons.tr.medallion === 3 && items.quake);
+    return (m && items.redcane && this.deathMtnEastDW(items, dungeons))
+      || (items.redcane && items.moonpearl && items.mirror && InvertedRegionHelper.deathMtnEastLW(items, dungeons));
   }
   static gt(items, dungeons, settings) {
     let c = 0;
@@ -62,7 +66,9 @@ export class InvertedRegionHelper {
     return c >= settings.openGT && items.moonpearl && this.northEastLW(items, dungeons);
   }
   static activeFlute(items, dungeons) {
-    return items.flute && (dungeons.aga.boss
+    const retval = items.flute && (dungeons.aga.boss
     || items.moonpearl && (items.hammer && items.glove > 0 || items.glove === 2));
+    console.log('Inverted.activeFlute', retval);
+    return retval;
   }
 }
