@@ -1,4 +1,17 @@
-# What's new in Version 0.9.7
+# What's New in Version 1.0.0
+
+### Logic Fixes and Testing
+I've added over 1000 tests to the project to validate logic for Standard and Inverted modes.
+This has given me the confidence to finally move the project to version 1.0.0.
+
+As part of that testing a number of logic bugs have been fixed.
+
+Thanks to the helpful folks on the [ALTTPR Discord](https://discord.gg/48sauwx) for answering all my questions and a shoutout to Dook for pushing me to solidify the logic.
+
+### Goal Enhancements
+The Items screen now has more indicators for game goal tracking.
+
+## What's New in Version 0.9.7
 
 ### Support for Game Goals!
 You can now select various game goals as well as setting Crystals
@@ -28,7 +41,7 @@ This should correct the problem.
 ### Various bug fixes and minor enhancements.
 As always there are a few things I fixed along the way.
 
-## What's new in Version 0.9.6
+## What's New in Version 0.9.6
 
 ### Inverted Game Mode is here!
 Inverted Game Mode is now an option when creating new games.
