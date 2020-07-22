@@ -14,6 +14,7 @@ import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDef
 import {InvertedDefaultMap, InvertedMapData} from '@/default-objects/InvertedDefaultMap';
 import {DefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
+import {RetroDefaultMap, RetroMapData} from '@/default-objects/RetroDefaultMap';
 
 export class ModelManager {
   items: DefaultItemsData;
@@ -85,11 +86,15 @@ export class ModelManager {
   }
 
   validateMapFromStorage() :DefaultMapData{
-    let retval = this.settings.gameMode == this.sol.STANDARD ? new StandardMapData() : new InvertedMapData();
+    let retval = this.settings.gameMode == this.sol.RETRO ? new RetroMapData()
+      : this.settings.gameMode == this.sol.INVERTED ? new InvertedMapData()
+        : new StandardMapData();
     let stored = undefined;
     if (hasKey('map')) {
       try {
-        stored = this.settings.gameMode == this.sol.STANDARD ? StandardDefaultMap.fromJSON(getString('map')) : InvertedDefaultMap.fromJSON(getString('map'));
+        stored = this.settings.gameMode == this.sol.RETRO ? RetroDefaultMap.fromJSON(getString('map'))
+          : this.settings.gameMode == this.sol.INVERTED ? InvertedDefaultMap.fromJSON(getString('map'))
+            : StandardDefaultMap.fromJSON(getString('map'));
         if (stored.version && stored.version === this.mapVersion) {
           retval = stored.data;
           console.log('successfully got map from storage!');
@@ -157,7 +162,12 @@ export class ModelManager {
   }
 
   getItemKeys() {
-    return Object.keys(this.items);
+    const retval = Object.keys(this.items);
+    // For handling RETRO
+    if(retval.indexOf('quiver') > -1 && (this.settings.gameMode == this.sol.INVERTED || this.settings.gameMode == this.sol.STANDARD)) {
+      retval.splice(retval.indexOf('quiver'), 1);
+    }
+    return retval;
   }
 
   getItem(key) {
@@ -202,7 +212,7 @@ export class ModelManager {
   }
 
   getItemMax() {
-    if (this.settings.gameMode === this.sol.STANDARD || this.settings.gameMode === this.sol.INVERTED) {
+    if (this.settings.gameMode === this.sol.RETRO || this.settings.gameMode === this.sol.STANDARD || this.settings.gameMode === this.sol.INVERTED) {
       return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 155
         : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20)
           : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
@@ -266,12 +276,14 @@ export class ModelManager {
   }
 
   resetMap() {
-    this.map = this.settings.gameMode == this.sol.STANDARD ? new StandardMapData() : new InvertedMapData();
+    this.map = this.settings.gameMode == this.sol.RETRO ? new RetroMapData()
+      : this.settings.gameMode == this.sol.INVERTED ? new InvertedMapData() : new StandardMapData();
     this.saveMap();
   }
 
   saveMap(skipGameSave?:boolean) {
-    const d = this.settings.gameMode == this.sol.STANDARD ? new StandardDefaultMap() : new InvertedDefaultMap();
+    const d = this.settings.gameMode == this.sol.RETRO ? new RetroDefaultMap()
+      : this.settings.gameMode == this.sol.INVERTED ? new InvertedDefaultMap() : new StandardDefaultMap();
     d.data = this.map;
     setString('map', d.toJSONString());
     if(!skipGameSave){
@@ -324,14 +336,14 @@ export class ModelManager {
   }
 
   getGameModeMap() {
-    if (this.settings.gameMode === this.sol.STANDARD) {
+    if (this.settings.gameMode === this.sol.STANDARD || this.settings.gameMode === this.sol.RETRO) {
       return this.sol.STANDARD;
     } else if (this.settings.gameMode === this.sol.INVERTED) {
       return this.sol.INVERTED;
     }
   }
 
-  createGame(id, itemShuffle, gameMode, goal, triforceGoal, openGT, openGanon) {
+  createGame(id :string, itemShuffle: string, gameMode: string, goal: string, triforceGoal: number, openGT: number, openGanon:number) :void{
     console.log(id, itemShuffle, gameMode, goal);
     if (!id || !itemShuffle || !gameMode || !goal) {
       throw new Error('create game failed!');
@@ -339,7 +351,8 @@ export class ModelManager {
     const game = new Game();
     game.items = new DefaultItemsData();
     game.dungeons = new DefaultDungeonsData();
-    game.map = gameMode == this.sol.STANDARD ? new StandardMapData() : new InvertedMapData();
+    game.map = gameMode == this.sol.RETRO ? new RetroMapData()
+      : this.sol.INVERTED ? new InvertedMapData() : new StandardMapData();
     game.settings = new DefaultSettingsData();
     game.timestamp = Date.now();
     game.versions = new GameVersions(
@@ -373,7 +386,9 @@ export class ModelManager {
       return;
     }
     this.settings = DefaultSettingsData.fromObject(this.gameSaves[id].settings);
-    this.map = this.settings.gameMode == this.sol.STANDARD ? StandardMapData.fromObject(this.gameSaves[id].map) : InvertedMapData.fromObject(this.gameSaves[id].map);
+    this.map = this.settings.gameMode == this.sol.RETRO ? RetroMapData.fromObject(this.gameSaves[id].map)
+      : this.settings.gameMode == this.sol.INVERTED ? InvertedMapData.fromObject(this.gameSaves[id].map)
+        : StandardMapData.fromObject(this.gameSaves[id].map);
     this.dungeons = DefaultDungeonsData.fromObject(this.gameSaves[id].dungeons);
     this.items = DefaultItemsData.fromObject(this.gameSaves[id].items);
     this.saveSettings();

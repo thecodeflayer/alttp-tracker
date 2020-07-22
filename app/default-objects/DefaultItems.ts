@@ -44,6 +44,7 @@ export class DefaultItemsData {
   sword = 0; // 0 - 4 to indicate sword level
   shield = 0; // 0 - 3 to indicate shield level
   tunic = 0;
+  quiver = false;
 
   static fromObject(obj:any):DefaultItemsData {
     const data = new DefaultItemsData();

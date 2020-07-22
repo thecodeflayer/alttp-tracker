@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <ScrollView orientation="vertical">
       <StackLayout orientation="vertical">
-        <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
+        <GridLayout class="item-grid" columns="*,*,*,*,*,*" :rows="gameMode === 'retro' ? '40,40,40,40,40,40' : '40,40,40,40,40'">
           <Image v-for="(key, index) in itemKeys" v-bind:key="key" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
         </GridLayout>
         <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="100">
@@ -59,6 +59,7 @@
     itemKeys = this.$modelManager.getItemKeys();
     itemCount = 0;
     itemMax = this.$modelManager.getItemMax();
+    gameMode = this.$modelManager.settings.gameMode;
     goal = this.$modelManager.settings.goal;
     openGT = this.$modelManager.settings.openGT;
     openGanon = this.$modelManager.settings.openGanon;

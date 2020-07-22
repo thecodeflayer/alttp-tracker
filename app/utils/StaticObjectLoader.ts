@@ -12,9 +12,17 @@ import {InvertedStaticMapDungeonsDW} from '@/inverted/InvertedStaticMapDungeonsD
 import {InvertedStaticDungeons} from '@/inverted/InvertedStaticDungeons';
 import {InvertedStaticItems} from '@/inverted/InvertedStaticItems';
 
+import {RetroStaticMapLW} from '@/retro/RetroStaticMapLW';
+import {RetroStaticMapDungeonsLW} from '@/retro/RetroStaticMapDungeonsLW';
+import {RetroStaticMapDW} from '@/retro/RetroStaticMapDW';
+import {RetroStaticMapDungeonsDW} from '@/retro/RetroStaticMapDungeonsDW';
+import {RetroStaticDungeons} from '@/retro/RetroStaticDungeons';
+import {RetroStaticItems} from '@/retro/RetroStaticItems';
+
 export class StaticObjectLoader {
   STANDARD = 'standard';
   INVERTED = 'inverted';
+  RETRO = 'retro';
   dgm: string;
 
   constructor() {
@@ -29,6 +37,8 @@ export class StaticObjectLoader {
       return new StandardStaticMapLW();
     } else if(gm === this.INVERTED) {
       return new InvertedStaticMapLW();
+    } else if(gm === this.RETRO) {
+      return new RetroStaticMapLW();
     }
   }
   getStaticMapDungeonsLW(gm) {
@@ -39,6 +49,8 @@ export class StaticObjectLoader {
       return new StandardStaticMapDungeonsLW();
     } else if(gm === this.INVERTED){
       return new InvertedStaticMapDungeonsLW();
+    } else if(gm === this.RETRO) {
+      return new RetroStaticMapDungeonsLW();
     }
   }
   getStaticMapDW(gm) {
@@ -49,6 +61,8 @@ export class StaticObjectLoader {
       return new StandardStaticMapDW();
     } else if(gm === this.INVERTED){
       return new InvertedStaticMapDW();
+    } else if(gm === this.RETRO) {
+      return new RetroStaticMapDW();
     }
   }
   getStaticMapDungeonsDW(gm) {
@@ -59,6 +73,8 @@ export class StaticObjectLoader {
       return new StandardStaticMapDungeonsDW();
     } else if(gm === this.INVERTED){
       return new InvertedStaticMapDungeonsDW();
+    } else if(gm === this.RETRO){
+      return new RetroStaticMapDungeonsDW();
     }
   }
   getStaticDungeons(gm, iShuff) {
@@ -73,6 +89,8 @@ export class StaticObjectLoader {
       retval = new StandardStaticDungeons();
     } else if(gm === this.INVERTED){
       retval = new InvertedStaticDungeons();
+    } else if(gm === this.RETRO){
+      retval = new RetroStaticDungeons();
     }
     if(iShuff === 'standard'){
       return retval;
@@ -112,6 +130,8 @@ export class StaticObjectLoader {
       return new StandardStaticItems();
     } else if(gm === this.INVERTED) {
       return new InvertedStaticItems();
+    } else if(gm === this.RETRO) {
+      return new RetroStaticItems();
     }
   }
 }
