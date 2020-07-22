@@ -21,7 +21,7 @@ if you run into trouble.
 
 This will hopefully be the last time I have to post about losing game data as the TypeScript conversion should make this more manageable going forward.
 
-####I Can't Click on Anything?!?
+###I Can't Click on Anything?!?
 You should be able to clear the app's storage from the App menu under settings.
 This should correct the problem.
 

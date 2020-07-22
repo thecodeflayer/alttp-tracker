@@ -3,9 +3,8 @@
 # alttp-tracker
 A mobile app for tracking ALTTP randomizer runs. You can track items collected, dungeon items and bosses and view available locations on the Light World and Dark World maps.
 
-The tracker currently only supports standard, no glitch runs and is geared towards new players who are learning.
-
-In the future, based on interest, I may add support for other modes such as inverted, ~keysanity~ (Keysanity support is now available!) and more.
+The tracker currently supports both standard and inverted modes and is geared towards new players who are learning.
+A number of game goals are also supported such as Defeat Ganon, Triforce Hunt and Pedestal Goal to name a few.
 
 ## Supported Platforms
 Currently, I'm only building APKs for Android. I still need to figure out how to build for iOS.
@@ -14,8 +13,6 @@ Currently, I'm only building APKs for Android. I still need to figure out how to
 Please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
 
 First take a look at existing issues and make sure that it hasn't been filed before. Include descriptive information about the issue and screenshots if possible. Also include the version of the app that you're using.
-
-I have not fully vetted the logic for all locations. I am looking for help in this area, especially for late game locations. Expect some issues here until I can get more feedback from the community. (I can only do so many runs myself)
 
 ## Installation
 In order to install on Android you will have to "side-load" the APK from Github. On most modern Android platforms you can follow these steps:
