@@ -10,6 +10,8 @@
     }
   },
   "scripts": {
+    "build-android" : "tns build android",
+    "run-android" : "tns run android",
     "test-android" : "tns test android"
   },
   "description": "ALTTP Randomizer Tracker for Mobile",
@@ -55,6 +57,5 @@
     "vue": "^2.6.11",
     "vue-loader": "^15.9.1"
   },
-  "gitHead": "20a65d338ae8f8911087ab6615b89363f864b07b",
-  "readme": "NativeScript Application"
+  "readme": "README.md"
 }
