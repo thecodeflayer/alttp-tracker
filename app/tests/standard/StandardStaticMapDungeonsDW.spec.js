@@ -2,6 +2,7 @@ import {StandardStaticMapDungeonsDW} from '~/standard/StandardStaticMapDungeonsD
 import {DefaultItemsData} from '~/default-objects/DefaultItems';
 import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 import {DefaultSettingsData} from '~/default-objects/DefaultSettings';
+import {TestLocationHelper} from '~/tests/TestLocationHelper';
 
 describe('StandardStaticMapDuneonsDW', () => {
 
@@ -171,44 +172,12 @@ describe('StandardStaticMapDuneonsDW', () => {
     const location = new StandardStaticMapDungeonsDW()[test[0]];
     const itemKeys = Object.keys(test[2]);
     const dungeonKeys = Object.keys(test[3]);
-    const itemsObj = new DefaultItemsData();
+    const itemsObj = isNeg ? TestLocationHelper.getLoadedItem() : new DefaultItemsData();
     const settingsObj = new DefaultSettingsData();
-    if(isNeg) {
-      itemsObj.bow = 2;
-      itemsObj.boomerang = 3;
-      itemsObj.hookshot = true;
-      itemsObj.bombs = true;
-      itemsObj.powder = true;
-      itemsObj.mushroom = true;
-      itemsObj.firerod = true;
-      itemsObj.icerod = true;
-      itemsObj.bombos = true;
-      itemsObj.ether = true;
-      itemsObj.quake = true;
-      itemsObj.shovel = true;
-      itemsObj.lantern = true;
-      itemsObj.hammer = true;
-      itemsObj.flute = true;
-      itemsObj.net = true;
-      itemsObj.book = true;
-      itemsObj.moonpearl = true;
-      itemsObj.jar = 4;
-      itemsObj.bluecane = true;
-      itemsObj.redcane = true;
-      itemsObj.cape = true;
-      itemsObj.mirror = true;
-      itemsObj.glove = 2;
-      itemsObj.boots = true;
-      itemsObj.flippers = true;
-      itemsObj.halfmagic = true;
-      itemsObj.sword = 4;
-      itemsObj.shield = 3;
-      itemsObj.tunic = 2;
-    }
     const dungeonsObj = new DefaultDungeonsData();
     it('should'+(isNeg?' negative':'')+' test dungeon access for '+test[0]+' with '+
-      (itemKeys.length>0 ? ('items '+stringifyItem(items)): 'no items')+' and '+
-      (dungeonKeys.length>0 ? ('dungeons '+stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
+      (itemKeys.length>0 ? ('items '+TestLocationHelper.stringifyItem(items)): 'no items')+' and '+
+      (dungeonKeys.length>0 ? ('dungeons '+TestLocationHelper.stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
       //load items
       for(const key of itemKeys) {
         itemsObj[key] = items[key];
@@ -229,44 +198,12 @@ describe('StandardStaticMapDuneonsDW', () => {
     const location = new StandardStaticMapDungeonsDW()[test[0]];
     const itemKeys = Object.keys(test[2]);
     const dungeonKeys = Object.keys(test[3]);
-    const itemsObj = new DefaultItemsData();
+    const itemsObj = isNeg ? TestLocationHelper.getLoadedItem() : new DefaultItemsData();
     const settingsObj = new DefaultSettingsData();
-    if(isNeg) {
-      itemsObj.bow = 2;
-      itemsObj.boomerang = 3;
-      itemsObj.hookshot = true;
-      itemsObj.bombs = true;
-      itemsObj.powder = true;
-      itemsObj.mushroom = true;
-      itemsObj.firerod = true;
-      itemsObj.icerod = true;
-      itemsObj.bombos = true;
-      itemsObj.ether = true;
-      itemsObj.quake = true;
-      itemsObj.shovel = true;
-      itemsObj.lantern = true;
-      itemsObj.hammer = true;
-      itemsObj.flute = true;
-      itemsObj.net = true;
-      itemsObj.book = true;
-      itemsObj.moonpearl = true;
-      itemsObj.jar = 4;
-      itemsObj.bluecane = true;
-      itemsObj.redcane = true;
-      itemsObj.cape = true;
-      itemsObj.mirror = true;
-      itemsObj.glove = 2;
-      itemsObj.boots = true;
-      itemsObj.flippers = true;
-      itemsObj.halfmagic = true;
-      itemsObj.sword = 4;
-      itemsObj.shield = 3;
-      itemsObj.tunic = 2;
-    }
     const dungeonsObj = new DefaultDungeonsData();
     it('should'+(isNeg?' negative':'')+' test boss access for '+test[0]+' with '+
-      (itemKeys.length>0 ? ('items '+stringifyItem(items)): 'no items')+' and '+
-      (dungeonKeys.length>0 ? ('dungeons '+stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
+      (itemKeys.length>0 ? ('items '+TestLocationHelper.stringifyItem(items)): 'no items')+' and '+
+      (dungeonKeys.length>0 ? ('dungeons '+TestLocationHelper.stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
       //load items
       for(const key of itemKeys) {
         itemsObj[key] = items[key];
@@ -279,20 +216,3 @@ describe('StandardStaticMapDuneonsDW', () => {
     });
   });
 });
-
-function stringifyItem(obj) {
-  let retval = '';
-  const keys = Object.keys(obj);
-  for(const key of keys) {
-    retval = retval + key +':'+obj[key]+',';
-  }
-  return retval;
-}
-function stringifyDungeon(obj) {
-  let retval = '';
-  const keys = Object.keys(obj);
-  for(const key of keys) {
-    retval = retval + key+'['+stringifyItem(obj[key])+'] ';
-  }
-  return retval;
-}
