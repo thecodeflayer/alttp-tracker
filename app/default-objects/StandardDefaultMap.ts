@@ -1,4 +1,4 @@
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 
 export class StandardDefaultMap extends DefaultMap{
   data = new StandardMapData();
@@ -26,6 +26,7 @@ export class StandardMapData extends DefaultMapData{
     this.darkworld.addBoss('gt');
   }
   private static fromObjectHelper(data: StandardMapData, obj: any, world: string, mapkey: string) {
+
     const keys = Object.keys(data[world][mapkey]);
     for(const key of keys) {
       if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
@@ -45,6 +46,16 @@ export class StandardMapData extends DefaultMapData{
     //do bosses
     StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
     StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
+    //do other fields
+    const others = Object.keys(new MapWorld());
+    // remove the keys we already did
+    others.splice(others.indexOf('locations'), 1);
+    others.splice(others.indexOf('dungeons'), 1);
+    others.splice(others.indexOf('bosses'), 1);
+    for(const key of others) {
+      data.lightworld[key] = obj.lightworld[key];
+      data.darkworld[key] = obj.darkworld[key];
+    }
 
     return data;
   }

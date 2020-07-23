@@ -59,7 +59,7 @@
 <script type="ts">
   import {Component, Vue, Ref} from 'vue-property-decorator';
   import {screen} from 'tns-core-modules/platform';
-  import * as app from 'tns-core-modules/application'
+  import * as app from 'tns-core-modules/application';
   import * as utils from 'tns-core-modules/utils/utils';
   import LightList from '@/components/LightList.vue';
   import DarkMap from '@/components/DarkMap.vue';
@@ -179,7 +179,7 @@
     getBottomNavbarHeight() {
       let result = 0;
       if (app.android) {
-        const navId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier("config_showNavigationBar", "bool", "android");
+        const navId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('config_showNavigationBar', 'bool', 'android');
         const navShown = navId > 0 && (app.android.foregroundActivity || app.android.startActivity).getResources().getBoolean(navId);
         const resourceId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('navigation_bar_height', 'dimen', 'android');
         if (resourceId && navShown) {
@@ -199,7 +199,7 @@
           height: 300,
           top: Math.floor(i / 5) * 300,
           left: (i % 5) * 300
-        }
+        };
         retval.push(obj);
       }
       return retval;
@@ -240,7 +240,7 @@
         if (Math.abs(y) > (this.screenHeight - this.topNavHeight - this.statusBarHeight - this.bottomNavHeight) * 0.2) {
           this.momentumHandler.y = y < 0 ? 'up' : 'down';
         } else {
-          this.momentumHandler.y = 'none'
+          this.momentumHandler.y = 'none';
         }
         this.momentumHandler.ticks = 0;
         this.momentumHandler.prevX = 0;
@@ -281,7 +281,7 @@
       if (newScale < this.getMinScale()) {
         newScale = this.getMinScale();
       } else if (newScale > 1) {
-        newScale = 1
+        newScale = 1;
       }
       this.pinchHandler.currentScale = this.$modelManager.map.lightworld.scale = newScale;
       this.pinchHandler.top = this.getPinchTop(newScale);
@@ -389,6 +389,7 @@
     }
     toggleShowMode(mode) {
       this.mapHandler.showMode = this.$modelManager.map.lightworld.showMode = mode;
+      this.$modelManager.saveMap();
     }
   }
 </script>

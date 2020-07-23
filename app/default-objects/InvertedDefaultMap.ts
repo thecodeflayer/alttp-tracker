@@ -1,4 +1,4 @@
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 
 export class InvertedDefaultMap extends DefaultMap{
   data = new InvertedMapData();
@@ -45,7 +45,16 @@ export class InvertedMapData extends DefaultMapData{
     //do bosses
     InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
     InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
-
+    //do other fields
+    const others = Object.keys(new MapWorld());
+    // remove the keys we already did
+    others.splice(others.indexOf('locations'), 1);
+    others.splice(others.indexOf('dungeons'), 1);
+    others.splice(others.indexOf('bosses'), 1);
+    for(const key of others) {
+      data.lightworld[key] = obj.lightworld[key];
+      data.darkworld[key] = obj.darkworld[key];
+    }
     return data;
   }
 

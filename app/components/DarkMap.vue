@@ -389,6 +389,7 @@
     }
     toggleShowMode(mode) {
       this.mapHandler.showMode = this.$modelManager.map.darkworld.showMode = mode;
+      this.$modelManager.saveMap();
     }
   }
 </script>

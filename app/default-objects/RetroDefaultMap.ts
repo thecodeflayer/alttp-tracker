@@ -1,4 +1,4 @@
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
 import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
 
@@ -60,7 +60,17 @@ export class RetroMapData extends DefaultMapData{
     //do shops
     RetroMapData.fromObjectHelper(data, obj, 'lightworld', 'shops');
     RetroMapData.fromObjectHelper(data, obj, 'darkworld', 'shops');
-
+    //do other fields
+    const others = Object.keys(new MapWorld());
+    // remove the keys we already did
+    others.splice(others.indexOf('locations'), 1);
+    others.splice(others.indexOf('dungeons'), 1);
+    others.splice(others.indexOf('bosses'), 1);
+    others.splice(others.indexOf('shops'), 1);
+    for(const key of others) {
+      data.lightworld[key] = obj.lightworld[key];
+      data.darkworld[key] = obj.darkworld[key];
+    }
     return data;
   }
 }
