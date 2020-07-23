@@ -1,4 +1,6 @@
 import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
+import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
 
 export class RetroDefaultMap extends DefaultMap{
   data = new RetroMapData();
@@ -25,39 +27,15 @@ export class RetroMapData extends DefaultMapData{
     this.darkworld.addDungeon('gt');
     this.darkworld.addBoss('gt');
 
-    this.darkworld.addShop('dwDeathMtnShop');
-    this.darkworld.addShop('dwDeathMtnFairy', true);
-    this.darkworld.addShop('dwDesertFairy', true);
-    this.darkworld.addShop('dwDesertHint', true);
-    this.darkworld.addShop('dwPotionShop');
-    this.darkworld.addShop('dwLakeHyliaFairy', true);
-    this.darkworld.addShop('dwEastHint', true);
-    this.darkworld.addShop('podHint', true);
-    this.darkworld.addShop('dwForestShop');
-    this.darkworld.addShop('dwLumberjackHutShop');
-    this.darkworld.addShop('dwOutcastShop');
-    this.darkworld.addShop('dwSanctuaryHint', true);
-    this.darkworld.addShop('dwFortuneTeller', true);
-    this.darkworld.addShop('dwLakeHyliaShop');
-    this.darkworld.addShop('archeryGame', true);
-    this.darkworld.addShop('dwBonkFairy', true);
-    this.darkworld.addShop('dwLakeLedgeFairy', true);
-    this.darkworld.addShop('dwLakeLedgeHint', true);
-    this.darkworld.addShop('dwLakeLedgeSpikeCave', true);
+    const dwShopKeys = Object.keys(new RetroStaticMapShopsDW());
+    const lwShopKeys = Object.keys(new RetroStaticMapShopsLW());
 
-    this.lightworld.addShop('lwDeathMtnShop');
-    this.lightworld.addShop('hookshotFairy', true);
-    this.lightworld.addShop('longFairyCave', true);
-    this.lightworld.addShop('lwLakeHyliaFairy', true);
-    this.lightworld.addShop('kakarikoShop');
-    this.lightworld.addShop('lwFortuneTeller', true);
-    this.lightworld.addShop('bushCoveredHouse', true);
-    this.lightworld.addShop('lostWoodsGamble', true);
-    this.lightworld.addShop('lumberjackHouse', true);
-    this.lightworld.addShop('snitchLadyEast', true);
-    this.lightworld.addShop('snitchLadyWest', true);
-    this.lightworld.addShop('bombHut', true);
-
+    for(const key of dwShopKeys) {
+      this.darkworld.addShop(key);
+    }
+    for(const key of lwShopKeys) {
+      this.lightworld.addShop(key);
+    }
   }
   private static fromObjectHelper(data: RetroMapData, obj: any, world: string, mapkey: string) {
     const keys = Object.keys(data[world][mapkey]);

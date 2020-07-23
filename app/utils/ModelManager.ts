@@ -296,6 +296,8 @@ export class ModelManager {
     const ldkeys = Object.keys(this.sol.getStaticMapDungeonsLW(this.settings.gameMode));
     const dkeys = Object.keys(this.sol.getStaticMapDW(this.settings.gameMode));
     const ddkeys = Object.keys(this.sol.getStaticMapDungeonsDW(this.settings.gameMode));
+    const lskeys = Object.keys(this.sol.getStaticMapShopsLW(this.settings.gameMode));
+    const dskeys = Object.keys(this.sol.getStaticMapShopsDW(this.settings.gameMode));
     for (const key of lkeys) {
       this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
     }
@@ -309,6 +311,12 @@ export class ModelManager {
     for (const key of ddkeys) {
       this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
       this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+    }
+    for(const key of lskeys) {
+      this.map.lightworld.shops[key].klass = this.sol.getStaticMapShopsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+    }
+    for(const key of dskeys) {
+      this.map.darkworld.shops[key].klass = this.sol.getStaticMapShopsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
     }
   }
 

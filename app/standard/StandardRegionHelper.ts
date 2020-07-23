@@ -1,12 +1,12 @@
 export class StandardRegionHelper {
   // light world
-  static northEastLW() {
+  static northEastLW(items, dungeons) {
     return true;
   }
-  static northWestLW() {
+  static northWestLW(items, dungeons) {
     return true;
   }
-  static southLW() {
+  static southLW(items, dungeons) {
     return true;
   }
   static deathMtnEastLW(items, dungeons) {

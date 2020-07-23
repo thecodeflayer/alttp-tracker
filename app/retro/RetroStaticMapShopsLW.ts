@@ -1,52 +1,92 @@
 import {IStaticMapShopsLW} from '@/interfaces/IStaticMapShopsLW';
+import {RetroRegionHelper} from '@/retro/RetroRegionHelper';
 
 export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
-  lwDeathMtnShop = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  lumberjackHouse = {x:503, y:94, title:'Lumberjack\'s House',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  hookshotFairy = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  lostWoodsGamble = {x:278, y:23, title:'Lost Woods Gamble',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  longFairyCave = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  lwFortuneTeller = {x:281, y:485, title:'Fortune Teller',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  lwLakeHyliaFairy = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  snitchLadyWest = {x:76, y:703, title:'Snitch Lady West',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  kakarikoShop = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  snitchLadyEast = {x:310, y:727, title:'Snitch Lady East',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  lwFortuneTeller = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  bushCoveredHouse = {x:305, y:802, title:'Bush Covered House',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  bushCoveredHouse = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  bombHut ={x:41, y:897, title:'Bomb Hut',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  lostWoodsGamble = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  kakarikoGambleGame = {x:322, y:1054, title:'Kakariko Gamble Game',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  lumberjackHouse = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  lwBonkFairy = {x:710, y:979, title:'',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
     }};
-  snitchLadyEast = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  desertFairy = {x:416, y:1340, title:'Desert Fairy',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
     }};
-  snitchLadyWest = {x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  fiftyRupeeCave = {x:468, y:1434, title:'50 Rupee Cave',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
     }};
-  bombHut ={x:0, y:0, title:'',
-    req:[], valid(items, dungeons): boolean{
-      return true;
+  lwHypeFairy = {x:896, y:1172, title:'Hype Fairy',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
     }};
+  lwLakeHyliaFortuneTeller = {x:973, y:1206, title:'Lake Hylia Fortune Teller',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  lwLakeHyliaFairy = {x:1236, y:972, title:'Lake Hylia Fairy',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  longFairyCave = {x:1471, y:1053, title:'Long Fairy Cave',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  goodBeeCave = {x:1371, y:1160, title:'Good Bee Cave',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  twentyRupeeCave = {x:1353, y:1177, title:'20 Rupee Cave',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  hookshotFairy = {x:1266, y:221, title:'Hookshot Fairy',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.deathMtnEastLW(items, dungeons);
+    }};
+
+  // shops
+  kakarikoShop = {x:164, y:878, title:'Kakariko Shop',
+    takeAny: false, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.northWestLW(items, dungeons);
+    }};
+  lwLakeHyliaShop = {x:1090, y:1153, title:'Lake Hylia Shop',
+    takeAny: false, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.southLW(items, dungeons);
+    }};
+  lwDeathMtnShop = {x:1283, y:221, title:'',
+    takeAny: false, req:[], validate(items, dungeons): boolean{
+      return RetroRegionHelper.deathMtnEastLW(items, dungeons);
+    }};
+
 }

@@ -130,11 +130,10 @@ export class MapWorld {
   addBoss(key: string) {
     this.bosses[key] = {klass: 'locale-red'};
   }
-  addShop(key: string, takeAny = false) {
+  addShop(key: string) {
     this.shops[key] = {
       klass: 'locale-red',
-      checked: false,
-      takeAny
+      checked: false
     };
   }
 
