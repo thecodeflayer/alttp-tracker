@@ -28,7 +28,7 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   bombHut ={x:41, y:897, title:'Bomb Hut',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.northWestLW(items, dungeons);
+      return items.bombs && RetroRegionHelper.northWestLW(items, dungeons);
     }};
   kakarikoGambleGame = {x:322, y:1054, title:'Kakariko Gamble Game',
     takeAny: true, req:[], validate(items, dungeons): boolean{
@@ -36,7 +36,7 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   lwBonkFairy = {x:710, y:979, title:'',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return items.boots && RetroRegionHelper.southLW(items, dungeons);
     }};
   desertFairy = {x:416, y:1340, title:'Desert Fairy',
     takeAny: true, req:[], validate(items, dungeons): boolean{
@@ -44,11 +44,11 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   fiftyRupeeCave = {x:468, y:1434, title:'50 Rupee Cave',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return items.glove > 0 && RetroRegionHelper.southLW(items, dungeons);
     }};
   lwHypeFairy = {x:896, y:1172, title:'Hype Fairy',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return items.bombs && RetroRegionHelper.southLW(items, dungeons);
     }};
   lwLakeHyliaFortuneTeller = {x:973, y:1206, title:'Lake Hylia Fortune Teller',
     takeAny: true, req:[], validate(items, dungeons): boolean{
@@ -56,11 +56,11 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   lwLakeHyliaFairy = {x:1236, y:972, title:'Lake Hylia Fairy',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return RetroRegionHelper.northEastLW(items, dungeons);
     }};
   longFairyCave = {x:1471, y:1053, title:'Long Fairy Cave',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return RetroRegionHelper.northEastLW(items, dungeons);
     }};
   goodBeeCave = {x:1371, y:1160, title:'Good Bee Cave',
     takeAny: true, req:[], validate(items, dungeons): boolean{
@@ -68,8 +68,12 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   twentyRupeeCave = {x:1353, y:1177, title:'20 Rupee Cave',
     takeAny: true, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.southLW(items, dungeons);
+      return items.glove > 0 && RetroRegionHelper.southLW(items, dungeons);
     }};
+  capacityUpgrade = {x:1189, y:1282, title:'Capacity Upgrade',
+    takeAny: true, req:[], validate(items, dungeons): boolean{
+      return items.flippers && RetroRegionHelper.southLW(items, dungeons);
+    }}
   hookshotFairy = {x:1266, y:221, title:'Hookshot Fairy',
     takeAny: true, req:[], validate(items, dungeons): boolean{
       return RetroRegionHelper.deathMtnEastLW(items, dungeons);
@@ -86,7 +90,7 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     }};
   lwDeathMtnShop = {x:1283, y:221, title:'',
     takeAny: false, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.deathMtnEastLW(items, dungeons);
+      return items.bombs && RetroRegionHelper.deathMtnEastLW(items, dungeons);
     }};
 
 }
