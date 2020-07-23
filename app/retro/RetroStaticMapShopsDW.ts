@@ -77,7 +77,7 @@ export class RetroStaticMapShopsDW implements IStaticMapShopsDW{
     }};
   dwDeathMtnShop = {x:1266, y:222, title:'Dark Death Mountain Shop',
     takeAny: false, req:[], validate(items, dungeons): boolean{
-      return RetroRegionHelper.deathMtnEastLW(items, dungeons);
+      return items.moonpearl && RetroRegionHelper.deathMtnEastLW(items, dungeons);
     }};
 
 }
