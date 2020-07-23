@@ -167,7 +167,7 @@
   }
   .item-count {
     font-family: PressStart2P-vaV7;
-    font-size: 14;
+    font-size: 12;
     color: white;
     margin: 2;
   }
