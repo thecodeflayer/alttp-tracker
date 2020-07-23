@@ -1,6 +1,4 @@
 import {StandardStaticMapDW} from '~/standard/StandardStaticMapDW';
-import {DefaultItemsData} from '~/default-objects/DefaultItems';
-import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 import {TestLocationHelper} from '~/tests/TestLocationHelper';
 
 describe('StandardStaticMapDW', () => {
@@ -152,30 +150,6 @@ describe('StandardStaticMapDW', () => {
     ['spikeCave', false, {cape:false, bluecane:false}, {}, true],
   ];
 
-  const negTests = [];
+  TestLocationHelper.doTests(tests, 'location', new StandardStaticMapDW());
 
-  tests.forEach((test)=> {
-    const items =  test[2];
-    const dungeons = test[3];
-    const result = test[1];
-    const isNeg = test[4] ? true : false;
-    const location = new StandardStaticMapDW()[test[0]];
-    const itemKeys = Object.keys(test[2]);
-    const dungeonKeys = Object.keys(test[3]);
-    it('should'+(isNeg?' negative':'')+' test location access for '+test[0]+' with '+
-      (itemKeys.length>0 ? ('items '+TestLocationHelper.stringifyItem(items)): 'no items')+' and '+
-      (dungeonKeys.length>0 ? ('dungeons '+TestLocationHelper.stringifyDungeon(dungeons)): 'no dungeons')+' and expect '+result, () => {
-      const itemsObj = isNeg ? TestLocationHelper.getLoadedItem() : new DefaultItemsData();
-      const dungeonsObj = new DefaultDungeonsData();
-      //load items
-      for(const key of itemKeys) {
-        itemsObj[key] = items[key];
-      }
-      //load dungeons
-      for(const key of dungeonKeys) {
-        dungeonsObj[key] = dungeons[key];
-      }
-      expect(location.validate(itemsObj, dungeonsObj)).toBe(result);
-    });
-  });
 });
