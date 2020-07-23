@@ -4,7 +4,7 @@ import {DefaultDungeonsData} from '~/default-objects/DefaultDungeons';
 import {DefaultSettingsData} from '~/default-objects/DefaultSettings';
 import {TestLocationHelper} from '~/tests/TestLocationHelper';
 
-describe('StandardStaticMapDuneonsDW', () => {
+describe('StandardStaticMapDungeonsDW', () => {
 
   const tests = [
     ['pod', false, {}, {}],
