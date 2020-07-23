@@ -7,7 +7,7 @@ export class RetroStaticMapDungeonsDW extends StandardStaticMapDungeonsDW{
       return items.moonpearl && RetroRegionHelper.northEastDW(items, dungeons);
     },
     validateBoss(items, dungeons){
-      return items.hammer && items.moonpearl && items.bow > 0
+      return items.hammer && items.moonpearl && (items.bow > 0 && items.quiver)
         && (items.lantern || items.firerod) && RetroRegionHelper.northEastDW(items, dungeons);
     }}; // palace of darkness
   sp = {x:703, y:1402,
@@ -57,7 +57,7 @@ export class RetroStaticMapDungeonsDW extends StandardStaticMapDungeonsDW{
       return RetroRegionHelper.gt(items, dungeons, settings);
     },
     validateBoss(items, dungeons, settings){
-      return (items.sword > 0 || items.net) && items.bow > 0
+      return (items.sword > 0 || items.net) && (items.bow > 0 && items.quiver)
         && (items.lantern || items.firerod) && items.hookshot
         && RetroRegionHelper.gt(items, dungeons, settings);
     }};

@@ -7,7 +7,7 @@ export class RetroStaticMapDungeonsLW extends StandardStaticMapDungeonsLW{
       return true;
     },
     validateBoss(items){
-      return  items.bow > 0 && (items.lantern || items.firerod);
+      return  (items.bow > 0 && items.quiver) && (items.lantern || items.firerod);
     }
   };
   dp = {x:111, y:1270,

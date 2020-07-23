@@ -114,8 +114,9 @@ export class MapWorld {
   scrollY = 0;
   filterList = 0;
   locations = {};
-  dungeons ={};
-  bosses ={};
+  dungeons = {};
+  bosses = {};
+  shops = {};
   addLocation(key: string) {
     this.locations[key] = {
       klass: 'locale-red',
@@ -127,6 +128,13 @@ export class MapWorld {
   }
   addBoss(key: string) {
     this.bosses[key] = {klass: 'locale-red'};
+  }
+  addShop(key: string, takeAny = false) {
+    this.shops[key] = {
+      klass: 'locale-red',
+      checked: false,
+      takeAny
+    };
   }
 
 }
