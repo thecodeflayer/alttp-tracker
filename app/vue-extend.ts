@@ -3,11 +3,11 @@ import {ModelManager} from '@/utils/ModelManager';
 import {StaticObjectLoader} from '@/utils/StaticObjectLoader';
 
 declare module 'vue-property-decorator' {
-    interface Vue {
-        $navigateTo(...args: any[]);
-        $showModal(...args: any[]);
-        $closeModal(...args: any[]);
-        $modelManager: ModelManager;
-        $sol: StaticObjectLoader;
-    }
+  interface Vue {
+    $navigateTo(...args: any[]);
+    $showModal(...args: any[]);
+    $closeModal(...args: any[]);
+    $modelManager: ModelManager;
+    $sol: StaticObjectLoader;
+  }
 }

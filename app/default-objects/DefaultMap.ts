@@ -117,6 +117,7 @@ export class MapWorld {
   dungeons = {};
   bosses = {};
   shops = {};
+  showMode = 'locations';
   addLocation(key: string) {
     this.locations[key] = {
       klass: 'locale-red',
