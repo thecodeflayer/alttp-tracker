@@ -95,12 +95,23 @@ export class StaticObjectLoader {
       retval = new RetroStaticDungeons();
     }
     if(iShuff === 'standard'){
-      return retval;
+      if(gm === this.RETRO) { //add small keys to chest pool since they are automatically scattered in retro.
+        const keys = Object.keys(retval);
+        for(const key of keys) {
+          retval[key].maxChests = retval[key].maxChests + retval[key].chestSmallkeys;
+        }
+        return retval;
+      } else {
+        return retval;
+      }
     } else if(iShuff === 'mc') {
       const keys = Object.keys(retval);
       for(const key of keys) {
         if(key !== 'aga') {
           retval[key].maxChests = retval[key].maxChests + 2;
+        }
+        if(gm === this.RETRO) { //add small keys to chest pool since they are automatically scattered in retro.
+          retval[key].maxChests = retval[key].maxChests + retval[key].chestSmallkeys;
         }
       }
       return retval;

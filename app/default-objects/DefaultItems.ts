@@ -31,18 +31,18 @@ export class DefaultItemsData {
   flute = false;
   net = false;
   book = false;
-  moonpearl = false;
+  sword = 0; // 0 - 4 to indicate sword level
   jar = 0; // 0 - 4 to indicate jar count
   redcane = false;
   bluecane = false;
   cape = false;
   mirror = false;
-  glove = 0; // 0 - 2 to indicate glove level
-  boots = false;
-  flippers = false;
-  halfmagic = false;
-  sword = 0; // 0 - 4 to indicate sword level
   shield = 0; // 0 - 3 to indicate shield level
+  boots = false;
+  glove = 0; // 0 - 2 to indicate glove level
+  flippers = false;
+  moonpearl = false;
+  halfmagic = false;
   tunic = 0;
   quiver = false;
 
