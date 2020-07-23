@@ -18,6 +18,7 @@ import {RetroStaticMapDW} from '@/retro/RetroStaticMapDW';
 import {RetroStaticMapDungeonsDW} from '@/retro/RetroStaticMapDungeonsDW';
 import {RetroStaticDungeons} from '@/retro/RetroStaticDungeons';
 import {RetroStaticItems} from '@/retro/RetroStaticItems';
+import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
 
 export class StaticObjectLoader {
   STANDARD = 'standard';
@@ -133,5 +134,14 @@ export class StaticObjectLoader {
     } else if(gm === this.RETRO) {
       return new RetroStaticItems();
     }
+  }
+  StaticMapShopsLW(gm) {
+    if(!gm) {
+      throw new Error('game mode not provided!');
+    }
+    if(gm === this.RETRO){
+      return new RetroStaticMapShopsLW();
+    }
+
   }
 }

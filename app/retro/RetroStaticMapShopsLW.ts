@@ -1,4 +1,6 @@
-export class RetroStaticMapShopsLW {
+import {IStaticMapShopsLW} from '@/interfaces/IStaticMapShopsLW';
+
+export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
   lwDeathMtnShop = {x:0, y:0, title:'',
     req:[], valid(items, dungeons): boolean{
       return true;
