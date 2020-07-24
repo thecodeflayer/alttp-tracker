@@ -1,9 +1,7 @@
-export class DefaultMap {
+export abstract class DefaultMap {
   version = '0.0.1';
   data: IDefaultMapData;
-  toJSONString():string{
-    throw new Error('override this method.');
-  }
+  abstract toJSONString():string;
   static fromJSON(str: string):DefaultMap{
     throw new Error('override this method.');
   }

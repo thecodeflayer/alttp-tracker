@@ -1,9 +1,9 @@
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
-import {DefaultMap, IDefaultMapData} from '@/default-objects/DefaultMap';
+import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
 import {InvertedMapData} from '@/default-objects/InvertedDefaultMap';
-import {StandardMapData} from '@/default-objects/StandardDefaultMap';
+import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDefaultMap';
 
 export class DefaultGameSaves {
   version = '0.0.1';
@@ -62,7 +62,7 @@ export class Game {
       game.versions = new GameVersions(
         (obj.versions && obj.versions.items) ? obj.versions.items : new DefaultItems().version,
         (obj.versions && obj.versions.dungeons) ? obj.versions.dungeons : new DefaultDungeons().version,
-        (obj.versions && obj.versions.map) ? obj.versions.map : new DefaultMap().version,
+        (obj.versions && obj.versions.map) ? obj.versions.map : new StandardDefaultMap().version,
         (obj.versions && obj.versions.settings) ? obj.versions.items : new DefaultSettings().version,
       );
     }
