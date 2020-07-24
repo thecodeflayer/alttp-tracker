@@ -34,7 +34,7 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     takeAny: true, req:[], validate(items, dungeons): boolean{
       return RetroRegionHelper.northWestLW(items, dungeons);
     }};
-  lwBonkFairy = {x:710, y:979, title:'',
+  lwBonkFairy = {x:710, y:979, title:'Bonk Fairy',
     takeAny: true, req:[], validate(items, dungeons): boolean{
       return items.boots && RetroRegionHelper.southLW(items, dungeons);
     }};
@@ -88,7 +88,7 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
     takeAny: false, req:[], validate(items, dungeons): boolean{
       return RetroRegionHelper.southLW(items, dungeons);
     }};
-  lwDeathMtnShop = {x:1283, y:221, title:'',
+  lwDeathMtnShop = {x:1283, y:221, title:'Death Mountain Shop',
     takeAny: false, req:[], validate(items, dungeons): boolean{
       return items.bombs && RetroRegionHelper.deathMtnEastLW(items, dungeons);
     }};

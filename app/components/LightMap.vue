@@ -4,20 +4,6 @@
     <AbsoluteLayout @pan="onPan" @pinch="onPinch" @doubletap="onDoubleTap">
       <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
         <Image v-for="(tile, idx) in mapHandler.tiles" v-bind:key="idx" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
-        <Label v-if="mapHandler.centerKey" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               class="center-key"
-               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(mapHandler.centerKey)" />
-        <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
-               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(key)"/>
         <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="dkey" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                :class="(mapHandler.staticDungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
@@ -37,6 +23,27 @@
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[bkey].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
+        <Label v-if="mapHandler.centerKey" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               class="center-key"
+               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickLocale(mapHandler.centerKey)" />
+        <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
+               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickLocale(key)"/>
+        <Label v-if="mapHandler.centerShopKey" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               class="center-key"
+               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].x - (15 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].y - (15 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickShop(mapHandler.centerShopKey)" />
         <Label v-for="key in mapHandler.shopKeys" v-bind:key="key" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.shops[key].checked ? 'locale-gray' : mapHandler.shops[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
@@ -102,6 +109,7 @@
       shopKeys: Object.keys(this.$sol.getStaticMapShopsLW(this.$modelManager.getGameMode())),
       shops: this.$modelManager.map.lightworld.shops,
       showMode: this.$modelManager.map.lightworld.showMode,
+      centerShopKey: undefined
     };
     mapWidth = 1500;
     mapHeight = 1500;
@@ -119,7 +127,7 @@
       prevX: 0,
       prevY: 0,
       timer: undefined
-    }
+    };
     gameMode = this.$modelManager.getGameMode();
 
     mounted() {
@@ -139,6 +147,8 @@
         this.topNavHeight = this.getViewHeight(this.navbar.nativeView);
         if (this.$modelManager.map.lightworld.centerKey) {
           this.centerOnKey();
+        } else if(this.$modelManager.map.lightworld.centerShopKey && this.mapHandler.showMode === 'shops') {
+          this.centerOnShopKey();
         }
         this.debugInfo = this.getDebugInfo();
       }, 300);
@@ -309,6 +319,21 @@
       this.$modelManager.saveMap();
     }
 
+    centerOnShopKey() {
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale = 1;
+      this.pinchHandler.top = this.getPinchTop(newScale);
+      this.pinchHandler.left = this.getPinchLeft(newScale);
+      const locale = this.mapHandler.staticShops[this.$modelManager.map.lightworld.centerShopKey];
+      this.mapHandler.centerShopKey = this.$modelManager.map.lightworld.centerShopKey;
+      this.$modelManager.map.lightworld.centerShopKey = undefined;
+      const halfWidth = Math.floor(this.screenWidth / 2);
+      const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
+      let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
+      let newY = Math.floor(-Math.abs(locale.y) + halfHeight);
+      this.keepInBounds(newX, newY);
+      this.$modelManager.saveMap();
+    }
+
     keepInBounds(newX, newY) {
       const minX = -Math.abs((this.screenWidth + Math.abs(this.pinchHandler.left)) - this.mapWidth);
       if (newX > this.pinchHandler.left) {
@@ -370,12 +395,14 @@
     onClickLocale(key) {
       this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
       this.mapHandler.centerKey = undefined;
+      this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 
     onClickShop(key) {
       this.mapHandler.shops[key].checked = this.$modelManager.map.lightworld.shops[key].checked = !this.mapHandler.shops[key].checked;
       this.mapHandler.centerKey = undefined;
+      this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 

@@ -4,20 +4,6 @@
     <AbsoluteLayout @pan="onPan" @pinch="onPinch" @doubletap="onDoubleTap">
       <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
         <Image v-for="(tile, idx) in mapHandler.tiles" v-bind:key="idx" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
-        <Label v-if="mapHandler.centerKey" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               class="center-key"
-               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(mapHandler.centerKey)" />
-        <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
-               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(key)"/>
         <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="dkey" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
                :class="(mapHandler.staticDungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
@@ -37,6 +23,20 @@
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[bkey].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
+        <Label v-if="mapHandler.centerKey" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               class="center-key"
+               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickLocale(mapHandler.centerKey)" />
+        <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
+               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickLocale(key)"/>
         <Label v-if="mapHandler.centerShopKey" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                class="center-key"
                :width="Math.floor(30 * (1 / pinchHandler.localeScale))"

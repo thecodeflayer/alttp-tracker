@@ -104,8 +104,7 @@
       const sv = this.listScrollView.nativeView;
       setTimeout(() => {
         try {
-          console.log('scroll to ', this.scrollOffsetY);
-          sv.scrollToVerticalOffset(this.scrollOffsetY, false);
+          sv.scrollToVerticalOffset(this.scrollOffsetY);
         } catch (err) {
           console.log(err);
         }
@@ -157,7 +156,6 @@
 
     getVisible(key, isShop = false) {
       if(isShop) {
-
         return ((this.filterList === 5)
           || (this.filterList === 3 && !this.shopHandler.shops[key].checked && this.shopHandler.shops[key].klass === 'locale-red')
           || (this.filterList === 2 && !this.shopHandler.shops[key].checked && this.shopHandler.shops[key].klass === 'locale-green')
