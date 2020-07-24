@@ -12,14 +12,14 @@ import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSet
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
 import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDefaultMap';
 import {InvertedDefaultMap, InvertedMapData} from '@/default-objects/InvertedDefaultMap';
-import {DefaultMapData} from '@/default-objects/DefaultMap';
+import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
 import {RetroDefaultMap, RetroMapData} from '@/default-objects/RetroDefaultMap';
 
 export class ModelManager {
   items: DefaultItemsData;
   dungeons: DefaultDungeonsData;
-  map: DefaultMapData;
+  map: IDefaultMapData;
   settings: DefaultSettingsData;
   gameSaves: DefaultGameSavesData;
   editGame: GameEditObj;
@@ -85,7 +85,7 @@ export class ModelManager {
     return retval;
   }
 
-  validateMapFromStorage() :DefaultMapData{
+  validateMapFromStorage() :IDefaultMapData{
     let retval = this.settings.gameMode == this.sol.RETRO ? new RetroMapData()
       : this.settings.gameMode == this.sol.INVERTED ? new InvertedMapData()
         : new StandardMapData();

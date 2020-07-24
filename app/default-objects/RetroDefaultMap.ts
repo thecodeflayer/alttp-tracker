@@ -1,6 +1,10 @@
-import {DefaultMap, DefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {DefaultMap, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
 import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
+import {RetroStaticMapDW} from '@/retro/RetroStaticMapDW';
+import {RetroStaticMapLW} from '@/retro/RetroStaticMapLW';
+import {RetroStaticMapDungeonsDW} from '@/retro/RetroStaticMapDungeonsDW';
+import {RetroStaticMapDungeonsLW} from '@/retro/RetroStaticMapDungeonsLW';
 
 export class RetroDefaultMap extends DefaultMap{
   data = new RetroMapData();
@@ -16,16 +20,32 @@ export class RetroDefaultMap extends DefaultMap{
     return (retval as DefaultMap);
   }
 }
-export class RetroMapData extends DefaultMapData{
+export class RetroMapData implements IDefaultMapData{
+  lightworld = new MapWorld();
+  darkworld = new MapWorld();
   constructor() {
-    super();
-    this.lightworld.addLocation('oldMan');
-    this.lightworld.addDungeon('aga');
-    this.lightworld.addBoss('aga');
-    this.lightworld.addLocation('linkHouse');
-    this.darkworld.addLocation('bumperCave');
-    this.darkworld.addDungeon('gt');
-    this.darkworld.addBoss('gt');
+
+    const dwLocationKeys = Object.keys(new RetroStaticMapDW());
+    const lwLocationKeys = Object.keys(new RetroStaticMapLW());
+
+    for(const key of dwLocationKeys) {
+      this.darkworld.addLocation(key);
+    }
+    for(const key of lwLocationKeys) {
+      this.lightworld.addLocation(key);
+    }
+
+    const dwDungeonKeys = Object.keys(new RetroStaticMapDungeonsDW());
+    const lwDungeonKeys = Object.keys(new RetroStaticMapDungeonsLW());
+
+    for(const key of dwDungeonKeys) {
+      this.darkworld.addDungeon(key);
+      this.darkworld.addBoss(key);
+    }
+    for(const key of lwDungeonKeys) {
+      this.lightworld.addDungeon(key);
+      this.lightworld.addBoss(key);
+    }
 
     const dwShopKeys = Object.keys(new RetroStaticMapShopsDW());
     const lwShopKeys = Object.keys(new RetroStaticMapShopsLW());
@@ -36,6 +56,9 @@ export class RetroMapData extends DefaultMapData{
     for(const key of lwShopKeys) {
       this.lightworld.addShop(key);
     }
+  }
+  getCopy(): IDefaultMapData {
+    return JSON.parse(JSON.stringify(this));
   }
   private static fromObjectHelper(data: RetroMapData, obj: any, world: string, mapkey: string) {
     const keys = Object.keys(data[world][mapkey]);

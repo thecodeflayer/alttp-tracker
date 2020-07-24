@@ -1,4 +1,8 @@
-import {DefaultMap, DefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {DefaultMap, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {InvertedStaticMapDW} from '@/inverted/InvertedStaticMapDW';
+import {InvertedStaticMapLW} from '@/inverted/InvertedStaticMapLW';
+import {InvertedStaticMapDungeonsDW} from '@/inverted/InvertedStaticMapDungeonsDW';
+import {InvertedStaticMapDungeonsLW} from '@/inverted/InvertedStaticMapDungeonsLW';
 
 export class InvertedDefaultMap extends DefaultMap{
   data = new InvertedMapData();
@@ -14,16 +18,35 @@ export class InvertedDefaultMap extends DefaultMap{
   }
 }
 
-export class InvertedMapData extends DefaultMapData{
+export class InvertedMapData implements IDefaultMapData{
+  lightworld = new MapWorld();
+  darkworld = new MapWorld();
   constructor() {
-    super();
-    this.darkworld.addLocation('oldMan');
-    this.darkworld.addDungeon('aga');
-    this.darkworld.addBoss('aga');
-    this.darkworld.addLocation('linkHouse');
-    this.lightworld.addLocation('bumperCave');
-    this.lightworld.addDungeon('gt');
-    this.lightworld.addBoss('gt');
+
+    const dwLocationKeys = Object.keys(new InvertedStaticMapDW());
+    const lwLocationKeys = Object.keys(new InvertedStaticMapLW());
+
+    for(const key of dwLocationKeys) {
+      this.darkworld.addLocation(key);
+    }
+    for(const key of lwLocationKeys) {
+      this.lightworld.addLocation(key);
+    }
+
+    const dwDungeonKeys = Object.keys(new InvertedStaticMapDungeonsDW());
+    const lwDungeonKeys = Object.keys(new InvertedStaticMapDungeonsLW());
+
+    for(const key of dwDungeonKeys) {
+      this.darkworld.addDungeon(key);
+      this.darkworld.addBoss(key);
+    }
+    for(const key of lwDungeonKeys) {
+      this.lightworld.addDungeon(key);
+      this.lightworld.addBoss(key);
+    }
+  }
+  getCopy(): IDefaultMapData {
+    return JSON.parse(JSON.stringify(this));
   }
   private static fromObjectHelper(data: InvertedMapData, obj: any, world: string, mapkey: string) {
     const keys = Object.keys(data[world][mapkey]);

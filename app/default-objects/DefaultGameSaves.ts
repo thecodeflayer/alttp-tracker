@@ -1,6 +1,6 @@
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
 import {InvertedMapData} from '@/default-objects/InvertedDefaultMap';
 import {StandardMapData} from '@/default-objects/StandardDefaultMap';
@@ -46,7 +46,7 @@ export class DefaultGameSavesData {
 export class Game {
   items:DefaultItemsData;
   dungeons:DefaultDungeonsData;
-  map:DefaultMapData;
+  map:IDefaultMapData;
   settings:DefaultSettingsData;
   timestamp = undefined;
   versions: GameVersions;
