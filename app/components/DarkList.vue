@@ -23,7 +23,7 @@
               <StackLayout orientation="horizontal">
                 <Image
                     :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
-                    width="32" height="32" @tap="clickCheck(key)"/>
+                    width="32" height="32" @tap="clickCheck(key)" marginRight="5"/>
                 <Label class="list-title" :text="mapHandler.staticLocations[key].title"/>
               </StackLayout>
               <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
@@ -51,12 +51,12 @@
               <StackLayout orientation="horizontal">
                 <Image
                     :src="shopHandler.shops[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
-                    width="32" height="32" @tap="clickCheck(key, true)"/>
+                    width="32" height="32" @tap="clickCheck(key, true)" marginRight="5"/>
                 <Label class="title" :text="shopHandler.staticLocations[key].title"/>
               </StackLayout>
               <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
                 <Image v-for="img in shopHandler.staticLocations[key].req" v-bind:key="img"
-                       height="16" :src="'~/img/'+img+'.png'"/>
+                       height="15" :src="'~/img/'+img+'.png'"/>
               </StackLayout>
             </StackLayout>
             <StackLayout row="0" col="1" orientation="vertical">
@@ -187,37 +187,4 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .rog {
-    @include colorize($color: accent);
-  }
-  .top-header {
-    background-color: black;
-    font-family: "Return of Ganon", "ReturnofGanon",serif;
-    font-size: 18;
-    color: white;
-    padding-top: 6;
-  }
-  .locale-wrapper {
-    background-color: darkgreen;
-    margin:4;
-    border-width: 2;
-    border-color: #003400;
-    color: white;
-    padding: 4;
-    font-family: "Return of Ganon", "ReturnofGanon",serif;
-    font-size: 20;
-    &.darkred {background-color:darkred;}
-    &.darkgreen {background-color: darkgreen;}
-    &.gray {background-color: gray;}
-
-  }
-  .title {
-    font-family: "Return of Ganon", "ReturnofGanon",serif;
-    font-size: 20;
-    padding:5;
-  }
 </style>
