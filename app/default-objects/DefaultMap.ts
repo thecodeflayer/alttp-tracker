@@ -18,6 +18,7 @@ export class MapWorld {
   x = 0;
   y = 0;
   centerKey = undefined;
+  centerShopKey = undefined;
   scrollY = 0;
   filterList = 0;
   locations = {};

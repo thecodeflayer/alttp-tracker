@@ -37,6 +37,13 @@
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[bkey].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
+        <Label v-if="mapHandler.centerShopKey" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               class="center-key"
+               :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].x - (15 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].y - (15 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickShop(mapHandler.centerShopKey)" />
         <Label v-for="key in mapHandler.shopKeys" v-bind:key="key" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.shops[key].checked ? 'locale-gray' : mapHandler.shops[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
@@ -102,6 +109,7 @@
       shopKeys: Object.keys(this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode())),
       shops: this.$modelManager.map.darkworld.shops,
       showMode: this.$modelManager.map.darkworld.showMode,
+      centerShopKey: undefined
     };
     mapWidth = 1500;
     mapHeight = 1500;
@@ -137,8 +145,10 @@
       this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale;
       setTimeout(() => {
         this.topNavHeight = this.getViewHeight(this.navbar.nativeView);
-        if (this.$modelManager.map.darkworld.centerKey) {
+        if (this.$modelManager.map.darkworld.centerKey && this.mapHandler.showMode === 'locations') {
           this.centerOnKey();
+        } else if(this.$modelManager.map.darkworld.centerShopKey && this.mapHandler.showMode === 'shops') {
+          this.centerOnShopKey();
         }
         this.debugInfo = this.getDebugInfo();
       }, 300);
@@ -309,6 +319,21 @@
       this.$modelManager.saveMap();
     }
 
+    centerOnShopKey() {
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale = 1;
+      this.pinchHandler.top = this.getPinchTop(newScale);
+      this.pinchHandler.left = this.getPinchLeft(newScale);
+      const locale = this.mapHandler.staticShops[this.$modelManager.map.darkworld.centerShopKey];
+      this.mapHandler.centerShopKey = this.$modelManager.map.darkworld.centerShopKey;
+      this.$modelManager.map.darkworld.centerShopKey = undefined;
+      const halfWidth = Math.floor(this.screenWidth / 2);
+      const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
+      let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
+      let newY = Math.floor(-Math.abs(locale.y) + halfHeight);
+      this.keepInBounds(newX, newY);
+      this.$modelManager.saveMap();
+    }
+
     keepInBounds(newX, newY) {
       const minX = -Math.abs((this.screenWidth + Math.abs(this.pinchHandler.left)) - this.mapWidth);
       if (newX > this.pinchHandler.left) {
@@ -370,12 +395,14 @@
     onClickLocale(key) {
       this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
       this.mapHandler.centerKey = undefined;
+      this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 
     onClickShop(key) {
       this.mapHandler.shops[key].checked = this.$modelManager.map.darkworld.shops[key].checked = !this.mapHandler.shops[key].checked;
       this.mapHandler.centerKey = undefined;
+      this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 

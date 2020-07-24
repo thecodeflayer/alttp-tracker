@@ -63,7 +63,7 @@ export class RetroStaticMapShopsDW implements IStaticMapShopsDW{
     takeAny: false, req:[], validate(items, dungeons): boolean{
       return RetroRegionHelper.northWestDW(items, dungeons);
     }};
-  dwLumberjackHutShop = {x:504, y:88, title:'',
+  dwLumberjackHutShop = {x:504, y:88, title:'Lumberjack Hut',
     takeAny: false, req:[], validate(items, dungeons): boolean{
       return RetroRegionHelper.northWestDW(items, dungeons);
     }};
