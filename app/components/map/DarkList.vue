@@ -10,10 +10,10 @@
                                   : filterList === 2 ? 'Available'
                                     : filterList === 1 ? 'Checked' : 'All')"/>
       </GridLayout>
-      <ScrollView  ref="listScrollView" orientation="vertical"
+      <ScrollView ref="listScrollView" orientation="vertical"
                   :height="(mapHandler.keys.length + shopHandler.keys.length) * 54"
                   :scrollableHeight="(mapHandler.keys.length + shopHandler.keys.length) * 54"
-                   @scroll="onScroll">
+                  @scroll="onScroll">
         <StackLayout orientation="vertical" backgroundColor="black">
           <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="key"
                       :visibility="getVisible(key)"
@@ -28,14 +28,14 @@
               </StackLayout>
               <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
                 <Image v-for="img in mapHandler.staticLocations[key].req" v-bind:key="img"
-                       height="16" :src="'~/img/'+img+'.png'" />
+                       height="16" :src="'~/img/'+img+'.png'"/>
               </StackLayout>
             </StackLayout>
             <StackLayout row="0" col="1" orientation="vertical">
               <Image row="0" col="1" src="~/img/dungeons/compass1.png" width="32" height="32"
                      @tap="clickCompass(key)" horizontalAlignment="center"/>
               <StackLayout orientation="horizontal" style="margin-top:4;" horizontalAlignment="right">
-                <Image src="~/img/chest.png" height="16" width="16" />
+                <Image src="~/img/chest.png" height="16" width="16"/>
                 <Label class="list-title" fontSize="16"
                        :text="'x'+mapHandler.staticLocations[key].itemCount"/>
               </StackLayout>
@@ -74,29 +74,29 @@
 
 <script type="ts">
   import {Component, Vue, Ref} from 'vue-property-decorator';
-  import LightMap from '@/components/LightMap.vue';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
-  export default class LightList extends Vue {
+  export default class DarkList extends Vue {
     @Ref('listScrollView') listScrollView;
 
     menuHandler = {
-      mode: this.$modelManager.map.lightworld.mode
+      mode: this.$modelManager.map.darkworld.mode
     };
     mapHandler = {
-      keys: Object.keys(this.$sol.getStaticMapLW(this.$modelManager.getGameMode())),
-      staticLocations: this.$sol.getStaticMapLW(this.$modelManager.getGameMode()),
-      locations: this.$modelManager.map.lightworld.locations
+      keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
+      staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
+      locations: this.$modelManager.map.darkworld.locations
     };
     shopHandler = {
-      keys: Object.keys(this.$sol.getStaticMapShopsLW(this.$modelManager.getGameMode())),
-      staticLocations: this.$sol.getStaticMapShopsLW(this.$modelManager.getGameMode()),
-      shops: this.$modelManager.map.lightworld.shops
+      keys: Object.keys(this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode())),
+      staticLocations: this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode()),
+      shops: this.$modelManager.map.darkworld.shops
     }
     gameMode = this.$modelManager.getGameMode();
     scrollTimout = undefined;
-    scrollOffsetY = this.$modelManager.map.lightworld.scrollY;
-    filterList = this.$modelManager.map.lightworld.filterList;
+    scrollOffsetY = this.$modelManager.map.darkworld.scrollY;
+    filterList = this.$modelManager.map.darkworld.filterList;
 
     mounted() {
       this.$modelManager.validateLocales();
@@ -117,31 +117,31 @@
     }
 
     toggleMode() {
-      this.menuHandler.mode = this.$modelManager.map.lightworld.mode = 0;
+      this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 0;
       this.$modelManager.saveMap();
-      this.$navigateTo(LightMap);
+      this.$navigateTo(DarkMap);
     }
 
     clickCompass(key, isShop = false) {
       if(isShop) {
-        this.$modelManager.map.lightworld.centerShopKey = key;
-        this.$modelManager.map.lightworld.centerKey = undefined;
-        this.$modelManager.map.lightworld.showMode = 'shops';
+        this.$modelManager.map.darkworld.centerShopKey = key;
+        this.$modelManager.map.darkworld.centerKey = undefined;
+        this.$modelManager.map.darkworld.showMode = 'shops';
       } else {
-        this.$modelManager.map.lightworld.centerShopKey = undefined;
-        this.$modelManager.map.lightworld.centerKey = key;
-        this.$modelManager.map.lightworld.showMode = 'locations';
+        this.$modelManager.map.darkworld.centerShopKey = undefined;
+        this.$modelManager.map.darkworld.centerKey = key;
+        this.$modelManager.map.darkworld.showMode = 'locations';
       }
-      this.menuHandler.mode = this.$modelManager.map.lightworld.mode = this.$modelManager.map.lightworld.mode = 0;
+      this.menuHandler.mode = this.$modelManager.map.darkworld.mode = this.$modelManager.map.darkworld.mode = 0;
       this.$modelManager.saveMap();
-      this.$navigateTo(LightMap);
+      this.$navigateTo(DarkMap);
     }
 
     clickCheck(key, isShop = false) {
       if(isShop) {
-        this.shopHandler.shops[key].checked = this.$modelManager.map.lightworld.shops[key].checked = !this.shopHandler.shops[key].checked;
+        this.shopHandler.shops[key].checked = this.$modelManager.map.darkworld.shops[key].checked = !this.shopHandler.shops[key].checked;
       } else {
-        this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+        this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
       }
       this.$modelManager.saveMap();
     }
@@ -149,7 +149,7 @@
     onScroll(args) {
       clearTimeout(this.scrollTimout);
       this.scrollTimout = setTimeout(() => {
-        this.scrollOffsetY = this.$modelManager.map.lightworld.scrollY = args.scrollY;
+        this.scrollOffsetY = this.$modelManager.map.darkworld.scrollY = args.scrollY;
         this.$modelManager.saveMap();
       }, 300);
     }
@@ -178,13 +178,12 @@
       if (val > (this.gameMode === 'retro' ? 5 : 3)) {
         val = 0;
       }
-      this.filterList = this.$modelManager.map.lightworld.filterList = val;
+      this.filterList = this.$modelManager.map.darkworld.filterList = val;
       this.$modelManager.saveMap();
     }
   }
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
 </style>

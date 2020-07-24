@@ -54,7 +54,7 @@
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
-        <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'locations'" row="1" col="0" height="32" width="32" src="~/img/shopDW.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('shops')" />
+        <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'locations'" row="1" col="0" height="32" width="32" src="~/img/shopLW.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('shops')" />
         <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'shops'" row="1" col="0" height="32" width="32" src="~/img/dungeons/map1.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('locations')" />
         <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
       </GridLayout>
@@ -68,17 +68,17 @@
   import {screen} from 'tns-core-modules/platform';
   import * as app from 'tns-core-modules/application';
   import * as utils from 'tns-core-modules/utils/utils';
-  import DarkList from '@/components/DarkList.vue';
-  import LightMap from '@/components/LightMap.vue';
+  import LightList from '@/components/map/LightList.vue';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
-  export default class DarkMap extends Vue {
+  export default class LightMap extends Vue {
     @Ref('mapWrapper') mapWrapper;
     @Ref('navbar') navbar;
 
     debugInfo = 'Debug info here';
     menuHandler = {
-      mode: this.$modelManager.map.darkworld.mode
+      mode: this.$modelManager.map.lightworld.mode
     };
     panHandler = {
       lastX: 0,
@@ -95,20 +95,20 @@
     };
     mapHandler = {
       tiles: this.populateTiles(),
-      keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
-      staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
-      locations: this.$modelManager.map.darkworld.locations,
-      dungeonKeys: Object.keys(this.$sol.getStaticMapDungeonsDW(this.$modelManager.getGameMode())),
-      staticDungeons: this.$sol.getStaticMapDungeonsDW(this.$modelManager.getGameMode()),
-      dungeons: this.$modelManager.map.darkworld.dungeons,
-      bosses: this.$modelManager.map.darkworld.bosses,
+      keys: Object.keys(this.$sol.getStaticMapLW(this.$modelManager.getGameMode())),
+      staticLocations: this.$sol.getStaticMapLW(this.$modelManager.getGameMode()),
+      locations: this.$modelManager.map.lightworld.locations,
+      dungeonKeys: Object.keys(this.$sol.getStaticMapDungeonsLW(this.$modelManager.getGameMode())),
+      staticDungeons: this.$sol.getStaticMapDungeonsLW(this.$modelManager.getGameMode()),
+      dungeons: this.$modelManager.map.lightworld.dungeons,
+      bosses: this.$modelManager.map.lightworld.bosses,
       dungeonValues: this.$modelManager.dungeons,
       staticDungeonValues: this.$sol.getStaticDungeons(this.$modelManager.getGameMode(), this.$modelManager.getItemShuffle()),
       centerKey: undefined,
-      staticShops: this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode()),
-      shopKeys: Object.keys(this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode())),
-      shops: this.$modelManager.map.darkworld.shops,
-      showMode: this.$modelManager.map.darkworld.showMode,
+      staticShops: this.$sol.getStaticMapShopsLW(this.$modelManager.getGameMode()),
+      shopKeys: Object.keys(this.$sol.getStaticMapShopsLW(this.$modelManager.getGameMode())),
+      shops: this.$modelManager.map.lightworld.shops,
+      showMode: this.$modelManager.map.lightworld.showMode,
       centerShopKey: undefined
     };
     mapWidth = 1500;
@@ -136,18 +136,18 @@
       this.screenHeight = this.getMainScreenHeight();
       this.statusBarHeight = this.getStatusBarHeight();
       this.bottomNavHeight = this.getBottomNavbarHeight();
-      this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x;
-      this.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y;
-      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale;
+      this.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x;
+      this.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y;
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale;
       this.pinchHandler.top = this.getPinchTop(newScale);
       this.pinchHandler.left = this.getPinchLeft(newScale);
-      this.pinchHandler.currentScale = this.$modelManager.map.darkworld.scale;
-      this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale;
+      this.pinchHandler.currentScale = this.$modelManager.map.lightworld.scale;
+      this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale;
       setTimeout(() => {
         this.topNavHeight = this.getViewHeight(this.navbar.nativeView);
-        if (this.$modelManager.map.darkworld.centerKey && this.mapHandler.showMode === 'locations') {
+        if (this.$modelManager.map.lightworld.centerKey) {
           this.centerOnKey();
-        } else if(this.$modelManager.map.darkworld.centerShopKey && this.mapHandler.showMode === 'shops') {
+        } else if(this.$modelManager.map.lightworld.centerShopKey && this.mapHandler.showMode === 'shops') {
           this.centerOnShopKey();
         }
         this.debugInfo = this.getDebugInfo();
@@ -180,7 +180,7 @@
         const resourceId = (app.android.foregroundActivity || app.android.startActivity).getResources().getIdentifier('status_bar_height', 'dimen', 'android');
         if (resourceId) {
           result = (app.android.foregroundActivity || app.android.startActivity).getResources().getDimensionPixelSize(resourceId);
-          result = utils.layout.toDeviceIndependentPixels(result);
+          result = Math.ceil(utils.layout.toDeviceIndependentPixels(result));
         }
       }
       return result;
@@ -204,7 +204,7 @@
       const retval = [];
       for (let i = 0; i < 25; i++) {
         const obj = {
-          src: '~/img/darkworld/' + this.$modelManager.getGameModeMap() + '/map' + (i + 1) + '.png',
+          src: '~/img/lightworld/' + this.$modelManager.getGameModeMap() + '/map' + (i + 1) + '.png',
           width: 300,
           height: 300,
           top: Math.floor(i / 5) * 300,
@@ -228,7 +228,7 @@
         this.keepInBounds(newX, newY);
         this.panHandler.lastX = args.deltaX;
         this.panHandler.lastY = args.deltaY;
-        // this.debugInfo = this.getDebugInfo();
+        //this.debugInfo = this.getDebugInfo();
       } else if (args.state === 3) {
         if (!fromMomentum) {
           this.calcMomentum(args.deltaX, args.deltaY, this.panHandler.ticks);
@@ -293,7 +293,7 @@
       } else if (newScale > 1) {
         newScale = 1;
       }
-      this.pinchHandler.currentScale = this.$modelManager.map.darkworld.scale = newScale;
+      this.pinchHandler.currentScale = this.$modelManager.map.lightworld.scale = newScale;
       this.pinchHandler.top = this.getPinchTop(newScale);
       this.pinchHandler.left = this.getPinchLeft(newScale);
 
@@ -305,12 +305,12 @@
     }
 
     centerOnKey() {
-      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale = 1;
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale = 1;
       this.pinchHandler.top = this.getPinchTop(newScale);
       this.pinchHandler.left = this.getPinchLeft(newScale);
-      const locale = this.mapHandler.staticLocations[this.$modelManager.map.darkworld.centerKey];
-      this.mapHandler.centerKey = this.$modelManager.map.darkworld.centerKey;
-      this.$modelManager.map.darkworld.centerKey = undefined;
+      const locale = this.mapHandler.staticLocations[this.$modelManager.map.lightworld.centerKey];
+      this.mapHandler.centerKey = this.$modelManager.map.lightworld.centerKey;
+      this.$modelManager.map.lightworld.centerKey = undefined;
       const halfWidth = Math.floor(this.screenWidth / 2);
       const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
       let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
@@ -320,12 +320,12 @@
     }
 
     centerOnShopKey() {
-      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale = 1;
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.lightworld.scale = 1;
       this.pinchHandler.top = this.getPinchTop(newScale);
       this.pinchHandler.left = this.getPinchLeft(newScale);
-      const locale = this.mapHandler.staticShops[this.$modelManager.map.darkworld.centerShopKey];
-      this.mapHandler.centerShopKey = this.$modelManager.map.darkworld.centerShopKey;
-      this.$modelManager.map.darkworld.centerShopKey = undefined;
+      const locale = this.mapHandler.staticShops[this.$modelManager.map.lightworld.centerShopKey];
+      this.mapHandler.centerShopKey = this.$modelManager.map.lightworld.centerShopKey;
+      this.$modelManager.map.lightworld.centerShopKey = undefined;
       const halfWidth = Math.floor(this.screenWidth / 2);
       const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
       let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
@@ -347,14 +347,14 @@
       } else if (newY < minY) {
         newY = minY;
       }
-      this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x = newX;
-      this.mapWrapper.nativeView.top = this.$modelManager.map.darkworld.y = newY;
+      this.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x = newX;
+      this.mapWrapper.nativeView.top = this.$modelManager.map.lightworld.y = newY;
     }
 
     toggleMode() {
-      this.menuHandler.mode = this.$modelManager.map.darkworld.mode = 1;
+      this.menuHandler.mode = this.$modelManager.map.lightworld.mode = 1;
       this.$modelManager.saveMap();
-      this.$navigateTo(DarkList);
+      this.$navigateTo(LightList);
     }
 
     getViewWidth(view) {
@@ -393,35 +393,34 @@
     }
 
     onClickLocale(key) {
-      this.mapHandler.locations[key].checked = this.$modelManager.map.darkworld.locations[key].checked = !this.mapHandler.locations[key].checked;
+      this.mapHandler.locations[key].checked = this.$modelManager.map.lightworld.locations[key].checked = !this.mapHandler.locations[key].checked;
       this.mapHandler.centerKey = undefined;
       this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 
     onClickShop(key) {
-      this.mapHandler.shops[key].checked = this.$modelManager.map.darkworld.shops[key].checked = !this.mapHandler.shops[key].checked;
+      this.mapHandler.shops[key].checked = this.$modelManager.map.lightworld.shops[key].checked = !this.mapHandler.shops[key].checked;
       this.mapHandler.centerKey = undefined;
       this.mapHandler.centerShopKey = undefined;
       this.$modelManager.saveMap();
     }
 
     onDoubleTap() {
-      this.$modelManager.map.lightworld.scale = this.$modelManager.map.darkworld.scale;
-      this.$modelManager.map.lightworld.x = this.$modelManager.map.darkworld.x;
-      this.$modelManager.map.lightworld.y = this.$modelManager.map.darkworld.y;
-      this.$modelManager.map.lightworld.mode = 0;
+      this.$modelManager.map.darkworld.scale = this.$modelManager.map.lightworld.scale;
+      this.$modelManager.map.darkworld.x = this.$modelManager.map.lightworld.x;
+      this.$modelManager.map.darkworld.y = this.$modelManager.map.lightworld.y;
+      this.$modelManager.map.darkworld.mode = 0;
       this.$modelManager.saveMap();
-      this.$navigateTo(LightMap);
+      this.$navigateTo(DarkMap);
     }
     toggleShowMode(mode) {
-      this.mapHandler.showMode = this.$modelManager.map.darkworld.showMode = mode;
+      this.mapHandler.showMode = this.$modelManager.map.lightworld.showMode = mode;
       this.$modelManager.saveMap();
     }
   }
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
 </style>
