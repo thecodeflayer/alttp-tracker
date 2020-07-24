@@ -1,6 +1,6 @@
 <template>
     <ScrollView>
-      <StackLayout orientation="vertical" class="modal-dialog">
+      <StackLayout orientation="vertical" class="modal-dialog danger">
         <Label :visibility="modalAction === 'deleteGame' ? 'visible':'collapsed'" textWrap="true"
                textAlignment="center" style="padding-bottom: 10"
                text="Are you sure you want to delete this game?"/>
@@ -89,14 +89,5 @@
     font-family: "Return of Ganon", "ReturnofGanon";
     background-color: #6a0000;
     width: 100%;
-  }
-  .modal-dialog {
-    background-color: darkred;
-    border-width: 2px;
-    border-color: #004c00;
-    padding: 10;
-    color: white;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    font-size: 20;
   }
 </style>

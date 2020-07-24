@@ -143,35 +143,4 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .lbl {
-    font-size: 20;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    color: white;
-  }
-  .btn {
-    font-size: 20;
-    padding: 10;
-    margin: -3;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    width: 100%;
-    background-color: #616161;
-  }
-  .save-wrapper {
-    font-size: 20;
-    margin: 4;
-    padding: 10;
-    color: white;
-    border-width: 2;
-    border-color: #003400;
-    vertical-align: top;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    background-color: gray;
-  }
 </style>

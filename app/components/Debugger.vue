@@ -89,25 +89,6 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .welcome {
-    color:white;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    padding: 10;
-  }
-  .btn {
-    font-size: 20;
-    background-color: darkgreen;
-    padding: 10;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    width: 90%
-  }
   .textfield {
     color: black;
     background-color: #aaa;

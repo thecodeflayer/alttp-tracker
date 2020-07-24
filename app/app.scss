@@ -1,8 +1,145 @@
 @import "~@nativescript/theme/core";
 @import "~@nativescript/theme/blue";
+@import "global_vars";
 
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
+
+.btn {
+  font-size: 20;
+  padding: 10;
+  color: white;
+  horizontal-align: center;
+  vertical-align: center;
+  font-family: $font-ganon;
+  width: 100%;
+  border-width: 2;
+  background-color: $standard-border;
+  border-color: $standard-btn-border;
+  &.danger {
+    background-color: $danger-border;
+    border-color: $danger-btn-border;
+  }
+  &.empty {
+    background-color: $empty-border;
+    border-color: $empty-btn-border;
+  }
+  &.highlight {
+    background-color: $highlight-border;
+    border-color: $highlight-btn-border;
+  }
+  &.padded {
+    width:90%;
+    magin-top:5;
+  }
+  &.extra-padded {
+    width: 90%;
+    margin:5;
+  }
+}
+
+.lbl {
+  font-size: 20;
+  font-family: $font-ganon;
+  color: $standard-font-color;
+}
+
+
+.modal-dialog {
+  background-color: $standard-bg;
+  border-width: 2px;
+  border-color: $standard-border;
+  padding: 10;
+  color: $standard-font-color;
+  font-family: $font-ganon;
+  font-size: 20;
+  &.danger {
+    background-color: $danger-bg;
+    border-color: $danger-border;
+  }
+}
+
+.save-wrapper {
+  font-size: 20;
+  margin: 4;
+  padding: 10;
+  color: white;
+  border-width: 2;
+  border-color: $standard-border;
+  vertical-align: top;
+  font-family: $font-ganon;
+  background-color: $standard-bg;
+  &.danger {
+    background-color: $danger-bg;
+    border-color: $danger-border;
+  }
+  &.empty {
+    background-color: $empty-bg;
+    border-color: $empty-border;
+  }
+  &.highlight {
+    background-color: $highlight-bg;
+    border-color: $highlight-border;
+  }
+}
+// Map
+.locale-green {
+  border-width: 3;
+  border-color: black;
+  background-color: aqua;
+}
+.locale-gray {
+  border-width: 3;
+  border-color: black;
+  background-color: gray;
+}
+.locale-red {
+  border-width: 3;
+  border-color: black;
+  background-color: red;
+}
+.center-key {
+  border-width: 3;
+  border-color: black;
+  background-color: yellow;
+}
+// Map Lists
+.list-top-header {
+  background-color: black;
+  font-family: $font-ganon;
+  font-size: 18;
+  color: $standard-font-color;
+  padding-top: 6;
+}
+
+.list-title {
+  font-family: $font-ganon;
+  font-size: 20;
+  padding:5;
+}
+
+.locale-wrapper {
+  background-color: $standard-bg;
+  margin:4;
+  border-width: 2;
+  border-color: $standard-border;
+  color: white;
+  padding: 4;
+  font-family: $font-ganon;
+  font-size: 20;
+  &.darkred {
+    background-color:$danger-bg;
+    border-color: $danger-border;
+  }
+  &.darkgreen {
+    background-color: $standard-bg;
+    border-color: $standard-border;
+  }
+  &.gray {
+    background-color: $empty-bg;
+    border-color: $empty-border;
+  }
+}
 
 // Font icon class
 .fab {

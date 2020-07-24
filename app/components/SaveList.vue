@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <ScrollView orientation="vertical">
       <StackLayout orientation="vertical">
-        <GridLayout columns="52,*" rows="*" orientation="horizontal" class="save-wrapper" v-for="game in gameSaves"
+        <GridLayout columns="52,*" rows="*" orientation="horizontal" class="save-list-wrapper" v-for="game in gameSaves"
                     v-bind:key="game.id"
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'"
                     @tap="navToEdit(game)">
@@ -62,42 +62,37 @@
 
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
+  @import "../global_vars";
 
   // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
 
-  .lbl {
-    font-size: 20;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    color: white;
-  }
-
-  .save-wrapper {
+  .save-list-wrapper {
     font-size: 20;
     margin: 4;
     padding: 4;
-    color: white;
+    color: $standard-font-color;
     border-width: 2;
-    border-color: #003400;
     vertical-align: top;
-    font-family: "Return of Ganon", "ReturnofGanon";
+    font-family: $font-ganon;
 
     &.loaded {
-      background-color: forestgreen;
+      background-color: $highlight-bg;
+      border-color: $highlight-border;
     }
 
     &.empty {
-      background-color: gray;
+      background-color: $empty-bg;
+      border-color: $empty-border;
     }
 
     &.valid {
-      background-color: darkgreen;
+      background-color: $standard-bg;
+      border-color: $standard-border;
     }
 
     &.invalid {
-      background-color: darkred;
+      background-color: $danger-bg;
+      border-color: $danger-border;
     }
   }
 </style>

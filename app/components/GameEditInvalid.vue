@@ -2,12 +2,12 @@
   <Page backgroundColor="black">
     <Navbar></Navbar>
     <ScrollView>
-      <StackLayout orientation="vertical" class="save-wrapper invalid">
+      <StackLayout orientation="vertical" class="save-wrapper danger">
         <Label :text="game.name" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
-        <Button class="btn invalid" @tap="deleteGame">Delete</Button>
+        <Button class="btn danger padded" @tap="deleteGame">Delete</Button>
         <Label textWrap="true" fontSize="16" textAlignment="center"
                text="NOTE: This game is based on an old version. You must delete this game."/>
         <Label :visibility="!allowDelete && game.timestamp ? 'visible': 'collapsed'" textWrap="true" fontSize="16" textAlignment="center"
@@ -41,35 +41,4 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .lbl {
-    font-size: 20;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    color: white;
-  }
-  .btn {
-    font-size: 20;
-    padding: 10;
-    margin: -3;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    width: 100%;
-    background-color: #6a0000;
-  }
-  .save-wrapper {
-    font-size: 20;
-    margin: 4;
-    padding: 10;
-    color: white;
-    border-width: 2;
-    border-color: #003400;
-    vertical-align: top;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    background-color: darkred;
-  }
 </style>

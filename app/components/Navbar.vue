@@ -75,11 +75,6 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-
   .action-bar {
     margin-left: -12;
     margin-top:0;

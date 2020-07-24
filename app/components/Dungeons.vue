@@ -86,9 +86,6 @@
   @import '~@nativescript/theme/scss/variables/forest';
 
   // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
 
   .dungeon-stack {
   }

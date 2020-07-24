@@ -5,12 +5,12 @@
       <StackLayout orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
         <Label text="Welcome to the ALLTP Tracker!" class="welcome" fontSize="24" textAlignment="center"/>
         <Label text="Track item collection and dungeon progress as well as find locations using the maps." class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
-        <Button :visibility="this.showUpgradeBtn?'collapsed':'visible'" class="btn" @tap="showWhatsNew">What's New</Button>
-        <Button :visibility="this.showUpgradeBtn?'visible':'collapsed'" class="btn" @tap="clickUpgrade" backgroundColor="#8b0000">New Version! {{this.upgradeVersion}}</Button>
+        <Button :visibility="this.showUpgradeBtn?'collapsed':'visible'" class="btn highlight padded" @tap="showWhatsNew">What's New</Button>
+        <Button :visibility="this.showUpgradeBtn?'visible':'collapsed'" class="btn danger padded" @tap="clickUpgrade">New Version! {{this.upgradeVersion}}</Button>
         <Label text="Special thanks to the randomizer community. Visit them!" class="welcome" textWrap="true" fontSize="20"  textAlignment="center"/>
-        <Button class="btn" @tap="clickRandomizer">ALTTP Randomizer</Button>
-        <Button class="btn" @tap="clickReddit">ALTTPR on Reddit</Button>
-        <Button class="btn" @tap="clickDiscord">ALTTPR Discord</Button>
+        <Button class="btn highlight padded" @tap="clickRandomizer">ALTTP Randomizer</Button>
+        <Button class="btn highlight padded" @tap="clickReddit">ALTTPR on Reddit</Button>
+        <Button class="btn highlight padded" @tap="clickDiscord">ALTTPR Discord</Button>
       </StackLayout>
     </ScrollView>
   </Page>
@@ -69,22 +69,9 @@
   @import '~@nativescript/theme/scss/variables/forest';
 
   // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
   .welcome {
     color:white;
     font-family: "Return of Ganon", "ReturnofGanon";
     padding: 10;
-  }
-  .btn {
-    font-size: 20;
-    background-color: darkgreen;
-    padding: 10;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    width: 90%
   }
 </style>

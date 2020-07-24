@@ -333,7 +333,7 @@ export class ModelManager {
   saveSettings(skipGameSave?:boolean) {
     const d = new DefaultSettings();
     d.data = this.settings;
-    console.log('saving game');
+    //console.log('saving game', d.toJSONString());
     setString('settings', d.toJSONString());
     if(!skipGameSave) {
       this.saveCurrentGame();

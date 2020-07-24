@@ -424,33 +424,4 @@
 <style scoped lang="scss">
   @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .location-label {
-    font-family: "Return of Ganon";
-    font-size: 16;
-    color: #fff;
-  }
-  .locale-green {
-    border-width: 3;
-    border-color: black;
-    background-color: aqua;
-  }
-  .locale-gray {
-    border-width: 3;
-    border-color: black;
-    background-color: gray;
-  }
-  .locale-red {
-    border-width: 3;
-    border-color: black;
-    background-color: red;
-  }
-  .center-key{
-    border-width: 3;
-    border-color: black;
-    background-color: yellow;
-  }
 </style>
