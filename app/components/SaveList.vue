@@ -8,7 +8,8 @@
                     :class="game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid'"
                     @tap="navToEdit(game)">
           <Image
-              :src="'~/img/game-'+(game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid')+'.png'"
+              :src="'~/img/game-'+(game.loaded ? 'loaded' : !game.timestamp ? 'empty' : game.valid ? 'valid': 'invalid')
+                    +(game.timestamp && game.valid ? '-'+game.gameMode.toLowerCase() : '')+'.png'"
               col="0" row="0" width="48"/>
           <StackLayout col="1" row="0" orientation="vertical" verticalAlignment="center">
             <Label v-if="game.timestamp" :text="game.name + (game.loaded?': Active Game':'')"/>
