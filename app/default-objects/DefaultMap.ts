@@ -11,7 +11,24 @@ export interface IDefaultMapData {
   darkworld:MapWorld;
   getCopy():IDefaultMapData;
 }
-
+export abstract class DefaultMapData implements IDefaultMapData{
+  abstract lightworld;
+  abstract darkworld;
+  abstract getCopy():IDefaultMapData;
+  static fromObjectHelper(data: IDefaultMapData, obj: any, world: string, mapkey: string):IDefaultMapData {
+    if(data[world][mapkey] !== null && typeof data[world][mapkey] ==='object' ) {
+      const keys = Object.keys(data[world][mapkey]);
+      for (const key of keys) {
+        if (obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
+          data[world][mapkey][key] = obj[world][mapkey][key];
+        }
+      }
+    } else if(obj[world] && obj[world][mapkey]) {
+      data[world][mapkey] = obj[world][mapkey];
+    }
+    return data;
+  }
+}
 export class MapWorld {
   mode = 0; //0 for map, 1 for location list
   scale = 1;

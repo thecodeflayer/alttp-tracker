@@ -1,4 +1,4 @@
-import {DefaultMap, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 import {InvertedStaticMapDW} from '@/inverted/InvertedStaticMapDW';
 import {InvertedStaticMapLW} from '@/inverted/InvertedStaticMapLW';
 import {InvertedStaticMapDungeonsDW} from '@/inverted/InvertedStaticMapDungeonsDW';
@@ -18,11 +18,11 @@ export class InvertedDefaultMap extends DefaultMap{
   }
 }
 
-export class InvertedMapData implements IDefaultMapData{
+export class InvertedMapData extends DefaultMapData implements IDefaultMapData{
   lightworld = new MapWorld();
   darkworld = new MapWorld();
   constructor() {
-
+    super();
     const dwLocationKeys = Object.keys(new InvertedStaticMapDW());
     const lwLocationKeys = Object.keys(new InvertedStaticMapLW());
 
@@ -48,36 +48,14 @@ export class InvertedMapData implements IDefaultMapData{
   getCopy(): IDefaultMapData {
     return JSON.parse(JSON.stringify(this));
   }
-  private static fromObjectHelper(data: InvertedMapData, obj: any, world: string, mapkey: string) {
-    const keys = Object.keys(data[world][mapkey]);
-    for(const key of keys) {
-      if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
-        data[world][mapkey][key] = obj[world][mapkey][key];
-      }
-    }
-  }
-
   static fromObject(obj:any):InvertedMapData {
     const data = new InvertedMapData();
-    //do locations
-    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'locations');
-    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'locations');
-    //do dungeons
-    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'dungeons');
-    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'dungeons');
-    //do bosses
-    InvertedMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
-    InvertedMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
-    //do other fields
-    const others = Object.keys(new MapWorld());
-    // remove the keys we already did
-    others.splice(others.indexOf('locations'), 1);
-    others.splice(others.indexOf('dungeons'), 1);
-    others.splice(others.indexOf('bosses'), 1);
-    for(const key of others) {
-      data.lightworld[key] = obj.lightworld[key];
-      data.darkworld[key] = obj.darkworld[key];
+    const keys = Object.keys(new MapWorld());
+    for(const key of keys) {
+      InvertedMapData.fromObjectHelper(data, obj, 'lightworld', key);
+      InvertedMapData.fromObjectHelper(data, obj, 'darkworld', key);
     }
+
     return data;
   }
 

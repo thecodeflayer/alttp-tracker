@@ -1,4 +1,4 @@
-import {DefaultMap, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
 import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
 import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
 import {RetroStaticMapDW} from '@/retro/RetroStaticMapDW';
@@ -20,11 +20,11 @@ export class RetroDefaultMap extends DefaultMap{
     return (retval as DefaultMap);
   }
 }
-export class RetroMapData implements IDefaultMapData{
+export class RetroMapData extends DefaultMapData implements IDefaultMapData{
   lightworld = new MapWorld();
   darkworld = new MapWorld();
   constructor() {
-
+    super();
     const dwLocationKeys = Object.keys(new RetroStaticMapDW());
     const lwLocationKeys = Object.keys(new RetroStaticMapLW());
 
@@ -60,40 +60,15 @@ export class RetroMapData implements IDefaultMapData{
   getCopy(): IDefaultMapData {
     return JSON.parse(JSON.stringify(this));
   }
-  private static fromObjectHelper(data: RetroMapData, obj: any, world: string, mapkey: string) {
-    const keys = Object.keys(data[world][mapkey]);
-    for(const key of keys) {
-      if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
-        data[world][mapkey][key] = obj[world][mapkey][key];
-      }
-    }
-  }
 
   static fromObject(obj:any):RetroMapData {
     const data = new RetroMapData();
-    //do locations
-    RetroMapData.fromObjectHelper(data, obj, 'lightworld', 'locations');
-    RetroMapData.fromObjectHelper(data, obj, 'darkworld', 'locations');
-    //do dungeons
-    RetroMapData.fromObjectHelper(data, obj, 'lightworld', 'dungeons');
-    RetroMapData.fromObjectHelper(data, obj, 'darkworld', 'dungeons');
-    //do bosses
-    RetroMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
-    RetroMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
-    //do shops
-    RetroMapData.fromObjectHelper(data, obj, 'lightworld', 'shops');
-    RetroMapData.fromObjectHelper(data, obj, 'darkworld', 'shops');
-    //do other fields
-    const others = Object.keys(new MapWorld());
-    // remove the keys we already did
-    others.splice(others.indexOf('locations'), 1);
-    others.splice(others.indexOf('dungeons'), 1);
-    others.splice(others.indexOf('bosses'), 1);
-    others.splice(others.indexOf('shops'), 1);
-    for(const key of others) {
-      data.lightworld[key] = obj.lightworld[key];
-      data.darkworld[key] = obj.darkworld[key];
+    const keys = Object.keys(new MapWorld());
+    for(const key of keys) {
+      RetroMapData.fromObjectHelper(data, obj, 'lightworld', key);
+      RetroMapData.fromObjectHelper(data, obj, 'darkworld', key);
     }
+
     return data;
   }
 }
