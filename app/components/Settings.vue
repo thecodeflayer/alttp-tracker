@@ -8,7 +8,7 @@
       <Button row="3" col="0" class="btn highlight padded" @tap="navFAQ">FAQ Page</Button>
       <Button row="4" col="0" class="btn highlight padded" @tap="mailme">Email Me!</Button>
       <!--
-      <Button row="5" col="0" class="btn danger padded" @tap="navDebugger">Debugger</Button>
+      <Button row="5" col="0" class="butn danger padded" @tap="navDebugger">Debugger</Button>
       -->
     </GridLayout>
   </Page>
@@ -16,7 +16,7 @@
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import SaveList from '@/components/SaveList.vue';
+  import SaveList from '@/components/game/SaveList.vue';
   import {openUrl} from 'tns-core-modules/utils/utils';
   import Debugger from '@/components/Debugger.vue';
 

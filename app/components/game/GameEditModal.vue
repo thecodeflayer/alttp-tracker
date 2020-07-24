@@ -14,8 +14,10 @@
                textAlignment="center" style="padding-bottom: 10"
                text="Are you sure you want to reset the map data for this game?"/>
         <Label text="This cannot be undone!" textAlignment="center" style="padding-bottom: 10"/>
-        <Button class="btn invalid" @tap="closeModal(true)">OK</Button>
-        <Button class="btn invalid" @tap="closeModal(false)">Cancel</Button>
+        <StackLayout orientation="vertical">
+          <Button class="btn danger padded" @tap="closeModal(true)">OK</Button>
+          <Button class="btn danger padded" @tap="closeModal(false)">Cancel</Button>
+        </StackLayout>
       </StackLayout>
     </ScrollView>
 </template>
@@ -68,26 +70,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
-  // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
-  .lbl {
-    font-size: 20;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    color: white;
-  }
-  .btn {
-    font-size: 20;
-    padding: 10;
-    margin: -3;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    background-color: #6a0000;
-    width: 100%;
-  }
 </style>

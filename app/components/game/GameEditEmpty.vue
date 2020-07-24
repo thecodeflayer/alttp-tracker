@@ -66,8 +66,8 @@
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import SaveList from '@/components/SaveList.vue';
-  import GameEditValid from '@/components/GameEditValid.vue';
+  import SaveList from '@/components/game/SaveList.vue';
+  import GameEditValid from '@/components/game/GameEditValid.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
   @Component
@@ -141,6 +141,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
 </style>

@@ -2,43 +2,56 @@
   <Page backgroundColor="black">
     <Navbar></Navbar>
     <ScrollView>
-      <StackLayout orientation="vertical" class="save-wrapper danger">
+      <StackLayout orientation="vertical" class="save-wrapper">
         <Label :text="game.name" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
-        <Button class="btn danger padded" @tap="deleteGame">Delete</Button>
-        <Label textWrap="true" fontSize="16" textAlignment="center"
-               text="NOTE: This game is based on an old version. You must delete this game."/>
+        <Label height="15"/>
+        <Button class="btn standard padded" @tap="loadGame">Load Game</Button>
+        <Button class="btn standard padded" @tap="openModal">Delete</Button>
+        <Button class="btn standard padded" @tap="cancel">Back</Button>
+        <Label height="15"/>
         <Label :visibility="!allowDelete && game.timestamp ? 'visible': 'collapsed'" textWrap="true" fontSize="16" textAlignment="center"
                text="NOTE: At least one game must be active. Create another game using an empty game slot before deleting this game."/>
       </StackLayout>
     </ScrollView>
-
   </Page>
 </template>
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import SaveList from '@/components/SaveList.vue';
+  import SaveList from '@/components/game/SaveList.vue';
+  import GameEditModal from '@/components/game/GameEditModal.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
   @Component
-  export default class GameEditInvalid extends Vue {
+  export default class GameEditValid extends Vue {
 
     allowDelete = this.$modelManager.allowGameDelete();
+    game = this.$modelManager.editGame;
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
-    game = this.$modelManager.editGame;
 
-    deleteGame() {
-      this.$modelManager.deleteGame(this.game.id);
+    async openModal() {
+      const retval = await this.$showModal(GameEditModal, {props:{modalAction:'deleteGame'}});
+      if(retval !== 'cancel') {
+        this.$navigateTo(SaveList);
+      }
+    }
+
+    loadGame() {
+      this.$modelManager.loadGame(this.game.id);
       this.$navigateTo(SaveList);
     }
+
+    cancel() {
+      this.$navigateTo(SaveList);
+    }
+
   }
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
 </style>

@@ -31,8 +31,10 @@
           <Label col="2" text="7" fontSize="16" verticalAlignment="center"/>
         </GridLayout>
       </StackLayout>
-      <Button class="btn" @tap="updateGoals">OK</Button>
-      <Button class="btn" @tap="closeModal">Back</Button>
+      <StackLayout orientation="vertical">
+        <Button class="btn standard padded" @tap="updateGoals">OK</Button>
+        <Button class="btn standard padded" @tap="closeModal">Back</Button>
+      </StackLayout>
     </StackLayout>
   </ScrollView>
 </template>
@@ -71,15 +73,5 @@
 </script>
 
 <style scoped lang="scss">
-  .btn {
-    font-size: 20;
-    padding: 10;
-    margin: -3;
-    color: white;
-    horizontal-align: center;
-    vertical-align: center;
-    font-family: "Return of Ganon", "ReturnofGanon";
-    width: 100%;
-    background-color: #005500;
-  }
+
 </style>

@@ -30,11 +30,11 @@
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import GameEditValid from '@/components/GameEditValid.vue';
-  import GameEditLoaded from '@/components/GameEditLoaded.vue';
+  import GameEditValid from '@/components/game/GameEditValid.vue';
+  import GameEditLoaded from '@/components/game/GameEditLoaded.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
-  import GameEditInvalid from '@/components/GameEditInvalid.vue';
-  import GameEditEmpty from '@/components/GameEditEmpty.vue';
+  import GameEditInvalid from '@/components/game/GameEditInvalid.vue';
+  import GameEditEmpty from '@/components/game/GameEditEmpty.vue';
 
   @Component
   export default class SaveList extends Vue {
@@ -62,8 +62,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
-  @import "../global_vars";
+  @import "../../global_vars";
 
   // Custom styles
 

@@ -22,9 +22,9 @@
 
 <script type="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import SaveList from '@/components/SaveList.vue';
+  import SaveList from '@/components/game/SaveList.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
-  import GameEditModal from '@/components/GameEditModal.vue';
+  import GameEditModal from '@/components/game/GameEditModal.vue';
 
   @Component
   export default class GameEditLoaded extends Vue {
@@ -43,6 +43,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
 
 </style>
