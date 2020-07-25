@@ -141,11 +141,11 @@ Pendants are displayed on the Items screen.
 
 **Triforce Pieces**
 
+Triforce count is displayed and can be incremented on the Items screen.
+
 ### Crystals for Ganon and Ganon's Tower
 
 Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed, and also editable on the Items screen.
-
-Triforce count is displayed and can be incremented on the Items screen.
 
 ## Troubleshooting
 Sometimes you run into problems. If the solution isn't here or doesn't work please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
