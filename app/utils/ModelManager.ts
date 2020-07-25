@@ -24,7 +24,7 @@ export class ModelManager {
   gameSaves: DefaultGameSavesData;
   editGame: GameEditObj;
 
-  appVersion = '1.0.0';
+  appVersion = '1.1.0';
   itemsVersion = '0.0.1';
   dungeonsVersion = '0.0.2';
   mapVersion = '0.0.1';
