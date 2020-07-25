@@ -11,8 +11,10 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
     - [There should be 216 items. Where are the missing items?](#there-should-be-216-items-where-are-the-missing-items)
     - [Why are you not on the Play Store?](#why-are-you-not-on-the-play-store)
 - [New Game Settings](#new-game-settings)
-    - [Item Shuffle Settings](#item-shuffle-settings)
     - [Game Mode Settings](#game-mode-settings)
+    - [Item Shuffle Settings](#item-shuffle-settings)
+    - [Goal Settings](#goal-settings)    
+    - [Crystals for Ganon and Ganon's Tower](#crystals-for-ganon-and-ganons-tower)
 - [Troubleshooting](#troubleshooting)
     - [Help! I Upgraded and I can't click on Anything?!?](#help-i-upgraded-and-i-cant-click-on-anything)
 
@@ -53,10 +55,29 @@ The Play Store has very strict policies regarding popular IPs. Navigating this h
 
 ## New Game Settings
 
+### Game Mode Settings
+
+**Standard**
+
+The Standard mode covers Standard and Open modes in the randomizer. These modes are generally what new players will start out with.
+
+**Inverted**
+
+In this mode Link starts in the Dark World and must navigate to the Light World.
+The map in this mode is slightly different and logic to access locations has changed.
+
+**Retro**
+
+This mode harkens back to the original Zelda. Shops and Take Any locations are tracked in this mode, 
+and there is a new Rupee Quiver item needed to use the Bow. 
+
+To learn more about the randomizer options for these modes please read the 'World State' section of
+[alttpr.com/en/options](https://alttpr.com/en/options).
+
 ### Item Shuffle Settings
 Item Shuffle Settings are selectable when creating a new game.
 The primary effect this has on the tracker is the number of available chests and whether small keys increment or decrement when clicked.
-Additionally, the total number of items on the Items page will change depending on the Item Shuffle option chosen.
+Additionally, the total number of items on the Items screen will change depending on the Item Shuffle option chosen.
 
 To learn more about the randomizer options for item shuffle please read Item Settings > Dungeon Item Shuffle section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
@@ -96,24 +117,35 @@ In this mode small keys will increment from zero. Note that, like the Maps, Comp
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
 To increment item count when you find a small key in a chest you should click the chest icon to decrement the chest count.
 
-### Game Mode Settings
+### Goal Settings
 
-**Standard**
+Learn about the randomizer's game goals under the Goal section of [alttpr.com/en/options](https://alttpr.com/en/options)
 
-The Standard mode covers Standard and Open modes in the randomizer. These modes are generally what new players will start out with.
+**Defeat Ganon**
 
-**Inverted**
+Crystal count needed to access Ganon are shown on the Items screen. The count will either show the Open Ganon's Tower count or the Access Ganon
+count. Whichever is higher. 
 
-In this mode Link starts in the Dark World and must navigate to the Light World.
-The map in this mode is slightly different and logic to access locations has changed.
+**Fast Ganon**
 
-**Retro**
+Crystal count needed to access Ganon is displayed on the items screen.
 
-This mode harkens back to the original Zelda. Shops and Take Any locations are tracked in this mode, 
-and there is a new Rupee Quiver item needed to use the Bow. 
 
-To learn more about the randomizer options for these modes please read the 'World State' section of
-[alttpr.com/en/options](https://alttpr.com/en/options).
+**All Dungeons**
+
+Bosses are shown on the Items screen.
+
+**Master Sword Pedestal**
+
+Pendants are displayed on the Items screen.
+
+**Triforce Pieces**
+
+### Crystals for Ganon and Ganon's Tower
+
+Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed, and also editable on the Items screen.
+
+Triforce count is displayed and can be incremented on the Items screen.
 
 ## Troubleshooting
 Sometimes you run into problems. If the solution isn't here or doesn't work please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
