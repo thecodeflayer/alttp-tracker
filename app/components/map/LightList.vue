@@ -62,8 +62,7 @@
             <StackLayout row="0" col="1" orientation="vertical">
               <Image row="0" col="1" src="~/img/dungeons/compass1.png" width="32" height="32"
                      @tap="clickCompass(key, true)" horizontalAlignment="center"/>
-              <Label class="title" fontSize="16" textAlignment="center"
-                     :text="shopHandler.staticLocations[key].takeAny ? 'Take' : 'Shop'"/>
+              <Image height="16" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopLW.png'" marginTop="4"/>
             </StackLayout>
           </GridLayout>
         </StackLayout>
