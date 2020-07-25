@@ -115,9 +115,9 @@ and there is a new Rupee Quiver item needed to use the Bow.
 To learn more about the randomizer options for these modes please read the 'World State' section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
 
-##Troubleshooting
+## Troubleshooting
 Sometimes you run into problems. If the solution isn't here or doesn't work please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
 
-###Help! I Upgraded and I can't click on Anything?!?
+### Help! I Upgraded and I can't click on Anything?!?
 You should be able to clear the app's storage from the App menu under Settings.
 This should correct the problem.
