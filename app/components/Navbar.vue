@@ -1,27 +1,27 @@
 <template>
   <ActionBar backgroundColor="#006400" class="action-bar">
-    <GridLayout columns="*,*,*,*,*,*" rows="50">
-      <StackLayout col="0" orientation="vertical" @tap="navHome">
+    <GridLayout columns="*,*,*,*,*,*" rows="54">
+      <StackLayout col="0" orientation="vertical" @tap="navHome" verticalAlignment="center">
         <Image src="~/img/navbar/home.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Home" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
-      <StackLayout col="1" orientation="vertical" @tap="navItems">
+      <StackLayout col="1" orientation="vertical" @tap="navItems" verticalAlignment="center">
         <Image src="~/img/navbar/items.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Items" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
-      <StackLayout col="2" orientation="vertical" @tap="navDungeons">
+      <StackLayout col="2" orientation="vertical" @tap="navDungeons" verticalAlignment="center">
         <Image src="~/img/navbar/dungeons.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Dungeons" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
-      <StackLayout col="3" orientation="vertical" @tap="navLightMap">
+      <StackLayout col="3" orientation="vertical" @tap="navLightMap" verticalAlignment="center">
         <Image src="~/img/navbar/lightmap.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Lightworld" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
-      <StackLayout col="4" orientation="vertical" @tap="navDarkMap">
+      <StackLayout col="4" orientation="vertical" @tap="navDarkMap" verticalAlignment="center">
         <Image src="~/img/navbar/darkmap.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Darkworld" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
-      <StackLayout col="5" orientation="vertical" @tap="navSettings">
+      <StackLayout col="5" orientation="vertical" @tap="navSettings" verticalAlignment="center">
         <Image src="~/img/navbar/settings.png" verticalAlignment="bottom" height="32" width="32" />
         <Label text="Settings" verticalAlignment="top" class="btn-label"/>
       </StackLayout>
