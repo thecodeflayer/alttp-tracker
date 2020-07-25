@@ -87,7 +87,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~@nativescript/theme/scss/variables/forest';
+  @import '../../../node_modules/@nativescript/theme/scss/variables/forest';
 
   .textfield {
     color: black;
