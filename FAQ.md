@@ -107,6 +107,11 @@ The Standard mode covers Standard and Open modes in the randomizer. These modes 
 In this mode Link starts in the Dark World and must navigate to the Light World.
 The map in this mode is slightly different and logic to access locations has changed.
 
+**Retro**
+
+This mode harkens back to the original Zelda. Shops and Take Any locations are tracked in this mode, 
+and there is a new Rupee Quiver item needed to use the Bow. 
+
 To learn more about the randomizer options for these modes please read the 'World State' section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
 

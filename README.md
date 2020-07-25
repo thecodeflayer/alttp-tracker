@@ -3,7 +3,7 @@
 # alttp-tracker
 A mobile app for tracking ALTTP randomizer runs. You can track items collected, dungeon items and bosses and view available locations on the Light World and Dark World maps.
 
-The tracker currently supports both standard and inverted modes and is geared towards new players who are learning.
+The tracker currently supports Standard, Inverted and Retro modes and is geared towards new players who are learning.
 A number of game goals are also supported such as Defeat Ganon, Triforce Hunt and Pedestal Goal to name a few.
 
 ## Supported Platforms
