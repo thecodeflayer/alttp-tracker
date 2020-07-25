@@ -53,7 +53,6 @@
 <script type="ts">
 
   import {Component, Vue} from 'vue-property-decorator';
-  import GameEditModal from '@/components/game/GameEditModal.vue';
   import GoalEditModal from '@/components/GoalEditModal.vue';
 
   @Component

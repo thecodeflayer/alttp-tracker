@@ -12,7 +12,7 @@ if(TNS_ENV !== 'production') {
 
 
 // Prints Vue logs when --env.production is *NOT* set while building
-Vue.config.silent = false;//(TNS_ENV === 'production');
+Vue.config.silent = true;//(TNS_ENV === 'production');
 Vue.component('Navbar', Navbar);
 // noinspection JSUnusedGlobalSymbols
 Vue.prototype.$modelManager = new ModelManager();

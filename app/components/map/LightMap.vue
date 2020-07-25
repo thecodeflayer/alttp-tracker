@@ -29,28 +29,28 @@
                :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(mapHandler.centerKey)" />
+               @tap="onClickLocale(mapHandler.centerKey)" @longpress="onLongPress(mapHandler.centerShopKey, 'location')"/>
         <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickLocale(key)"/>
+               @tap="onClickLocale(key)" @longpress="onLongPress(key, 'location')"/>
         <Label v-if="mapHandler.centerShopKey" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                class="center-key"
                :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].x - (15 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].y - (15 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickShop(mapHandler.centerShopKey)" />
+               @tap="onClickShop(mapHandler.centerShopKey)" @longpress="onLongPress(mapHandler.centerShopKey, 'shop')"/>
         <Label v-for="key in mapHandler.shopKeys" v-bind:key="key" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.shops[key].checked ? 'locale-gray' : mapHandler.shops[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticShops[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticShops[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickShop(key)"/>
+               @tap="onClickShop(key)" @longpress="onLongPress(key, 'shop')"/>
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
@@ -70,6 +70,7 @@
   import * as utils from 'tns-core-modules/utils/utils';
   import LightList from '@/components/map/LightList.vue';
   import DarkMap from '@/components/map/DarkMap.vue';
+  import LocaleModal from '@/components/map/LocaleModal.vue';
 
   @Component
   export default class LightMap extends Vue {
@@ -417,6 +418,9 @@
     toggleShowMode(mode) {
       this.mapHandler.showMode = this.$modelManager.map.lightworld.showMode = mode;
       this.$modelManager.saveMap();
+    }
+    async onLongPress(key, type) {
+      await this.$showModal(LocaleModal, {props:{localeKey:key, world:'lightworld', type:type}});
     }
   }
 </script>
