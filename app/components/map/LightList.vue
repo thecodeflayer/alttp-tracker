@@ -55,8 +55,10 @@
                 <Label class="title" :text="shopHandler.staticLocations[key].title"/>
               </StackLayout>
               <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
+                <!--
                 <Image v-for="img in shopHandler.staticLocations[key].req" v-bind:key="img"
                        height="15" :src="'~/img/'+img+'.png'"/>
+                       -->
               </StackLayout>
             </StackLayout>
             <StackLayout row="0" col="1" orientation="vertical">

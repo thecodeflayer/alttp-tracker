@@ -69,9 +69,10 @@ export class StandardStaticMapLW {
       return rb === 2 && g;
     }};
   kingTomb = {x: 902, y: 444, title:'King\'s Tomb', itemCount: 1,
-    req:['items/boots1', 'items/glove2', 'or', 'items/boots1', 'items/mirror1', 'items/moonpearl1',
-      'lp', 'dungeons/aga_boss0', 'items/hookshot1', 'items/flippers1', 'rp', 'or',
-      'lp', 'items/glove1', 'items/hammer1', 'rp'],
+    req:[
+      ['items/boots1', 'items/glove2'],
+      ['items/boots1', 'items/moonpearl1', StandardRegionHelper.reqNorthWestDW]
+    ],
     validate(items, dungeons){
       return items.boots
                 && (items.glove === 2

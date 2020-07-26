@@ -26,15 +26,27 @@ export class StandardRegionHelper {
             (items.glove === 2 && items.moonpearl &&
             (items.hammer || items.flippers));
   }
+  static reqNorthEastDW = [
+    ['dungeons/aga_boss1'],
+    ['items/hammer1', 'items/glove1', 'items/moonpearl1'],
+    ['items/glove2', 'items/moonpearl1', 'items/hammer1'],
+    ['items/glove2', 'items/moonpearl1', 'items/flippers1']
+  ];
   static northWestDW(items, dungeons) {
     return items.moonpearl
             && (this.northEastDW(items, dungeons)
-                && ((items.hookshot
-                    && (items.glove > 0 || items.hammer)
+                  && ((items.hookshot && (items.glove > 0 || items.hammer)
                     || items.flippers))
                 || (items.hammer && items.glove > 0)
                 || items.glove === 2);
   }
+  static reqNorthWestDW = [
+    ['items/moonpearl1', StandardRegionHelper.reqNorthEastDW, 'items/hookshot1', 'items/hammer1'],
+    ['items/moonpearl1', StandardRegionHelper.reqNorthEastDW, 'items/hookshot1', 'items/glove1'],
+    ['items/moonpearl1', StandardRegionHelper.reqNorthEastDW, 'items/flippers1'],
+    ['items/moonpearl1', 'items/hammer1', 'items/glove1'],
+    ['items/moonpearl1', 'items/glove2']
+  ];
   static southDW(items, dungeons) {
     return (items.moonpearl && (this.northEastDW(items, dungeons)
             && (items.hammer || items.flippers)))
