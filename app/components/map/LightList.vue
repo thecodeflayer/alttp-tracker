@@ -17,57 +17,34 @@
         <StackLayout orientation="vertical" backgroundColor="black">
           <GridLayout class="locale-wrapper" v-for="key in mapHandler.keys" v-bind:key="key"
                       :visibility="getVisible(key)"
-                      columns="*,48" rows="60"
+                      columns="36,*,36,36" rows="40"
                       :class="getBackgroundColor(mapHandler.locations[key])">
-            <StackLayout row="0" col="0" orientation="vertical" style="padding-left:5">
-              <StackLayout orientation="horizontal">
-                <Image
-                    :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
-                    width="32" height="32" @tap="clickCheck(key)" marginRight="5"/>
-                <Label class="list-title" :text="mapHandler.staticLocations[key].title"/>
-              </StackLayout>
-              <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
-                <!--
-                <Image v-for="img in mapHandler.staticLocations[key].req" v-bind:key="img"
-                       height="16" :src="'~/img/'+img+'.png'" />
-                       -->
-              </StackLayout>
+            <Image col="0"
+                   :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
+                   width="36" height="36" @tap="clickCheck(key)" marginRight="5"/>
+            <Label col="1" :fontSize="mapHandler.staticLocations[key].title.length < 23 ? 20 : 18"
+                   class="list-title" :text="mapHandler.staticLocations[key].title" verticalAlignment="center"/>
+            <StackLayout col="2" orientation="vertical">
+              <Image src="~/img/chest.png" height="16" width="16"/>
+              <Label class="list-title" fontSize="16" textAlignment="center"
+                     :text="'x'+mapHandler.staticLocations[key].itemCount"/>
             </StackLayout>
-            <StackLayout row="0" col="1" orientation="vertical">
-              <Image row="0" col="1" src="~/img/dungeons/compass1.png" width="32" height="32"
-                     @tap="clickCompass(key)" horizontalAlignment="center"/>
-              <StackLayout orientation="horizontal" style="margin-top:4;" horizontalAlignment="right">
-                <Image src="~/img/chest.png" height="16" width="16" />
-                <Label class="list-title" fontSize="16"
-                       :text="'x'+mapHandler.staticLocations[key].itemCount"/>
-              </StackLayout>
-
-            </StackLayout>
+            <Image col="3" src="~/img/dungeons/compass1.png" width="32" height="32"
+                   @tap="clickCompass(key)" horizontalAlignment="center"/>
           </GridLayout>
 
           <GridLayout class="locale-wrapper" v-for="key in shopHandler.keys" v-bind:key="key"
                       :visibility="getVisible(key, true)"
-                      columns="*,48" rows="60"
+                      columns="36,36,*,36" rows="40"
                       :class="getBackgroundColor(shopHandler.shops[key])">
-            <StackLayout row="0" col="0" orientation="vertical" style="padding-left:5">
-              <StackLayout orientation="horizontal">
-                <Image
-                    :src="shopHandler.shops[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
-                    width="32" height="32" @tap="clickCheck(key, true)" marginRight="5"/>
-                <Label class="title" :text="shopHandler.staticLocations[key].title"/>
-              </StackLayout>
-              <StackLayout orientation="horizontal" style="padding-right:4;padding-top:6;">
-                <!--
-                <Image v-for="img in shopHandler.staticLocations[key].req" v-bind:key="img"
-                       height="15" :src="'~/img/'+img+'.png'"/>
-                       -->
-              </StackLayout>
-            </StackLayout>
-            <StackLayout row="0" col="1" orientation="vertical">
-              <Image row="0" col="1" src="~/img/dungeons/compass1.png" width="32" height="32"
-                     @tap="clickCompass(key, true)" horizontalAlignment="center"/>
-              <Image height="16" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopLW.png'" marginTop="4"/>
-            </StackLayout>
+            <Image col="0"
+                   :src="shopHandler.shops[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
+                   width="32" height="32" @tap="clickCheck(key, true)" marginRight="5"/>
+            <Image col="1" height="28" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopDW.png'" marginRight="5" />
+            <Label col="2" :fontSize="shopHandler.staticLocations[key].title.length < 23 ? 20 : 18"
+                   class="title" :text="shopHandler.staticLocations[key].title" verticalAlignment="center"/>
+            <Image col="3" src="~/img/dungeons/compass1.png" width="32" height="32"
+                   @tap="clickCompass(key, true)" horizontalAlignment="center"/>
           </GridLayout>
         </StackLayout>
       </ScrollView>
