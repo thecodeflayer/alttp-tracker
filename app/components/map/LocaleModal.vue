@@ -6,7 +6,7 @@
         <Image src="~/img/chest.png" width="20"/>
         <Label :text="' x'+itemCount"/>
       </StackLayout>
-      <Label v-if="requiredArr.length" text="Required Items:" marginTop="4" marginLeft="10"/>
+      <Label v-if="requiredArr.length && requiredArr[0].length" text="Required Items:" marginTop="4" marginLeft="10"/>
       <StackLayout v-for="(req, idx) of requiredArr" v-bind:key="idx" orientation="horizontal" marginLeft="10">
         <Image v-if="idx > 0" src="~/img/or.png" width="18"/>
         <Image v-for="img of req" v-bind:key="img" :src="'~/img/'+(img.replace('~',''))+'.png'" width="18" height="18" margin="2"/>
@@ -26,6 +26,8 @@
   import {RetroStaticMapLW} from '@/retro/RetroStaticMapLW';
   import {RetroStaticMapDW} from '@/retro/RetroStaticMapDW';
   import {RequiredItemsHelper} from '@/utils/RequiredItemsHelper';
+  import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
+  import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
 
   @Component
   export default class LocaleModal extends Vue {
@@ -67,6 +69,8 @@
           this.itemCount = loc.itemCount;
           this.takeAny = loc.takeAny;
         }
+        const staticObj = this.world === 'lightworld' ? new RetroStaticMapShopsLW() : new RetroStaticMapShopsDW();
+        this.requiredArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].req);
       }
     }
 
