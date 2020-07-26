@@ -1,4 +1,29 @@
-# What's New in Version 1.0.0
+# What's New in Version 1.1.0
+
+### Retro Game Mode
+Retro mode harkens back to the original Legend of Zelda. 
+For information on this game mode please read Gameplay > World State > Retro section of [alttpr.com/en/options](https://alttpr.com/en/options).
+ 
+For the tracker the following features have been added:
+
+- Retro option in  Game Mode section of Game Creation screen. 
+- New _Quiver_ item on Items screen.
+- Small keys are not tracked in this mode.
+- Dungeon chest counts reflect that small keys can be found anywhere.
+- Shop/Take Any tracking on the Map and List screens. (Just called Shops in the app)
+- Location logic updates taking into account quiver requirement for bow logic.
+
+### Enhancements and Bug Fixes
+- OpenGT and Ganon Crystal requirements now editable from Items screen.
+- Triforce goal now editable from Items screen (when goal is Triforce Pieces).
+- Long press map location for modal showing name of the location.
+- Moved around items on the Items screen to better align with in game menu.
+- App now stays in Portrait mode (Landscape mode never worked correctly)
+- Fixed a bug with maps where position, scale and view mode were not getting saved. 
+
+---
+
+## What's New in Version 1.0.0
 
 ### Logic Fixes and Testing
 I've added over 1000 tests to the project to validate logic for Standard and Inverted modes.

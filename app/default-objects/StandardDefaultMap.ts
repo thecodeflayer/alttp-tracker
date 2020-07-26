@@ -1,4 +1,8 @@
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {DefaultMap, DefaultMapData, IDefaultMapData, MapWorld} from '@/default-objects/DefaultMap';
+import {StandardStaticMapDW} from '@/standard/StandardStaticMapDW';
+import {StandardStaticMapLW} from '@/standard/StandardStaticMapLW';
+import {StandardStaticMapDungeonsDW} from '@/standard/StandardStaticMapDungeonsDW';
+import {StandardStaticMapDungeonsLW} from '@/standard/StandardStaticMapDungeonsLW';
 
 export class StandardDefaultMap extends DefaultMap{
   data = new StandardMapData();
@@ -14,37 +18,44 @@ export class StandardDefaultMap extends DefaultMap{
     return (retval as DefaultMap);
   }
 }
-export class StandardMapData extends DefaultMapData{
+export class StandardMapData extends DefaultMapData implements IDefaultMapData {
+  lightworld = new MapWorld();
+  darkworld = new MapWorld();
   constructor() {
     super();
-    this.lightworld.addLocation('oldMan');
-    this.lightworld.addDungeon('aga');
-    this.lightworld.addBoss('aga');
-    this.lightworld.addLocation('linkHouse');
-    this.darkworld.addLocation('bumperCave');
-    this.darkworld.addDungeon('gt');
-    this.darkworld.addBoss('gt');
-  }
-  private static fromObjectHelper(data: StandardMapData, obj: any, world: string, mapkey: string) {
-    const keys = Object.keys(data[world][mapkey]);
-    for(const key of keys) {
-      if(obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
-        data[world][mapkey][key] = obj[world][mapkey][key];
-      }
+    const dwLocationKeys = Object.keys(new StandardStaticMapDW());
+    const lwLocationKeys = Object.keys(new StandardStaticMapLW());
+
+    for(const key of dwLocationKeys) {
+      this.darkworld.addLocation(key);
     }
+    for(const key of lwLocationKeys) {
+      this.lightworld.addLocation(key);
+    }
+
+    const dwDungeonKeys = Object.keys(new StandardStaticMapDungeonsDW());
+    const lwDungeonKeys = Object.keys(new StandardStaticMapDungeonsLW());
+
+    for(const key of dwDungeonKeys) {
+      this.darkworld.addDungeon(key);
+      this.darkworld.addBoss(key);
+    }
+    for(const key of lwDungeonKeys) {
+      this.lightworld.addDungeon(key);
+      this.lightworld.addBoss(key);
+    }
+  }
+  getCopy(): IDefaultMapData {
+    return JSON.parse(JSON.stringify(this));
   }
 
   static fromObject(obj:any):StandardMapData {
     const data = new StandardMapData();
-    //do locations
-    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'locations');
-    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'locations');
-    //do dungeons
-    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'dungeons');
-    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'dungeons');
-    //do bosses
-    StandardMapData.fromObjectHelper(data, obj, 'lightworld', 'bosses');
-    StandardMapData.fromObjectHelper(data, obj, 'darkworld', 'bosses');
+    const keys = Object.keys(new MapWorld());
+    for(const key of keys) {
+      StandardMapData.fromObjectHelper(data, obj, 'lightworld', key);
+      StandardMapData.fromObjectHelper(data, obj, 'darkworld', key);
+    }
 
     return data;
   }

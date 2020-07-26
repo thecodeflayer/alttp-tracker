@@ -5,10 +5,21 @@ node_modules/
 platforms/
 
 # NativeScript Template
-*.js.map
-app/components/*.vue.js
 !webpack.config.js
 *.css
+
+# Build Artifacts
+*.js.map
+app/components/*.vue.js
+app/dist
+#app/default-objects/*.js
+#app/interfaces/*.js
+#app/inverted/*.js
+#app/retro/*.js
+#app/standard/*.js
+#app/utils/*.js
+#app/main.js
+#app/vue-extend.js
 
 # Logs
 logs

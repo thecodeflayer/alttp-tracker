@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <ScrollView orientation="vertical">
       <StackLayout orientation="vertical">
-        <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="40,40,40,40,40">
+        <GridLayout class="item-grid" columns="*,*,*,*,*,*" :rows="gameMode === 'retro' ? '40,40,40,40,40,40' : '40,40,40,40,40'">
           <Image v-for="(key, index) in itemKeys" v-bind:key="key" :row="Math.floor(index/6)" :col="index % 6" :src="items[key]" class="item" @tap="clickItem(key)"/>
         </GridLayout>
         <GridLayout class="item-grid" columns="*,*,*,*,*,*" rows="100">
@@ -36,12 +36,14 @@
               <Label :text="'('+itemCount+'/'+itemMax+')'" verticalAlignment="center" style="padding-left:5"/>
             </StackLayout>
           </StackLayout>
-          <Image class="item" row="0" col="3" height="32" width="32" verticalAlignment="top"
-                 :src="goal === 'triforce' ? '~/img/items/triforce.png' : goal === 'pedestal'
+          <GridLayout columns="*,*,*" rows="100" row="0" col="3" colSpan="3" @tap="editGoal">
+            <Image class="item" row="0" col="0" height="32" width="32" verticalAlignment="top"
+                   :src="goal === 'triforce' ? '~/img/items/triforce.png' : goal === 'pedestal'
                  ? '~/img/items/pedestal.png' : goal === 'fastGanon' ? '~/img/items/fast-ganon.png'
                  : goal === 'allDungeons' ? '~/img/items/all-dungeons.png' : '~/img/items/ganon.png'" />
-          <Image class="item" row="0" col="4" :src="'~/img/items/req-crystals'+openGT+'.png'" height="32" width="32" verticalAlignment="top"/>
-          <Image class="item" row="0" col="5" :src="'~/img/items/req-ganon'+openGanon+'.png'" height="32" width="32" verticalAlignment="top"/>
+            <Image class="item" row="0" col="1" :src="'~/img/items/req-crystals'+openGT+'.png'" height="32" width="32" verticalAlignment="top"/>
+            <Image class="item" row="0" col="2" :src="'~/img/items/req-ganon'+openGanon+'.png'" height="32" width="32" verticalAlignment="top"/>
+          </GridLayout>
         </GridLayout>
       </StackLayout>
     </ScrollView>
@@ -51,6 +53,7 @@
 <script type="ts">
 
   import {Component, Vue} from 'vue-property-decorator';
+  import GoalEditModal from '@/components/GoalEditModal.vue';
 
   @Component
   export default class Items extends Vue {
@@ -59,6 +62,7 @@
     itemKeys = this.$modelManager.getItemKeys();
     itemCount = 0;
     itemMax = this.$modelManager.getItemMax();
+    gameMode = this.$modelManager.settings.gameMode;
     goal = this.$modelManager.settings.goal;
     openGT = this.$modelManager.settings.openGT;
     openGanon = this.$modelManager.settings.openGanon;
@@ -146,6 +150,12 @@
       }
       return retval;
     }
+    async editGoal() {
+      await this.$showModal(GoalEditModal);
+      this.openGT = this.$modelManager.settings.openGT;
+      this.openGanon = this.$modelManager.settings.openGanon;
+      this.triforceGoal = this.$modelManager.settings.triforceGoal;
+    }
   }
 </script>
 
@@ -166,7 +176,7 @@
   }
   .item-count {
     font-family: PressStart2P-vaV7;
-    font-size: 14;
+    font-size: 12;
     color: white;
     margin: 2;
   }

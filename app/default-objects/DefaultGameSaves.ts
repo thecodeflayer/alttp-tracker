@@ -1,9 +1,9 @@
 import {DefaultItems, DefaultItemsData} from '@/default-objects/DefaultItems';
 import {DefaultDungeons, DefaultDungeonsData} from '@/default-objects/DefaultDungeons';
-import {DefaultMap, DefaultMapData} from '@/default-objects/DefaultMap';
+import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
 import {InvertedMapData} from '@/default-objects/InvertedDefaultMap';
-import {StandardMapData} from '@/default-objects/StandardDefaultMap';
+import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDefaultMap';
 
 export class DefaultGameSaves {
   version = '0.0.1';
@@ -46,7 +46,7 @@ export class DefaultGameSavesData {
 export class Game {
   items:DefaultItemsData;
   dungeons:DefaultDungeonsData;
-  map:DefaultMapData;
+  map:IDefaultMapData;
   settings:DefaultSettingsData;
   timestamp = undefined;
   versions: GameVersions;
@@ -57,11 +57,12 @@ export class Game {
       game.settings = obj.settings ? DefaultSettingsData.fromObject(obj.settings) : new DefaultSettingsData();
       game.items = obj.items ? DefaultItemsData.fromObject(obj.items) : new DefaultItemsData();
       game.dungeons = obj.dungeons ? DefaultDungeonsData.fromObject(obj.dungeons) : new DefaultDungeonsData();
-      game.map = obj.map ? (game.settings.gameMode === 'inverted' ? InvertedMapData.fromObject(obj.map) : StandardMapData.fromObject(obj.map) ) : new DefaultMapData();
+      game.map = obj.map ? (game.settings.gameMode === 'inverted' ? InvertedMapData.fromObject(obj.map) : StandardMapData.fromObject(obj.map) )
+        : (game.settings.gameMode === 'inverted' ? new InvertedMapData() : new StandardMapData());
       game.versions = new GameVersions(
         (obj.versions && obj.versions.items) ? obj.versions.items : new DefaultItems().version,
         (obj.versions && obj.versions.dungeons) ? obj.versions.dungeons : new DefaultDungeons().version,
-        (obj.versions && obj.versions.map) ? obj.versions.map : new DefaultMap().version,
+        (obj.versions && obj.versions.map) ? obj.versions.map : new StandardDefaultMap().version,
         (obj.versions && obj.versions.settings) ? obj.versions.items : new DefaultSettings().version,
       );
     }

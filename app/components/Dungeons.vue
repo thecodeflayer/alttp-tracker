@@ -3,15 +3,15 @@
     <Navbar></Navbar>
     <ScrollView orientation="vertical">
       <StackLayout orientation="vertical" class="dungeon-stack">
-        <GridLayout class="dungeon-grid" columns="*,*,*,*,*,*,*,*" v-for="(key, index) in dungeonKeys" v-bind:key="key">
+        <GridLayout class="dungeon-grid" :columns="gameMode==='retro'?'*,*,*,*,*,*,*':'*,*,*,*,*,*,*,*'" v-for="key in dungeonKeys" v-bind:key="key">
           <Image row="0" col="0" :src="images.crystals[key]" class="dungeon-img" @tap="clickItem(key,'crystal')"/>
           <Image row="0" col="1" :src="images.bosses[key]" class="dungeon-img" @tap="clickItem(key,'boss')"/>
           <Image row="0" col="2" :src="images.chests[key]" class="dungeon-img" @tap="clickItem(key,'chests')"/>
           <Image row="0" col="3" :src="images.bosskeys[key]" class="dungeon-img" @tap="clickItem(key,'bosskey')"/>
           <Image row="0" col="4" :src="images.maps[key]" class="dungeon-img" @tap="clickItem(key,'map')"/>
           <Image row="0" col="5" :src="images.compasses[key]" class="dungeon-img" @tap="clickItem(key,'compass')"/>
-          <Image row="0" col="6" :src="images.smallkeys[key]" class="dungeon-img" @tap="clickItem(key,'smallkeys')"/>
-          <Image row="0" col="7" :src="images.medallion[key]" class="dungeon-img" @tap="clickItem(key,'medallion')"/>
+          <Image v-if="gameMode!=='retro'" row="0" col="6" :src="images.smallkeys[key]" class="dungeon-img" @tap="clickItem(key,'smallkeys')"/>
+          <Image row="0" :col="gameMode==='retro' ? '6':'7'" :src="images.medallion[key]" class="dungeon-img" @tap="clickItem(key,'medallion')"/>
         </GridLayout>
       </StackLayout>
     </ScrollView>
@@ -19,8 +19,8 @@
 </template>
 
 <script type="ts">
-  import {Component, Vue, Ref} from 'vue-property-decorator';
-  import {GameSaveHelper} from "@/utils/GameSaveHelper";
+  import {Component, Vue} from 'vue-property-decorator';
+  import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
   @Component
   export default class Dungeons extends Vue {
@@ -28,11 +28,12 @@
     dungeons = this.$modelManager.getDungeons();
     dungeonKeys = this.$modelManager.getDungeonKeys();
     images = this.getAllImages();
+    gameMode = this.$modelManager.getGameMode();
 
     clickItem(key, item) {
-      if (typeof this.$modelManager.getDungeonValue(key, item) === "boolean") {
+      if (typeof this.$modelManager.getDungeonValue(key, item) === 'boolean') {
         this.$modelManager.setDungeonValue(key, item, !this.$modelManager.getDungeonValue(key, item));
-      } else if (typeof this.$modelManager.getDungeonValue(key, item) === "number") {
+      } else if (typeof this.$modelManager.getDungeonValue(key, item) === 'number') {
         let val = -1;
         let max = 'max' + item.substr(0, 1).toUpperCase() + item.substr(1);
         if (item === 'chests' || (item === 'smallkeys' && this.$modelManager.getItemShuffle() === GameSaveHelper.itemShuffleOptions.standard.id)) {
@@ -85,9 +86,6 @@
   @import '~@nativescript/theme/scss/variables/forest';
 
   // Custom styles
-  .fas {
-    @include colorize($color: accent);
-  }
 
   .dungeon-stack {
   }

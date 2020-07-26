@@ -1,7 +1,8 @@
 export class GameSaveHelper {
   static labels = {
     standard: 'Standard',
-    inverted: 'Inverted'
+    inverted: 'Inverted',
+    retro: 'Retro'
   }
   static itemShuffleOptions = {
     standard : {

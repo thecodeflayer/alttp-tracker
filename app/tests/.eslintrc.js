@@ -18,6 +18,7 @@ module.exports = {
       'always'
     ],
     '@typescript-eslint/no-var-requires': 'off',
+    'jasmine/new-line-before-expect': 'off',
     'space-before-function-paren': ['error', 'never'],
   }
 };
