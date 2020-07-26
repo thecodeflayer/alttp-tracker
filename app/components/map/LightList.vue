@@ -23,6 +23,7 @@
                    :src="mapHandler.locations[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
                    width="36" height="36" @tap="clickCheck(key)" marginRight="5"/>
             <Label col="1" :fontSize="mapHandler.staticLocations[key].title.length < 23 ? 20 : 18"
+                   @longpress="onLongPress(key, 'location')"
                    class="list-title" :text="mapHandler.staticLocations[key].title" verticalAlignment="center"/>
             <StackLayout col="2" orientation="vertical">
               <Image src="~/img/chest.png" height="16" width="16"/>
@@ -42,6 +43,7 @@
                    width="32" height="32" @tap="clickCheck(key, true)" marginRight="5"/>
             <Image col="1" height="28" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopDW.png'" marginRight="5" />
             <Label col="2" :fontSize="shopHandler.staticLocations[key].title.length < 23 ? 20 : 18"
+                   @longpress="onLongPress(key, 'shop')"
                    class="title" :text="shopHandler.staticLocations[key].title" verticalAlignment="center"/>
             <Image col="3" src="~/img/dungeons/compass1.png" width="32" height="32"
                    @tap="clickCompass(key, true)" horizontalAlignment="center"/>
@@ -55,6 +57,7 @@
 <script type="ts">
   import {Component, Vue, Ref} from 'vue-property-decorator';
   import LightMap from '@/components/map/LightMap.vue';
+  import LocaleModal from '@/components/map/LocaleModal.vue';
 
   @Component
   export default class LightList extends Vue {
@@ -160,6 +163,9 @@
       }
       this.filterList = this.$modelManager.map.lightworld.filterList = val;
       this.$modelManager.saveMap();
+    }
+    async onLongPress(key, type) {
+      await this.$showModal(LocaleModal, {props:{localeKey:key, world:'lightworld', type:type}});
     }
   }
 </script>
