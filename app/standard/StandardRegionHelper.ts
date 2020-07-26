@@ -46,7 +46,7 @@ export class StandardRegionHelper {
             (items.hammer || items.flippers));
   }
   static reqNorthEastDW = [
-    ['dungeons/aga_boss1'],
+    ['dungeons/aga_boss0'],
     ['items/hammer1', 'items/glove1', 'items/moonpearl1'],
     ['items/glove2', 'items/moonpearl1', 'items/hammer1'],
     ['items/glove2', 'items/moonpearl1', 'items/flippers1']

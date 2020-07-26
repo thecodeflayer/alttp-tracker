@@ -38,8 +38,8 @@ export class StandardStaticMapDW {
     }};
   pyramidFairy = {x: 703, y: 733, title: 'Pyramid Fairy', itemCount: 2,
     req:[
-      ['dungeons/crystal3', 'dungeons/crystal4', StandardRegionHelper.reqSouthDW, 'items/mirror1', 'dungeons/aga_boss1'],
-      ['dungeons/crystal3', 'dungeons/crystal4', StandardRegionHelper.reqSouthDW, 'items/hammer1', 'items/moonpearl1']
+      ['dungeons/crystal4~', 'dungeons/crystal4', StandardRegionHelper.reqSouthDW, 'items/mirror1', 'dungeons/aga_boss0'],
+      ['dungeons/crystal4~', 'dungeons/crystal4', StandardRegionHelper.reqSouthDW, 'items/hammer1', 'items/moonpearl1']
     ],
     validate(items, dungeons){
       let c = 0;

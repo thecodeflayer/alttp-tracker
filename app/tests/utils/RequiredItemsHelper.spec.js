@@ -2,7 +2,7 @@ import {RequiredItemsHelper} from '~/utils/RequiredItemsHelper';
 import {StandardStaticMapLW} from '~/standard/StandardStaticMapLW';
 import {StandardStaticMapDW} from '~/standard/StandardStaticMapDW';
 
-fdescribe('RequiredItemsHelper', () => {
+describe('RequiredItemsHelper', () => {
   const standardMapLW = new StandardStaticMapLW();
   const standardMapDW = new StandardStaticMapDW();
   const rih = new RequiredItemsHelper();
@@ -30,7 +30,7 @@ fdescribe('RequiredItemsHelper', () => {
   it('should get pyramid fairy', () => {
     listItems(standardMapDW.pyramidFairy.title, rih.getRequiredItems(standardMapDW.pyramidFairy.req));
   });
-  fit('do all dark world maps', () => {
+  it('do all dark world maps', () => {
     const keys = Object.keys(standardMapDW);
     for(const key of keys) {
       listItems(standardMapDW[key].title, rih.getRequiredItems(standardMapDW[key].req));
