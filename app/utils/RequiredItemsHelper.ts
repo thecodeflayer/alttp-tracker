@@ -1,15 +1,11 @@
-import {StandardStaticMapLW} from '@/standard/StandardStaticMapLW';
+//import {StandardStaticMapLW} from '@/standard/StandardStaticMapLW';
 
 export class RequiredItemsHelper {
 
-  getTestArray() {
-    const kt = new StandardStaticMapLW();
-    let parsed = this.parseRequired(kt.kingTomb.req);
+  getRequiredItems(arrs) {
+    let parsed = this.parseRequired(arrs);
     parsed = this.cleanRequired(parsed);
-
-    for(const p of parsed) {
-      console.log('fin:', p);
-    }
+    return parsed;
   }
   onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
@@ -51,6 +47,9 @@ export class RequiredItemsHelper {
     return retval;
   }
   cleanRequired(arr) {
+    if(arr.length < 1) {
+      return arr;
+    }
     arr.sort((a, b)=> {
       let r = 0;
       a.length > b.length ? r = -1 : a.length < b.length ? r = 1 :  r = 0;

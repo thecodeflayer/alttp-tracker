@@ -1,7 +1,7 @@
 import {RetroRegionHelper} from '@/retro/RetroRegionHelper';
 import {StandardStaticMapDW} from '@/standard/StandardStaticMapDW';
 
-export class RetroStaticMapDW extends StandardStaticMapDW{
+export class RetroStaticMapDW {
   superbunnyCave = {x: 1265, y: 223, title: 'Superbunny Cave', itemCount: 2,
     req:['items/moonpearl1', 'items/glove2',
       'lp', 'items/hookshot1', 'or', 'items/hammer1', 'items/mirror1', 'rp',

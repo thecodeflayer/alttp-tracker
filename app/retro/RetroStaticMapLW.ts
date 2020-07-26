@@ -1,7 +1,7 @@
 import {RetroRegionHelper} from '@/retro/RetroRegionHelper';
 import {StandardStaticMapLW} from '@/standard/StandardStaticMapLW';
 
-export class RetroStaticMapLW extends StandardStaticMapLW{
+export class RetroStaticMapLW {
   uncle  = {x:894, y:624, title:'Uncle', itemCount: 1, req:[], validate(items, dungeons) {
     return true;
   }};
