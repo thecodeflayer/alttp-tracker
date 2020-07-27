@@ -10,6 +10,9 @@ export class RetroStaticMapDungeonsLW extends StandardStaticMapDungeonsLW{
       return  (items.bow > 0 && items.quiver) && (items.lantern || items.firerod);
     },
     req:[],
-    reqBoss:[]
+    reqBoss:[
+      ['items/bow1', 'items/quiver1', 'items/lantern1'],
+      ['items/bow1', 'items/quiver1', 'items/firerod1'],
+    ]
   };
 }

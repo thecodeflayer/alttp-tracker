@@ -1,3 +1,4 @@
+
 export class StandardRegionHelper {
   // light world
   static northEastLW(items, dungeons) {
@@ -97,6 +98,9 @@ export class StandardRegionHelper {
             (dungeons.mm.medallion === 3 && items.quake);
     return m && items.moonpearl && this.mireDW(items, dungeons);
   }
+  static reqMm = [
+    ['dungeons/medallion0', 'items/moonpearl1', StandardRegionHelper.reqMireDW]
+  ];
   static tr(items, dungeons) {
     const m = (dungeons.tr.medallion === 1 && items.bombos) ||
             (dungeons.tr.medallion === 2 && items.ether) ||
@@ -116,4 +120,5 @@ export class StandardRegionHelper {
     }
     return (c >= settings.openGT && items.moonpearl && this.deathMtnEastDW(items, dungeons));
   }
+  static reqGt = [['items/moonpearl1', StandardRegionHelper.reqDeathMtnEastLW]];
 }

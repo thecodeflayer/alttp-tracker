@@ -2,11 +2,14 @@
   <ScrollView>
     <StackLayout orientation="vertical" class="modal-dialog">
       <Label class="list-title" :text="title" textAlignment="center" marginBottom="5" fontSize="24"/>
+      <StackLayout :visibility="type==='dungeon' && localeKey === 'gt' ? 'visible':'collapsed'" orientation="horizontal"  horizontalAlignment="center">
+        <Image v-for="c in gtReq" :src="'~/img/'+c+'.png'" width="16"/>
+      </StackLayout>
       <StackLayout :visibility="type === 'location' ? 'visible' : 'collapsed'" orientation="horizontal" horizontalAlignment="center">
         <Image src="~/img/chest.png" width="20"/>
         <Label :text="' x'+itemCount"/>
       </StackLayout>
-      <Label :visibility="type==='shop' ? 'visible' : 'collapsed'" :text="takeAny ? 'Take Any Cave':'Shop'"/>
+      <Label :visibility="type==='shop' ? 'visible' : 'collapsed'" :text="takeAny ? 'Take Any Cave':'Shop'" horizontalAlignment="center"/>
       <Label :visibility="requiredArr.length  ? 'visible' : 'collapsed'" text="Required Items:" marginTop="4" marginLeft="10"/>
       <StackLayout v-for="(req, idx) of requiredArr" v-bind:key="idx" orientation="horizontal" marginLeft="10">
         <Image :visibility="idx > 0  ? 'visible' : 'collapsed'" src="~/img/or.png" width="18"/>
@@ -22,7 +25,6 @@
       <Button class="btn standard padded" @tap="closeModal" marginTop="14">Close</Button>
     </StackLayout>
   </ScrollView>
-
 </template>
 
 <script type="ts">
@@ -57,6 +59,7 @@
     boss = '';
     bossReq = [];
     requiredBossArr = [];
+    gtReq = [];
     requiredHelper = new RequiredItemsHelper();
 
     mounted() {
@@ -94,6 +97,13 @@
                     : new RetroStaticMapDungeonsDW();
           this.requiredArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].req);
           this.requiredBossArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].reqBoss);
+          if(this.localeKey === 'gt') {
+            const cArr = [];
+            for(let i = 0; i < this.$modelManager.settings.openGT; i++) {
+              cArr.push('dungeons/crystal3');
+            }
+            this.gtReq = cArr;
+          }
         }
       }
       if(this.type === 'shop') {
