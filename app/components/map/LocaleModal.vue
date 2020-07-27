@@ -2,14 +2,22 @@
   <ScrollView>
     <StackLayout orientation="vertical" class="modal-dialog">
       <Label class="list-title" :text="title" textAlignment="center" marginBottom="5" fontSize="24"/>
-      <StackLayout v-if="type === 'location'" orientation="horizontal" horizontalAlignment="center">
+      <StackLayout :visibility="type === 'location' ? 'visible' : 'collapsed'" orientation="horizontal" horizontalAlignment="center">
         <Image src="~/img/chest.png" width="20"/>
         <Label :text="' x'+itemCount"/>
       </StackLayout>
-      <Label v-if="requiredArr.length && requiredArr[0].length" text="Required Items:" marginTop="4" marginLeft="10"/>
+      <Label :visibility="type==='shop' ? 'visible' : 'collapsed'" :text="takeAny ? 'Take Any Cave':'Shop'"/>
+      <Label :visibility="requiredArr.length  ? 'visible' : 'collapsed'" text="Required Items:" marginTop="4" marginLeft="10"/>
       <StackLayout v-for="(req, idx) of requiredArr" v-bind:key="idx" orientation="horizontal" marginLeft="10">
-        <Image v-if="idx > 0" src="~/img/or.png" width="18"/>
+        <Image :visibility="idx > 0  ? 'visible' : 'collapsed'" src="~/img/or.png" width="18"/>
         <Image v-for="img of req" v-bind:key="img" :src="'~/img/'+(img.replace('~',''))+'.png'" width="18" height="18" margin="2"/>
+      </StackLayout>
+
+      <Label :visibility="type === 'dungeon'  ? 'visible' : 'collapsed'" class="list-title" :text="boss" textAlignment="center" marginBottom="5" fontSize="24"/>
+      <Label :visibility="type === 'dungeon' && requiredBossArr.length ? 'visible':'collapsed'" text="Boss Required Items:" marginTop="4" marginLeft="10"/>
+      <StackLayout v-for="(breq, idx) of requiredBossArr" v-bind:key="idx" orientation="horizontal" marginLeft="10">
+        <Image :visibility="idx > 0  ? 'visible' : 'collapsed'" src="~/img/or.png" width="18"/>
+        <Image v-for="bimg of breq" v-bind:key="bimg" :src="'~/img/'+(bimg.replace('~',''))+'.png'" width="18" height="18" margin="2"/>
       </StackLayout>
       <Button class="btn standard padded" @tap="closeModal" marginTop="14">Close</Button>
     </StackLayout>
@@ -28,6 +36,12 @@
   import {RequiredItemsHelper} from '@/utils/RequiredItemsHelper';
   import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
   import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
+  import {StandardStaticMapDungeonsLW} from '@/standard/StandardStaticMapDungeonsLW';
+  import {StandardStaticMapDungeonsDW} from '@/standard/StandardStaticMapDungeonsDW';
+  import {InvertedStaticMapDungeonsLW} from '@/inverted/InvertedStaticMapDungeonsLW';
+  import {InvertedStaticMapDungeonsDW} from '@/inverted/InvertedStaticMapDungeonsDW';
+  import {RetroStaticMapDungeonsLW} from '@/retro/RetroStaticMapDungeonsLW';
+  import {RetroStaticMapDungeonsDW} from '@/retro/RetroStaticMapDungeonsDW';
 
   @Component
   export default class LocaleModal extends Vue {
@@ -40,6 +54,9 @@
     itemCount = 0;
     takeAny = false;
     requiredArr = [];
+    boss = '';
+    bossReq = [];
+    requiredBossArr = [];
     requiredHelper = new RequiredItemsHelper();
 
     mounted() {
@@ -59,6 +76,25 @@
                 : this.$modelManager.getGameMode() === this.$sol.RETRO && this.world === 'lightworld' ? new RetroStaticMapLW()
                   : new RetroStaticMapDW();
         this.requiredArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].req);
+      }
+      if(this.type === 'dungeon') {
+        loc = (this.world === 'darkworld') ? this.$sol.getStaticMapDungeonsDW(this.$modelManager.getGameMode())[this.localeKey]
+          : this.$sol.getStaticMapDungeonsLW(this.$modelManager.getGameMode())[this.localeKey];
+        if(loc) {
+          this.title = loc.title;
+          this.boss = loc.boss;
+          this.req = loc.req;
+          this.boss = loc.boss;
+          this.bossReq = loc.bossReq;
+          const staticObj = this.$modelManager.getGameMode() === this.$sol.STANDARD && this.world === 'lightworld' ? new StandardStaticMapDungeonsLW()
+            : this.$modelManager.getGameMode() === this.$sol.STANDARD && this.world === 'darkworld' ? new StandardStaticMapDungeonsDW()
+              : this.$modelManager.getGameMode() === this.$sol.INVERTED && this.world === 'lightworld' ? new InvertedStaticMapDungeonsLW()
+                : this.$modelManager.getGameMode() === this.$sol.INVERTED && this.world === 'darkworld' ? new InvertedStaticMapDungeonsDW()
+                  : this.$modelManager.getGameMode() === this.$sol.RETRO && this.world === 'lightworld' ? new RetroStaticMapDungeonsLW()
+                    : new RetroStaticMapDungeonsDW();
+          this.requiredArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].req);
+          this.requiredBossArr = this.requiredHelper.getRequiredItems(staticObj[this.localeKey].reqBoss);
+        }
       }
       if(this.type === 'shop') {
         loc = (this.world === 'darkworld') ? this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode())[this.localeKey]
