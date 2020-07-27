@@ -81,15 +81,18 @@ export class RetroStaticMapShopsLW implements IStaticMapShopsLW{
 
   // shops
   kakarikoShop = {x:164, y:878, title:'Kakariko Shop',
-    takeAny: false, req:[], validate(items, dungeons): boolean{
+    takeAny: false, req:[],
+    validate(items, dungeons): boolean{
       return RetroRegionHelper.northWestLW(items, dungeons);
     }};
   lwLakeHyliaShop = {x:1090, y:1153, title:'Lake Hylia Shop',
-    takeAny: false, req:[], validate(items, dungeons): boolean{
+    takeAny: false, req:[],
+    validate(items, dungeons): boolean{
       return RetroRegionHelper.southLW(items, dungeons);
     }};
   lwDeathMtnShop = {x:1283, y:221, title:'Death Mountain Shop',
-    takeAny: false, req:[['items/bombs1']], validate(items, dungeons): boolean{
+    takeAny: false, req:[['items/bombs1', RetroRegionHelper.reqDeathMtnEastLW]],
+    validate(items, dungeons): boolean{
       return items.bombs && RetroRegionHelper.deathMtnEastLW(items, dungeons);
     }};
 

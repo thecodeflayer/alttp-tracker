@@ -25,10 +25,10 @@ export class StandardStaticMapDungeonsLW {
     },
     req:[[StandardRegionHelper.reqDp]],
     reqBoss:[
-      [StandardRegionHelper.reqDp, 'items/glove1', 'items/mirror1', 'items/lantern1'],
-      [StandardRegionHelper.reqDp, 'items/glove1', 'items/mirror1', 'items/firerod1'],
-      [StandardRegionHelper.reqDp, 'items/glove1', StandardRegionHelper.reqMireDW, 'items/lantern1'],
-      [StandardRegionHelper.reqDp, 'items/glove1', StandardRegionHelper.reqMireDW, 'items/firerod1'],
+      ['items/book1', 'items/glove1', 'items/lantern1'],
+      ['items/book1', 'items/glove1', 'items/firerod1'],
+      ['items/mirror1', StandardRegionHelper.reqMireDW, 'items/lantern1'],
+      ['items/mirror1', StandardRegionHelper.reqMireDW, 'items/firerod1'],
     ]
   };
   toh = {x:840, y:40, title:'Tower of Hera', boss:'Moldorm',
@@ -48,7 +48,7 @@ export class StandardStaticMapDungeonsLW {
     validateBoss(items){
       return items.lantern && (items.cape || items.sword > 1) && (items.sword > 0 || items.net);
     },
-    req:[['items/cape1', 'items/sword2']],
+    req:[['items/cape1'], ['items/sword2']],
     reqBoss:[
       ['items/lantern1', 'items/sword2'],
       ['items/lantern1', 'items/cape1', 'items/sword1'],

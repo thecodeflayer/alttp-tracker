@@ -93,6 +93,10 @@ export class InvertedRegionHelper {
             (dungeons.mm.medallion === 3 && items.quake);
     return m && this.mireDW(items, dungeons);
   }
+  static reqMm = [
+    ['dungeons/medallion0', InvertedRegionHelper.reqMireDW]
+  ];
+
   static tr(items, dungeons) {
     const m = (dungeons.tr.medallion === 1 && items.bombos) ||
       (dungeons.tr.medallion === 2 && items.ether) ||
@@ -100,6 +104,10 @@ export class InvertedRegionHelper {
     return (m && items.redcane && this.deathMtnEastDW(items, dungeons))
       || (items.redcane && items.moonpearl && items.mirror && InvertedRegionHelper.deathMtnEastLW(items, dungeons));
   }
+  static reqTr = [
+    ['dungeons/medallion0', 'items/redcane1', InvertedRegionHelper.reqDeathMtnEastDW],
+    ['items/redcane1', 'items/moonpearl1', 'items/mirror1', InvertedRegionHelper.reqDeathMtnEastLW]
+  ];
   static gt(items, dungeons, settings) {
     let c = 0;
     const keys = Object.keys(dungeons);
@@ -110,4 +118,5 @@ export class InvertedRegionHelper {
     }
     return c >= settings.openGT && items.moonpearl && this.northEastLW(items, dungeons);
   }
+  static reqGt = [['items/moonpearl1',InvertedRegionHelper.reqNorthEastLW]];
 }

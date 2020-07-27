@@ -1,9 +1,8 @@
 <template>
-  <GridLayout :rows="((type==='location' || type==='shop' || (type === 'dungeon' && localeKey === 'gt')) ? '80'
-    : '50')+',*,80'" columns="*" class="modal-dialog" style="padding:0">
+  <GridLayout rows="80,*,80" columns="*" class="modal-dialog" style="padding:0">
     <!-- HEADER -->
     <StackLayout orientation="vertical" class="modal-header" :class="{'empty': !requiredArr.length && !requiredBossArr.length}">
-      <Label class="list-title" :text="title" textAlignment="center" marginBottom="5" fontSize="24"/>
+      <Label class="list-title" :text="title" textAlignment="center" fontSize="24"/>
       <StackLayout :visibility="type==='dungeon' && localeKey === 'gt' ? 'visible':'collapsed'" orientation="horizontal"  horizontalAlignment="center">
         <Image v-for="c in gtReq" :src="'~/img/'+c+'.png'" width="16"/>
       </StackLayout>
@@ -12,6 +11,7 @@
         <Label :text="' x'+itemCount"/>
       </StackLayout>
       <Label :visibility="type==='shop' ? 'visible' : 'collapsed'" :text="takeAny ? 'Take Any Cave':'Shop'" horizontalAlignment="center"/>
+      <Label :visibility="type === 'dungeon' && localeKey!=='gt'  ? 'visible' : 'collapsed'" class="list-title" :text="boss" textAlignment="center" />
     </StackLayout>
     <!-- BODY -->
     <ScrollView row="1" class="scrollbox" :class="{'empty': !requiredArr.length && !requiredBossArr.length}">
@@ -21,7 +21,6 @@
           <Image :visibility="idx > 0  ? 'visible' : 'collapsed'" src="~/img/or.png" width="18"/>
           <Image v-for="img of req" v-bind:key="img" :src="'~/img/'+(img.replace('~',''))+'.png'" width="18" height="18" margin="2"/>
         </StackLayout>
-        <Label :visibility="type === 'dungeon'  ? 'visible' : 'collapsed'" class="list-title" :text="boss" textAlignment="center" marginBottom="5" fontSize="24"/>
         <Label :visibility="type === 'dungeon' && requiredBossArr.length ? 'visible':'collapsed'" text="Boss Required Items:" marginTop="4" marginLeft="10"/>
         <StackLayout v-for="(breq, idx) of requiredBossArr" v-bind:key="idx" orientation="horizontal" marginLeft="10">
           <Image :visibility="idx > 0  ? 'visible' : 'collapsed'" src="~/img/or.png" width="18"/>
