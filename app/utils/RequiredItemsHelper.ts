@@ -55,7 +55,17 @@ export class RequiredItemsHelper {
       a.length > b.length ? r = -1 : a.length < b.length ? r = 1 :  r = 0;
       return r;
     });
-    const checkRule = (a, t) => a.every(v => t.includes(v));
+    const checkRule = (a, t) => {
+      if(!a.every(v => t.includes(v)) && a.indexOf('items/glove1')>-1 && t.indexOf('items/glove2')>-1) {
+        //handle mitt override
+        const tempA = a.map(i => i==='items/glove1' ? 'xxx' : i);
+        const tempT = t.map(i => i==='items/glove2' ? 'xxx' : i);
+        const retval = tempA.every(v => tempT.includes(v));
+        return retval;
+      } else {
+        return a.every(v => t.includes(v));
+      }
+    };
     let i = arr.length;
     while(i--){
       if(arr[i]){
@@ -68,6 +78,12 @@ export class RequiredItemsHelper {
         }
         copy.push(rule);
         arr = copy;
+      }
+    }
+    //remove mitts if glove already in array
+    for(const a of arr){
+      if(a.indexOf('items/glove2')>-1 && a.indexOf('items/glove1')>-1) {
+        a.splice(a.indexOf('items/glove2'), 1);
       }
     }
     return arr.sort((a, b)=> {

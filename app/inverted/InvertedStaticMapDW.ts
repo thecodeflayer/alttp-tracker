@@ -27,7 +27,7 @@ export class InvertedStaticMapDW {
         && InvertedRegionHelper.deathMtnWestDW(items, dungeons);
     }};
   catfish = {x: 1341, y: 257, title: 'Catfish', itemCount: 1,
-    req:[[InvertedRegionHelper.reqNorthEastDW, 'items/glove1']],
+    req:[['items/glove1', InvertedRegionHelper.reqNorthEastDW]],
     validate(items, dungeons){
       return items.glove > 0 && InvertedRegionHelper.northEastDW(items, dungeons);
     }};
