@@ -41,7 +41,7 @@
             <Image col="0"
                    :src="shopHandler.shops[key].checked ? '~/img/checked.png' : '~/img/unchecked.png'"
                    width="32" height="32" @tap="clickCheck(key, true)" marginRight="5"/>
-            <Image col="1" height="28" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopDW.png'" marginRight="5" />
+            <Image col="1" height="28" :src="shopHandler.staticLocations[key].takeAny ? '~/img/takeAny.png' : '~/img/shopLW.png'" marginRight="5" />
             <Label col="2" :fontSize="shopHandler.staticLocations[key].title.length < 23 ? 20 : 18"
                    @longpress="onLongPress(key, 'shop')"
                    class="title" :text="shopHandler.staticLocations[key].title" verticalAlignment="center"/>
