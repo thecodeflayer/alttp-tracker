@@ -10,7 +10,7 @@ export class InvertedStaticMapLW {
       return items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons);
     }};
   backOfEscape = {x:778, y:439, title:'Escape',
-    itemCount: 6, req:[['items/moonpearl1', 'items/glove1', InvertedRegionHelper.reqNorthEastLW]],
+    itemCount: 5, req:[['items/moonpearl1', 'items/glove1', InvertedRegionHelper.reqNorthEastLW]],
     validate(items, dungeons) {
       return InvertedRegionHelper.northEastLW(items, dungeons) && items.moonpearl && items.glove > 0;
     }};

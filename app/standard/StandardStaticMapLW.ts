@@ -8,7 +8,7 @@ export class StandardStaticMapLW {
     return true;
   }};
   backOfEscape = {x:778, y:439, title:'Escape',
-    itemCount: 6, req:[['items/glove1']],
+    itemCount: 5, req:[['items/glove1']],
     validate(items, dungeons) {
       return items.glove > 0;
     }};
