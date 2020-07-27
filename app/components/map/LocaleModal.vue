@@ -1,5 +1,5 @@
 <template>
-  <GridLayout rows="80,*,80" columns="*" class="modal-dialog" style="padding:0">
+  <GridLayout rows="80,*,80" columns="*" class="modal-dialog standard" style="padding:0">
     <!-- HEADER -->
     <StackLayout orientation="vertical" class="modal-header" :class="{'empty': !requiredArr.length && !requiredBossArr.length}">
       <Label class="list-title" :text="title" textAlignment="center" fontSize="24"/>
