@@ -2,17 +2,17 @@
   "nativescript": {
     "id": "com.codeflayer.alttptracker",
     "templateVersion": "v2",
-    "tns-android": {
-      "version": "6.5.0"
-    },
     "tns-ios": {
       "version": "6.5.0"
+    },
+    "tns-android": {
+      "version": "6.5.3"
     }
   },
   "scripts": {
-    "build-android" : "tns build android",
-    "run-android" : "tns run android",
-    "test-android" : "tns test android"
+    "build-android": "tns build android",
+    "run-android": "tns run android",
+    "test-android": "tns test android"
   },
   "description": "ALTTP Randomizer Tracker for Mobile",
   "license": "SEE LICENSE IN LICENSE",
@@ -25,7 +25,7 @@
     "nativescript-unit-test-runner": "^0.7.0",
     "nativescript-vue": "^2.6.1",
     "nativescript-vue-devtools": "^1.4.0",
-    "tns-core-modules": "^6.5.1",
+    "tns-core-modules": "^6.5.12",
     "vue-class-component": "~7.2.3",
     "vue-property-decorator": "~9.0.0",
     "xml-js": "^1.6.11"
@@ -41,9 +41,9 @@
     "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
     "eslint": "^7.4.0",
+    "eslint-plugin-jasmine": "~4.1.1",
     "eslint-plugin-nativescript": "~0.0.0",
     "eslint-plugin-vue": "^6.2.2",
-    "eslint-plugin-jasmine": "~4.1.1",
     "karma": "5.1.0",
     "karma-jasmine": "3.3.1",
     "karma-nativescript-launcher": "0.4.0",
