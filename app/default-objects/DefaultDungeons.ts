@@ -7,6 +7,7 @@ export class DefaultDungeons {
   }
   static fromJSON(str: string) :DefaultDungeons {
     const obj = JSON.parse(str);
+    //console.log(obj);
     const retval =  new DefaultDungeons();
     retval.version = obj.version;
     retval.data = DefaultDungeonsData.fromObject(obj.data);
@@ -30,8 +31,9 @@ export class DefaultDungeonsData {
   static fromObject(obj:any):DefaultDungeonsData {
     const data = new DefaultDungeonsData();
     const keys = Object.keys(data);
+    console.log(obj);
     for(const key of keys){
-      if(obj[key]) {
+      if(obj[key]!==undefined) {
         data[key].setFromObject(obj[key]);
       }
     }
@@ -72,7 +74,7 @@ export class Dungeon {
   setFromObject(obj:any): void{
     const keys = Object.keys(this);
     for(const key of keys) {
-      if(obj[key]) {
+      if(obj[key]!==undefined) {
         this[key] = obj[key];
       }
     }

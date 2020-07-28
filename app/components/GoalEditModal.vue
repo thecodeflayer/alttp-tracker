@@ -1,6 +1,6 @@
 <template>
   <ScrollView>
-    <StackLayout orientation="vertical" class="modal-dialog">
+    <StackLayout orientation="vertical" class="modal-dialog standard">
       <StackLayout :visibility="game.goal === goalOptions.triforce.id ? 'visible':'collapsed'" orientation="vertical">
         <Label :text="'Triforce Pieces Goal: '+game.triforceGoal" />
         <GridLayout row="20" columns="20,*,20" style="margin:0;padding:0">

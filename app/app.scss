@@ -60,6 +60,10 @@ Button:active{
   color: $standard-font-color;
   font-family: $font-ganon;
   font-size: 20;
+  &.standard {
+    background-color: $standard-bg;
+    border-color: $standard-border;
+  }
   &.danger {
     background-color: $danger-bg;
     border-color: $danger-border;

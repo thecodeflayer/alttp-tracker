@@ -24,7 +24,7 @@ export class ModelManager {
   gameSaves: DefaultGameSavesData;
   editGame: GameEditObj;
 
-  appVersion = '1.1.0';
+  appVersion = '1.1.1';
   itemsVersion = '0.0.1';
   dungeonsVersion = '0.0.2';
   mapVersion = '0.0.1';
@@ -213,15 +213,15 @@ export class ModelManager {
 
   getItemMax() {
     if (this.settings.gameMode === this.sol.STANDARD || this.settings.gameMode === this.sol.INVERTED) {
-      return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 155
-        : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20)
-          : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
-            : (155 + 30 + 28);
+      return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? 153
+        : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (153 + 22)
+          : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (153 + 22 + 28)
+            : (153 + 33 + 28);
     } else if(this.settings.gameMode === this.sol.RETRO) {
-      return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? (155 + 28)
-        : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (155 + 20 + 28)
-          : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (155 + 20 + 28)
-            : (155 + 30 + 28);
+      return this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.standard.id ? (153 + 28)
+        : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mc.id ? (153 + 22 + 28)
+          : this.settings.itemShuffle === GameSaveHelper.itemShuffleOptions.mcsk.id ? (153 + 22 + 28)
+            : (153 + 33 + 28);
     }
   }
 
@@ -432,6 +432,7 @@ export class ModelManager {
   }
 
   saveCurrentGame() {
+    console.log('saving game');
     const game = this.settings.gameSlot;
     this.gameSaves[game].items = this.items.getCopy();
     this.gameSaves[game].dungeons = this.dungeons.getCopy();

@@ -19,11 +19,11 @@ export abstract class DefaultMapData implements IDefaultMapData{
     if(data[world][mapkey] !== null && typeof data[world][mapkey] ==='object' ) {
       const keys = Object.keys(data[world][mapkey]);
       for (const key of keys) {
-        if (obj[world] && obj[world][mapkey] && obj[world][mapkey][key]) {
+        if (obj[world] && obj[world][mapkey] && obj[world][mapkey][key]!==undefined) {
           data[world][mapkey][key] = obj[world][mapkey][key];
         }
       }
-    } else if(obj[world] && obj[world][mapkey]) {
+    } else if(obj[world] && obj[world][mapkey]!==undefined) {
       data[world][mapkey] = obj[world][mapkey];
     }
     return data;

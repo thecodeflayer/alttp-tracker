@@ -28,7 +28,7 @@ export class DefaultSettingsData {
     const data = new DefaultSettingsData();
     const keys = Object.keys(data);
     for(const key of keys){
-      if(obj[key]) {
+      if(obj[key]!==undefined) {
         data[key] = obj[key];
       }
     }

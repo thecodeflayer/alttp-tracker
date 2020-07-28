@@ -39,10 +39,9 @@ That said, there still may be placed that have been missed and I welcome your fe
 
 #### There should be 216 items. Where are the missing items?
 
-As described in the [Item Shuffle Settings](#item-shuffle-settings), the tracker only counts relevant items and never counts Hyrule Castle items. The three Hyrule Castle items not counted are:
+As described in the [Item Shuffle Settings](#item-shuffle-settings), the tracker only counts relevant items and never counts Hyrule Castle items. The two Hyrule Castle items not counted are:
 
 - Hyrule Castle Map
-- Hyrule Castle Big Key
 - Hyrule Castle Small Key
 
 If you feel there is an error in item counts, please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
@@ -85,7 +84,7 @@ To learn more about the randomizer options for item shuffle please read Item Set
 **Standard**
 
 In this mode, dungeon items (big keys, small keys, maps and compasses) are not counted in the overall item count.
-The chest count for dungeons only reflects non-dungeon items. The overall item count in this mode is 155 items.
+The chest count for dungeons only reflects non-dungeon items. The overall item count in this mode is 153 items.
 
 In this mode small keys will decrement from their maximum number found in the dungeon.
 This is to help newer players by making it more obvious how many total small keys are in each dungeon.
@@ -111,7 +110,7 @@ To increment item count when you find a small key in a chest you should click th
 
 In this mode, maps, compasses, small keys and big keys (excluding Hyrule Castle) are added to the item pool.
 The chest count for dungeons will be increased as in the Maps, Compasses and Small Keys option with the inclusion of big keys.
-The overall item count in this mode is 213.
+The overall item count in this mode is 214.
 
 In this mode small keys will increment from zero. Note that, like the Maps, Compasses and Small Keys option, the small key counter does not affect the item count.
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.

@@ -32,7 +32,7 @@ export class DefaultGameSavesData {
     const data = new DefaultGameSavesData();
     const keys = Object.keys(data);
     for(const key of keys){
-      if(obj[key]) {
+      if(obj[key]!==undefined) {
         data[key] = Game.fromObject(obj[key]);
       }
     }
