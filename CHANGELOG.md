@@ -1,4 +1,20 @@
-# What's New in Version 1.1.0
+# What's New in Version 1.1.1
+
+### Location Item Requirements Modal
+Required items for locations can now be shown by "long pressing" on the location.
+
+- From the Maps, this works for locations, shops and dungeons.
+- From the Location Lists this works by long pressing the location title.
+
+### Enhancements and Bug Fixes
+
+- Fixed issue with chest saves in Dungeons screen where chest counts set to zero would be reset to max value when reloading the save.
+- Fixed issue with item counts in various item shuffle modes. Items should now add up correctly. 
+- Location list views now have a sleeker UI.
+
+---
+
+## What's New in Version 1.1.0
 
 ### Retro Game Mode
 Retro mode harkens back to the original Legend of Zelda. 
@@ -20,8 +36,6 @@ For the tracker the following features have been added:
 - Moved around items on the Items screen to better align with in game menu.
 - App now stays in Portrait mode (Landscape mode never worked correctly)
 - Fixed a bug with maps where position, scale and view mode were not getting saved. 
-
----
 
 ## What's New in Version 1.0.0
 
