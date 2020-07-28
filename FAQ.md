@@ -7,6 +7,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 - [General Questions](#general-questions)
     - [I clicked on items, but the item count doesn't increase. Why?](#i-clicked-on-items-but-the-item-count-doesnt-increase-why)
     - [Can I quickly navigate between the light world and dark world maps?](#can-i-quickly-navigate-between-the-light-world-and-dark-world-maps)
+    - [How do I see what items are required for a location or dungeon access?](#how-do-i-see-what-items-are-required-for-a-location-or-dungeon-access)
     - [A location should/should not be accessible with the items I have! What gives?](#a-location-shouldshould-not-be-accessible-with-the-items-i-have-what-gives)
     - [There should be 216 items. Where are the missing items?](#there-should-be-216-items-where-are-the-missing-items)
     - [Why are you not on the Play Store?](#why-are-you-not-on-the-play-store)
@@ -28,6 +29,10 @@ Therefore, the Item Count is based on locations checked. To increase the item co
 #### Can I quickly navigate between the light world and dark world maps?
 
 Yes! You can double-tap the map to toggle between worlds at the same position and scale.
+
+#### How do I see what items are required for a location or dungeon access?
+
+"Long Pressing" on the map location or on the location list title will open a modal that shows the required items for the location.
 
 #### A location should/should not be accessible with the items I have! What gives?
 
@@ -77,6 +82,9 @@ To learn more about the randomizer options for these modes please read the 'Worl
 Item Shuffle Settings are selectable when creating a new game.
 The primary effect this has on the tracker is the number of available chests and whether small keys increment or decrement when clicked.
 Additionally, the total number of items on the Items screen will change depending on the Item Shuffle option chosen.
+
+**NOTE**
+Location logic in the app assumes that you have the required big and small keys to access an area. There is an open question [here](https://github.com/thecodeflayer/alttp-tracker/issues/39) about whether to add big keys to the location logic. Feel free to add your opinion on the matter there.
 
 To learn more about the randomizer options for item shuffle please read Item Settings > Dungeon Item Shuffle section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
