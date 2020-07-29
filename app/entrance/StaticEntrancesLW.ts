@@ -191,7 +191,266 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits:{bombShop: true, singleCave: true}
   }
-
+  dam = {
+    name: 'Dam',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{blacksmith: true, singleCave: true}
+  }
+  blindsHideout = {
+    name: 'Blind\'s Hideout',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{blacksmith: true, singleCave: true}
+  };
+  hyruleCastleSecretEntranceDrop = {
+    name: 'Hyrule Castle Secret Entrance Drop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  };
+  bonkFairyLight = {
+    name: 'Bonk Fairy (Light)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{bombShop: true, singleCave: true}
+  };
+  lakeHyliaFairy = {
+    name: 'Lake Hylia Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{singleCave: true, blacksmith: true}
+  }
+  lightHypeFairy = {
+    name: 'Light Hype Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  desertFairy = {
+    name: 'Desert Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  kingsGrave = {
+    name: 'Kings Grave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  };
+  tavernNorth = { //this always links to tavern. here for completeness
+    name: 'Tavern North',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {fixedLocation: true}
+  };
+  chickenHut = {
+    name: 'Chicken Hut',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  aginahsCave = {
+    name: 'Aginah\'s Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  }
+  sahasrahlasHut = {
+    name: 'Sahasrahla\'s Hut',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  caveShopLakeHylia = {
+    name: 'Cave Shop (Lake Hylia)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  }
+  capacityUpgrade = {
+    name: 'Capacity Upgrade',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, bombShop: true}
+  }
+  kakarikoWellDrop = {
+    name: 'Kakariko Well Drop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  };
+  blacksmithsHut = {
+    name: 'Blacksmith\'s Hut',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  batCaveDrop = {
+    name: 'Bat Cave Drop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  };
+  sickKidsHouse = {
+    name: 'Sick Kid\'s House',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  northFairyCaveDrop = {
+    name: 'North Fairy Cave Drop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  }
+  lostWoodsGamble = {
+    name: 'Lost Woods Gamble',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  };
+  fortuneTellerLight = {
+    name: 'Fortune Teller (Light)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  snitchLadyEast = {
+    name: 'Snitch Lady (East)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  snitchLadyWest = {
+    name: 'Snitch Lady (West)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  bushCoveredHouse = {
+    name: 'Bush Covered House',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  tavernFront = {
+    name: 'Tavern (Front)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  lightWorldBombHut = {
+    name: 'Light World Bomb Hut',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  kakarikoShop = {
+    name: 'Kakariko Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  lostWoodsHideoutDrop = {
+    name: 'Lost Woods Hideout Drop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  };
+  lumberjackTreeTree = {
+    name: 'Lumberjack Tree Tree',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  }
+  cave45 = {
+    name: 'Cave 45',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  graveyardCave = {
+    name: 'Graveyard Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  checkerboardCave = {
+    name: 'Checkerboard Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  miniMoldormCave = {
+    name: 'Mini Moldorm Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  longFairyCave = {
+    name: 'Long Fairy Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  goodBeeCave = {
+    name: 'Good Bee Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  twentyRupeeCave = {
+    name: '20 Rupee Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  fiftyRupeeCave = {
+    name: '50 Rupee Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  iceRodCave = {
+    name: 'Ice Rod Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  bonkRockCave = {
+    name: 'Bonk Rock Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  library = {
+    name: 'Library',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  potionShop = {
+    name: 'Potion Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  sanctuaryGrave = {
+    name: 'Sanctuary Grave',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  }
+  hookshotFairy = {
+    name: 'Hookshot Fairy',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  lumberjackHouse = {
+    name: 'Lumberjack House',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  lakeHyliaFortuneTeller = {
+    name: 'Lake Hylia Fortune Teller',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  kakarikoGambleGame = {
+    name: 'Kakariko Gamble Game',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  desertPalaceExitSouth = {
+    name: 'Desert Palace Exit (South)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  desertPalaceExitWest = {
+    name: 'Desert Palace Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  };
+  desertPalaceExitEast = {
+    name: 'Desert Palace Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  desertPalaceExitNorth = {
+    name: 'Desert Palace Exit (North)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  easternPalaceExit = {
+    name: 'Eastern Palace Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  towerOfHeraExit = {
+    name: 'Tower of Hera Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
 
 
 }
@@ -202,12 +461,3 @@ const Direction = {
   BOTH: 'both'
 };
 
-
-// LW_Dungeon_Entrances = ['Desert Palace Entrance (South)',
-//   'Desert Palace Entrance (West)',
-//   'Desert Palace Entrance (North)',
-//   'Eastern Palace',
-//   'Tower of Hera',
-//   'Hyrule Castle Entrance (West)',
-//   'Hyrule Castle Entrance (East)',
-//   'Agahnims Tower']

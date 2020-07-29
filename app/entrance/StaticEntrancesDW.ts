@@ -109,36 +109,172 @@ export class StaticEntrancesDW {
   skullWoodsFirstSectionHoleWest ={
     name: 'Skull Woods First Section Hole (West)',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{hole: true, skullWoods: true}
+    limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsFirstSectionHoleEast ={
     name: 'Skull Woods First Section Hole (East)',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{hole: true, skullWoods: true}
+    limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsFirstSectionHoleNorth ={
     name: 'Skull Woods First Section Hole (North)',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{hole: true, skullWoods: true}
+    limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsSecondSectionHole = {
     name: 'Skull Woods Second Section Hole',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{hole: true, skullWoods: true}
+    limits:{holeEntrance: true, skullWoods: true}
   };
   pyramidHole = { //not sure how this one is handled
     name: 'Pyramid Hole',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{hole: true}
+    limits:{holeEntrance: true}
   };
+  pyramidFairy = { //TODO: only item in Singe_Cave_Doors in code, need to investigate.
+    name: 'Pyramid Fairy',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true}
+  };
+  eastDarkWorldHint = {
+    name: 'East Dark World Hint',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  };
+  palaceOfDarknessHint = {
+    name: 'Palace of Darkness Hint',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkLakeHyliaFairy = {
+    name: 'Dark Lake Hylia Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, bombShop:true}
+  }
+  darkLakeHyliaLedgeFairy = {
+    name: 'Dark Lake Hylia Ledge Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, bombShop:true}
+  }
+  darkLakeHyliaSpikeCave = {
+    name: 'Dark Lake Hylia Ledge Spike Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkLakeHyliaLedgeHint = {
+    name: 'Dark Lake Hylia Ledge Hint',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  hypeCave = {
+    name: 'Hype Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  bonkFairyDark = {
+    name: 'Bonk Fairy (Dark)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  brewery = {
+    name: 'Brewery',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  cShapedHouse = {
+    name: 'C-Shaped House',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  chestGame = {
+    name: 'Chest Game',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkWorldHammerPegCave = {
+    name: 'Dark World Hammer Peg Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  redShieldShop = {
+    name: 'Red Shield Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkSanctuaryHint = {
+    name: 'Dark Sanctuary Hint',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  fortuneTellerDark = {
+    name: 'Fortune Teller (Dark)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkWorldShop = {
+    name: 'Dark World Shop',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{singleCave: true}
+  }
+  darkWorldLumberjackShop = {
+    name: 'Dark World Lumberjack Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkWorldPotionShop = {
+    name: 'Dark World Potion Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  archeryGame = {
+    name: 'Archery Game',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  mireShed = {
+    name: 'Mire Shed',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  mireHint = {
+    name: 'Mire Hint', //'Dark Desert Hint'
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  mireFairy = {
+    name: 'Mire Fairy', //'Dark Desert Fairy'
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true}
+  }
+  spikeCave = {
+    name: 'Spike Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  };
+  caveShopDarkDeathMtn = {
+    name: 'Cave Shop (Dark Death Mountain)',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkDeathMtnFairy = {
+    name: 'Dark Death Mountain Fairy',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true}
+  }
+  mimicCave = {
+    name: 'Mimic Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  bigBombShop = {
+    name: 'Big Bomb Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  darkLakeHyliaShop = {
+    name: 'Dark Lake Hylia Shop',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
 
 }
-
-// DW_Dungeon_Entrances = ['Thieves Town',
-//   'Skull Woods Final Section',
-//   'Ice Palace',
-//   'Misery Mire',
-//   'Palace of Darkness',
-//   'Swamp Palace',
-//   'Turtle Rock',
-//   'Dark Death Mountain Ledge (West)']
