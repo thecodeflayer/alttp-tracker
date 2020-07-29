@@ -451,6 +451,206 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.EXIT,
     limits:{}
   }
+  hyruleCastleExitSouth = {
+    name: 'Hyrule Castle Exit (South)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  hyruleCastleExitWest = {
+    name: 'Hyrule Castle Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  hyruleCastleExitEast = {
+    name: 'Hyrule Castle Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  agaTowerExit = {
+    name: 'Agahnims Tower Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  icePalaceExit = {
+    name: 'Ice Palace Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  miseryMireExit = {
+    name: 'Misery Mire Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  hyruleCastleSecretEntranceExit = {
+    name: 'Hyrule Castle Secret Entrance Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  kakarikoWellExit = {
+    name: 'Kakariko Well Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  batCaveExit = {
+    name: 'Bat Cave Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  elderHouseExitEast = {
+    name: 'Elder House Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  elderHouseExitWest = {
+    name: 'Elder House Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  northFairyCaveExit = {
+    name: 'North Fairy Cave Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  lostWoodsHideoutExit = {
+    name: 'Lost Woods Hideout Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  lumberjackTreeExit = {
+    name: 'Lumberjack Tree Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeExit:true}
+  }
+  twoBrothersHouseExitEast = {
+    name: 'Two Brothers House Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  twoBrothersHouseExitWest = {
+    name: 'Two Brothers House Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  sanctuaryExit = { //TODO: this seems to have special properties.
+    name: 'Sanctuary Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  oldManCaveExitEast = {
+    name: 'Old Man Cave Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{oldManExit: true}
+  }
+  oldManCaveExitWest = {
+    name: 'Old Man Cave Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{oldManExit: true}
+  }
+  oldManHouseExitBottom = {//TODO: has handling to insure this is exits to LW only.
+    name: 'Old Man House Exit (Bottom)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{lwOnlyExit: true}
+  }
+  oldManHouseExitTop = {//TODO: has handling to insure this is exits to LW only.
+    name: 'Old Man House Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{lwOnlyExit: true}
+  }
+  deathMtnReturnCaveExitWest = {
+    name: 'Death Mountain Return Cave Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  deathMtnReturnCaveExitEast = {
+    name: 'Death Mountain Return Cave Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  spectacleRockCaveExit = {
+    name: 'Spectacle Rock Cave Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  spectacleRockCaveExitPeak = {
+    name: 'Spectacle Rock Cave Exit (Peak)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  spectacleRockCaveExitTop = {
+    name: 'Spectacle Rock Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  paradoxCaveExitBottom = {
+    name: 'Paradox Cave Exit (Bottom)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  paradoxCaveExitMiddle = {
+    name: 'Paradox Cave Exit (Middle)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  paradoxCaveExitTop = {
+    name: 'Paradox Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{threeCaveExit: true}
+  }
+  fairyAscensionCaveExitBottom = {
+    name: 'Fairy Ascension Cave Exit (Bottom)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  fairyAscensionCaveExitTop = {
+    name: 'Fairy Ascension Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  spiralCaveExit = {
+    name: 'Spiral Cave Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  spiralCaveExitTop = {
+    name: 'Spiral Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  desertHealerFairy = {
+    name: 'Desert Healer Fairy',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{singleCave: true}
+  }
+  kakarikoWellTop = {
+    name: 'Kakariko Well (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
+  hyruleCastleSecretEntrance = {
+    name: 'Hyrule Castle Secret Entrance',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
+  batCaveRight = {
+    name: 'Bat Cave (Right)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
+  lostWoodsHideoutTop = {
+    name: 'Lost Woods Hideout (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
+  lumberjackTreeTop = {
+    name: 'Lumberjack Tree (top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
+  sewerDrop = { //TODO: may have special handling
+    name: 'Sewer Drop',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
 
 
 }

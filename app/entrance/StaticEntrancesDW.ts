@@ -276,5 +276,155 @@ export class StaticEntrancesDW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
+  thievesTownExit = {
+    name: 'Thieves Town Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  skullWoodsFirstSectionExit = {
+    name: 'Skull Woods First Section Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{skullWoods: true}
+  }
+  skullWoodsSecondSectionExitEast = {
+    name: 'Skull Woods Second Section Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{skullWoods: true}
+  }
+  skullWoodsSecondSectionExitWest = {
+    name: 'Skull Woods Second Section Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{skullWoods: true}
+  }
+  skullWoodsFinalSectionExit = {
+    name: 'Skull Woods Final Section Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  palaceOfDarknessExit = {
+    name: 'Palace of Darkness Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  swampPalaceExit = {
+    name: 'Swamp Palace Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  turtleRockExitFront = {
+    name: 'Turtle Rock Exit (Front)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  turtleRockExitWest = {
+    name: 'Turtle Rock Exit (West)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  turtleRockExitEast = {
+    name: 'Turtle Rock Exit (East)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  turtleRockIsolatedLedgeExit = {
+    name: 'Turtle Rock Isolated Ledge Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  bumperCaveExitTop = {
+    name: 'Bumper Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  bumperCaveExitBottom = {
+    name: 'Bumper Cave Exit (Bottom)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  superBunnyCaveExitTop = {
+    name: 'Superbunny Cave Exit (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  superBunnyCaveExitBottom = {
+    name: 'Superbunny Cave Exit (Bottom)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  hookshotCaveExitSouth = {
+    name: 'Hookshot Cave Exit (South)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  hookshotCaveExitNorth = {
+    name: 'Hookshot Cave Exit (North)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  ganonTowerExit = { //TODO: may have special handling
+    name: 'Ganon\'s Tower Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  pyramidExit = { //TODO: may have special handling
+    name: 'Pyramid Exit',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{}
+  }
+  swampHealerFairy = {
+    name: 'Swamp Healer Fairy',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit: {singleCave: true}
+  }
+  darkLakeHyliaHealerFairy = {
+    name: 'Dark Lake Hylia Healer Fairy',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit: {singleCave: true}
+  }
+  darkLakeHyliaLedgeHealerFairy = {
+    name: 'Dark Lake Hylia Ledge Healer Fairy',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit: {singleCave: true}
+  }
+  mireHealerFairy = {
+    name: 'Mire Healer Fairy', //'Dark Desert Healer Fairy'
+    direction: CEntrance.DIRECTION.EXIT,
+    limit: {singleCave: true}
+  }
+  darkDeathMtnHealerFairy = {
+    name: 'Dark Death Mountain Healer Fairy',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit: {singleCave: true}
+  }
+  tavern = { //TODO: may have special handling
+    name: 'Tavern',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{}
+  }
+  skullWoodsSecondSectionDrop = {
+    name: 'Skull Woods Second Section (Drop)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{holeTarget: true, skullWoods: true}
+  }
+  skullWoodsSecondSectionLeft = {
+    name: 'Skull Woods Second Section (Left)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{holeTarget: true, skullWoods: true}
+  }
+  skullWoodsSecondSectionRight = {
+    name: 'Skull Woods Second Section (Right)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{holeTarget: true, skullWoods: true}
+  }
+  skullWoodsSecondSectionTop = {
+    name: 'Skull Woods Second Section (Top)',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{holeTarget: true, skullWoods: true}
+  }
+  pyramid = { //TODO: may have special handling
+    name: 'Pyramid',
+    direction: CEntrance.DIRECTION.EXIT,
+    limit:{}
+  }
 
 }
