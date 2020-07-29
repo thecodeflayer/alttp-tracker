@@ -6,6 +6,7 @@
         <Label :text="game.name +': Active Game'" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+        <Label :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
         <Label height="15"/>
         <Button class="btn highlight padded" @tap="openModal('resetItems')">Reset Items</Button>
@@ -30,6 +31,7 @@
   export default class GameEditLoaded extends Vue {
 
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
     game = this.$modelManager.editGame;
 

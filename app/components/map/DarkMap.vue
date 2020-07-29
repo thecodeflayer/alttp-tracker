@@ -55,10 +55,11 @@
                :top="Math.floor(mapHandler.staticShops[key].y - (10 * (1 / pinchHandler.localeScale)))"
                @tap="onClickShop(key)" @longpress="onLongPress(key, 'shop')"/>
       </AbsoluteLayout>
-      <GridLayout top="10" left="0" columns="40" rows="*,*">
+      <GridLayout top="10" left="0" columns="40" rows="*,*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
         <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'locations'" row="1" col="0" height="32" width="32" src="~/img/shopDW.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('shops')" />
         <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'shops'" row="1" col="0" height="32" width="32" src="~/img/dungeons/map1.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('locations')" />
+        <Image row="2" col="0" height="32" width="32" src="~/img/entrance.png" style="padding-left: 10" marginTop="5" @tap="navToEntranceEditor" />
         <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
       </GridLayout>
     </AbsoluteLayout>
@@ -74,6 +75,7 @@
   import DarkList from '@/components/map/DarkList.vue';
   import LightMap from '@/components/map/LightMap.vue';
   import LocaleModal from '@/components/map/LocaleModal.vue';
+  import EntranceEditor from '@/components/entrance/EntranceEditor.vue';
 
   @Component
   export default class DarkMap extends Vue {
@@ -424,6 +426,9 @@
     }
     async onLongPress(key, type) {
       await this.$showModal(LocaleModal, {props:{localeKey:key, world:'darkworld', type:type}});
+    }
+    navToEntranceEditor() {
+      this.$navigateTo(EntranceEditor);
     }
   }
 </script>

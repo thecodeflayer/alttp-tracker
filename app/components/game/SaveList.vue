@@ -17,6 +17,7 @@
             <Label v-if="game.timestamp" :text="'Game Mode: '+game.gameMode" fontSize="16"/>
             <Label v-else text="Create New Game" fontSize="16"/>
             <Label v-if="game.timestamp" :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label" fontSize="16"/>
+            <Label v-if="game.timestamp" :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label" fontSize="16"/>
             <Label v-if="game.timestamp" :text="'Goal: '+(game.goal ? goalOptions[game.goal].label : 'undefined')" fontSize="16"/>
             <Label v-if="game.timestamp" :text="'Last Saved: '+game.timestamp" fontSize="16"
                    verticalAlignment="bottom"/>
@@ -40,6 +41,7 @@
   export default class SaveList extends Vue {
     gameSaves = GameSaveHelper.parseGameSaves(this.$modelManager);
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
 
     mounted() {

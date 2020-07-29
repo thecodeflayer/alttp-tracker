@@ -15,6 +15,7 @@ import {InvertedDefaultMap, InvertedMapData} from '@/default-objects/InvertedDef
 import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
 import {RetroDefaultMap, RetroMapData} from '@/default-objects/RetroDefaultMap';
+import {DefaultEntranceData, DefaultEntrances} from '@/default-objects/DefaultEntrances';
 
 export class ModelManager {
   items: DefaultItemsData;
@@ -23,6 +24,7 @@ export class ModelManager {
   settings: DefaultSettingsData;
   gameSaves: DefaultGameSavesData;
   editGame: GameEditObj;
+  entrances: DefaultEntranceData;
 
   appVersion = '1.1.1';
   itemsVersion = '0.0.1';
@@ -30,6 +32,7 @@ export class ModelManager {
   mapVersion = '0.0.1';
   settingsVersion = '0.0.1';
   gameSavesVersion = '0.0.1';
+  entrancesVersion = '0.0.1';
 
   sol: StaticObjectLoader;
 
@@ -40,6 +43,7 @@ export class ModelManager {
     this.items = this.validateItemsFromStorage();
     this.dungeons = this.validateDungeonsFromStorage();
     this.map = this.validateMapFromStorage();
+    this.entrances = this.validateEntrancesFromStorage();
     this.initEmptyGameSave();
   }
 
@@ -81,6 +85,31 @@ export class ModelManager {
       }
     } else {
       console.log('no dungeons found in storage, loading default');
+    }
+    return retval;
+  }
+
+  validateEntrancesFromStorage() :DefaultEntranceData {
+    if(this.settings.entranceShuffle === undefined || this.settings.entranceShuffle === 'none'){
+      console.log('No entrances required. Setting to undefined.');
+      return undefined;
+    }
+    let retval = new DefaultEntranceData();
+    let stored = undefined;
+    if (hasKey('entrances')) {
+      try {
+        stored = DefaultEntrances.fromJSON(getString('entrances'));
+        if (stored.version && stored.version === this.entrancesVersion) {
+          retval = stored.data;
+          console.log('successfully got entrances from storage!');
+        } else {
+          console.log('entrances versions do not match got:', stored.version, 'wanted:', this.dungeonsVersion);
+        }
+      } catch (err) {
+        console.error('error getting entrances from storage', err);
+      }
+    } else {
+      console.log('no entrances found in storage, loading default');
     }
     return retval;
   }
@@ -356,9 +385,9 @@ export class ModelManager {
     }
   }
 
-  createGame(id :string, itemShuffle: string, gameMode: string, goal: string, triforceGoal: number, openGT: number, openGanon:number) :void{
-    console.log(id, itemShuffle, gameMode, goal);
-    if (!id || !itemShuffle || !gameMode || !goal) {
+  createGame(id :string, itemShuffle: string, gameMode: string, goal: string, triforceGoal: number, openGT: number, openGanon:number, entranceShuffle: string) :void{
+    console.log(id, itemShuffle, entranceShuffle, gameMode, goal);
+    if (!id || !itemShuffle || !gameMode || !goal || !entranceShuffle) {
       throw new Error('create game failed!');
     }
     const game = new Game();
@@ -372,7 +401,8 @@ export class ModelManager {
       this.itemsVersion,
       this.dungeonsVersion,
       this.mapVersion,
-      this.settingsVersion);
+      this.settingsVersion,
+      this.entrancesVersion);
     game.settings.gameSlot = id;
     game.settings.itemShuffle = itemShuffle;
     game.settings.gameMode = gameMode;
@@ -380,6 +410,7 @@ export class ModelManager {
     game.settings.triforceGoal = triforceGoal;
     game.settings.openGT = openGT;
     game.settings.openGanon = openGanon;
+    game.settings.entranceShuffle = entranceShuffle;
     const staticDungeons = this.sol.getStaticDungeons(game.settings.gameMode, game.settings.itemShuffle);
     const keys = Object.keys(game.dungeons);
     for (const key of keys) {
@@ -388,6 +419,7 @@ export class ModelManager {
     }
     this.gameSaves[id] = game;
     const d = new DefaultGameSaves();
+    game.entrances = game.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id ? undefined : new DefaultEntranceData();
     d.data = this.gameSaves;
     setString('gameSaves', d.toJSONString());
     this.editGame = GameSaveHelper.parseGameSaves(this)[id];
@@ -404,6 +436,7 @@ export class ModelManager {
         : StandardMapData.fromObject(this.gameSaves[id].map);
     this.dungeons = DefaultDungeonsData.fromObject(this.gameSaves[id].dungeons);
     this.items = DefaultItemsData.fromObject(this.gameSaves[id].items);
+    this.entrances = this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id ? undefined : DefaultEntranceData.fromObject(this.gameSaves[id].entrances);
     this.saveSettings();
     this.saveCurrentGame();
   }
@@ -443,7 +476,8 @@ export class ModelManager {
       this.itemsVersion,
       this.dungeonsVersion,
       this.mapVersion,
-      this.settingsVersion
+      this.settingsVersion,
+      this.entrancesVersion
     );
     const d = new DefaultGameSaves();
     d.data = this.gameSaves;

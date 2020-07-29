@@ -16,6 +16,13 @@
             <Image :src="getItemShuffleCheckImage(key)" width="20" height="20" />
             <Label :text="itemShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
           </StackLayout>
+
+          <Label text="Entrance Shuffle:"/>
+          <StackLayout orientation="horizontal" v-for="key in entranceShuffleKeys" @tap="clickEntranceShuffle(key)" v-bind:key="key">
+            <Image :src="getEntranceShuffleCheckImage(key)" width="20" height="20" />
+            <Label :text="entranceShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+          </StackLayout>
+
           <Label text="Goal:"/>
           <StackLayout orientation="horizontal" v-for="goal in goalKeys" v-bind:key="goal" @tap="clickGoal(goal)">
             <Image :src="getGoalCheckImage(goal)" width="20" height="20" />
@@ -75,6 +82,8 @@
 
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
     itemShuffleKeys = Object.keys(GameSaveHelper.itemShuffleOptions);
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
+    entranceShuffleKeys = Object.keys(GameSaveHelper.entranceShuffleOptions);
     goalOptions = GameSaveHelper.goalOptions;
     goalKeys = Object.keys(GameSaveHelper.goalOptions);
     game = this.$modelManager.editGame;
@@ -89,7 +98,7 @@
       if (!this.game.itemShuffle || !this.game.gameMode || !this.game.goal) {
         return;
       }
-      this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode, this.game.goal, this.game.triforceGoal, this.game.openGT, this.game.openGanon);
+      this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode, this.game.goal, this.game.triforceGoal, this.game.openGT, this.game.openGanon, this.game.entranceShuffle);
       this.game = this.$modelManager.editGame;
       this.$navigateTo(GameEditValid);
     }
@@ -100,6 +109,10 @@
 
     clickItemShuffle(id) {
       this.game.itemShuffle = id;
+    }
+
+    clickEntranceShuffle(id) {
+      this.game.entranceShuffle = id;
     }
 
     clickGameMode(id) {
@@ -120,6 +133,10 @@
 
     getItemShuffleCheckImage(key) {
       return this.game.itemShuffle === key ? '~/img/checked.png' : '~/img/unchecked.png';
+    }
+
+    getEntranceShuffleCheckImage(key) {
+      return this.game.entranceShuffle === key ? '~/img/checked.png' : '~/img/unchecked.png';
     }
 
     getGameModeCheckImage(key) {

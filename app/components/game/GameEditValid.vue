@@ -6,6 +6,7 @@
         <Label :text="game.name" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+        <Label :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
         <Label height="15"/>
         <Button class="btn standard padded" @tap="loadGame">Load Game</Button>
@@ -31,6 +32,7 @@
     allowDelete = this.$modelManager.allowGameDelete();
     game = this.$modelManager.editGame;
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
 
     async openModal() {
