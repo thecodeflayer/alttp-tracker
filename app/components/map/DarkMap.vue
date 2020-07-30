@@ -55,11 +55,9 @@
                :top="Math.floor(mapHandler.staticShops[key].y - (10 * (1 / pinchHandler.localeScale)))"
                @tap="onClickShop(key)" @longpress="onLongPress(key, 'shop')"/>
       </AbsoluteLayout>
-      <GridLayout top="10" left="0" columns="40" rows="*,*,*">
+      <GridLayout top="10" left="0" columns="40,*" rows="*,*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
-        <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'locations'" row="1" col="0" height="32" width="32" src="~/img/shopDW.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('shops')" />
-        <Image v-if="gameMode === 'retro' && mapHandler.showMode === 'shops'" row="1" col="0" height="32" width="32" src="~/img/dungeons/map1.png" style="padding-left: 10" marginTop="5" @tap="toggleShowMode('locations')" />
-        <Image row="2" col="0" height="32" width="32" src="~/img/entrance.png" style="padding-left: 10" marginTop="5" @tap="navToEntranceEditor" />
+        <ShowModeToggle row="1" col="0" v-model="mapHandler.showMode" v-bind:shops-enabled="gameMode === 'retro'" v-bind:entrances-enabled="entrancesEnabled"/>
         <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
       </GridLayout>
     </AbsoluteLayout>
@@ -76,8 +74,11 @@
   import LightMap from '@/components/map/LightMap.vue';
   import LocaleModal from '@/components/map/LocaleModal.vue';
   import EntranceEditor from '@/components/entrance/EntranceEditor.vue';
+  import ShowModeToggle from '@/components/map/ShowModeToggle.vue';
 
-  @Component
+  @Component({
+    components: {ShowModeToggle}
+  })
   export default class DarkMap extends Vue {
     @Ref('mapWrapper') mapWrapper;
     @Ref('navbar') navbar;
@@ -135,6 +136,7 @@
       timer: undefined
     };
     gameMode = this.$modelManager.getGameMode();
+    entrancesEnabled = this.$modelManager.isEntrancesEnabled();
 
     mounted() {
       this.$modelManager.validateLocales();

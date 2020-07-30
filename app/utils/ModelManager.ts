@@ -501,4 +501,7 @@ export class ModelManager {
       this.saveCurrentGame();
     }
   }
+  isEntrancesEnabled() :boolean {
+    return this.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.none.id;
+  }
 }
