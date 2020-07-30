@@ -504,4 +504,7 @@ export class ModelManager {
   isEntrancesEnabled() :boolean {
     return this.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.none.id;
   }
+  getEntranceShuffleMode() :string {
+    return this.settings.entranceShuffle;
+  }
 }

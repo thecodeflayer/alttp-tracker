@@ -1,8 +1,11 @@
 <template>
   <GridLayout marginLeft="5" marginTop="5">
-    <Image v-if="currentMode === 'locations' && modeArr.length > 1" height="32" width="32" src="~/img/dungeons/map1.png" style="padding-left: 10" @tap="toggleMode" />
-    <Image v-if="currentMode === 'shops'" height="32" width="32" src="~/img/shopDW.png" style="padding-left: 10" @tap="toggleMode" />
-    <Image v-if="currentMode === 'entrances'" height="32" width="32" src="~/img/entrance.png" style="padding-left: 10" @tap="toggleMode" />
+    <Image v-if="currentMode === 'locations' && modeArr.length > 1" height="32" width="32" src="~/img/dungeons/map1.png" style="padding-left: 10"
+           @tap="toggleMode" @doubletap="toggleMode" />
+    <Image v-if="currentMode === 'shops'" height="32" width="32" src="~/img/shopDW.png" style="padding-left: 10"
+           @tap="toggleMode" @doubletap="toggleMode" />
+    <Image v-if="currentMode === 'entrances'" height="32" width="32" src="~/img/entrance.png" style="padding-left: 10"
+           @tap="toggleMode" @doubletap="toggleMode" />
   </GridLayout>
 </template>
 

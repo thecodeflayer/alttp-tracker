@@ -20,6 +20,9 @@ import {RetroStaticDungeons} from '@/retro/RetroStaticDungeons';
 import {RetroStaticItems} from '@/retro/RetroStaticItems';
 import {RetroStaticMapShopsLW} from '@/retro/RetroStaticMapShopsLW';
 import {RetroStaticMapShopsDW} from '@/retro/RetroStaticMapShopsDW';
+import {GameSaveHelper} from '@/utils/GameSaveHelper';
+import {StaticEntrancesLW} from '@/entrance/StaticEntrancesLW';
+import {StaticEntrancesDW} from '@/entrance/StaticEntrancesDW';
 
 export class StaticObjectLoader {
   STANDARD = 'standard';
@@ -165,6 +168,26 @@ export class StaticObjectLoader {
       return new RetroStaticMapShopsDW();
     } else {
       return {};
+    }
+  }
+  getStaticEntrancesLW(es) {
+    if(!es) {
+      throw new Error('entrance shuffle not provided');
+    }
+    if(es === GameSaveHelper.entranceShuffleOptions.none.id){
+      return {};
+    } else {
+      return new StaticEntrancesLW();
+    }
+  }
+  getStaticEntrancesDW(es) {
+    if(!es) {
+      throw new Error('entrance shuffle not provided');
+    }
+    if(es === GameSaveHelper.entranceShuffleOptions.none.id){
+      return {};
+    } else {
+      return new StaticEntrancesDW();
     }
   }
 }

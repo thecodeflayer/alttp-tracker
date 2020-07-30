@@ -4,14 +4,16 @@
     <AbsoluteLayout @pan="onPan" @pinch="onPinch" @doubletap="onDoubleTap">
       <AbsoluteLayout ref="mapWrapper" top="0" left="0" :scaleX="pinchHandler.currentScale" :scaleY="pinchHandler.currentScale">
         <Image v-for="(tile, idx) in mapHandler.tiles" v-bind:key="idx" :top="tile.top" :left="tile.left" :width="tile.width" :height="tile.height" :src="tile.src" />
-        <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="dkey" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+        <Label v-for="dkey in mapHandler.dungeonKeys" v-bind:key="dkey"
+               :visibility="mapHandler.showMode === 'entrances' || pinchHandler.pinching ? 'collapsed' : 'visible'"
                @longpress="onLongPress(dkey, 'dungeon')"
                :class="(mapHandler.staticDungeonValues[dkey].maxChests === 0 ? (mapHandler.dungeonValues[dkey].boss) : mapHandler.dungeonValues[dkey].chests === 0) ? 'locale-gray' : mapHandler.dungeons[dkey].klass"
                :width="Math.floor(46 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(46 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[dkey].x - (23 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[dkey].y - (23 * (1 / pinchHandler.localeScale)))" />
-        <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_boss'" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+        <Label v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_boss'"
+               :visibility="mapHandler.showMode === 'entrances' || pinchHandler.pinching ? 'collapsed' : 'visible'"
                style="border-width: 0"
                @longpress="onLongPress(bkey, 'dungeon')"
                :class="mapHandler.dungeonValues[bkey].boss ? 'locale-gray' : mapHandler.bosses[bkey].klass"
@@ -19,43 +21,56 @@
                :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[bkey].x - (15 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[bkey].y - (15 * (1 / pinchHandler.localeScale)))" />
-        <Image v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_img'" :visibility="pinchHandler.pinching ? 'collapsed' : 'visible'"
+        <Image v-for="bkey in mapHandler.dungeonKeys" v-bind:key="bkey+'_img'"
+               :visibility="mapHandler.showMode === 'entrances' || pinchHandler.pinching ? 'collapsed' : 'visible'"
                :src="'~/img/dungeons/'+bkey+'_boss0.png'"
                @longpress="onLongPress(bkey, 'dungeon')"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticDungeons[bkey].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticDungeons[bkey].y - (10 * (1 / pinchHandler.localeScale)))" />
-        <Label v-if="mapHandler.centerKey" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+        <Label v-if="mapHandler.centerKey"
+               :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                class="center-key"
                :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].x - (15 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticLocations[mapHandler.centerKey].y - (15 * (1 / pinchHandler.localeScale)))"
                @tap="onClickLocale(mapHandler.centerKey)" @longpress="onLongPress(mapHandler.centerKey, 'location')" />
-        <Label v-for="key in mapHandler.keys" v-bind:key="key" :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+        <Label v-for="key in mapHandler.keys" v-bind:key="key"
+               :visibility="mapHandler.showMode === 'locations' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.locations[key].checked ? 'locale-gray' : mapHandler.locations[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticLocations[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticLocations[key].y - (10 * (1 / pinchHandler.localeScale)))"
                @tap="onClickLocale(key)" @longpress="onLongPress(key, 'location')"/>
-        <Label v-if="mapHandler.centerShopKey" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+        <Label v-if="mapHandler.centerShopKey"
+               :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                class="center-key"
                :width="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].x - (15 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticShops[mapHandler.centerShopKey].y - (15 * (1 / pinchHandler.localeScale)))"
                @tap="onClickShop(mapHandler.centerShopKey)" @longpress="onLongPress(mapHandler.centerShopKey, 'shop')"/>
-        <Label v-for="key in mapHandler.shopKeys" v-bind:key="key" :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+        <Label v-for="key in mapHandler.shopKeys" v-bind:key="key"
+               :visibility="mapHandler.showMode === 'shops' && !pinchHandler.pinching ? 'visible': 'collapsed'"
                :class="mapHandler.shops[key].checked ? 'locale-gray' : mapHandler.shops[key].klass"
                :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticShops[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticShops[key].y - (10 * (1 / pinchHandler.localeScale)))"
                @tap="onClickShop(key)" @longpress="onLongPress(key, 'shop')"/>
+        <Label v-for="key in mapHandler.entranceKeys" v-bind:key="key"
+               :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               :class="mapHandler.entrances[key].link ? 'locale-green' : 'locale-red'"
+               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(mapHandler.staticEntrances[key].x - (10 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(mapHandler.staticEntrances[key].y - (10 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickEntrance(key)" @longpress="onLongPress(key, 'entrance')"/>
       </AbsoluteLayout>
-      <GridLayout top="10" left="0" columns="40,*" rows="*,*,*">
+      <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
         <ShowModeToggle row="1" col="0" v-model="mapHandler.showMode" v-bind:shops-enabled="gameMode === 'retro'" v-bind:entrances-enabled="entrancesEnabled"/>
         <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
@@ -102,6 +117,7 @@
     };
     mapHandler = {
       tiles: this.populateTiles(),
+      showMode: this.$modelManager.map.darkworld.showMode,
       keys: Object.keys(this.$sol.getStaticMapDW(this.$modelManager.getGameMode())),
       staticLocations: this.$sol.getStaticMapDW(this.$modelManager.getGameMode()),
       locations: this.$modelManager.map.darkworld.locations,
@@ -115,8 +131,10 @@
       staticShops: this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode()),
       shopKeys: Object.keys(this.$sol.getStaticMapShopsDW(this.$modelManager.getGameMode())),
       shops: this.$modelManager.map.darkworld.shops,
-      showMode: this.$modelManager.map.darkworld.showMode,
-      centerShopKey: undefined
+      centerShopKey: undefined,
+      staticEntrances: this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode()),
+      entranceKeys: Object.keys(this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode())),
+      entrances: this.$modelManager.entrances,
     };
     mapWidth = 1500;
     mapHeight = 1500;
@@ -429,8 +447,8 @@
     async onLongPress(key, type) {
       await this.$showModal(LocaleModal, {props:{localeKey:key, world:'darkworld', type:type}});
     }
-    navToEntranceEditor() {
-      this.$navigateTo(EntranceEditor);
+    onClickEntrance(key) {
+      this.$navigateTo(EntranceEditor, {props:{key}});
     }
   }
 </script>
