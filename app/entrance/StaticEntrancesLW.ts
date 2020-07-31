@@ -551,6 +551,13 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
+  mimicCave = {
+    x:1266, y:140,
+    isSingleCave: true,
+    name: 'Mimic Cave',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
   sewerDrop = { //TODO: may have special handling
     x: -120, y: -120,
     isHoleExit: true,

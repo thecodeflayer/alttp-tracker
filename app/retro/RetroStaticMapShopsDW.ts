@@ -66,7 +66,7 @@ export class RetroStaticMapShopsDW implements IStaticMapShopsDW{
     ], validate(items, dungeons): boolean{
       return (items.hammer || items.flippers || items.glove > 0) && RetroRegionHelper.northEastDW(items, dungeons);
     }};
-  dwForestShop = {x:498, y:691, title:'Dark Forest Shop',
+  dwForestShop = {x:498, y:691, title:'Red Shield Shop',
     takeAny: false, req:[[RetroRegionHelper.reqNorthWestDW]], validate(items, dungeons): boolean{
       return RetroRegionHelper.northWestDW(items, dungeons);
     }};

@@ -2,312 +2,305 @@ import {CEntrance} from '@/entrance/CEntrance';
 
 export class StaticEntrancesDW {
   thievesTown ={ //thievesTownExit
-    x:190, y:717,
+    x:187, y:730,
     name: 'Thieves Town',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   icePalace = { //icePalaceExit
-    x: -20, y: -20,
+    x: 1195, y: 1294,
     name: 'Ice Palace',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   miseryMire = { //miseryMireExit
-    x: -20, y: -20,
+    x: 111, y: 1209,
     name: 'Misery Mire',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   palaceOfDarkness = { //palaceOfDarknessExit
-    x: -20, y: -20,
+    x: 1439, y: 592,
     name: 'Palace of Darkness',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   swampPalace = { //swampPalaceExit
-    x: -20, y: -20,
+    x: 703, y: 1406,
     name: 'Swamp Palace',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   turtleRock = { //turtleRockExitFront
-    x: -20, y: -20,
+    x: 1412, y: 124,
     name: 'Turtle Rock',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true}
   };
   darkDeathMtnLedgeWest = { //turtleRockExitWest
-    x: -20, y: -20,
+    x: 1195, y: 140,
     name: 'Dark Death Mountain Ledge (West)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop: true, mustExit: true}
   };
   darkDeathMtnLedgeEast = { //turtleRockExitEast
-    x: -20, y: -20,
+    x: 1266, y: 140,
     name: 'Dark Death Mountain Ledge (East)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true, mustExit: true}
   };
   turtleRockIsolatedLedgeEntrance= { //turtleRockIsolatedLedgeExit
-    x: -20, y: -20,
+    x: 1231, y: 173,
     name: 'Turtle Rock Isolated Ledge Entrance',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{mustExit: true}
   };
   bumperCaveBottom = { //bumperCaveExitBottom
-    x: -20, y: -20,
+    x: 533, y: 267,
     name: 'Bumper Cave (Bottom)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true, twoDoorCave: true}
   };
   bumperCaveTop = { //bumperCaveExitTop
-    x: -20, y: -20,
+    x: 539, y: 233,
     name: 'Bumper Cave (Top)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{mustExit: true, twoDoorCave: true}
   }
   superBunnyCaveTop = { //superBunnyCaveExitTop
-    x: -20, y: -20,
+    x: 1289, y: 97,
     name: 'Superbunny Cave (Top)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   }
   superBunnyCaveBottom = { //superBunnyCaveExitBottom
-    x: -20, y: -20,
+    x: 1283, y: 221,
     name: 'Superbunny Cave (Bottom)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   };
   hookshotCave = { //hookshotCaveExitSouth
-    x: -20, y: -20,
+    x: 1248, y: 99,
     name: 'Hookshot Cave',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   }
   hookshotCaveBackEntrance = { //hookshotCaveExitNorth
-    x: -20, y: -20,
+    x: 1201, y: 24,
     name: 'Hookshot Cave Back Entrance',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {mustExit: true, twoDoorCave: true}
   }
   ganonTower = { //ganonTowerExit
-    x: -20, y: -20,
+    x: 844, y: 30,
     name: 'Ganon\'s Tower',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
   pyramidEntrance = { //pyramidExit
-    x: -20, y: -20,
+    x: 650, y: 732,
     name: 'Pyramid Entrance',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{}
   }
   pyramidHole = { //pyramid //not sure how this one is handled
-    x: -20, y: -20,
+    x: 747, y: 612,
     isHole: true,
     name: 'Pyramid Hole',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true}
   };
   pyramidFairy = { //TODO: only item in Singe_Cave_Doors in code, need to investigate.
-    x: -20, y: -20,
+    x: 703, y: 731,
     isSingleCave: true,
     name: 'Pyramid Fairy',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true}
   };
   eastDarkWorldHint = {
-    x: -20, y: -20,
+    x:1470, y:1054,
     isSingleCave: true,
     name: 'East Dark World Hint',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   };
   palaceOfDarknessHint = {
-    x: -20, y: -20,
+    x: 1274, y: 758,
     isSingleCave: true,
     name: 'Palace of Darkness Hint',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaFairy = { //darkLakeHyliaHealerFairy
-    x: -20, y: -20,
+    x:1236, y:972,
     isSingleCave: true,
     name: 'Dark Lake Hylia Fairy',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true, bombShop:true}
   }
   darkLakeHyliaLedgeFairy = { //darkLakeHyliaLedgeHealerFairy
-    x: -20, y: -20,
+    x:1342, y:1158,
     isSingleCave: true,
     name: 'Dark Lake Hylia Ledge Fairy',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true, bombShop:true}
   }
   darkLakeHyliaSpikeCave = {
-    x: -20, y: -20,
+    x:1371, y:1158,
     isSingleCave: true,
     name: 'Dark Lake Hylia Ledge Spike Cave',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaLedgeHint = {
-    x: -20, y: -20,
+    x:1353, y:1178,
     isSingleCave: true,
     name: 'Dark Lake Hylia Ledge Hint',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   hypeCave = {
-    x: -20, y: -20,
+    x: 896, y: 1168,
     isSingleCave: true,
     name: 'Hype Cave',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   bonkFairyDark = { //swampHealerFairy
-    x: -20, y: -20,
+    x:709, y:977,
     isSingleCave: true,
     name: 'Bonk Fairy (Dark)',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   brewery = {
-    x: -20, y: -20,
+    x: 163, y: 878,
     isSingleCave: true,
     name: 'Brewery',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   cShapedHouse = {
-    x: -20, y: -20,
+    x: 310, y: 726,
     isSingleCave: true,
     name: 'C-Shaped House',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   chestGame = {
-    x: -20, y: -20,
+    x: 76, y: 702,
     isSingleCave: true,
     name: 'Chest Game',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkWorldHammerPegCave = {
-    x: -20, y: -20,
+    x: 474, y: 908,
     isSingleCave: true,
     name: 'Dark World Hammer Peg Cave',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   redShieldShop = {
-    x: -20, y: -20,
+    x: 498, y: 691,
     isSingleCave: true,
     name: 'Red Shield Shop',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkSanctuaryHint = {
-    x: -20, y: -20,
+    x:692, y:416,
     isSingleCave: true,
     name: 'Dark Sanctuary Hint',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   fortuneTellerDark = {
-    x: -20, y: -20,
+    x:281, y:487,
     isSingleCave: true,
     name: 'Fortune Teller (Dark)',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkWorldShop = {
-    x: -20, y: -20,
+    x:304, y:802,
     isSingleCave: true,
-    name: 'Dark World Shop',
+    name: 'Dark World Outcast Shop',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{singleCave: true}
   }
   darkWorldLumberjackShop = {
-    x: -20, y: -20,
+    x:504, y:88,
     isSingleCave: true,
     name: 'Dark World Lumberjack Shop',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkWorldPotionShop = {
-    x: -20, y: -20,
+    x:1207, y:509,
     isSingleCave: true,
     name: 'Dark World Potion Shop',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   archeryGame = {
-    x: -20, y: -20,
+    x:322, y:1055,
     isSingleCave: true,
     name: 'Archery Game',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   mireShed = {
-    x: -20, y: -20,
+    x: 59, y: 1205,
     isSingleCave: true,
     name: 'Mire Shed',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   mireHint = {
-    x: -20, y: -20,
+    x:298, y:1241,
     isSingleCave: true,
     name: 'Mire Hint', //'Dark Desert Hint'
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   mireFairy = { //mireHealerFairy
-    x: -20, y: -20,
+    x:164, y:1202,
     isSingleCave: true,
     name: 'Mire Fairy', //'Dark Desert Fairy'
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true}
   }
   spikeCave = {
-    x: -20, y: -20,
+    x: 862, y: 221,
     isSingleCave: true,
     name: 'Spike Cave',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   };
   caveShopDarkDeathMtn = {
-    x: -20, y: -20,
+    x:1266, y:222,
     isSingleCave: true,
     name: 'Cave Shop (Dark Death Mountain)',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkDeathMtnFairy = { //darkDeathMtnHealerFairy
-    x: -20, y: -20,
+    x:609, y:287,
     isSingleCave: true,
     name: 'Dark Death Mountain Fairy',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true}
   }
-  mimicCave = {
-    x: -20, y: -20,
-    isSingleCave: true,
-    name: 'Mimic Cave',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
   bigBombShop = {
-    x: -20, y: -20,
+    x: 820, y: 1036,
     isSingleCave: true,
     name: 'Big Bomb Shop',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaShop = {
-    x: -20, y: -20,
+    x:972, y:1207,
     isSingleCave: true,
     name: 'Dark Lake Hylia Shop',
     direction: CEntrance.DIRECTION.BOTH,
@@ -452,53 +445,53 @@ export class StaticEntrancesDW {
   //   limits:{}
   // }
   skullWoodsFirstSectionDoor = { //skullWoodsFirstSectionExit
-    x: -20, y: -20,
+    x: 275, y: 224,
     name: 'Skull Woods First Section Door',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {skullWoods:true, bombShop:true}
   };
   skullWoodsSecondSectionDoorEast = { //skullWoodsSecondSectionExitEast
-    x: -20, y: -20,
+    x: 217, y: 221,
     name: 'Skull Woods Second Section Door (East)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {skullWoods: true, bombShop: true}
   };
   skullWoodsSecondSectionDoorWest = { //skullWoodsSecondSectionExitWest
-    x: -20, y: -20,
+    x: 88, y: 196,
     name: 'Skull Woods Second Section Door (West)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {skullWoods: true, bombShop: true}
   };
   skullWoodsFinalSection ={ //skullWoodsFinalSectionExit
-    x: -20, y: -20,
+    x: 58, y: 77,
     name: 'Skull Woods Final Section',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {skullWoods: true, bombShop: true}
   };
   //HOLES
   skullWoodsFirstSectionHoleWest ={
-    x: -20, y: -20,
+    x: 293, y: 252,
     isHole: true,
     name: 'Skull Woods First Section Hole (West)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsFirstSectionHoleEast ={
-    x: -20, y: -20,
+    x: 234, y: 263,
     isHole: true,
     name: 'Skull Woods First Section Hole (East)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsFirstSectionHoleNorth ={
-    x: -20, y: -20,
+    x: 284, y: 197,
     isHole: true,
     name: 'Skull Woods First Section Hole (North)',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, skullWoods: true}
   };
   skullWoodsSecondSectionHole = {
-    x: -20, y: -20,
+    x: 181, y: 135,
     isHole: true,
     name: 'Skull Woods Second Section Hole',
     direction: CEntrance.DIRECTION.ENTRANCE,
