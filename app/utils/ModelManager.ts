@@ -507,4 +507,7 @@ export class ModelManager {
   getEntranceShuffleMode() :string {
     return this.settings.entranceShuffle;
   }
+  getAllEntrances() :DefaultEntranceData{
+    return this.entrances.getCopy();
+  }
 }

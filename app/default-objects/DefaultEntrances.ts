@@ -1,5 +1,6 @@
 import {StaticEntrancesLW} from '@/entrance/StaticEntrancesLW';
 import {StaticEntrancesDW} from '@/entrance/StaticEntrancesDW';
+import {IDefaultMapData} from '@/default-objects/DefaultMap';
 
 export class DefaultEntrances {
   version = '0.0.1';
@@ -21,6 +22,9 @@ export class DefaultEntranceData {
     for(const key of keys){
       this[key] = new EntranceObj(key);
     }
+  }
+  getCopy(): IDefaultMapData {
+    return JSON.parse(JSON.stringify(this));
   }
   static fromObject(obj:any) :DefaultEntranceData {
     const data = new DefaultEntranceData();

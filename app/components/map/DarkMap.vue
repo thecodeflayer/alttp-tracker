@@ -68,7 +68,7 @@
                :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
                :left="Math.floor(mapHandler.staticEntrances[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticEntrances[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickEntrance(key)" @longpress="onLongPress(key, 'entrance')"/>
+               @tap="onClickEntrance(key)"/>
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />

@@ -1,12 +1,15 @@
 <template>
   <GridLayout rows="80,*,140" columns="*" class="modal-dialog standard" style="padding: 0">
     <StackLayout orientation="vertical" class="modal-header">
-      <Label class="list-title" :text="currentEntrance.name" textAlignment="center" fontSize="24"/>
+      <Label class="list-title" :text="staticEntrance.name" textAlignment="center" fontSize="24"/>
       <Label class="list-title" text="Entrance Links" textAlignment="center"/>
     </StackLayout>
     <ScrollView class="scrollbox" row="1">
-      <StackLayout orientation="vertical">
-
+      <StackLayout orientation="vertical" margin="4 10">
+        <Label :text="links.enterLink"/>
+        <Label :text="links.exitLink"/>
+        <Label :text="links.enterLinkedTo"/>
+        <Label :text="links.exitLinkedTo"/>
       </StackLayout>
     </ScrollView>
     <StackLayout orientation="vertical" row="2" class="modal-footer">
@@ -25,10 +28,13 @@
     @Prop() entranceKey;
     lwEntrances = this.$sol.getStaticEntrancesLW(this.$modelManager.getEntranceShuffleMode());
     dwEntrances = this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode());
+    allEntrances = this.$modelManager.getAllEntrances();
     currentIndex = -1;
+    staticEntrance = {};
     currentEntrance = {};
     allKeys = [];
     dwIndex = -1;
+    links = {};
 
     mounted() {
       const lwEntranceKeys = Object.keys(this.$sol.getStaticEntrancesLW(this.$modelManager.getEntranceShuffleMode()));
@@ -36,7 +42,20 @@
       this.dwIndex = lwEntranceKeys.length;
       this.allKeys = lwEntranceKeys.concat(dwEntranceKeys);
       this.currentIndex = this.allKeys.indexOf(this.entranceKey);
-      this.currentEntrance = (this.currentIndex >= this.dwIndex) ? this.dwEntrances[this.entranceKey] : this.lwEntrances[this.entranceKey];
+      this.staticEntrance = (this.currentIndex >= this.dwIndex) ? this.dwEntrances[this.entranceKey] : this.lwEntrances[this.entranceKey];
+      this.currentEntrance = this.allEntrances[this.entranceKey];
+      this.links.enterLink = this.currentEntrance.enterLink
+          ? (this.allKeys.indexOf(this.currentEntrance.enterLink)>=this.dwIndex ? this.dwEntrances[this.currentEntrance.enterLink].name
+              : this.lwEntrances[this.currentEntrance.enterLink].name ) : '???';
+      this.links.exitLink = this.currentEntrance.exitLink
+          ? (this.allKeys.indexOf(this.currentEntrance.exitLink)>=this.dwIndex ? this.dwEntrances[this.currentEntrance.exitLink].name
+              : this.lwEntrances[this.currentEntrance.exitLink].name ) : '???';
+      this.links.enterLinkedTo = this.currentEntrance.enterLinkedTo
+          ? (this.allKeys.indexOf(this.currentEntrance.enterLinkedTo)>=this.dwIndex ? this.dwEntrances[this.currentEntrance.enterLinkedTo].name
+              : this.lwEntrances[this.currentEntrance.enterLinkedTo].name ) : '???';
+      this.links.exitLinkedTo = this.currentEntrance.exitLinkedTo
+          ? (this.allKeys.indexOf(this.currentEntrance.exitLinkedTo)>=this.dwIndex ? this.dwEntrances[this.currentEntrance.exitLinkedTo].name
+              : this.lwEntrances[this.currentEntrance.exitLinkedTo].name ) : '???';
     }
     navToEntranceEditor() {
       this.$navigateTo(EntranceEditor, {props:{key:this.entranceKey}});
