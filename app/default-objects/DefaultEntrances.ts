@@ -35,11 +35,14 @@ export class DefaultEntranceData {
 }
 export class EntranceObj {
   id:string;
-  link:string;
-  constructor(id:string) {
+  enterLink: string;
+  exitLink: string;
+  enterLinkedTo: string;
+  exitLinkedTo: string;
+  constructor(id: string) {
     this.id = id;
   }
-  setFromObject(obj:any): void {
+  setFromObject(obj: any): void {
     const keys = Object.keys(this);
     for(const key of keys){
       if(obj[key]!==undefined) {

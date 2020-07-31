@@ -88,8 +88,8 @@
   import DarkList from '@/components/map/DarkList.vue';
   import LightMap from '@/components/map/LightMap.vue';
   import LocaleModal from '@/components/map/LocaleModal.vue';
-  import EntranceEditor from '@/components/entrance/EntranceEditor.vue';
   import ShowModeToggle from '@/components/map/ShowModeToggle.vue';
+  import EntranceModal from '@/components/map/EntranceModal.vue';
 
   @Component({
     components: {ShowModeToggle}
@@ -448,7 +448,7 @@
       await this.$showModal(LocaleModal, {props:{localeKey:key, world:'darkworld', type:type}});
     }
     onClickEntrance(key) {
-      this.$navigateTo(EntranceEditor, {props:{key}});
+      this.$showModal(EntranceModal, {props:{entranceKey:key}});
     }
   }
 </script>
