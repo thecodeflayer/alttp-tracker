@@ -1,19 +1,35 @@
 <template>
-  <GridLayout rows="80,*,140" columns="*" class="modal-dialog standard" style="padding: 0">
+  <GridLayout rows="50,*,78" columns="*" class="modal-dialog standard" style="padding: 0">
     <StackLayout orientation="vertical" class="modal-header">
       <Label class="list-title" :text="staticEntrance.name" textAlignment="center" fontSize="24"/>
+      <!--
       <Label class="list-title" text="Entrance Links" textAlignment="center"/>
+      -->
     </StackLayout>
     <ScrollView class="scrollbox" row="1">
-      <StackLayout orientation="vertical" margin="4 10">
-        <Label :text="links.enterLink"/>
-        <Label :text="links.exitLink"/>
-        <Label :text="links.enterLinkedTo"/>
-        <Label :text="links.exitLinkedTo"/>
+      <StackLayout orientation="vertical">
+        <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLink')">
+          <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-hole.png': '~/img/enter-link.png'" width="48" margin="4 5"/>
+          <Label row="0" col="1" :text="links.enterLink" verticalAlignment="center"/>
+        </GridLayout>
+        <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
+          <Image row="0" col="0" src="~/img/enter-linked-to.png" width="48" margin="4 5"/>
+          <Label row="0" col="1" :text="links.enterLinkedTo" verticalAlignment="center"/>
+        </GridLayout>
+        <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLink')">
+          <Image row="0" col="0" src="~/img/exit-link.png" width="48" margin="4 5"/>
+          <Label row="0" col="1" :text="links.exitLink" verticalAlignment="center"/>
+        </GridLayout>
+        <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLinkedTo')">
+          <Image row="0" col="0" src="~/img/exit-linked-to.png" width="48" margin="4 5"/>
+          <Label row="0" col="1" :text="links.exitLinkedTo" verticalAlignment="center"/>
+        </GridLayout>
       </StackLayout>
     </ScrollView>
     <StackLayout orientation="vertical" row="2" class="modal-footer">
+      <!--
       <Button class="btn standard padded" @tap="navToEntranceEditor">Edit Entrance Links</Button>
+      -->
       <Button class="btn standard padded" @tap="closeModal">Close</Button>
     </StackLayout>
   </GridLayout>
@@ -57,8 +73,8 @@
           ? (this.allKeys.indexOf(this.currentEntrance.exitLinkedTo)>=this.dwIndex ? this.dwEntrances[this.currentEntrance.exitLinkedTo].name
               : this.lwEntrances[this.currentEntrance.exitLinkedTo].name ) : '???';
     }
-    navToEntranceEditor() {
-      this.$navigateTo(EntranceEditor, {props:{key:this.entranceKey}});
+    navToEntranceEditor(action) {
+      this.$navigateTo(EntranceEditor, {props:{entranceKey:this.entranceKey, action:action}});
       this.closeModal();
     }
     closeModal() {
@@ -70,7 +86,7 @@
 <style scoped lang="scss">
   @import "../../global_vars";
   .scrollbox {
-    background-color: #006c00;
+    background-color: black;
     border-width: 0;
     &.empty {
       background-color: $standard-bg;
