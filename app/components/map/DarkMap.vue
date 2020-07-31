@@ -81,7 +81,7 @@
 </template>
 
 <script type="ts">
-  import {Component, Vue, Ref} from 'vue-property-decorator';
+  import {Component, Vue, Ref, Watch} from 'vue-property-decorator';
   import {screen} from 'tns-core-modules/platform';
   import * as app from 'tns-core-modules/application';
   import * as utils from 'tns-core-modules/utils/utils';
@@ -437,11 +437,13 @@
       this.$modelManager.map.lightworld.x = this.$modelManager.map.darkworld.x;
       this.$modelManager.map.lightworld.y = this.$modelManager.map.darkworld.y;
       this.$modelManager.map.lightworld.mode = 0;
+      this.$modelManager.map.lightworld.showMode = this.$modelManager.map.darkworld.showMode;
       this.$modelManager.saveMap();
       this.$navigateTo(LightMap);
     }
-    toggleShowMode(mode) {
-      this.mapHandler.showMode = this.$modelManager.map.darkworld.showMode = mode;
+    @Watch('mapHandler.showMode')
+    updateShowMode() {
+      this.$modelManager.map.darkworld.showMode = this.mapHandler.showMode;
       this.$modelManager.saveMap();
     }
     async onLongPress(key, type) {
