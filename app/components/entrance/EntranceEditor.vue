@@ -93,20 +93,9 @@
           : this.action === 'exitLink' ? '~/img/exit-link.png'
               : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to.png'
                 : '~/img/exit-linked-to.png';
-      this.logicText = this.getLogicText();
+      this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
       this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject();
       this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject();
-    }
-    getLogicText(){
-      if(this.action === 'enterLink') {
-        return 'Entering '+this.staticEntrance.name+' overworld door leads to ' + this.staticLink.name;
-      } else if(this.action === 'exitLink') {
-        return 'Exiting '+this.staticEntrance.name+' leads to '+this.staticLink.name+' overworld door';
-      } else if(this.action === 'enterLinkedTo') {
-        return 'Entering '+this.staticLink.name+' overworld door leads to '+this.staticEntrance.name;
-      } else {
-        return 'Exiting '+this.staticLink.name+' leads to '+this.staticEntrance.name+' overworld door';
-      }
     }
     drillDown(path) {
       if(this.drillArr.length<2){
@@ -127,7 +116,6 @@
     }
     doLink(id){
       this.currentEntrance[this.action] = this.entranceHelper.createLink(this.currentEntrance.id, id, this.action);
-      this.logicText = this.getLogicText();
       this.$modelManager.saveEntrances();
       if(this.entranceHelper.isKeyDarkWorld(this.currentEntrance.id)) {
         this.$navigateTo(DarkMap);

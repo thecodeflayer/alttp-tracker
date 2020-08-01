@@ -120,4 +120,18 @@ export class EntranceHelper {
   isKeyDarkWorld(key) {
     return this.allKeys.indexOf(key)>=this.dwIndex;
   }
+  getLogicText(staticEntrance, staticLink, action){
+    if(!staticEntrance || !staticLink) {
+      return '';
+    }
+    if(action === 'enterLink') {
+      return 'Entering '+staticEntrance.name+' overworld door leads to ' + staticLink.name;
+    } else if(action === 'exitLink') {
+      return 'Exiting '+staticEntrance.name+' leads to '+staticLink.name+' overworld door';
+    } else if(action === 'enterLinkedTo') {
+      return 'Entering '+staticLink.name+' overworld door leads to '+staticEntrance.name;
+    } else {
+      return 'Exiting '+staticLink.name+' leads to '+staticEntrance.name+' overworld door';
+    }
+  }
 }

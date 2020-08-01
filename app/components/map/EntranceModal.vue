@@ -7,19 +7,23 @@
       <StackLayout orientation="vertical">
         <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLink')">
           <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-hole.png': '~/img/enter-link.png'" width="48" margin="4 5"/>
-          <Label row="0" col="1" :text="links.enterLink" verticalAlignment="center"/>
+          <Label row="0" col="1" :text="entranceHelper.getLogicText(staticEntrance, links.enterLink,'enterLink')"
+                 textWrap="true" verticalAlignment="center" fontSize="14" marginRight="4"/>
         </GridLayout>
         <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
           <Image row="0" col="0" src="~/img/enter-linked-to.png" width="48" margin="4 5"/>
-          <Label row="0" col="1" :text="links.enterLinkedTo" verticalAlignment="center"/>
+          <Label row="0" col="1" :text="entranceHelper.getLogicText(staticEntrance, links.enterLinkedTo, 'enterLinkedTo')"
+                 textWrap="true" verticalAlignment="center" fontSize="14" marginRight="4"/>
         </GridLayout>
         <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLink')">
           <Image row="0" col="0" src="~/img/exit-link.png" width="48" margin="4 5"/>
-          <Label row="0" col="1" :text="links.exitLink" verticalAlignment="center"/>
+          <Label row="0" col="1" :text="entranceHelper.getLogicText(staticEntrance, links.exitLink, 'exitLink')"
+                 textWrap="true" verticalAlignment="center" fontSize="14" marginRight="4"/>
         </GridLayout>
         <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLinkedTo')">
           <Image row="0" col="0" src="~/img/exit-linked-to.png" width="48" margin="4 5"/>
-          <Label row="0" col="1" :text="links.exitLinkedTo" verticalAlignment="center"/>
+          <Label row="0" col="1" :text="entranceHelper.getLogicText(staticEntrance, links.exitLinkedTo, 'exitLinkedTo')"
+                 textWrap="true" verticalAlignment="center" fontSize="14" marginRight="4"/>
         </GridLayout>
       </StackLayout>
     </ScrollView>
@@ -45,10 +49,10 @@
     mounted() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
-      this.links.enterLink = this.entranceHelper.getStaticEntrance(this.currentEntrance.enterLink).name;
-      this.links.exitLink = this.entranceHelper.getStaticEntrance(this.currentEntrance.exitLink).name;
-      this.links.enterLinkedTo = this.entranceHelper.getStaticEntrance(this.currentEntrance.enterLinkedTo).name;
-      this.links.exitLinkedTo = this.entranceHelper.getStaticEntrance(this.currentEntrance.exitLinkedTo).name;
+      this.links.enterLink = this.entranceHelper.getStaticEntrance(this.currentEntrance.enterLink);
+      this.links.exitLink = this.entranceHelper.getStaticEntrance(this.currentEntrance.exitLink);
+      this.links.enterLinkedTo = this.entranceHelper.getStaticEntrance(this.currentEntrance.enterLinkedTo);
+      this.links.exitLinkedTo = this.entranceHelper.getStaticEntrance(this.currentEntrance.exitLinkedTo);
     }
     navToEntranceEditor(action) {
       this.$navigateTo(EntranceEditor, {props:{entranceKey:this.entranceKey, action:action}});
