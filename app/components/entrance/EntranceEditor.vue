@@ -9,17 +9,19 @@
           </StackLayout>
           <Image col="1" :src="actionImage" width="48" verticalAlignment="center"/>
           <StackLayout col="2"  class="header-label">
-            <Label :text="currentLink.name" textAlignment="center" verticalAlignment="center" textWrap="true"/>
+            <Label :text="staticLink.name" textAlignment="center" verticalAlignment="center" textWrap="true"/>
           </StackLayout>
           <Label row="1" colSpan="3" :text="logicText" textWrap="true" textAlignment="center" margin="5"/>
         </GridLayout>
       </StackLayout>
       <ScrollView row="1">
         <StackLayout orientation="vertical">
+          <!-- MAIN MENU -->
           <StackLayout orientation="vertical" :visibility="drillArr.length === 0 ? 'visible':'collapsed'">
             <Button @tap="drillDown('lightworld')" class="btn standard padded">Light World</Button>
             <Button @tap="drillDown('darkworld')" class="btn standard padded">Dark World</Button>
           </StackLayout>
+          <!-- LIGHT WORLD -->
           <StackLayout orientation="vertical" :visibility="drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
@@ -34,6 +36,22 @@
               <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Desert and North East</Button>
             </GridLayout>
           </StackLayout>
+          <!-- DARK WORLD -->
+          <StackLayout orientation="vertical" :visibility="drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
+            <GridLayout columns="*,5,*">
+              <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
+              <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
+            </GridLayout>
+            <GridLayout columns="*,5,*">
+              <Button @tap="drillDown('village')" class="btn standard padded" style="font-size: 16">Village of Outcasts</Button>
+              <Button @tap="drillDown('northwest')" col="2" class="btn standard padded">North West</Button>
+            </GridLayout>
+            <GridLayout columns="*,5,*">
+              <Button @tap="drillDown('south')" class="btn standard padded">Dark South Shore</Button>
+              <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Mire and North East</Button>
+            </GridLayout>
+          </StackLayout>
+          <!-- DYNAMIC LOCATIONS -->
           <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">
             <Button v-for="loc in currentRegion" v-bind:key="loc.id" @tap="doLink(loc.id)" :text="loc.name" class="btn standard padded"></Button>
           </StackLayout>
@@ -48,79 +66,47 @@
 
 <script type="ts">
   import {Component, Vue, Prop} from 'vue-property-decorator';
+  import {EntranceHelper} from '@/utils/EntranceHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
+  import LightMap from '@/components/map/LightMap.vue';
 
   @Component
   export default class EntranceEditor extends Vue {
     @Prop() entranceKey;
     @Prop() action;
-    lwEntrances = this.$sol.getStaticEntrancesLW(this.$modelManager.getEntranceShuffleMode());
-    dwEntrances = this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode());
-    allEntrances = this.$modelManager.getAllEntrances();
-    currentIndex = -1;
     staticEntrance = {};
     currentEntrance = {};
-    allKeys = [];
-    dwIndex = -1;
-    currentLink = {};
+    staticLink = {};
     actionImage = '';
     logicText = '';
     drillArr = [];
-    lwDrillObj = {
-      dungeon:{},
-      deathmtn:{},
-      kakariko:{},
-      northwest:{},
-      south:{},
-      other:{}
-    };
-    dwDrillObj = {
-      dungeon:{},
-      deathmtn:{},
-      thievestown:{},
-      northwest:{},
-      south:{},
-      other:{}
-    }
+    lwDrillObj = {};
+    dwDrillObj = {};
     currentRegion = {};
+    entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
 
     mounted() {
-      const lwEntranceKeys = Object.keys(this.$sol.getStaticEntrancesLW(this.$modelManager.getEntranceShuffleMode()));
-      const dwEntranceKeys = Object.keys(this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode()));
-      this.dwIndex = lwEntranceKeys.length;
-      this.allKeys = lwEntranceKeys.concat(dwEntranceKeys);
-      this.currentIndex = this.allKeys.indexOf(this.entranceKey);
-      this.staticEntrance = (this.currentIndex >= this.dwIndex) ? this.dwEntrances[this.entranceKey] : this.lwEntrances[this.entranceKey];
-      this.currentEntrance = this.allEntrances[this.entranceKey];
-      this.currentLink = this.getCurrentLink();
+      this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
+      this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
+      this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = this.action === 'enterLink' ? '~/img/enter-link.png'
           : this.action === 'exitLink' ? '~/img/exit-link.png'
               : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to.png'
                 : '~/img/exit-linked-to.png';
       this.logicText = this.getLogicText();
-      for(const key of lwEntranceKeys) {
-        const region = this.lwEntrances[key].region === 'northeast' || this.lwEntrances[key].region === 'desert' ? 'other' : this.lwEntrances[key].region;
-        this.lwDrillObj[region][key] = {id:key, name:this.lwEntrances[key].name};
-      }
-      // for(const key of dwEntranceKeys) {
-      //   const region = this.dwEntrances[key].region === 'northeast' || this.dwEntrances[key].region === 'mire' ? 'other' : this.dwEntrances[key].region;
-      //   this.dwDrillObj[region][key] = {id:key, name:this.dwEntrances[key].name};
-      // }
+      this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject();
+      this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject();
     }
     getLogicText(){
       if(this.action === 'enterLink') {
-        return 'Entering '+this.staticEntrance.name+' overworld door leads to ' + this.currentLink.name;
+        return 'Entering '+this.staticEntrance.name+' overworld door leads to ' + this.staticLink.name;
       } else if(this.action === 'exitLink') {
-        return 'Exiting '+this.staticEntrance.name+' leads to '+this.currentLink.name+' overworld door';
+        return 'Exiting '+this.staticEntrance.name+' leads to '+this.staticLink.name+' overworld door';
       } else if(this.action === 'enterLinkedTo') {
-        return 'Entering '+this.currentLink.name+' overworld door leads to '+this.staticEntrance.name;
+        return 'Entering '+this.staticLink.name+' overworld door leads to '+this.staticEntrance.name;
       } else {
-        return 'Exiting '+this.currentLink.name+' leads to '+this.staticEntrance.name+' overworld door';
+        return 'Exiting '+this.staticLink.name+' leads to '+this.staticEntrance.name+' overworld door';
       }
-    }
-    getCurrentLink() {
-      return this.currentEntrance[this.action]
-          ? (this.allKeys.indexOf(this.currentEntrance[this.action])>=this.dwIndex ? this.dwEntrances[this.currentEntrance[this.action]]
-              : this.lwEntrances[this.currentEntrance[this.action]] ) : {name:'???'};
     }
     drillDown(path) {
       if(this.drillArr.length<2){
@@ -140,25 +126,14 @@
       }
     }
     doLink(id){
-      const reverseAction = this.action === 'enterLink' ? 'enterLinkedTo'
-          : this.action === 'exitLink' ? 'exitLinkedTo'
-              : this.action === 'enterLinkedTo' ? 'enterLink' : 'exitLink';
-      this.currentEntrance[this.action]= this.$modelManager.entrances[this.allKeys[this.currentIndex]][this.action] = id;
-      //save linked object
-      this.$modelManager.entrances[id][reverseAction] = this.currentEntrance.id;
-      this.currentLink = this.getCurrentLink(); //get here since we need it later
-      // do single cave
-      if(this.staticEntrance.isSingleCave && (this.action === 'exitLink' || this.action === 'enterLinkedTo')) {
-        const action = this.action === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
-        this.$modelManager.entrances[this.allKeys[this.currentIndex]][action] = id;
-      }
-      if(this.currentLink.isSingleCave && (reverseAction ===  'exitLink' || reverseAction === 'enterLinkedTo')){
-        const action = reverseAction === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
-        this.$modelManager.entrances[id][action] = this.currentEntrance.id;
-      }
-
+      this.currentEntrance[this.action] = this.entranceHelper.createLink(this.currentEntrance.id, id, this.action);
       this.logicText = this.getLogicText();
       this.$modelManager.saveEntrances();
+      if(this.entranceHelper.isKeyDarkWorld(this.currentEntrance.id)) {
+        this.$navigateTo(DarkMap);
+      } else {
+        this.$navigateTo(LightMap);
+      }
     }
   }
 </script>

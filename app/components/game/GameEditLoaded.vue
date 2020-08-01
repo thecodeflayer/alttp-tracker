@@ -12,6 +12,8 @@
         <Button class="btn highlight padded" @tap="openModal('resetItems')">Reset Items</Button>
         <Button class="btn highlight padded" @tap="openModal('resetDungeons')">Reset Dungeons</Button>
         <Button class="btn highlight padded" @tap="openModal('resetMap')">Reset Map</Button>
+        <Button class="btn highlight padded" @tap="openModal('resetEntrances')"
+                :visibility="game.entranceShuffle!==entranceShuffleOptions.none.id ? 'visible':'collapsed'">Reset Entrances</Button>
         <Button class="btn highlight padded" @tap="cancel">Back</Button>
         <Label height="15"/>
         <Label textWrap="true" fontSize="16" textAlignment="center"

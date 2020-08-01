@@ -470,6 +470,7 @@ export class ModelManager {
     this.gameSaves[game].items = this.items.getCopy();
     this.gameSaves[game].dungeons = this.dungeons.getCopy();
     this.gameSaves[game].map = this.map.getCopy();
+    this.gameSaves[game].entrances = this.entrances ? this.entrances.getCopy() : undefined;
     this.gameSaves[game].settings = this.settings.getCopy();
     this.gameSaves[game].timestamp = Date.now();
     this.gameSaves[game].versions = new GameVersions(
@@ -485,6 +486,7 @@ export class ModelManager {
     this.saveItems(true);
     this.saveDungeons(true);
     this.saveMap(true);
+    this.saveEntrances(true);
     setString('gameSaves', d.toJSONString());
   }
 
@@ -517,5 +519,9 @@ export class ModelManager {
     if(!skipGameSave){
       this.saveCurrentGame();
     }
+  }
+  resetEntrances(){
+    this.entrances = new DefaultEntranceData();
+    this.saveEntrances();
   }
 }

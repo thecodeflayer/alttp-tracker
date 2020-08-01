@@ -70,16 +70,16 @@
                     :top="Math.floor(mapHandler.staticEntrances[key].y - (15 * (1 / pinchHandler.localeScale)))"
                     @tap="onClickEntrance(key)">
           <StackLayout :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
-            <Image src="~/img/tiny-up.png" height="8" marginTop="2"/>
+            <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
           <StackLayout :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
-            <Image src="~/img/tiny-up.png" height="8" marginTop="2"/>
+            <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
           <StackLayout :class="mapHandler.entrances[key].exitLink? 'locale-green' : 'locale-red'"  row="0" col="2" borderWidth="0">
-            <Image src="~/img/tiny-dn.png" height="8" marginTop="2"/>
+            <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
           <StackLayout :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
-            <Image src="~/img/tiny-dn.png" height="8" marginTop="2"/>
+            <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
         </GridLayout>
         <!--

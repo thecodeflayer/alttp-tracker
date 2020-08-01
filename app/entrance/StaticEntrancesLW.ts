@@ -88,7 +88,7 @@ export class StaticEntrancesLW {
     limits:{holeEntrance:true, blacksmith: true}
   };
   batCaveCave = { //batCaveExit
-    x: 474, y: 837,
+    x: 464, y: 837,
     isHoleExit: true,
     name: 'Bat Cave Cave',
     region: 'kakariko',
@@ -96,14 +96,14 @@ export class StaticEntrancesLW {
     limits:{holeEntrance: true, blacksmith: true}
   };
   elderHouseEast = { //elderHouseExitEast
-    x: 252, y: 633,
+    x: 258, y: 633,
     name: 'Elder House (East)',
     region: 'kakariko',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{blacksmith:true, twoDoorCave: true}
   };
   elderHouseWest = { //elderHouseExitWest
-    x: 228, y: 633,
+    x: 223, y: 633,
     name: 'Elder House (West)',
     region: 'kakariko',
     direction: CEntrance.DIRECTION.ENTRANCE,
@@ -395,7 +395,7 @@ export class StaticEntrancesLW {
     limits:{singleCave: true, blacksmith: true}
   };
   batCaveDrop = { //batCaveRight
-    x: 487, y: 843,
+    x: 497, y: 843,
     isHole:true,
     name: 'Bat Cave Drop',
     region: 'kakariko',
