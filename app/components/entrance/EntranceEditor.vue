@@ -35,7 +35,7 @@
             </GridLayout>
           </StackLayout>
           <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">
-            <Button v-for="loc in currentRegion" v-bind:key="loc.id" :text="loc.name" class="btn standard padded"></Button>
+            <Button v-for="loc in currentRegion" v-bind:key="loc.id" @tap="doLink(loc.id)" :text="loc.name" class="btn standard padded"></Button>
           </StackLayout>
         </StackLayout>
       </ScrollView>
@@ -91,9 +91,7 @@
       this.currentIndex = this.allKeys.indexOf(this.entranceKey);
       this.staticEntrance = (this.currentIndex >= this.dwIndex) ? this.dwEntrances[this.entranceKey] : this.lwEntrances[this.entranceKey];
       this.currentEntrance = this.allEntrances[this.entranceKey];
-      this.currentLink = this.currentEntrance[this.action]
-          ? (this.allKeys.indexOf(this.currentEntrance[this.action])>=this.dwIndex ? this.dwEntrances[this.currentEntrance[this.action]]
-              : this.lwEntrances[this.currentEntrance[this.action]] ) : {name:'???'};
+      this.currentLink = this.getCurrentLink();
       this.actionImage = this.action === 'enterLink' ? '~/img/enter-link.png'
           : this.action === 'exitLink' ? '~/img/exit-link.png'
               : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to.png'
@@ -119,6 +117,11 @@
         return 'Exiting '+this.currentLink.name+' leads to '+this.staticEntrance.name+' overworld door';
       }
     }
+    getCurrentLink() {
+      return this.currentEntrance[this.action]
+          ? (this.allKeys.indexOf(this.currentEntrance[this.action])>=this.dwIndex ? this.dwEntrances[this.currentEntrance[this.action]]
+              : this.lwEntrances[this.currentEntrance[this.action]] ) : {name:'???'};
+    }
     drillDown(path) {
       if(this.drillArr.length<2){
         this.drillArr.push(path);
@@ -135,6 +138,27 @@
         this.drillArr.pop();
         this.currentRegion = {};
       }
+    }
+    doLink(id){
+      const reverseAction = this.action === 'enterLink' ? 'enterLinkedTo'
+          : this.action === 'exitLink' ? 'exitLinkedTo'
+              : this.action === 'enterLinkedTo' ? 'enterLink' : 'exitLink';
+      this.currentEntrance[this.action]= this.$modelManager.entrances[this.allKeys[this.currentIndex]][this.action] = id;
+      //save linked object
+      this.$modelManager.entrances[id][reverseAction] = this.currentEntrance.id;
+      this.currentLink = this.getCurrentLink(); //get here since we need it later
+      // do single cave
+      if(this.staticEntrance.isSingleCave && (this.action === 'exitLink' || this.action === 'enterLinkedTo')) {
+        const action = this.action === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
+        this.$modelManager.entrances[this.allKeys[this.currentIndex]][action] = id;
+      }
+      if(this.currentLink.isSingleCave && (reverseAction ===  'exitLink' || reverseAction === 'enterLinkedTo')){
+        const action = reverseAction === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
+        this.$modelManager.entrances[id][action] = this.currentEntrance.id;
+      }
+
+      this.logicText = this.getLogicText();
+      this.$modelManager.saveEntrances();
     }
   }
 </script>

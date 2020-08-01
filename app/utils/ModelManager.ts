@@ -510,4 +510,12 @@ export class ModelManager {
   getAllEntrances() :DefaultEntranceData{
     return this.entrances.getCopy();
   }
+  saveEntrances(skipGameSave?:boolean) {
+    const d = new DefaultEntrances();
+    d.data = this.entrances;
+    setString('entrances', d.toJSONString());
+    if(!skipGameSave){
+      this.saveCurrentGame();
+    }
+  }
 }
