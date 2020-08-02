@@ -513,8 +513,11 @@ export class ModelManager {
     return this.entrances.getCopy();
   }
   saveEntrances(skipGameSave?:boolean) {
+    if(this.settings.entranceShuffle == GameSaveHelper.entranceShuffleOptions.none.id){
+      return;
+    }
     const d = new DefaultEntrances();
-    d.data = this.entrances;
+    d.data = this.entrances.getCopy();
     setString('entrances', d.toJSONString());
     if(!skipGameSave){
       this.saveCurrentGame();

@@ -23,7 +23,7 @@ export class DefaultEntranceData {
       this[key] = new EntranceObj(key);
     }
   }
-  getCopy(): IDefaultMapData {
+  getCopy(): DefaultEntranceData {
     return JSON.parse(JSON.stringify(this));
   }
   static fromObject(obj:any) :DefaultEntranceData {
@@ -45,6 +45,10 @@ export class EntranceObj {
   exitLinkedTo: string;
   constructor(id: string) {
     this.id = id;
+    this.enterLink = undefined;
+    this.exitLink = undefined;
+    this.enterLinkedTo = undefined;
+    this.exitLinkedTo = undefined;
   }
   setFromObject(obj: any): void {
     const keys = Object.keys(this);
