@@ -1,6 +1,5 @@
 import {StaticEntrancesLW} from '@/entrance/StaticEntrancesLW';
 import {StaticEntrancesDW} from '@/entrance/StaticEntrancesDW';
-import {IDefaultMapData} from '@/default-objects/DefaultMap';
 
 export class DefaultEntrances {
   version = '0.0.1';

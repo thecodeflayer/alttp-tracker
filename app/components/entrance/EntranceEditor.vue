@@ -11,7 +11,11 @@
           <StackLayout col="2"  class="header-label">
             <Label :text="staticLink.name" textAlignment="center" verticalAlignment="center" textWrap="true"/>
           </StackLayout>
-          <Label row="1" colSpan="3" :text="logicText" textWrap="true" textAlignment="center" margin="5"/>
+          <Label row="1" colSpan="3" textWrap="true" textAlignment="center" margin="5">
+            <FormattedString>
+              <Span v-for="t in logicText" :text="t.text" :color="t.color"/>
+            </FormattedString>
+          </Label>
         </GridLayout>
       </StackLayout>
       <ScrollView row="1">
@@ -57,9 +61,10 @@
           </StackLayout>
         </StackLayout>
       </ScrollView>
-      <StackLayout row="2" orientation="vertical">
+      <GridLayout row="2" columns="*,5,*" class="list-top-header" margin="0 5 5 5">
         <Button class="btn empty padded" @tap="onBackButton">Back</Button>
-      </StackLayout>
+        <Button col="2" class="btn danger padded" @tap="closeEditor">Close</Button>
+      </GridLayout>
     </GridLayout>
   </Page>
 </template>
@@ -67,8 +72,7 @@
 <script type="ts">
   import {Component, Vue, Prop} from 'vue-property-decorator';
   import {EntranceHelper} from '@/utils/EntranceHelper';
-  import DarkMap from '@/components/map/DarkMap.vue';
-  import LightMap from '@/components/map/LightMap.vue';
+  import EntranceLanding from '@/components/entrance/EntranceLanding.vue';
 
   @Component
   export default class EntranceEditor extends Vue {
@@ -78,7 +82,7 @@
     currentEntrance = {};
     staticLink = {};
     actionImage = '';
-    logicText = '';
+    logicText = [];
     drillArr = [];
     lwDrillObj = {};
     dwDrillObj = {};
@@ -88,14 +92,15 @@
     mounted() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
-      this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
-      this.actionImage = this.action === 'enterLink' ? '~/img/enter-link.png'
-          : this.action === 'exitLink' ? '~/img/exit-link.png'
-              : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to.png'
-                : '~/img/exit-linked-to.png';
-      this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
       this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject();
       this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject();
+      this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
+      this.actionImage = this.action === 'enterLink' ? '~/img/enter-link-alt.png'
+          : this.action === 'exitLink' ? '~/img/exit-link-alt.png'
+              : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
+                : '~/img/exit-linked-to-alt.png';
+      this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
+
     }
     drillDown(path) {
       if(this.drillArr.length<2){
@@ -108,7 +113,7 @@
     }
     onBackButton() {
       if(this.drillArr.length === 0){
-        this.$navigateBack();
+        this.closeEditor();
       } else {
         this.drillArr.pop();
         this.currentRegion = {};
@@ -117,11 +122,10 @@
     doLink(id){
       this.currentEntrance[this.action] = this.entranceHelper.createLink(this.currentEntrance.id, id, this.action);
       this.$modelManager.saveEntrances();
-      if(this.entranceHelper.isKeyDarkWorld(this.currentEntrance.id)) {
-        this.$navigateTo(DarkMap);
-      } else {
-        this.$navigateTo(LightMap);
-      }
+      this.closeEditor();
+    }
+    closeEditor() {
+      this.$navigateTo(EntranceLanding, {props:{entranceKey:this.entranceKey}});
     }
   }
 </script>

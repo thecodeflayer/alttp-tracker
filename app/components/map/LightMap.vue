@@ -112,7 +112,7 @@
   import DarkMap from '@/components/map/DarkMap.vue';
   import LocaleModal from '@/components/map/LocaleModal.vue';
   import ShowModeToggle from '@/components/map/ShowModeToggle.vue';
-  import EntranceModal from '@/components/map/EntranceModal.vue';
+  import EntranceLanding from '@/components/entrance/EntranceLanding.vue';
 
   @Component({
     components: {ShowModeToggle}
@@ -473,7 +473,8 @@
       await this.$showModal(LocaleModal, {props:{localeKey:key, world:'lightworld', type:type}});
     }
     onClickEntrance(key) {
-      this.$showModal(EntranceModal, {props:{entranceKey:key}});
+      //this.$showModal(EntranceModal, {props:{entranceKey:key}});
+      this.$navigateTo(EntranceLanding, {props:{entranceKey:key}});
     }
   }
 </script>

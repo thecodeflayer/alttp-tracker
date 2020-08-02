@@ -10,6 +10,12 @@ export class EntranceHelper {
   dwStaticEntrances: any;
   dwIndex: number;
   allKeys: Array<string>;
+  logicTextColors = {
+    basic:'#FFFFFF',
+    entrance:'#01a0a0',
+    unknown:'#FF0000',
+    known:'#2aa52a'
+  };
 
   constructor(sol, modelManager) {
     this.sol = sol;
@@ -125,13 +131,27 @@ export class EntranceHelper {
       return '';
     }
     if(action === 'enterLink') {
-      return 'Entering '+staticEntrance.name+' overworld door leads to ' + staticLink.name;
+      return [{text:'Entering ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance},
+        {text:' overworld door leads to ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown}];
     } else if(action === 'exitLink') {
-      return 'Exiting '+staticEntrance.name+' leads to '+staticLink.name+' overworld door';
+      return [{text:'Exiting ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance},
+        {text:' leads to ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:' overworld door', color:this.logicTextColors.basic}];
     } else if(action === 'enterLinkedTo') {
-      return 'Entering '+staticLink.name+' overworld door leads to '+staticEntrance.name;
+      return [{text:'Entering ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:' overworld door leads to ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance}];
     } else {
-      return 'Exiting '+staticLink.name+' leads to '+staticEntrance.name+' overworld door';
+      return [{text:'Exiting ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:' leads to ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance},
+        {text:' overworld door', color:this.logicTextColors.basic}];
     }
   }
 }
