@@ -73,14 +73,151 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
-  hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
-    x: 826, y: 643,
-    isHoleExit: true,
-    region: 'dungeon',
-    name: 'Hyrule Castle Secret Entrance Stairs',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeEntrance:true, bombShop:true}
+  /** NORTH WEST **/
+  lostWoodsGamble = {
+    x: 278, y: 24,
+    isSingleCave: true,
+    name: 'Lost Woods Gamble',
+    region: 'northwest',
+    image: '~/img/entrance/lostWoodsGamble.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
   };
+  lumberjackTreeCave = { //lumberjackTreeExit
+    x: 498, y: 52,
+    isHoleExit: true,
+    name: 'Lumberjack Tree Cave',
+    region: 'northwest',
+    image: '~/img/entrance/lumberjackTreeCave.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{blacksmith: true, holeEntrance: true}
+  };
+  lumberjackHouse = {
+    x:503, y:94,
+    isSingleCave: true,
+    name: 'Lumberjack House',
+    region: 'northwest',
+    image: '~/img/entrance/lumberjackHouse.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  lumberjackTreeTree = { //lumberjackTreeTop
+    isHole: true,
+    x: 451, y: 111,
+    name: 'Lumberjack Tree Drop',
+    region: 'northwest',
+    image:'~/img/entrance/lumberjackTreeTree.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  }
+  lostWoodsHideoutDrop = { //lostWoodsHideoutTop
+    x: 284, y: 196,
+    isHole:true,
+    name: 'Lost Woods Hideout Drop',
+    region: 'northwest',
+    image: '~/img/entrance/lostWoodsHideout.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  };
+  lostWoodsHideoutStump = { //lostWoodsHideoutExit
+    x: 275, y: 227,
+    isHoleExit: true,
+    name: 'Lost Woods Hideout Stump',
+    region: 'northwest',
+    image: '~/img/entrance/lostWoodsHideout.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {blacksmith: true, holeEntrance:true}
+  };
+  deathMtnReturnCaveWest = { //deathMtnReturnCaveExitWest
+    x: 539, y: 233,
+    name: 'Death Mountain Return Cave (West)',
+    region: 'northwest',
+    image:'~/img/entrance/deathMtnReturnCaveWest.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  }
+  oldManCaveWest = { //oldManCaveExitWest
+    x: 532, y: 263,
+    name: 'Old Man Cave (West)',
+    region: 'northwest',
+    image: '~/img/entrance/oldManCaveWest.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {blacksmith: true}
+  }
+  fortuneTellerLight = {
+    x: 281, y: 484,
+    isSingleCave: true,
+    name: 'Fortune Teller (Light)',
+    region: 'northwest',
+    image: '~/img/entrance/fortuneTellerLight.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  bonkRockCave = {
+    x:585, y:437,
+    isSingleCave: true,
+    name: 'Bonk Rock Cave',
+    region: 'northwest',
+    image: '~/img/entrance/bonkRockCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  sanctuary = { //sanctuaryExit
+    x: 692, y: 406,
+    name: 'Sanctuary',
+    region: 'northwest',
+    image:'~/img/entrance/sanctuary.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{blacksmith: true, holeEntrance:true, }
+  };
+  sanctuaryGrave = {
+    x:778, y:439,
+    isHole: true,
+    name: 'Sanctuary Grave',
+    region: 'northwest',
+    image:'~/img/entrance/sanctuaryGrave.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  }
+  graveyardCave = {
+    x: 855, y: 415,
+    isSingleCave: true,
+    name: 'Graveyard Cave',
+    region: 'northwest',
+    image:'~/img/entrance/graveyardCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  kingsGrave = {
+    x: 902, y: 445,
+    isSingleCave: true,
+    name: 'Kings Grave',
+    region: 'northwest',
+    image: '~/img/entrance/kingsGrave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  };
+  northFairyCaveDrop = {
+    x: 964, y: 465,
+    isHole:true,
+    name: 'North Fairy Cave Drop',
+    region: 'northwest',
+    image:'~/img/entrance/northFairyCave.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  }
+  northFairyCave = { //northFairyCaveExit
+    x: 1002, y: 415,
+    isHoleExit: true,
+    region: 'northwest',
+    name: 'North Fairy Cave',
+    image:'~/img/entrance/northFairyCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
+  };
+  /** DEATH MTN **/
+
+  /** KAKARIKO **/
   kakarikoWellCave = { //kakarikoWellExit
     x: 70, y: 644,
     isHoleExit: true,
@@ -114,31 +251,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{blacksmith: true, twoDoorCave: true}
   };
-  northFairyCave = { //northFairyCaveExit
-    x: 1002, y: 415,
-    isHoleExit: true,
-    region: 'northwest',
-    name: 'North Fairy Cave',
-    image:'~/img/entrance/northFairyCave.png',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
-  };
-  lostWoodsHideoutStump = { //lostWoodsHideoutExit
-    x: 275, y: 227,
-    isHoleExit: true,
-    name: 'Lost Woods Hideout Stump',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {blacksmith: true, holeEntrance:true}
-  };
-  lumberjackTreeCave = { //lumberjackTreeExit
-    x: 498, y: 52,
-    isHoleExit: true,
-    name: 'Lumberjack Tree Cave',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{blacksmith: true, holeEntrance: true}
-  };
   twoBrothersHouseEast = { //twoBrothersHouseExitEast
     x: 210, y: 1077,
     name: 'Two Brothers House (East)',
@@ -153,21 +265,15 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   };
-  sanctuary = { //sanctuaryExit
-    x: 692, y: 406,
-    name: 'Sanctuary',
-    region: 'northwest',
-    image:'~/img/entrance/sanctuary.png',
+
+  hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
+    x: 826, y: 643,
+    isHoleExit: true,
+    region: 'dungeon',
+    name: 'Hyrule Castle Secret Entrance Stairs',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{blacksmith: true, holeEntrance:true, }
+    limits:{holeEntrance:true, bombShop:true}
   };
-  oldManCaveWest = { //oldManCaveExitWest
-    x: 532, y: 263,
-    name: 'Old Man Cave (West)',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {blacksmith: true}
-  }
   oldManCaveEast = { //oldManCaveExitEast
     x: 609, y: 286,
     name: 'Old Man Cave (East)',
@@ -196,13 +302,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{oldManEntrance: true, bombShop: true}
   };
-  deathMtnReturnCaveWest = { //deathMtnReturnCaveExitWest
-    x: 539, y: 233,
-    name: 'Death Mountain Return Cave (West)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  }
   spectacleRockCavePeak = { //spectacleRockCaveExitPeak
     x: 733, y: 156,
     name: 'Spectacle Rock Cave Peak',
@@ -337,14 +436,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true, blacksmith: true}
   }
-  kingsGrave = {
-    x: 902, y: 445,
-    isSingleCave: true,
-    name: 'Kings Grave',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  };
   chickenHut = {
     x: 146, y: 814,
     isSingleCave: true,
@@ -417,30 +508,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits:{singleCave: true, blacksmith: true}
   };
-  northFairyCaveDrop = {
-    x: 964, y: 465,
-    isHole:true,
-    name: 'North Fairy Cave Drop',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeDrop: true}
-  }
-  lostWoodsGamble = {
-    x: 278, y: 24,
-    isSingleCave: true,
-    name: 'Lost Woods Gamble',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  };
-  fortuneTellerLight = {
-    x: 281, y: 484,
-    isSingleCave: true,
-    name: 'Fortune Teller (Light)',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
   snitchLadyEast = {
     x: 310, y: 726,
     isSingleCave: true,
@@ -489,35 +556,11 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
-  lostWoodsHideoutDrop = { //lostWoodsHideoutTop
-    x: 284, y: 196,
-    isHole:true,
-    name: 'Lost Woods Hideout Drop',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {holeDrop: true}
-  };
-  lumberjackTreeTree = { //lumberjackTreeTop
-    isHole: true,
-    x: 451, y: 111,
-    name: 'Lumberjack Tree Tree',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {holeDrop: true}
-  }
   cave45 = {
     x: 399, y: 1240,
     isSingleCave: true,
     name: 'Cave 45',
     region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  graveyardCave = {
-    x: 855, y: 415,
-    isSingleCave: true,
-    name: 'Graveyard Cave',
-    region: 'northwest',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -577,14 +620,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
-  bonkRockCave = {
-    x:710, y:979,
-    isSingleCave: true,
-    name: 'Bonk Rock Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
   library = {
     x:243, y:990,
     isSingleCave: true,
@@ -601,15 +636,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
-  sanctuaryGrave = {
-    x:778, y:439,
-    isHole: true,
-    name: 'Sanctuary Grave',
-    region: 'northwest',
-    image:'~/img/entrance/sanctuaryGrave.png',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {holeDrop: true}
-  }
   hookshotFairy = {
     x:1266, y:221,
     isSingleCave: true,
@@ -617,14 +643,6 @@ export class StaticEntrancesLW {
     region: 'deathmtn',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
-  }
-  lumberjackHouse = {
-    x:503, y:94,
-    isSingleCave: true,
-    name: 'Lumberjack House',
-    region: 'northwest',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
   }
   lakeHyliaFortuneTeller = {
     x:973, y:1206,
