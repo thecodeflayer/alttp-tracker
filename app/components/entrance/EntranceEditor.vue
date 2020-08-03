@@ -1,21 +1,19 @@
 <template>
   <Page backgroundColor="black">
     <Navbar/>
-    <GridLayout columns="*" rows="120,*,70">
+    <GridLayout columns="*" rows="86,*,70">
       <StackLayout orientation="vertical" class="list-top-header">
-        <GridLayout rows="64,*" columns="*,60,*">
-          <StackLayout col="0" class="header-label">
-            <Label :text="staticEntrance.name" textAlignment="center" verticalAlignment="center" textWrap="true"/>
-          </StackLayout>
-          <Image col="1" :src="actionImage" width="48" verticalAlignment="center"/>
-          <StackLayout col="2"  class="header-label">
-            <Label :text="staticLink.name" textAlignment="center" verticalAlignment="center" textWrap="true"/>
-          </StackLayout>
-          <Label row="1" colSpan="3" textWrap="true" textAlignment="center" margin="5">
+        <GridLayout rows="50,30" columns="50,*" margin="0 10">
+          <Image col="0" :src="actionImage" width="48" verticalAlignment="center"/>
+          <Label col="1" textWrap="true" margin="5" verticalAlignment="center">
             <FormattedString>
               <Span v-for="t in logicText" :text="t.text" :color="t.color"/>
             </FormattedString>
           </Label>
+          <StackLayout col="0" colSpan="2" row="1" orientation="horizontal">
+            <Image src="~/img/entrance/unimportant.png" marginLeft="2"/>
+            <Label text="Show unimportant entrances" verticalAlignment="center" marginLeft="5"/>
+          </StackLayout>
         </GridLayout>
       </StackLayout>
       <ScrollView row="1">
@@ -65,7 +63,7 @@
           </StackLayout>
         </StackLayout>
       </ScrollView>
-      <GridLayout row="2" columns="*,5,*" class="list-top-header" margin="0 5 5 5">
+      <GridLayout row="2" columns="*,5,*" class="list-top-header" margin="0 10 5 10">
         <Button class="btn empty padded" @tap="onBackButton">Back</Button>
         <Button col="2" class="btn danger padded" @tap="closeEditor">Close</Button>
       </GridLayout>

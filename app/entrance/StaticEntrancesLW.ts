@@ -80,6 +80,7 @@ export class StaticEntrancesLW {
     name: 'Lost Woods Gamble',
     region: 'northwest',
     image: '~/img/entrance/lostWoodsGamble.png',
+    useless:true,
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   };
@@ -97,6 +98,7 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Lumberjack House',
     region: 'northwest',
+    useless: true,
     image: '~/img/entrance/lumberjackHouse.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
@@ -149,6 +151,7 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Fortune Teller (Light)',
     region: 'northwest',
+    useless: true,
     image: '~/img/entrance/fortuneTellerLight.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
@@ -218,53 +221,182 @@ export class StaticEntrancesLW {
   /** DEATH MTN **/
 
   /** KAKARIKO **/
+  kakarikoWellDrop = { //kakarikoWellTop
+    x: 35, y: 638,
+    isHole:true,
+    name: 'Kakariko Well Drop',
+    region: 'kakariko',
+    image:'~/img/entrance/kakarikoWell.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
+  };
   kakarikoWellCave = { //kakarikoWellExit
     x: 70, y: 644,
     isHoleExit: true,
     name: 'Kakariko Well Cave',
     region: 'kakariko',
+    image:'~/img/entrance/kakarikoWell.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance:true, blacksmith: true}
+  };
+  blindsHideout = {
+    x: 193, y: 632,
+    isSingleCave: true,
+    name: 'Blind\'s Hideout',
+    region: 'kakariko',
+    image: '~/img/entrance/blindsHideout.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{blacksmith: true, singleCave: true}
+  };
+  elderHouseWest = { //elderHouseExitWest
+    x: 223, y: 633,
+    name: 'Elder House (West)',
+    region: 'kakariko',
+    image:'~/img/entrance/elderHouse.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{blacksmith: true, twoDoorCave: true}
+  };
+  elderHouseEast = { //elderHouseExitEast
+    x: 258, y: 633,
+    name: 'Elder House (East)',
+    region: 'kakariko',
+    image:'~/img/entrance/elderHouse.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{blacksmith:true, twoDoorCave: true}
+  };
+  snitchLadyWest = {
+    x: 76, y: 703,
+    isSingleCave: true,
+    name: 'Snitch Lady (West)',
+    region: 'kakariko',
+    image: '~/img/entrance/snitchLadyWest.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  snitchLadyEast = {
+    x: 310, y: 726,
+    isSingleCave: true,
+    name: 'Snitch Lady (East)',
+    region: 'kakariko',
+    image: '~/img/entrance/snitchLadyEast.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  chickenHut = {
+    x: 146, y: 814,
+    isSingleCave: true,
+    name: 'Chicken Hut',
+    region: 'kakariko',
+    image:'~/img/entrance/chickenHut.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  sickKidsHouse = {
+    x: 234, y: 808,
+    isSingleCave: true,
+    name: 'Sick Kid\'s House',
+    region: 'kakariko',
+    image: '~/img/entrance/sickKidsHouse.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  bushCoveredHouse = {
+    x: 304, y: 801,
+    isSingleCave: true,
+    name: 'Bush Covered House',
+    region: 'kakariko',
+    image: '~/img/entrance/bushCoveredHouse.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  blacksmithsHut = {
+    x: 456, y: 801,
+    isSingleCave: true,
+    name: 'Blacksmith\'s Hut',
+    region: 'kakariko',
+    image: '~/img/entrance/blacksmithsHut.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
+  batCaveDrop = { //batCaveRight
+    x: 497, y: 843,
+    isHole:true,
+    name: 'Bat Cave Drop',
+    region: 'kakariko',
+    image: '~/img/entrance/batCave.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeDrop: true}
   };
   batCaveCave = { //batCaveExit
     x: 464, y: 837,
     isHoleExit: true,
     name: 'Bat Cave Cave',
     region: 'kakariko',
-    image:'~/img/entrance/bat.png',
+    image: '~/img/entrance/batCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, blacksmith: true}
   };
-  elderHouseEast = { //elderHouseExitEast
-    x: 258, y: 633,
-    name: 'Elder House (East)',
+  lightWorldBombHut = {
+    x: 41, y: 895,
+    isSingleCave: true,
+    name: 'Light World Bomb Hut',
     region: 'kakariko',
-    image:'~/img/entrance/elder.png',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{blacksmith:true, twoDoorCave: true}
-  };
-  elderHouseWest = { //elderHouseExitWest
-    x: 223, y: 633,
-    name: 'Elder House (West)',
+    image: '~/img/entrance/lightWorldBombHut.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  kakarikoShop = {
+    x: 163, y: 879,
+    isSingleCave: true,
+    name: 'Kakariko Shop',
     region: 'kakariko',
-    image:'~/img/entrance/elder.png',
+    image: '~/img/entrance/kakarikoShop.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  tavernFront = {
+    x: 240, y: 896,
+    isSingleCave: true,
+    name: 'Tavern (Front)',
+    region: 'kakariko',
+    image: '~/img/entrance/tavern.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  library = {
+    x:243, y:990,
+    isSingleCave: true,
+    name: 'Library',
+    region: 'kakariko',
+    image:'~/img/entrance/library.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  twoBrothersHouseWest = { //twoBrothersHouseExitWest
+    x: 163, y: 1077,
+    name: 'Two Brothers House (West)',
+    region: 'kakariko',
+    image: '~/img/entrance/twoBrothersHouse.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{blacksmith: true, twoDoorCave: true}
+    limits:{twoDoorCave: true, bombShop: true}
   };
   twoBrothersHouseEast = { //twoBrothersHouseExitEast
     x: 210, y: 1077,
     name: 'Two Brothers House (East)',
     region: 'kakariko',
+    image: '~/img/entrance/twoBrothersHouse.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, blacksmith: true}
   };
-  twoBrothersHouseWest = { //twoBrothersHouseExitWest
-    x: 163, y: 1077,
-    name: 'Two Brothers House (West)',
+  kakarikoGambleGame = {
+    x:322, y:1054,
+    isSingleCave: true,
+    name: 'Kakariko Gamble Game',
     region: 'kakariko',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{twoDoorCave: true, bombShop: true}
-  };
+    image: '~/img/entrance/kakarikoGambleGame.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
 
   hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
     x: 826, y: 643,
@@ -388,14 +520,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits:{blacksmith: true, singleCave: true}
   }
-  blindsHideout = {
-    x: 193, y: 632,
-    isSingleCave: true,
-    name: 'Blind\'s Hideout',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{blacksmith: true, singleCave: true}
-  };
   hyruleCastleSecretEntranceDrop = { //hyruleCastleSecretEntranceExit
     x: 893, y: 623,
     isHole:true,
@@ -436,14 +560,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {singleCave: true, blacksmith: true}
   }
-  chickenHut = {
-    x: 146, y: 814,
-    isSingleCave: true,
-    name: 'Chicken Hut',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
-  };
   aginahsCave = {
     x: 298, y: 1241,
     isSingleCave: true,
@@ -475,86 +591,6 @@ export class StaticEntrancesLW {
     region: 'south',
     direction: CEntrance.DIRECTION.BOTH,
     limits:{singleCave: true, bombShop: true}
-  }
-  kakarikoWellDrop = { //kakarikoWellTop
-    x: 35, y: 638,
-    isHole:true,
-    name: 'Kakariko Well Drop',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeDrop: true}
-  };
-  blacksmithsHut = {
-    x: 456, y: 801,
-    isSingleCave: true,
-    name: 'Blacksmith\'s Hut',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
-  };
-  batCaveDrop = { //batCaveRight
-    x: 497, y: 843,
-    isHole:true,
-    name: 'Bat Cave Drop',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeDrop: true}
-  };
-  sickKidsHouse = {
-    x: 234, y: 808,
-    isSingleCave: true,
-    name: 'Sick Kid\'s House',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
-  };
-  snitchLadyEast = {
-    x: 310, y: 726,
-    isSingleCave: true,
-    name: 'Snitch Lady (East)',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  snitchLadyWest = {
-    x: 76, y: 703,
-    isSingleCave: true,
-    name: 'Snitch Lady (West)',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  bushCoveredHouse = {
-    x: 304, y: 801,
-    isSingleCave: true,
-    name: 'Bush Covered House',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  tavernFront = {
-    x: 240, y: 896,
-    isSingleCave: true,
-    name: 'Tavern (Front)',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  lightWorldBombHut = {
-    x: 41, y: 895,
-    isSingleCave: true,
-    name: 'Light World Bomb Hut',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  kakarikoShop = {
-    x: 163, y: 879,
-    isSingleCave: true,
-    name: 'Kakariko Shop',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
   }
   cave45 = {
     x: 399, y: 1240,
@@ -620,14 +656,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
-  library = {
-    x:243, y:990,
-    isSingleCave: true,
-    name: 'Library',
-    region: 'kakariko',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
   potionShop = {
     x:1201, y:502,
     isSingleCave: true,
@@ -649,14 +677,6 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Lake Hylia Fortune Teller',
     region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  kakarikoGambleGame = {
-    x:322, y:1054,
-    isSingleCave: true,
-    name: 'Kakariko Gamble Game',
-    region: 'kakariko',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
