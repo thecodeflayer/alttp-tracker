@@ -57,7 +57,11 @@
           </StackLayout>
           <!-- DYNAMIC LOCATIONS -->
           <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">
-            <Button v-for="loc in currentRegion" v-bind:key="loc.id" @tap="doLink(loc.id)" :text="loc.name" class="btn standard padded"></Button>
+            <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id" @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
+              <Image col="0" v-if="loc.image" :src="loc.image" height="64" horizontalAlignment="center" verticalAlignment="center"/>
+              <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
+                     marginLeft="10" :fontSize="loc.name.length>32 ? '16': loc.name.length>28? '18':'20'"/>
+            </GridLayout>
           </StackLayout>
         </StackLayout>
       </ScrollView>

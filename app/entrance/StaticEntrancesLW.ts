@@ -33,6 +33,7 @@ export class StaticEntrancesLW {
     x: 1438, y: 585,
     name: 'Eastern Palace',
     region: 'dungeon',
+    image:'~/img/dungeons/ep_boss0.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {blacksmith: true}
   };
@@ -40,6 +41,7 @@ export class StaticEntrancesLW {
     x: 841, y: 53,
     name: 'Tower of Hera',
     region: 'dungeon',
+    image:'~/img/dungeons/toh_boss0.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop:true}
   };
@@ -92,6 +94,7 @@ export class StaticEntrancesLW {
     isHoleExit: true,
     name: 'Bat Cave Cave',
     region: 'kakariko',
+    image:'~/img/entrance/bat.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, blacksmith: true}
   };
@@ -99,6 +102,7 @@ export class StaticEntrancesLW {
     x: 258, y: 633,
     name: 'Elder House (East)',
     region: 'kakariko',
+    image:'~/img/entrance/elder.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{blacksmith:true, twoDoorCave: true}
   };
@@ -106,6 +110,7 @@ export class StaticEntrancesLW {
     x: 223, y: 633,
     name: 'Elder House (West)',
     region: 'kakariko',
+    image:'~/img/entrance/elder.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{blacksmith: true, twoDoorCave: true}
   };
@@ -114,6 +119,7 @@ export class StaticEntrancesLW {
     isHoleExit: true,
     region: 'northwest',
     name: 'North Fairy Cave',
+    image:'~/img/entrance/northFairyCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
   };
@@ -151,6 +157,7 @@ export class StaticEntrancesLW {
     x: 692, y: 406,
     name: 'Sanctuary',
     region: 'northwest',
+    image:'~/img/entrance/sanctuary.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{blacksmith: true, holeEntrance:true, }
   };
@@ -599,6 +606,7 @@ export class StaticEntrancesLW {
     isHole: true,
     name: 'Sanctuary Grave',
     region: 'northwest',
+    image:'~/img/entrance/sanctuaryGrave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {holeDrop: true}
   }

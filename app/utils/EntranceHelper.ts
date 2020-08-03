@@ -104,7 +104,7 @@ export class EntranceHelper {
     };
     for(const key of this.lwEntranceKeys) {
       const region = this.lwStaticEntrances[key].region === 'northeast' || this.lwStaticEntrances[key].region === 'desert' ? 'other' : this.lwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name};
+      retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image};
     }
     return retval;
   }
@@ -119,7 +119,7 @@ export class EntranceHelper {
     };
     for(const key of this.dwEntranceKeys) {
       const region = this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other' : this.dwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name};
+      retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image};
     }
     return retval;
   }
