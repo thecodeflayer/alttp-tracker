@@ -1,19 +1,15 @@
 <template>
   <Page backgroundColor="black">
     <Navbar/>
-    <GridLayout columns="*" rows="86,*,70">
+    <GridLayout columns="*" rows="56,*,70">
       <StackLayout orientation="vertical" class="list-top-header">
-        <GridLayout rows="50,30" columns="50,*" margin="0 10">
+        <GridLayout rows="50" columns="50,*" margin="0 10">
           <Image col="0" :src="actionImage" width="48" verticalAlignment="center"/>
           <Label col="1" textWrap="true" margin="5" verticalAlignment="center">
             <FormattedString>
               <Span v-for="t in logicText" :text="t.text" :color="t.color"/>
             </FormattedString>
           </Label>
-          <StackLayout col="0" colSpan="2" row="1" orientation="horizontal">
-            <Image src="~/img/entrance/unimportant.png" marginLeft="2"/>
-            <Label text="Show unimportant entrances" verticalAlignment="center" marginLeft="5"/>
-          </StackLayout>
         </GridLayout>
       </StackLayout>
       <ScrollView row="1">
@@ -34,8 +30,11 @@
               <Button @tap="drillDown('northwest')" col="2" class="btn standard padded">North West</Button>
             </GridLayout>
             <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('south')" class="btn standard padded">South Shore</Button>
-              <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Desert and North East</Button>
+              <Button @tap="drillDown('south')" class="btn standard padded">Desert and South</Button>
+              <Button @tap="drillDown('northeast')" col="2" class="btn standard padded" style="font-size:16">Castle and North East</Button>
+            </GridLayout>
+            <GridLayout>
+              <Button @tap="drillDown('holes')" class="btn standard padded">Holes and Exits</Button>
             </GridLayout>
           </StackLayout>
           <!-- DARK WORLD -->
@@ -52,6 +51,10 @@
               <Button @tap="drillDown('south')" class="btn standard padded">Dark South Shore</Button>
               <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Mire and North East</Button>
             </GridLayout>
+            <GridLayout>
+              <Button @tap="drillDown('holes')" class="btn standard padded">Holes and Exits</Button>
+            </GridLayout>
+
           </StackLayout>
           <!-- DYNAMIC LOCATIONS -->
           <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">

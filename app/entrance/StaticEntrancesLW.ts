@@ -1,17 +1,12 @@
 import {CEntrance} from '@/entrance/CEntrance';
 
 export class StaticEntrancesLW {
-  desertPalaceSouth = { //desertPalaceExitSouth
-    x:111, y:1197,
-    name: 'Desert Palace Entrance (South)',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{bombShop: true}
-  }
+  /** DUNGEONS **/
   desertPalaceWest = { //desertPalaceExitWest
     x: 169, y: 1193,
     name: 'Desert Palace Entrance (West)',
     region: 'dungeon',
+    image: '~/img/entrance/desertPalaceWest.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   }
@@ -19,59 +14,49 @@ export class StaticEntrancesLW {
     x: 111, y: 1154,
     name: 'Desert Palace Entrance (North)',
     region: 'dungeon',
+    image: '~/img/entrance/desertPalaceNorth.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
+  desertPalaceSouth = { //desertPalaceExitSouth
+    x:111, y:1197,
+    name: 'Desert Palace Entrance (South)',
+    region: 'dungeon',
+    image: '~/img/entrance/desertPalaceSouth.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{bombShop: true}
+  }
   desertPalaceEast = { //desertPalaceExitEast
     x: 53, y: 1193,
     name: 'Desert Palace Entrance (East)',
     region: 'dungeon',
+    image: '~/img/entrance/desertPalaceEast.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{mustExit: true}
   }
-  easternPalace = {//easternPalaceExit
-    x: 1438, y: 585,
-    name: 'Eastern Palace',
-    region: 'dungeon',
-    image:'~/img/dungeons/ep_boss0.png',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {blacksmith: true}
-  };
   towerOfHera = { //towerOfHeraExit
     x: 841, y: 53,
     name: 'Tower of Hera',
     region: 'dungeon',
-    image:'~/img/dungeons/toh_boss0.png',
+    image:'~/img/entrance/towerOfHera.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop:true}
-  };
-  hyruleCastleSouth = { //hyruleCastleExitSouth
-    x: 750, y: 662,
-    name: 'Hyrule Castle Entrance (South)',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  }
-  hyruleCastleWest = { //hyruleCastleExitWest
-    x: 825, y: 584,
-    name: 'Hyrule Castle Entrance (West)',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  hyruleCastleEast = { //hyruleCastleExitEast
-    x: 674, y: 584,
-    name: 'Hyrule Castle Entrance (East)',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
   };
   agaTower = { //agaTowerExit
     x: 750, y: 602,
     name: 'Agahnim\'s Tower',
     region: 'dungeon',
+    image: '~/img/entrance/agaTower.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
+  };
+  easternPalace = {//easternPalaceExit
+    x: 1438, y: 585,
+    name: 'Eastern Palace',
+    region: 'dungeon',
+    image:'~/img/entrance/easternPalace.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {blacksmith: true}
   };
   /** NORTH WEST **/
   lostWoodsGamble = {
@@ -219,7 +204,120 @@ export class StaticEntrancesLW {
     limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
   };
   /** DEATH MTN **/
-
+  oldManCaveEast = { //oldManCaveExitEast
+    x: 609, y: 286,
+    name: 'Old Man Cave (East)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {oldManEntrance: true, bombShop: true}
+  };
+  oldManHouseBottom = { //oldManHouseExitBottom
+    x: 674, y: 354,
+    name: 'Old Man House (Bottom)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{bombShop: true}
+  };
+  oldManHouseTop = { //oldManHouseExitTop
+    x: 802, y: 245,
+    name: 'Old Man House (Top)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {oldManEntrance: true, bombShop: true}
+  };
+  deathMtnReturnCaveEast = { //deathMtnReturnCaveExitEast
+    x: 582, y: 209,
+    name: 'Death Mountain Return Cave (East)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{oldManEntrance: true, bombShop: true}
+  };
+  spectacleRockCavePeak = { //spectacleRockCaveExitPeak
+    x: 733, y: 156,
+    name: 'Spectacle Rock Cave Peak',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true, oldManEntrance: true}
+  }
+  spectacleRockCave = { //spectacleRockCaveExit
+    x: 686, y: 209,
+    name: 'Spectacle Rock Cave',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true, oldManEntrance: true}
+  }
+  spectacleRockCaveBottom = { //spectacleRockCaveTop ?!?
+    x: 733, y: 220,
+    name: 'Spectacle Rock Cave (Bottom)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true, oldManEntrance: true}
+  };
+  paradoxCaveBottom = { //paradoxCaveExitBottom
+    x: 1295, y: 326,
+    name: 'Paradox Cave (Bottom)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  paradoxCaveMiddle = { //paradoxCaveExitMiddle
+    x: 1283, y: 221,
+    name: 'Paradox Cave (Middle)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  paradoxCaveTop = { //paradoxCaveExitTop
+    x: 1288, y: 98,
+    name: 'Paradox Cave (Top)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  fairyAscensionCaveBottom = { //fairyAscensionCaveExitBottom
+    x: 1230, y: 208,
+    name: 'Fairy Ascension Cave (Bottom)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  fairyAscensionCaveTop = { //fairyAscensionCaveExitTop
+    x: 1230, y: 173,
+    name: 'Fairy Ascension Cave (Top)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  spiralCave = { //spiralCaveExit
+    x: 1195, y: 140,
+    name: 'Spiral Cave',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{bombShop:true}
+  };
+  spiralCaveBottom = { //spiralCaveExitTop ?!?
+    x: 1201, y: 197,
+    name: 'Spiral Cave (Bottom)',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{bombShop:true}
+  }
+  hookshotFairy = {
+    x:1266, y:221,
+    isSingleCave: true,
+    name: 'Hookshot Fairy',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  mimicCave = {
+    x:1266, y:140,
+    isSingleCave: true,
+    name: 'Mimic Cave',
+    region: 'deathmtn',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
   /** KAKARIKO **/
   kakarikoWellDrop = { //kakarikoWellTop
     x: 35, y: 638,
@@ -397,113 +495,205 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
-
+  /** DESERT **/
+  checkerboardCave = {
+    x: 263, y: 1165,
+    isSingleCave: true,
+    name: 'Checkerboard Cave',
+    region: 'desert',
+    image:'~/img/entrance/checkerboardCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  aginahsCave = {
+    x: 298, y: 1241,
+    isSingleCave: true,
+    name: 'Aginah\'s Cave',
+    region: 'desert',
+    image:'~/img/entrance/aginahsCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  }
+  desertFairy = { //desertHealerFairy
+    x: 416, y: 1342,
+    isSingleCave: true,
+    name: 'Desert Fairy',
+    region: 'desert',
+    image:'~/img/entrance/desertFairy.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  fiftyRupeeCave = {
+    x:468, y:1434,
+    isSingleCave: true,
+    name: '50 Rupee Cave',
+    region: 'desert',
+    image:'~/img/entrance/fiftyRupeeCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  /** SOUTH **/
+  cave45 = {
+    x: 399, y: 1240,
+    isSingleCave: true,
+    name: 'Cave 45',
+    region: 'south',
+    image: '~/img/entrance/cave45.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  dam = {
+    x: 703, y: 1405,
+    isSingleCave: true,
+    name: 'Dam',
+    region: 'south',
+    image: '~/img/entrance/dam.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{blacksmith: true, singleCave: true}
+  }
+  bonkFairyLight = {
+    x: 709, y: 978,
+    isSingleCave: true,
+    name: 'Bonk Fairy (Light)',
+    region: 'south',
+    image:'~/img/entrance/bonkFairyLight.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{bombShop: true, singleCave: true}
+  };
+  linksHouse = {
+    x: 820, y: 1036,
+    isSingleCave: true,
+    name: 'Link\'s House',
+    region: 'south',
+    image: '~/img/entrance/linksHouse.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true}
+  }
+  lightHypeFairy = {
+    x: 896, y: 1171,
+    isSingleCave: true,
+    name: 'Light Hype Fairy',
+    region: 'south',
+    image:'~/img/entrance/lightHypeFairy.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  lakeHyliaFortuneTeller = {
+    x:973, y:1206,
+    isSingleCave: true,
+    name: 'Lake Hylia Fortune Teller',
+    region: 'south',
+    image: '~/img/entrance/lakeHyliaFortuneTeller.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  caveShopLakeHylia = {
+    x: 1089, y: 1152,
+    isSingleCave: true,
+    name: 'Cave Shop (Lake Hylia)',
+    region: 'south',
+    image: '~/img/entrance/caveShopLakeHylia.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  }
+  miniMoldormCave = {
+    x: 978, y: 1412,
+    isSingleCave: true,
+    name: 'Mini Moldorm Cave',
+    region: 'south',
+    image:'~/img/entrance/miniMoldormCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
+  }
+  capacityUpgrade = {
+    x: 1189, y: 1282,
+    isSingleCave: true,
+    name: 'Capacity Upgrade',
+    region: 'south',
+    image:'~/img/entrance/capacityUpgrade.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, bombShop: true}
+  }
+  iceRodCave = {
+    x:1342, y:1160,
+    isSingleCave: true,
+    name: 'Ice Rod Cave',
+    region: 'south',
+    image: '~/img/entrance/lakeHyliaLedge.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  twentyRupeeCave = {
+    x:1353, y:1177,
+    isSingleCave: true,
+    name: '20 Rupee Cave',
+    region: 'south',
+    image: '~/img/entrance/lakeHyliaLedge.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  goodBeeCave = {
+    x:1371, y:1160,
+    isSingleCave: true,
+    name: 'Good Bee Cave',
+    region: 'south',
+    image: '~/img/entrance/lakeHyliaLedge.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  /** HYRULE CASTLE **/
+  hyruleCastleWest = { //hyruleCastleExitWest
+    x: 825, y: 584,
+    name: 'Hyrule Castle Entrance (West)',
+    region: 'castle',
+    image: '~/img/entrance/hyruleCastleWest.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  hyruleCastleSouth = { //hyruleCastleExitSouth
+    x: 750, y: 662,
+    name: 'Hyrule Castle Entrance (South)',
+    region: 'castle',
+    image: '~/img/entrance/hyruleCastleSouth.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  }
+  hyruleCastleEast = { //hyruleCastleExitEast
+    x: 674, y: 584,
+    name: 'Hyrule Castle Entrance (East)',
+    region: 'castle',
+    image: '~/img/entrance/hyruleCastleEast.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
   hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
     x: 826, y: 643,
     isHoleExit: true,
-    region: 'dungeon',
+    region: 'castle',
+    image: '~/img/entrance/hyruleCastleSecretEntranceStairs.png',
     name: 'Hyrule Castle Secret Entrance Stairs',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance:true, bombShop:true}
   };
-  oldManCaveEast = { //oldManCaveExitEast
-    x: 609, y: 286,
-    name: 'Old Man Cave (East)',
-    region: 'deathmtn',
+  hyruleCastleSecretEntranceDrop = { //hyruleCastleSecretEntranceExit
+    x: 893, y: 623,
+    isHole:true,
+    name: 'Hyrule Castle Secret Entrance Drop',
+    image: '~/img/entrance/hyruleCastleSecretEntranceDrop.png',
+    region: 'castle',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {oldManEntrance: true, bombShop: true}
+    limits:{holeDrop: true}
   };
-  oldManHouseBottom = { //oldManHouseExitBottom
-    x: 674, y: 354,
-    name: 'Old Man House (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{bombShop: true}
-  };
-  oldManHouseTop = { //oldManHouseExitTop
-    x: 802, y: 245,
-    name: 'Old Man House (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {oldManEntrance: true, bombShop: true}
-  };
-  deathMtnReturnCaveEast = { //deathMtnReturnCaveExitEast
-    x: 582, y: 209,
-    name: 'Death Mountain Return Cave (East)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{oldManEntrance: true, bombShop: true}
-  };
-  spectacleRockCavePeak = { //spectacleRockCaveExitPeak
-    x: 733, y: 156,
-    name: 'Spectacle Rock Cave Peak',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true, oldManEntrance: true}
+  sewerDrop = { //TODO: may have special handling
+    x: -120, y: -120,
+    isHoleExit: true,
+    name: 'Sewer Drop',
+    region: 'castle',
+    image:'~/img/entrance/sewerDrop.png',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
   }
-  spectacleRockCave = { //spectacleRockCaveExit
-    x: 686, y: 209,
-    name: 'Spectacle Rock Cave',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true, oldManEntrance: true}
-  }
-  spectacleRockCaveBottom = { //spectacleRockCaveTop ?!?
-    x: 733, y: 220,
-    name: 'Spectacle Rock Cave (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true, oldManEntrance: true}
-  };
-  paradoxCaveBottom = { //paradoxCaveExitBottom
-    x: 1295, y: 326,
-    name: 'Paradox Cave (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  paradoxCaveMiddle = { //paradoxCaveExitMiddle
-    x: 1283, y: 221,
-    name: 'Paradox Cave (Middle)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  paradoxCaveTop = { //paradoxCaveExitTop
-    x: 1288, y: 98,
-    name: 'Paradox Cave (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  fairyAscensionCaveBottom = { //fairyAscensionCaveExitBottom
-    x: 1230, y: 208,
-    name: 'Fairy Ascension Cave (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  fairyAscensionCaveTop = { //fairyAscensionCaveExitTop
-    x: 1230, y: 173,
-    name: 'Fairy Ascension Cave (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  spiralCave = { //spiralCaveExit
-    x: 1195, y: 140,
-    name: 'Spiral Cave',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{bombShop:true}
-  };
-  spiralCaveBottom = { //spiralCaveExitTop ?!?
-    x: 1201, y: 197,
-    name: 'Spiral Cave (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{bombShop:true}
-  }
+  /** NORTH EAST **/
   waterfallOfWishing = {
     x: 1351, y: 206,
     isSingleCave: true,
@@ -512,61 +702,22 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits:{bombShop: true, singleCave: true}
   }
-  dam = {
-    x: 703, y: 1405,
-    isSingleCave: true,
-    name: 'Dam',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{blacksmith: true, singleCave: true}
-  }
-  hyruleCastleSecretEntranceDrop = { //hyruleCastleSecretEntranceExit
-    x: 893, y: 623,
-    isHole:true,
-    name: 'Hyrule Castle Secret Entrance Drop',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeDrop: true}
-  };
-  bonkFairyLight = {
-    x: 709, y: 978,
-    isSingleCave: true,
-    name: 'Bonk Fairy (Light)',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{bombShop: true, singleCave: true}
-  };
   lakeHyliaFairy = {
     x: 1237, y: 973,
     isSingleCave: true,
     name: 'Lake Hylia Fairy',
-    region: 'south',
+    region: 'northeast',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{singleCave: true, blacksmith: true}
   }
-  lightHypeFairy = {
-    x: 896, y: 1171,
+
+  longFairyCave = {
+    x:1471, y:1053,
     isSingleCave: true,
-    name: 'Light Hype Fairy',
-    region: 'south',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  desertFairy = { //desertHealerFairy
-    x: 416, y: 1342,
-    isSingleCave: true,
-    name: 'Desert Fairy',
-    region: 'desert',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  aginahsCave = {
-    x: 298, y: 1241,
-    isSingleCave: true,
-    name: 'Aginah\'s Cave',
-    region: 'desert',
+    name: 'Long Fairy Cave',
+    region: 'northeast',
     direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
+    limits: {singleCave: true, blacksmith: true}
   }
   sahasrahlasHut = {
     x: 1215, y: 683,
@@ -576,86 +727,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits:{singleCave: true, blacksmith: true}
   };
-  caveShopLakeHylia = {
-    x: 1089, y: 1152,
-    isSingleCave: true,
-    name: 'Cave Shop (Lake Hylia)',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
-  }
-  capacityUpgrade = {
-    x: 1189, y: 1282,
-    isSingleCave: true,
-    name: 'Capacity Upgrade',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, bombShop: true}
-  }
-  cave45 = {
-    x: 399, y: 1240,
-    isSingleCave: true,
-    name: 'Cave 45',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  checkerboardCave = {
-    x: 263, y: 1165,
-    isSingleCave: true,
-    name: 'Checkerboard Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  miniMoldormCave = {
-    x: 978, y: 1412,
-    isSingleCave: true,
-    name: 'Mini Moldorm Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  longFairyCave = {
-    x:1471, y:1053,
-    isSingleCave: true,
-    name: 'Long Fairy Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  goodBeeCave = {
-    x:1371, y:1160,
-    isSingleCave: true,
-    name: 'Good Bee Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  twentyRupeeCave = {
-    x:1353, y:1177,
-    isSingleCave: true,
-    name: '20 Rupee Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  fiftyRupeeCave = {
-    x:468, y:1434,
-    isSingleCave: true,
-    name: '50 Rupee Cave',
-    region: 'desert',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  iceRodCave = {
-    x:1342, y:1160,
-    isSingleCave: true,
-    name: 'Ice Rod Cave',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
   potionShop = {
     x:1201, y:502,
     isSingleCave: true,
@@ -663,38 +734,6 @@ export class StaticEntrancesLW {
     region: 'northeast',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
-  }
-  hookshotFairy = {
-    x:1266, y:221,
-    isSingleCave: true,
-    name: 'Hookshot Fairy',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  lakeHyliaFortuneTeller = {
-    x:973, y:1206,
-    isSingleCave: true,
-    name: 'Lake Hylia Fortune Teller',
-    region: 'south',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  mimicCave = {
-    x:1266, y:140,
-    isSingleCave: true,
-    name: 'Mimic Cave',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
-  sewerDrop = { //TODO: may have special handling
-    x: -120, y: -120,
-    isHoleExit: true,
-    name: 'Sewer Drop',
-    region: 'dungeon',
-    direction: CEntrance.DIRECTION.EXIT,
-    limits:{holeTarget: true}
   }
   // tavern = { //TODO: may have special handling
   //   x: -20, y: -20,

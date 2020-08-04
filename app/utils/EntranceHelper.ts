@@ -100,10 +100,13 @@ export class EntranceHelper {
       kakariko:{},
       northwest:{},
       south:{},
-      other:{}
+      northeast:{},
+      holes:{}
     };
     for(const key of this.lwEntranceKeys) {
-      const region = this.lwStaticEntrances[key].region === 'northeast' || this.lwStaticEntrances[key].region === 'desert' ? 'other' : this.lwStaticEntrances[key].region;
+      const region = (this.lwStaticEntrances[key].isHole || this.lwStaticEntrances[key].isHoleExit)? 'holes'
+        : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
+          : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
       retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image, useless:!!this.lwStaticEntrances[key].useless};
     }
     return retval;
@@ -115,10 +118,13 @@ export class EntranceHelper {
       village:{},
       northwest:{},
       south:{},
-      other:{}
+      other:{},
+      holes:{}
     };
     for(const key of this.dwEntranceKeys) {
-      const region = this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other' : this.dwStaticEntrances[key].region;
+      const region = (this.dwStaticEntrances[key].isHole || this.dwStaticEntrances[key].isHoleExit)? 'holes'
+        :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
+          : this.dwStaticEntrances[key].region;
       retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image, useless:!!this.dwStaticEntrances[key].useless};
     }
     return retval;
