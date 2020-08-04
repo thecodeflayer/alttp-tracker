@@ -20,7 +20,7 @@
             <Button @tap="drillDown('darkworld')" class="btn standard padded">Dark World</Button>
           </StackLayout>
           <!-- LIGHT WORLD -->
-          <StackLayout orientation="vertical" :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && action === 'enterLinkedTo')) && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
+          <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -33,13 +33,12 @@
               <Button @tap="drillDown('south')" class="btn standard padded">Desert and South</Button>
               <Button @tap="drillDown('northeast')" col="2" class="btn standard padded" style="font-size:16">Castle and North East</Button>
             </GridLayout>
-            <GridLayout :columns="action === 'enterLinkedTo' ? '*,5,*' : '*'">
-              <Button :visibility="action === 'enterLinkedTo' ? 'visible':'collapsed'" @tap="drillDown('holes')" class="btn standard padded">Holes</Button>
-              <Button @tap="drillDown('holeExits')" :col="action === 'enterLinkedTo' ? '2':'0'" class="btn standard padded">Hole Exits</Button>
+            <GridLayout columns="*">
+              <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
             </GridLayout>
           </StackLayout>
           <!-- DARK WORLD -->
-          <StackLayout orientation="vertical" :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && action === 'enterLinkedTo')) && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
+          <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -52,16 +51,15 @@
               <Button @tap="drillDown('south')" class="btn standard padded">Dark South Shore</Button>
               <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Mire and North East</Button>
             </GridLayout>
-            <GridLayout :columns="action === 'enterLinkedTo' ? '*,5,*' : '*'">
-              <Button :visibility="action === 'enterLinkedTo' ? 'visible':'collapsed'" @tap="drillDown('holes')" class="btn standard padded">Holes</Button>
-              <Button @tap="drillDown('holeExits')" :col="action === 'enterLinkedTo' ? '2':'0'" class="btn standard padded">Hole Exits</Button>
+            <GridLayout columns="*">
+              <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
             </GridLayout>
           </StackLayout>
           <!-- DYNAMIC LOCATIONS -->
           <StackLayout orientation="vertical"
-                       :visibility="(drillArr.length === 2
+                       :visibility="drillArr.length === 2
                        || (drillArr.length === 1 && staticEntrance.isHole)
-                       || (drillArr.length===1 && staticEntrance.isHoleExit && action === 'enterLinkedTo')) ? 'visible':'collapsed'">
+                       ? 'visible':'collapsed'">
             <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id" @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
               <Image col="0" v-if="loc.image" :src="loc.image" height="64" horizontalAlignment="center" verticalAlignment="center"/>
               <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
@@ -106,9 +104,10 @@
       this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = (this.staticEntrance.isHole && this.action === 'enterLink') ? '~/img/enter-hole.png'
           : this.action === 'enterLink' ? '~/img/enter-link-alt.png'
-          : this.action === 'exitLink' ? '~/img/exit-link-alt.png'
-              : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
-                : '~/img/exit-linked-to-alt.png';
+            : this.action === 'exitLink' ? '~/img/exit-link-alt.png'
+              : (this.staticEntrance.isHole && this.action === 'enterLinkedTo') ? '~/img/enter-linked-hole.png'
+                : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
+                  : '~/img/exit-linked-to-alt.png';
       this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
 
     }
@@ -117,9 +116,7 @@
         this.drillArr.push(path);
       }
       if(this.drillArr.length === 1 && this.staticEntrance.isHole) {
-        this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holeExits : this.dwDrillObj.holeExits;
-      } else if(this.drillArr.length===1 && this.staticEntrance.isHoleExit && this.action === 'enterLinkedTo') {
-        this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes : this.dwDrillObj.holes;
+        this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
       }else if(this.drillArr.length === 2) {
         this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj[this.drillArr[1]] : this.dwDrillObj[this.drillArr[1]];
       }

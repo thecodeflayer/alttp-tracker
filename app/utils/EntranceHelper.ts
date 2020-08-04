@@ -185,7 +185,7 @@ export class EntranceHelper {
         {text:' leads to ', color:this.logicTextColors.basic},
         {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
         {text:' overworld door', color:this.logicTextColors.basic}];
-    } else if(staticEntrance.isHoleExit && action === 'enterLinkedTo') {
+    } else if(staticEntrance.isHole && action === 'enterLinkedTo') {
       return [{text:'Falling in ', color:this.logicTextColors.basic},
         {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
         {text:' overworld hole leads to ', color:this.logicTextColors.basic},

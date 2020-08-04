@@ -15,8 +15,8 @@
               </FormattedString>
             </Label>
           </GridLayout>
-          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
-            <Image row="0" col="0" src="~/img/enter-linked-to-alt.png" width="48" margin="4 5"/>
+          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
+            <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-linked-hole.png':'~/img/enter-linked-to-alt.png'" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLinkedTo, 'enterLinkedTo')" :text="t.text" :color="t.color"/>
