@@ -15,7 +15,7 @@
               </FormattedString>
             </Label>
           </GridLayout>
-          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
+          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
             <Image row="0" col="0" src="~/img/enter-linked-to-alt.png" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
@@ -23,7 +23,7 @@
               </FormattedString>
             </Label>
           </GridLayout>
-          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLink')">
+          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('exitLink')">
             <Image row="0" col="0" src="~/img/exit-link-alt.png" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
@@ -31,7 +31,7 @@
               </FormattedString>
             </Label>
           </GridLayout>
-          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('exitLinkedTo')">
+          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('exitLinkedTo')">
             <Image row="0" col="0" src="~/img/exit-linked-to-alt.png" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>

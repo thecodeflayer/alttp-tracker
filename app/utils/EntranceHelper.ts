@@ -30,6 +30,9 @@ export class EntranceHelper {
 
   resetLink(link, action) {
     this.modelManager.entrances[link][action] = undefined;
+    // if(!this.getStaticEntrance(link).isHole){
+    //   this.modelManager.entrances[link][action] = undefined;
+    // }
   }
 
   getReverseAction(action) {
@@ -40,14 +43,18 @@ export class EntranceHelper {
 
   createLink(fromLink: string, toLink: string, action: string) {
     const reverseAction = this.getReverseAction(action);
+    let oldFromLink = undefined;
+    let oldToLink = undefined;
     //check if a fromLink already linked to something else. If so, clear it.
     if(this.modelManager.entrances[fromLink][action]) {
-      this.resetLink(this.modelManager.entrances[fromLink][action], reverseAction);
+      oldFromLink = this.modelManager.entrances[fromLink][action];
+      this.resetLink(oldFromLink, reverseAction);
     }
     const retval = this.modelManager.entrances[fromLink][action] = toLink;
     //check if toLink already linked to something else. If so, clear it.
     if(this.modelManager.entrances[toLink][reverseAction]){
-      this.resetLink(this.modelManager.entrances[toLink][reverseAction], action);
+      oldToLink = this.modelManager.entrances[toLink][reverseAction];
+      this.resetLink(oldToLink, action);
     }
     //save linked object
     this.modelManager.entrances[toLink][reverseAction] = fromLink;
@@ -82,6 +89,20 @@ export class EntranceHelper {
       }
       this.modelManager.entrances[fromLink][caveReverseAction] = toLink;
     }
+    if(oldToLink) {
+      const oldStaticLink = this.getStaticEntrance(oldToLink);
+      if (oldStaticLink.isSingleCave && (reverseAction === 'exitLink' || reverseAction === 'enterLinkedTo')) {
+        const caveAction = reverseAction === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
+        const caveReverseAction = caveAction === 'exitLink' ? 'exitLinkedTo' : 'enterLink';
+        //check if already linked
+        if (this.modelManager.entrances[oldToLink][caveAction]) {
+          this.resetLink(this.modelManager.entrances[oldToLink][caveAction], this.getReverseAction(caveAction));
+        }
+        if (this.modelManager.entrances[oldToLink][caveReverseAction]) {
+          this.resetLink(this.modelManager.entrances[oldToLink][caveReverseAction], this.getReverseAction(caveReverseAction));
+        }
+      }
+    }
     return retval;
   }
 
@@ -101,13 +122,19 @@ export class EntranceHelper {
       northwest:{},
       south:{},
       northeast:{},
-      holes:{}
+      holes:{},
+      holeExits:{}
     };
     for(const key of this.lwEntranceKeys) {
-      const region = (this.lwStaticEntrances[key].isHole || this.lwStaticEntrances[key].isHoleExit)? 'holes'
-        : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
-          : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
+      const region = this.lwStaticEntrances[key].isHole ? 'holes'
+        : this.lwStaticEntrances[key].isHoleExit ? 'holeExits'
+          : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
+            : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
       retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image, useless:!!this.lwStaticEntrances[key].useless};
+      //add hole exits for hole selection option
+      if(this.lwStaticEntrances[key].isHoleExit){
+        retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image, useless:!!this.lwStaticEntrances[key].useless};
+      }
     }
     return retval;
   }
@@ -119,13 +146,19 @@ export class EntranceHelper {
       northwest:{},
       south:{},
       other:{},
-      holes:{}
+      holes:{},
+      holeExits:{}
     };
     for(const key of this.dwEntranceKeys) {
-      const region = (this.dwStaticEntrances[key].isHole || this.dwStaticEntrances[key].isHoleExit)? 'holes'
-        :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
-          : this.dwStaticEntrances[key].region;
+      const region = this.dwStaticEntrances[key].isHole? 'holes'
+        : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
+          :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
+            : this.dwStaticEntrances[key].region;
       retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image, useless:!!this.dwStaticEntrances[key].useless};
+      //add hole exits for hole selection option
+      if(this.dwStaticEntrances[key].isHoleExit){
+        retval.holeExits[key]={id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image, useless:!!this.dwStaticEntrances[key].useless};
+      }
     }
     return retval;
   }
@@ -136,7 +169,12 @@ export class EntranceHelper {
     if(!staticEntrance || !staticLink) {
       return '';
     }
-    if(action === 'enterLink') {
+    if(staticEntrance.isHole && action === 'enterLink') {
+      return [{text:'Falling in ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance},
+        {text:' overworld hole leads to ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown}];
+    } else if(action === 'enterLink') {
       return [{text:'Entering ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance},
         {text:' overworld door leads to ', color:this.logicTextColors.basic},
@@ -147,6 +185,11 @@ export class EntranceHelper {
         {text:' leads to ', color:this.logicTextColors.basic},
         {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
         {text:' overworld door', color:this.logicTextColors.basic}];
+    } else if(staticEntrance.isHoleExit && action === 'enterLinkedTo') {
+      return [{text:'Falling in ', color:this.logicTextColors.basic},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:' overworld hole leads to ', color:this.logicTextColors.basic},
+        {text:staticEntrance.name, color:this.logicTextColors.entrance}];
     } else if(action === 'enterLinkedTo') {
       return [{text:'Entering ', color:this.logicTextColors.basic},
         {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},

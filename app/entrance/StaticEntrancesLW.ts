@@ -69,6 +69,15 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   };
+  lumberjackTreeTree = { //lumberjackTreeTop
+    isHole: true,
+    x: 451, y: 111,
+    name: 'Lumberjack Tree Drop',
+    region: 'northwest',
+    image:'~/img/entrance/lumberjackTreeTree.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {holeDrop: true}
+  }
   lumberjackTreeCave = { //lumberjackTreeExit
     x: 498, y: 52,
     isHoleExit: true,
@@ -87,15 +96,6 @@ export class StaticEntrancesLW {
     image: '~/img/entrance/lumberjackHouse.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
-  }
-  lumberjackTreeTree = { //lumberjackTreeTop
-    isHole: true,
-    x: 451, y: 111,
-    name: 'Lumberjack Tree Drop',
-    region: 'northwest',
-    image:'~/img/entrance/lumberjackTreeTree.png',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {holeDrop: true}
   }
   lostWoodsHideoutDrop = { //lostWoodsHideoutTop
     x: 284, y: 196,
@@ -167,6 +167,15 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {holeDrop: true}
   }
+  sewerDrop = { //TODO: may have special handling
+    x: -120, y: -120,
+    isHoleExit: true,
+    name: 'Sewer Drop',
+    region: 'castle',
+    image:'~/img/entrance/sewerDrop.png',
+    direction: CEntrance.DIRECTION.EXIT,
+    limits:{holeTarget: true}
+  }
   graveyardCave = {
     x: 855, y: 415,
     isSingleCave: true,
@@ -204,45 +213,35 @@ export class StaticEntrancesLW {
     limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
   };
   /** DEATH MTN **/
-  oldManCaveEast = { //oldManCaveExitEast
-    x: 609, y: 286,
-    name: 'Old Man Cave (East)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {oldManEntrance: true, bombShop: true}
-  };
-  oldManHouseBottom = { //oldManHouseExitBottom
-    x: 674, y: 354,
-    name: 'Old Man House (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{bombShop: true}
-  };
-  oldManHouseTop = { //oldManHouseExitTop
-    x: 802, y: 245,
-    name: 'Old Man House (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {oldManEntrance: true, bombShop: true}
-  };
   deathMtnReturnCaveEast = { //deathMtnReturnCaveExitEast
     x: 582, y: 209,
     name: 'Death Mountain Return Cave (East)',
     region: 'deathmtn',
+    image: '~/img/entrance/deathMtnReturnCaveEast.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{oldManEntrance: true, bombShop: true}
   };
-  spectacleRockCavePeak = { //spectacleRockCaveExitPeak
-    x: 733, y: 156,
-    name: 'Spectacle Rock Cave Peak',
+  oldManCaveEast = { //oldManCaveExitEast
+    x: 609, y: 286,
+    name: 'Old Man Cave (East)',
     region: 'deathmtn',
+    image: '~/img/entrance/oldManCaveEast.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true, oldManEntrance: true}
-  }
+    limits: {oldManEntrance: true, bombShop: true}
+  };
   spectacleRockCave = { //spectacleRockCaveExit
     x: 686, y: 209,
     name: 'Spectacle Rock Cave',
     region: 'deathmtn',
+    image: '~/img/entrance/spectacleRockCave.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true, oldManEntrance: true}
+  }
+  spectacleRockCavePeak = { //spectacleRockCaveExitPeak
+    x: 733, y: 156,
+    name: 'Spectacle Rock Cave Peak',
+    region: 'deathmtn',
+    image: '~/img/entrance/spectacleRockCavePeak.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true, oldManEntrance: true}
   }
@@ -250,48 +249,31 @@ export class StaticEntrancesLW {
     x: 733, y: 220,
     name: 'Spectacle Rock Cave (Bottom)',
     region: 'deathmtn',
+    image: '~/img/entrance/spectacleRockCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true, oldManEntrance: true}
   };
-  paradoxCaveBottom = { //paradoxCaveExitBottom
-    x: 1295, y: 326,
-    name: 'Paradox Cave (Bottom)',
+  oldManHouseBottom = { //oldManHouseExitBottom
+    x: 674, y: 354,
+    name: 'Old Man House (Bottom)',
     region: 'deathmtn',
+    image: '~/img/entrance/oldManHouseBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
+    limits:{bombShop: true}
   };
-  paradoxCaveMiddle = { //paradoxCaveExitMiddle
-    x: 1283, y: 221,
-    name: 'Paradox Cave (Middle)',
+  oldManHouseTop = { //oldManHouseExitTop
+    x: 802, y: 245,
+    name: 'Old Man House (Top)',
     region: 'deathmtn',
+    image: '~/img/entrance/oldManHouseTop.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  paradoxCaveTop = { //paradoxCaveExitTop
-    x: 1288, y: 98,
-    name: 'Paradox Cave (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  fairyAscensionCaveBottom = { //fairyAscensionCaveExitBottom
-    x: 1230, y: 208,
-    name: 'Fairy Ascension Cave (Bottom)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
-  };
-  fairyAscensionCaveTop = { //fairyAscensionCaveExitTop
-    x: 1230, y: 173,
-    name: 'Fairy Ascension Cave (Top)',
-    region: 'deathmtn',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits: {bombShop: true}
+    limits: {oldManEntrance: true, bombShop: true}
   };
   spiralCave = { //spiralCaveExit
     x: 1195, y: 140,
     name: 'Spiral Cave',
     region: 'deathmtn',
+    image: '~/img/entrance/spiralCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop:true}
   };
@@ -299,25 +281,68 @@ export class StaticEntrancesLW {
     x: 1201, y: 197,
     name: 'Spiral Cave (Bottom)',
     region: 'deathmtn',
+    image: '~/img/entrance/spiralCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop:true}
+  }
+  fairyAscensionCaveTop = { //fairyAscensionCaveExitTop
+    x: 1230, y: 173,
+    name: 'Fairy Ascension Cave (Top)',
+    region: 'deathmtn',
+    image: '~/img/entrance/fairyAscensionCaveTop.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  fairyAscensionCaveBottom = { //fairyAscensionCaveExitBottom
+    x: 1230, y: 208,
+    name: 'Fairy Ascension Cave (Bottom)',
+    region: 'deathmtn',
+    image: '~/img/entrance/fairyAscensionCaveBottom.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  mimicCave = {
+    x:1266, y:140,
+    isSingleCave: true,
+    name: 'Mimic Cave',
+    region: 'deathmtn',
+    image: '~/img/entrance/mimicCave.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, bombShop: true}
   }
   hookshotFairy = {
     x:1266, y:221,
     isSingleCave: true,
     name: 'Hookshot Fairy',
     region: 'deathmtn',
+    image: '~/img/entrance/hookshotFairy.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
-  mimicCave = {
-    x:1266, y:140,
-    isSingleCave: true,
-    name: 'Mimic Cave',
+  paradoxCaveTop = { //paradoxCaveExitTop
+    x: 1288, y: 98,
+    name: 'Paradox Cave (Top)',
     region: 'deathmtn',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, bombShop: true}
-  }
+    image: '~/img/entrance/paradoxCaveTop.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  paradoxCaveMiddle = { //paradoxCaveExitMiddle
+    x: 1283, y: 221,
+    name: 'Paradox Cave (Middle)',
+    region: 'deathmtn',
+    image: '~/img/entrance/hookshotFairy.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
+  paradoxCaveBottom = { //paradoxCaveExitBottom
+    x: 1295, y: 326,
+    name: 'Paradox Cave (Bottom)',
+    region: 'deathmtn',
+    image: '~/img/entrance/paradoxCaveBottom.png',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits: {bombShop: true}
+  };
   /** KAKARIKO **/
   kakarikoWellDrop = { //kakarikoWellTop
     x: 35, y: 638,
@@ -428,7 +453,7 @@ export class StaticEntrancesLW {
   batCaveCave = { //batCaveExit
     x: 464, y: 837,
     isHoleExit: true,
-    name: 'Bat Cave Cave',
+    name: 'Bat Cave Exit',
     region: 'kakariko',
     image: '~/img/entrance/batCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
@@ -666,15 +691,6 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
-  hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
-    x: 826, y: 643,
-    isHoleExit: true,
-    region: 'castle',
-    image: '~/img/entrance/hyruleCastleSecretEntranceStairs.png',
-    name: 'Hyrule Castle Secret Entrance Stairs',
-    direction: CEntrance.DIRECTION.ENTRANCE,
-    limits:{holeEntrance:true, bombShop:true}
-  };
   hyruleCastleSecretEntranceDrop = { //hyruleCastleSecretEntranceExit
     x: 893, y: 623,
     isHole:true,
@@ -684,29 +700,49 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeDrop: true}
   };
-  sewerDrop = { //TODO: may have special handling
-    x: -120, y: -120,
+  hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
+    x: 826, y: 643,
     isHoleExit: true,
-    name: 'Sewer Drop',
     region: 'castle',
-    image:'~/img/entrance/sewerDrop.png',
-    direction: CEntrance.DIRECTION.EXIT,
-    limits:{holeTarget: true}
-  }
+    image: '~/img/entrance/hyruleCastleSecretEntranceStairs.png',
+    name: 'Hyrule Castle Secret Entrance Stairs',
+    direction: CEntrance.DIRECTION.ENTRANCE,
+    limits:{holeEntrance:true, bombShop:true}
+  };
   /** NORTH EAST **/
   waterfallOfWishing = {
     x: 1351, y: 206,
     isSingleCave: true,
     name: 'Waterfall of Wishing',
     region: 'northeast',
+    image:'~/img/entrance/waterfallOfWishing.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits:{bombShop: true, singleCave: true}
   }
+  potionShop = {
+    x:1201, y:502,
+    isSingleCave: true,
+    name: 'Potion Shop',
+    region: 'northeast',
+    image:'~/img/entrance/potionShop.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits: {singleCave: true, blacksmith: true}
+  }
+  sahasrahlasHut = {
+    x: 1215, y: 683,
+    isSingleCave: true,
+    name: 'Sahasrahla\'s Hut',
+    region: 'northeast',
+    image: '~/img/entrance/sahasrahlasHut.png',
+    direction: CEntrance.DIRECTION.BOTH,
+    limits:{singleCave: true, blacksmith: true}
+  };
   lakeHyliaFairy = {
     x: 1237, y: 973,
     isSingleCave: true,
     name: 'Lake Hylia Fairy',
     region: 'northeast',
+    image:'~/img/entrance/lakeHyliaFairy.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{singleCave: true, blacksmith: true}
   }
@@ -716,22 +752,7 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Long Fairy Cave',
     region: 'northeast',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits: {singleCave: true, blacksmith: true}
-  }
-  sahasrahlasHut = {
-    x: 1215, y: 683,
-    isSingleCave: true,
-    name: 'Sahasrahla\'s Hut',
-    region: 'northeast',
-    direction: CEntrance.DIRECTION.BOTH,
-    limits:{singleCave: true, blacksmith: true}
-  };
-  potionShop = {
-    x:1201, y:502,
-    isSingleCave: true,
-    name: 'Potion Shop',
-    region: 'northeast',
+    image:'~/img/entrance/longFairyCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
