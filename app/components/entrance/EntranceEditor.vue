@@ -1,9 +1,9 @@
 <template>
   <Page backgroundColor="black">
     <Navbar/>
-    <GridLayout columns="*" rows="56,*,70">
+    <GridLayout columns="*" rows="86,*,70">
       <StackLayout orientation="vertical" class="list-top-header">
-        <GridLayout rows="50" columns="50,*" margin="0 10">
+        <GridLayout rows="80" columns="50,*" margin="0 10">
           <Image col="0" :src="actionImage" width="48" verticalAlignment="center"/>
           <Label col="1" textWrap="true" margin="5" verticalAlignment="center">
             <FormattedString>
@@ -61,7 +61,7 @@
                        || (drillArr.length === 1 && staticEntrance.isHole)
                        ? 'visible':'collapsed'">
             <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id" @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
-              <Image col="0" v-if="loc.image" :src="loc.image" height="64" horizontalAlignment="center" verticalAlignment="center"/>
+              <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg" col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
               <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
                      marginLeft="10" :fontSize="loc.name.length>32 ? '16': loc.name.length>28? '18':'20'"/>
             </GridLayout>

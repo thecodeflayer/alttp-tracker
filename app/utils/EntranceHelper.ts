@@ -87,10 +87,10 @@ export class EntranceHelper {
         : this.lwStaticEntrances[key].isHoleExit ? 'holeExits'
           : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
             : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image, useless:!!this.lwStaticEntrances[key].useless};
+      retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
       //add hole exits for hole selection option
       if(this.lwStaticEntrances[key].isHoleExit){
-        retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, image:this.lwStaticEntrances[key].image, useless:!!this.lwStaticEntrances[key].useless};
+        retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
       }
     }
     return retval;
@@ -111,10 +111,10 @@ export class EntranceHelper {
         : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
           :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
             : this.dwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image, useless:!!this.dwStaticEntrances[key].useless};
+      retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, intImg:this.dwStaticEntrances[key].intImg, extImg:this.dwStaticEntrances[key].extImg, useless:!!this.dwStaticEntrances[key].useless};
       //add hole exits for hole selection option
       if(this.dwStaticEntrances[key].isHoleExit){
-        retval.holeExits[key]={id:key, name:this.dwStaticEntrances[key].name, image:this.dwStaticEntrances[key].image, useless:!!this.dwStaticEntrances[key].useless};
+        retval.holeExits[key]={id:key, name:this.dwStaticEntrances[key].name, intImg:this.dwStaticEntrances[key].intImg, extImg:this.dwStaticEntrances[key].extImg, useless:!!this.dwStaticEntrances[key].useless};
       }
     }
     return retval;
