@@ -7,37 +7,41 @@
       </StackLayout>
       <ScrollView class="scrollbox" row="1">
         <StackLayout orientation="vertical" class="lbl">
-          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLink')">
+          <GridLayout rows="*" columns="60,*,36" @tap="navToEntranceEditor('enterLink')">
             <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-hole.png': '~/img/enter-link-alt.png'" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLink,'enterLink')" :text="t.text" :color="t.color"/>
               </FormattedString>
             </Label>
+            <Image :visibility="currentEntrance.enterLink ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLink)"/>
           </GridLayout>
-          <GridLayout rows="*" columns="60,*" @tap="navToEntranceEditor('enterLinkedTo')">
-            <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-linked-hole.png':'~/img/enter-linked-to-alt.png'" width="48" margin="4 5"/>
-            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
-              <FormattedString>
-                <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLinkedTo, 'enterLinkedTo')" :text="t.text" :color="t.color"/>
-              </FormattedString>
-            </Label>
-          </GridLayout>
-          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('exitLink')">
+          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*,36" @tap="navToEntranceEditor('exitLink')">
             <Image row="0" col="0" src="~/img/exit-link-alt.png" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.exitLink, 'exitLink')" :text="t.text" :color="t.color"/>
               </FormattedString>
             </Label>
+            <Image :visibility="currentEntrance.exitLink ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLink)"/>
           </GridLayout>
-          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*" @tap="navToEntranceEditor('exitLinkedTo')">
+          <GridLayout rows="*" columns="60,*,36" @tap="navToEntranceEditor('enterLinkedTo')">
+            <Image row="0" col="0" :src="staticEntrance.isHole ? '~/img/enter-linked-hole.png':'~/img/enter-linked-to-alt.png'" width="48" margin="4 5"/>
+            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
+              <FormattedString>
+                <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLinkedTo, 'enterLinkedTo')" :text="t.text" :color="t.color"/>
+              </FormattedString>
+            </Label>
+            <Image :visibility="currentEntrance.enterLinkedTo ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLinkedTo)"/>
+          </GridLayout>
+          <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*,36" @tap="navToEntranceEditor('exitLinkedTo')">
             <Image row="0" col="0" src="~/img/exit-linked-to-alt.png" width="48" margin="4 5"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.exitLinkedTo, 'exitLinkedTo')" :text="t.text" :color="t.color"/>
               </FormattedString>
             </Label>
+            <Image :visibility="currentEntrance.exitLinkedTo ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLinkedTo)"/>
           </GridLayout>
         </StackLayout>
       </ScrollView>
@@ -62,8 +66,12 @@
     currentEntrance = {};
     links = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
+    isJump = false;
 
     mounted() {
+      this.doInit();
+    }
+    doInit() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
       this.links.enterLink = this.entranceHelper.getStaticEntrance(this.currentEntrance.enterLink);
@@ -72,16 +80,31 @@
       this.links.exitLinkedTo = this.entranceHelper.getStaticEntrance(this.currentEntrance.exitLinkedTo);
     }
     navToEntranceEditor(action) {
-      this.$navigateTo(EntranceEditor, {props:{entranceKey:this.entranceKey, action:action}});
-      //this.closeModal();
+      if(this.isJump){
+        this.isJump = false;
+      } else {
+        this.$navigateTo(EntranceEditor, {props:{entranceKey:this.entranceKey, action:action}});
+      }
     }
     closeModal() {
-      //this['$modal'].close('cancel');
       if(this.entranceHelper.isKeyDarkWorld(this.currentEntrance.id)) {
+        this.$modelManager.map.darkworld.centerEntranceKey = this.currentEntrance.id;
+        this.$modelManager.map.darkworld.centerShopKey = undefined;
+        this.$modelManager.map.darkworld.centerKey = undefined;
+        this.$modelManager.map.darkworld.showMode = 'entrances';
         this.$navigateTo(DarkMap);
       } else {
+        this.$modelManager.map.lightworld.centerEntranceKey = this.currentEntrance.id;
+        this.$modelManager.map.lightworld.centerShopKey = undefined;
+        this.$modelManager.map.lightworld.centerKey = undefined;
+        this.$modelManager.map.lightworld.showMode = 'entrances';
         this.$navigateTo(LightMap);
       }
+    }
+    doJump(id) {
+      this.isJump = true;
+      this.entranceKey = id;
+      this.doInit();
     }
   }
 </script>
