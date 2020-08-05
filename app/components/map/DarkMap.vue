@@ -61,6 +61,14 @@
                :left="Math.floor(mapHandler.staticShops[key].x - (10 * (1 / pinchHandler.localeScale)))"
                :top="Math.floor(mapHandler.staticShops[key].y - (10 * (1 / pinchHandler.localeScale)))"
                @tap="onClickShop(key)" @longpress="onLongPress(key, 'shop')"/>
+        <Label v-if="mapHandler.centerEntranceKey"
+               :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching ? 'visible': 'collapsed'"
+               class="center-key"
+               :width="Math.floor(40 * (1 / pinchHandler.localeScale))"
+               :height="Math.floor(40 * (1 / pinchHandler.localeScale))"
+               :left="Math.floor(entranceHelper.getStaticEntrance(mapHandler.centerEntranceKey).x - (20 * (1 / pinchHandler.localeScale)))"
+               :top="Math.floor(entranceHelper.getStaticEntrance(mapHandler.centerEntranceKey).y - (20 * (1 / pinchHandler.localeScale)))"
+               @tap="onClickEntrance(mapHandler.centerEntranceKey)" @longpress="onLongPressEntrance(mapHandler.centerEntranceKey)"/>
         <GridLayout v-for="key in mapHandler.entranceKeys" v-bind:key="key+'ent'"
                     columns="*,1,*" rows="*,1,*" borderWidth="2" borderColor="black" backgroundColor="black"
                     :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching ? 'visible': 'collapsed'"
@@ -68,30 +76,22 @@
                     :height="Math.floor(30 * (1 / pinchHandler.localeScale))"
                     :left="Math.floor(mapHandler.staticEntrances[key].x - (15 * (1 / pinchHandler.localeScale)))"
                     :top="Math.floor(mapHandler.staticEntrances[key].y - (15 * (1 / pinchHandler.localeScale)))"
-                    @tap="onClickEntrance(key)">
-          <StackLayout :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
+                    @tap="onClickEntrance(key)" @longpress="onLongPressEntrance(key)">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].exitLink? 'locale-green' : 'locale-red'"  row="0" col="2" borderWidth="0">
+          <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
+                       :class="mapHandler.entrances[key].exitLink? 'locale-green' : 'locale-red'"  row="0" col="2" borderWidth="0">
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
+          <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
+                       :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
         </GridLayout>
-        <!--
-        <Label v-for="key in mapHandler.entranceKeys" v-bind:key="key"
-               :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               :class="mapHandler.entrances[key].link ? 'locale-green' : 'locale-red'"
-               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticEntrances[key].x - (10 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticEntrances[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickEntrance(key)"/>
-      -->
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
@@ -113,6 +113,7 @@
   import LocaleModal from '@/components/map/LocaleModal.vue';
   import ShowModeToggle from '@/components/map/ShowModeToggle.vue';
   import EntranceLanding from '@/components/entrance/EntranceLanding.vue';
+  import {EntranceHelper} from '@/utils/EntranceHelper';
 
   @Component({
     components: {ShowModeToggle}
@@ -158,6 +159,7 @@
       staticEntrances: this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode()),
       entranceKeys: Object.keys(this.$sol.getStaticEntrancesDW(this.$modelManager.getEntranceShuffleMode())),
       entrances: this.$modelManager.entrances,
+      centerEntranceKey: undefined
     };
     mapWidth = 1500;
     mapHeight = 1500;
@@ -178,6 +180,7 @@
     };
     gameMode = this.$modelManager.getGameMode();
     entrancesEnabled = this.$modelManager.isEntrancesEnabled();
+    entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
 
     mounted() {
       this.$modelManager.validateLocales();
@@ -198,6 +201,8 @@
           this.centerOnKey();
         } else if(this.$modelManager.map.darkworld.centerShopKey && this.mapHandler.showMode === 'shops') {
           this.centerOnShopKey();
+        } else if(this.$modelManager.map.darkworld.centerEntranceKey && this.mapHandler.showMode === 'entrances'){
+          this.centerOnEntranceKey();
         }
         this.debugInfo = this.getDebugInfo();
       }, 300);
@@ -383,6 +388,21 @@
       this.$modelManager.saveMap();
     }
 
+    centerOnEntranceKey(){
+      const newScale = this.pinchHandler.currentScale = this.pinchHandler.localeScale = this.$modelManager.map.darkworld.scale = 1;
+      this.pinchHandler.top = this.getPinchTop(newScale);
+      this.pinchHandler.left = this.getPinchLeft(newScale);
+      const locale = this.entranceHelper.getStaticEntrance(this.$modelManager.map.darkworld.centerEntranceKey);
+      this.mapHandler.centerEntranceKey = this.$modelManager.map.darkworld.centerEntranceKey;
+      this.$modelManager.map.darkworld.centerEntranceKey = undefined;
+      const halfWidth = Math.floor(this.screenWidth / 2);
+      const halfHeight = Math.floor((this.screenHeight - this.topNavHeight - this.statusBarHeight) / 2);
+      let newX = Math.floor(-Math.abs(locale.x) + halfWidth);
+      let newY = Math.floor(-Math.abs(locale.y) + halfHeight);
+      this.keepInBounds(newX, newY);
+      this.$modelManager.saveMap();
+    }
+
     keepInBounds(newX, newY) {
       const minX = -Math.abs((this.screenWidth + Math.abs(this.pinchHandler.left)) - this.mapWidth);
       if (newX > this.pinchHandler.left) {
@@ -473,8 +493,39 @@
       await this.$showModal(LocaleModal, {props:{localeKey:key, world:'darkworld', type:type}});
     }
     onClickEntrance(key) {
-      //this.$showModal(EntranceModal, {props:{entranceKey:key}});
       this.$navigateTo(EntranceLanding, {props:{entranceKey:key}});
+    }
+    onLongPressEntrance(key) {
+      const toKey = this.$modelManager.entrances[key].enterLink;
+      if(toKey){
+        const world = this.entranceHelper.isKeyDarkWorld(toKey) ? 'darkworld' : 'lightworld';
+        this.$modelManager.map[world].centerEntranceKey = toKey;
+        this.$modelManager.map[world].centerShopKey = undefined;
+        this.$modelManager.map[world].centerKey = undefined;
+        this.$modelManager.map[world].showMode = 'entrances';
+        if(world === 'lightworld'){
+          this.$navigateTo(LightMap);
+        } else {
+          this.centerOnEntranceKey();
+        }
+      } else {
+        this.momentumHandler.ticks = 0;
+        this.momentumHandler.timer = setTimeout(this.doShimmy, 10);
+      }
+    }
+    doShimmy(){
+      if(this.momentumHandler.ticks < 15) {
+        if(this.mapWrapper.nativeView.left < this.$modelManager.map.darkworld.x) {
+          this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x + 3;
+        } else {
+          this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x - 3;
+        }
+        this.momentumHandler.ticks = this.momentumHandler.ticks +1;
+        this.momentumHandler.timer = setTimeout(this.doShimmy, 10);
+      } else {
+        this.momentumHandler.ticks = 0;
+        this.mapWrapper.nativeView.left = this.$modelManager.map.darkworld.x;
+      }
     }
   }
 </script>
