@@ -167,15 +167,15 @@ export class StaticEntrancesLW {
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {holeDrop: true}
   }
-  sewerDrop = { //TODO: may have special handling
-    x: -120, y: -120,
-    isHoleExit: true,
-    name: 'Sewer Drop',
-    region: 'castle',
-    image:'~/img/entrance/sewerDrop.png',
-    direction: CEntrance.DIRECTION.EXIT,
-    limits:{holeTarget: true}
-  }
+  // sewerDrop = { //TODO: may have special handling
+  //   x: -120, y: -120,
+  //   isHoleExit: true,
+  //   name: 'Sewer Drop',
+  //   region: 'castle',
+  //   image:'~/img/entrance/sewerDrop.png',
+  //   direction: CEntrance.DIRECTION.EXIT,
+  //   limits:{holeTarget: true}
+  // }
   graveyardCave = {
     x: 855, y: 415,
     isSingleCave: true,

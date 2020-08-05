@@ -28,80 +28,37 @@ export class EntranceHelper {
     this.allKeys = this.lwEntranceKeys.concat(this.dwEntranceKeys);
   }
 
-  resetLink(link, action) {
-    this.modelManager.entrances[link][action] = undefined;
-    // if(!this.getStaticEntrance(link).isHole){
-    //   this.modelManager.entrances[link][action] = undefined;
-    // }
-  }
-
   getReverseAction(action) {
     return action === 'enterLink' ? 'enterLinkedTo'
       : action === 'exitLink' ? 'exitLinkedTo'
         : action === 'enterLinkedTo' ? 'enterLink' : 'exitLink';
   }
 
-  createLink(fromLink: string, toLink: string, action: string) {
+  createLinkR(fromLink:string, toLink: string, action: string) {
+    console.log('from', fromLink, 'to', toLink, 'action', action);
+    if (this.modelManager.entrances[fromLink][action] === toLink){
+      console.log('already set, exiting');
+      return; //already set
+    }
     const reverseAction = this.getReverseAction(action);
-    let oldFromLink = undefined;
-    let oldToLink = undefined;
-    //check if a fromLink already linked to something else. If so, clear it.
-    if(this.modelManager.entrances[fromLink][action]) {
-      oldFromLink = this.modelManager.entrances[fromLink][action];
-      this.resetLink(oldFromLink, reverseAction);
+    //clean up fromLink existing links
+    if (toLink !== undefined && this.modelManager.entrances[fromLink][action] && this.modelManager.entrances[fromLink][action] !== toLink) {
+      const oldFromLink = this.modelManager.entrances[fromLink][action];
+      //remove existing oldFromLink
+      this.createLinkR(oldFromLink, undefined, reverseAction);
     }
     const retval = this.modelManager.entrances[fromLink][action] = toLink;
-    //check if toLink already linked to something else. If so, clear it.
-    if(this.modelManager.entrances[toLink][reverseAction]){
-      oldToLink = this.modelManager.entrances[toLink][reverseAction];
-      this.resetLink(oldToLink, action);
-    }
-    //save linked object
-    this.modelManager.entrances[toLink][reverseAction] = fromLink;
-    const staticEntrance = this.getStaticEntrance(fromLink);
-    const staticLink = this.getStaticEntrance(toLink);
-    // do single cave
-    if(staticEntrance.isSingleCave && (action === 'exitLink' || action === 'enterLinkedTo')) {
+    console.log('setting', fromLink, action, toLink);
+    if (this.getStaticEntrance(fromLink).isSingleCave && (action === 'exitLink' || action === 'enterLinkedTo')) {
       const caveAction = action === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
-      const caveReverseAction = caveAction === 'exitLink' ? 'exitLinkedTo' : 'enterLink';
       //check if already linked
-      if(this.modelManager.entrances[fromLink][caveAction]) {
-        this.resetLink(this.modelManager.entrances[fromLink][caveAction], this.getReverseAction(caveAction));
+      if (this.modelManager.entrances[fromLink][caveAction] && this.modelManager.entrances[fromLink][caveAction] !== toLink) {
+        this.createLinkR(fromLink, undefined, caveAction);
       }
-      this.modelManager.entrances[fromLink][caveAction] = toLink;
-      //check if already linked
-      if(this.modelManager.entrances[toLink][caveReverseAction]){
-        this.resetLink(this.modelManager.entrances[toLink][caveReverseAction], this.getReverseAction(caveReverseAction));
-      }
-      this.modelManager.entrances[toLink][caveReverseAction] = fromLink;
+      this.createLinkR(fromLink, toLink, caveAction);
     }
-    if(staticLink.isSingleCave && (reverseAction ===  'exitLink' || reverseAction === 'enterLinkedTo')){
-      const caveAction = reverseAction === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
-      const caveReverseAction = caveAction === 'exitLink' ? 'exitLinkedTo' : 'enterLink';
-      //check if already linked
-      if(this.modelManager.entrances[toLink][caveAction]) {
-        this.resetLink(this.modelManager.entrances[toLink][caveAction], this.getReverseAction(caveAction));
-      }
-      this.modelManager.entrances[toLink][caveAction] = fromLink;
-      //check if already linked
-      if(this.modelManager.entrances[fromLink][caveReverseAction]){
-        this.resetLink(this.modelManager.entrances[fromLink][caveReverseAction], this.getReverseAction(caveReverseAction));
-      }
-      this.modelManager.entrances[fromLink][caveReverseAction] = toLink;
-    }
-    if(oldToLink) {
-      const oldStaticLink = this.getStaticEntrance(oldToLink);
-      if (oldStaticLink.isSingleCave && (reverseAction === 'exitLink' || reverseAction === 'enterLinkedTo')) {
-        const caveAction = reverseAction === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
-        const caveReverseAction = caveAction === 'exitLink' ? 'exitLinkedTo' : 'enterLink';
-        //check if already linked
-        if (this.modelManager.entrances[oldToLink][caveAction]) {
-          this.resetLink(this.modelManager.entrances[oldToLink][caveAction], this.getReverseAction(caveAction));
-        }
-        if (this.modelManager.entrances[oldToLink][caveReverseAction]) {
-          this.resetLink(this.modelManager.entrances[oldToLink][caveReverseAction], this.getReverseAction(caveReverseAction));
-        }
-      }
+    if(toLink){
+      this.createLinkR(toLink, fromLink, reverseAction);
     }
     return retval;
   }

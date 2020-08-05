@@ -69,29 +69,21 @@
                     :left="Math.floor(mapHandler.staticEntrances[key].x - (15 * (1 / pinchHandler.localeScale)))"
                     :top="Math.floor(mapHandler.staticEntrances[key].y - (15 * (1 / pinchHandler.localeScale)))"
                     @tap="onClickEntrance(key)">
-          <StackLayout :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].exitLink? 'locale-green' : 'locale-red'"  row="0" col="2" borderWidth="0">
+          <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
+                       :class="mapHandler.entrances[key].exitLink? 'locale-green' : 'locale-red'"  row="0" col="2" borderWidth="0">
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
+          <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
+                       :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
         </GridLayout>
-        <!--
-        <Label v-for="key in mapHandler.entranceKeys" v-bind:key="key"
-               :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching ? 'visible': 'collapsed'"
-               :class="mapHandler.entrances[key].link ? 'locale-green' : 'locale-red'"
-               :width="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :height="Math.floor(20 * (1 / pinchHandler.localeScale))"
-               :left="Math.floor(mapHandler.staticEntrances[key].x - (10 * (1 / pinchHandler.localeScale)))"
-               :top="Math.floor(mapHandler.staticEntrances[key].y - (10 * (1 / pinchHandler.localeScale)))"
-               @tap="onClickEntrance(key)"/>
-        -->
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />

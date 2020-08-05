@@ -130,7 +130,7 @@
       }
     }
     doLink(id){
-      this.currentEntrance[this.action] = this.entranceHelper.createLink(this.currentEntrance.id, id, this.action);
+      this.currentEntrance[this.action] = this.entranceHelper.createLinkR(this.currentEntrance.id, id, this.action);
       this.$modelManager.saveEntrances();
       this.closeEditor();
     }

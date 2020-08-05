@@ -17,9 +17,15 @@ export class DefaultEntrances {
 }
 export class DefaultEntranceData {
   constructor() {
-    const keys = Object.keys(new StaticEntrancesLW()).concat(Object.keys(new StaticEntrancesDW()));
+    const slw = new StaticEntrancesLW();
+    const sdw = new StaticEntrancesDW();
+    let keys = Object.keys(slw);
     for(const key of keys){
-      this[key] = new EntranceObj(key);
+      this[key] = new EntranceObj(key, slw[key].isHole);
+    }
+    keys = Object.keys(sdw);
+    for(const key of keys){
+      this[key] = new EntranceObj(key, sdw[key].isHole);
     }
   }
   getCopy(): DefaultEntranceData {
@@ -42,8 +48,10 @@ export class EntranceObj {
   exitLink: string;
   enterLinkedTo: string;
   exitLinkedTo: string;
-  constructor(id: string) {
+  isHoleFM: boolean;
+  constructor(id: string, isHoleFM: boolean) {
     this.id = id;
+    this.isHoleFM = isHoleFM;
     this.enterLink = undefined;
     this.exitLink = undefined;
     this.enterLinkedTo = undefined;
