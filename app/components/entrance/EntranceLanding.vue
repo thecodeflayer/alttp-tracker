@@ -94,13 +94,13 @@
         this.$modelManager.map.darkworld.centerShopKey = undefined;
         this.$modelManager.map.darkworld.centerKey = undefined;
         this.$modelManager.map.darkworld.showMode = 'entrances';
-        this.$navigateTo(DarkMap);
+        this.$navigateTo(DarkMap, {clearHistory:true});
       } else {
         this.$modelManager.map.lightworld.centerEntranceKey = this.currentEntrance.id;
         this.$modelManager.map.lightworld.centerShopKey = undefined;
         this.$modelManager.map.lightworld.centerKey = undefined;
         this.$modelManager.map.lightworld.showMode = 'entrances';
-        this.$navigateTo(LightMap);
+        this.$navigateTo(LightMap, {clearHistory:true});
       }
     }
     doJump(id) {

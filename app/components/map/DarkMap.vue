@@ -482,7 +482,7 @@
       this.$modelManager.map.lightworld.mode = 0;
       this.$modelManager.map.lightworld.showMode = this.$modelManager.map.darkworld.showMode;
       this.$modelManager.saveMap();
-      this.$navigateTo(LightMap);
+      this.$navigateTo(LightMap, {clearHistory:true});
     }
     @Watch('mapHandler.showMode')
     updateShowMode() {
@@ -504,7 +504,7 @@
         this.$modelManager.map[world].centerKey = undefined;
         this.$modelManager.map[world].showMode = 'entrances';
         if(world === 'lightworld'){
-          this.$navigateTo(LightMap);
+          this.$navigateTo(LightMap, {clearHistory:true});
         } else {
           this.centerOnEntranceKey();
         }

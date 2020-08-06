@@ -25,6 +25,7 @@
   import SaveList from '@/components/game/SaveList.vue';
   import GameEditModal from '@/components/game/GameEditModal.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditValid extends Vue {
@@ -38,17 +39,17 @@
     async openModal() {
       const retval = await this.$showModal(GameEditModal, {props:{modalAction:'deleteGame'}});
       if(retval !== 'cancel') {
-        this.$navigateTo(SaveList);
+        this.$navigateTo(SaveList, {clearHistory:true});
       }
     }
 
     loadGame() {
       this.$modelManager.loadGame(this.game.id);
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
 
     cancel() {
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
 
   }

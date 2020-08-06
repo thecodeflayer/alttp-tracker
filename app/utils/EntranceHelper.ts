@@ -71,7 +71,7 @@ export class EntranceHelper {
   getEntrance(id) {
     return this.modelManager.entrances[id];
   }
-  getLightWorldRegionObject() {
+  getLightWorldRegionObject(action) {
     const retval = {
       dungeon:{},
       deathmtn:{},
@@ -80,22 +80,30 @@ export class EntranceHelper {
       south:{},
       northeast:{},
       holes:{},
-      holeExits:{}
+      holeExits:{},
+      alreadySet:{}
     };
     for(const key of this.lwEntranceKeys) {
-      const region = this.lwStaticEntrances[key].isHole ? 'holes'
-        : this.lwStaticEntrances[key].isHoleExit ? 'holeExits'
-          : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
-            : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
+      const region = this.modelManager.entrances[key][action] ? 'alreadySet'
+        :this.lwStaticEntrances[key].isHole ? 'holes'
+          : this.lwStaticEntrances[key].isHoleExit ? 'holeExits'
+            : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
+              : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
+      retval[region][key] = {
+        id:key,
+        name:this.lwStaticEntrances[key].name,
+        intImg:this.lwStaticEntrances[key].intImg,
+        extImg:this.lwStaticEntrances[key].extImg,
+        useless:!!this.lwStaticEntrances[key].useless
+      };
       //add hole exits for hole selection option
-      if(this.lwStaticEntrances[key].isHoleExit){
-        retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
-      }
+      // if(this.lwStaticEntrances[key].isHoleExit){
+      //   retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
+      // }
     }
     return retval;
   }
-  getDarkWorldRegionObject() {
+  getDarkWorldRegionObject(action) {
     const retval = {
       dungeon:{},
       deathmtn:{},
@@ -104,18 +112,22 @@ export class EntranceHelper {
       south:{},
       other:{},
       holes:{},
-      holeExits:{}
+      holeExits:{},
+      alreadySet:{}
     };
     for(const key of this.dwEntranceKeys) {
-      const region = this.dwStaticEntrances[key].isHole? 'holes'
-        : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
-          :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
-            : this.dwStaticEntrances[key].region;
-      retval[region][key] = {id:key, name:this.dwStaticEntrances[key].name, intImg:this.dwStaticEntrances[key].intImg, extImg:this.dwStaticEntrances[key].extImg, useless:!!this.dwStaticEntrances[key].useless};
-      //add hole exits for hole selection option
-      if(this.dwStaticEntrances[key].isHoleExit){
-        retval.holeExits[key]={id:key, name:this.dwStaticEntrances[key].name, intImg:this.dwStaticEntrances[key].intImg, extImg:this.dwStaticEntrances[key].extImg, useless:!!this.dwStaticEntrances[key].useless};
-      }
+      const region = this.modelManager.entrances[key][action] ? 'alreadySet'
+        : this.dwStaticEntrances[key].isHole? 'holes'
+          : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
+            :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
+              : this.dwStaticEntrances[key].region;
+      retval[region][key] = {
+        id:key,
+        name:this.dwStaticEntrances[key].name,
+        intImg:this.dwStaticEntrances[key].intImg,
+        extImg:this.dwStaticEntrances[key].extImg,
+        useless:!!this.dwStaticEntrances[key].useless
+      };
     }
     return retval;
   }

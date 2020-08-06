@@ -28,6 +28,7 @@
   import SaveList from '@/components/game/SaveList.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
   import GameEditModal from '@/components/game/GameEditModal.vue';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditLoaded extends Vue {
@@ -41,7 +42,7 @@
       this.$showModal(GameEditModal, {props:{modalAction: opt}});
     }
     cancel() {
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
   }
 </script>

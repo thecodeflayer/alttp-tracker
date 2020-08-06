@@ -76,6 +76,7 @@
   import SaveList from '@/components/game/SaveList.vue';
   import GameEditValid from '@/components/game/GameEditValid.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditEmpty extends Vue {
@@ -100,11 +101,11 @@
       }
       this.$modelManager.createGame(this.game.id, this.game.itemShuffle, this.game.gameMode, this.game.goal, this.game.triforceGoal, this.game.openGT, this.game.openGanon, this.game.entranceShuffle);
       this.game = this.$modelManager.editGame;
-      this.$navigateTo(GameEditValid);
+      this.$navigateTo(GameEditValid, {clearHistory:true});
     }
 
     cancel() {
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
 
     clickItemShuffle(id) {

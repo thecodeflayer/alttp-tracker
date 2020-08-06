@@ -23,6 +23,7 @@
   import {Component, Vue} from 'vue-property-decorator';
   import SaveList from '@/components/game/SaveList.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditInvalid extends Vue {
@@ -35,7 +36,7 @@
 
     deleteGame() {
       this.$modelManager.deleteGame(this.game.id);
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
   }
 </script>

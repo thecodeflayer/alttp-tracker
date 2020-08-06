@@ -36,6 +36,9 @@
             <GridLayout columns="*">
               <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
             </GridLayout>
+            <GridLayout columns="*">
+              <Button @tap="drillDown('alreadySet')" class="btn danger padded">Previously Linked</Button>
+            </GridLayout>
           </StackLayout>
           <!-- DARK WORLD -->
           <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
@@ -54,6 +57,9 @@
             <GridLayout columns="*">
               <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
             </GridLayout>
+            <GridLayout columns="*">
+              <Button @tap="drillDown('alreadySet')" class="btn danger padded">Previously Linked</Button>
+            </GridLayout>
           </StackLayout>
           <!-- DYNAMIC LOCATIONS -->
           <StackLayout orientation="vertical"
@@ -63,7 +69,7 @@
             <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id" @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
               <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg" col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
               <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
-                     marginLeft="10" :fontSize="loc.name.length>32 ? '16': loc.name.length>28? '18':'20'"/>
+                     marginLeft="10" :fontSize="loc.name.length>28? '18':'20'"/>
             </GridLayout>
           </StackLayout>
         </StackLayout>
@@ -99,8 +105,8 @@
     mounted() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
-      this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject();
-      this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject();
+      this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
+      this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
       this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = (this.staticEntrance.isHole && this.action === 'enterLink') ? '~/img/enter-hole.png'
           : this.action === 'enterLink' ? '~/img/enter-link-alt.png'
