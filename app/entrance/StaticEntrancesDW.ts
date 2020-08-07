@@ -117,6 +117,7 @@ export class StaticEntrancesDW {
     name: 'Spike Cave',
     region: 'deathmtn',
     extImg: '~/img/entrance/spikeCave.png',
+    intImg: '~/img/interior/spikeCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   };
@@ -133,6 +134,7 @@ export class StaticEntrancesDW {
     name: 'Hookshot Cave',
     region: 'deathmtn',
     extImg: '~/img/entrance/hookshotCave.png',
+    intImg: '~/img/interior/hookshotCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   }
@@ -150,6 +152,7 @@ export class StaticEntrancesDW {
     name: 'Superbunny Cave (Top)',
     region: 'deathmtn',
     extImg: '~/img/entrance/superBunnyCaveTop.png',
+    intImg: '~/img/interior/superBunnyCaveTop.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   }
@@ -158,6 +161,7 @@ export class StaticEntrancesDW {
     name: 'Superbunny Cave (Bottom)',
     region: 'deathmtn',
     extImg: '~/img/entrance/superBunnyCaveBottom.png',
+    intImg: '~/img/interior/superBunnyCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{twoDoorCave: true, bombShop: true}
   };
@@ -176,6 +180,7 @@ export class StaticEntrancesDW {
     name: 'Bumper Cave (Top)',
     region: 'northwest',
     extImg: '~/img/entrance/bumperCave.png',
+    intImg: '~/img/interior/bumperCaveTop.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{mustExit: true, twoDoorCave: true}
   }
@@ -184,6 +189,7 @@ export class StaticEntrancesDW {
     name: 'Bumper Cave (Bottom)',
     region: 'northwest',
     extImg: '~/img/entrance/bumperCave.png',
+    intImg: '~/img/interior/bumperCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true, twoDoorCave: true}
   };
@@ -276,6 +282,7 @@ export class StaticEntrancesDW {
     name: 'Mire Shed',
     region: 'mire',
     extImg: '~/img/entrance/mireShed.png',
+    intImg: '~/img/interior/mireShed.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -322,6 +329,7 @@ export class StaticEntrancesDW {
     name: 'Hype Cave',
     region: 'south',
     extImg: '~/img/entrance/hypeCave.png',
+    intImg: '~/img/interior/hypeCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }

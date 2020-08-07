@@ -190,6 +190,7 @@ export class StaticEntrancesLW {
     name: 'Kings Grave',
     region: 'northwest',
     extImg: '~/img/entrance/kingsGrave.png',
+    intImg: '~/img/interior/kingsGrave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   };
@@ -273,6 +274,7 @@ export class StaticEntrancesLW {
     name: 'Spiral Cave',
     region: 'deathmtn',
     extImg: '~/img/entrance/spiralCave.png',
+    intImg: '~/img/interior/spiralCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop:true}
   };
@@ -281,6 +283,7 @@ export class StaticEntrancesLW {
     name: 'Spiral Cave (Bottom)',
     region: 'deathmtn',
     extImg: '~/img/entrance/spiralCaveBottom.png',
+    intImg: '~/img/interior/spiralCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{bombShop:true}
   }
@@ -306,6 +309,7 @@ export class StaticEntrancesLW {
     name: 'Mimic Cave',
     region: 'deathmtn',
     extImg: '~/img/entrance/mimicCave.png',
+    intImg: '~/img/interior/mimicCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -323,6 +327,7 @@ export class StaticEntrancesLW {
     name: 'Paradox Cave (Top)',
     region: 'deathmtn',
     extImg: '~/img/entrance/paradoxCaveTop.png',
+    intImg: '~/img/interior/paradoxCaveTop.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
@@ -331,6 +336,7 @@ export class StaticEntrancesLW {
     name: 'Paradox Cave (Middle)',
     region: 'deathmtn',
     extImg: '~/img/entrance/hookshotFairy.png',
+    intImg: '~/img/interior/paradoxCaveMiddle.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
@@ -339,6 +345,7 @@ export class StaticEntrancesLW {
     name: 'Paradox Cave (Bottom)',
     region: 'deathmtn',
     extImg: '~/img/entrance/paradoxCaveBottom.png',
+    intImg: '~/img/interior/paradoxCaveBottom.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits: {bombShop: true}
   };
@@ -446,6 +453,7 @@ export class StaticEntrancesLW {
     name: 'Bat Cave Drop',
     region: 'kakariko',
     extImg: '~/img/entrance/batCave.png',
+    intImg: '~/img/interior/batCaveDrop.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeDrop: true}
   };
@@ -455,6 +463,7 @@ export class StaticEntrancesLW {
     name: 'Bat Cave Exit',
     region: 'kakariko',
     extImg: '~/img/entrance/batCave.png',
+    intImg: '~/img/interior/batCaveCave.png',
     direction: CEntrance.DIRECTION.ENTRANCE,
     limits:{holeEntrance: true, blacksmith: true}
   };
@@ -526,6 +535,7 @@ export class StaticEntrancesLW {
     name: 'Checkerboard Cave',
     region: 'desert',
     extImg:'~/img/entrance/checkerboardCave.png',
+    intImg:'~/img/interior/checkerboardCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -535,6 +545,7 @@ export class StaticEntrancesLW {
     name: 'Aginah\'s Cave',
     region: 'desert',
     extImg:'~/img/entrance/aginahsCave.png',
+    intImg:'~/img/interior/aginahsCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits:{singleCave: true, blacksmith: true}
   }
@@ -563,6 +574,7 @@ export class StaticEntrancesLW {
     name: 'Cave 45',
     region: 'south',
     extImg: '~/img/entrance/cave45.png',
+    intImg: '~/img/interior/cave45.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -626,6 +638,7 @@ export class StaticEntrancesLW {
     name: 'Mini Moldorm Cave',
     region: 'south',
     extImg:'~/img/entrance/miniMoldormCave.png',
+    intImg:'~/img/interior/miniMoldormCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, bombShop: true}
   }
@@ -644,6 +657,7 @@ export class StaticEntrancesLW {
     name: 'Ice Rod Cave',
     region: 'south',
     extImg: '~/img/entrance/lakeHyliaLedge.png',
+    intImg: '~/img/interior/iceRodCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
@@ -662,6 +676,7 @@ export class StaticEntrancesLW {
     name: 'Good Bee Cave',
     region: 'south',
     extImg: '~/img/entrance/lakeHyliaLedge.png',
+    intImg: '~/img/interior/iceRodCave.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   }
