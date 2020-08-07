@@ -181,6 +181,7 @@
     gameMode = this.$modelManager.getGameMode();
     entrancesEnabled = this.$modelManager.isEntrancesEnabled();
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
+    junkLinks = EntranceHelper.junkLinks;
 
     mounted() {
       this.$modelManager.validateLocales();

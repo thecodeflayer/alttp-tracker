@@ -14,7 +14,14 @@ export class EntranceHelper {
     basic:'#FFFFFF',
     entrance:'#01a0a0',
     unknown:'#FF0000',
-    known:'#2aa52a'
+    known:'#2aa52a',
+    junk: '#ffb700'
+  };
+
+  static junkLinks = ['junkCave', 'darkCave'];
+  static junkLinkObjects = {
+    junkCave:{id:'junkCave', name: 'Junk Cave', intImg:'~/img/interior/junkCave.png', extImg:'~/img/interior/junkCave.png'},
+    darkCave:{id:'darkCave', name: 'Unknown Dark Cave', intImg:'~/img/interior/darkCave.png', extImg:'~/img/interior/darkCave.png'}
   };
 
   constructor(sol, modelManager) {
@@ -43,9 +50,17 @@ export class EntranceHelper {
     const reverseAction = this.getReverseAction(action);
     //clean up fromLink existing links
     if (toLink !== undefined && this.modelManager.entrances[fromLink][action] && this.modelManager.entrances[fromLink][action] !== toLink) {
-      const oldFromLink = this.modelManager.entrances[fromLink][action];
-      //remove existing oldFromLink
-      this.createLinkR(oldFromLink, undefined, reverseAction);
+      const oldToLink = this.modelManager.entrances[fromLink][action];
+      //manually clean up junk cave since that's easier than looping through everything.
+      if(EntranceHelper.junkLinks.indexOf(oldToLink)>-1) {
+        this.modelManager.entrances[fromLink].enterLink = this.modelManager.entrances[fromLink].enterLink === 'junkCave'
+          ? undefined :  this.modelManager.entrances[fromLink].enterLink;
+        this.modelManager.entrances[fromLink].exitLinkedTo = this.modelManager.entrances[fromLink].exitLinkedTo === 'junkCave'
+          ? undefined :  this.modelManager.entrances[fromLink].enterLink;
+      } else {
+        //remove existing oldToLink
+        this.createLinkR(oldToLink, undefined, reverseAction);
+      }
     }
     const retval = this.modelManager.entrances[fromLink][action] = toLink;
     console.log('setting', fromLink, action, toLink);
@@ -57,7 +72,12 @@ export class EntranceHelper {
       }
       this.createLinkR(fromLink, toLink, caveAction);
     }
-    if(toLink){
+    //handle junk links as caves
+    if(toLink==='junkCave' && (action ==='enterLink' || action === 'exitLinkedTo')){
+      const caveAction = action === 'enterLink' ? 'exitLinkedTo' : 'enterLink';
+      this.createLinkR(fromLink, toLink, caveAction);
+    }
+    if(toLink && EntranceHelper.junkLinks.indexOf(toLink)<0){
       this.createLinkR(toLink, fromLink, reverseAction);
     }
     return retval;
@@ -65,8 +85,8 @@ export class EntranceHelper {
 
   getStaticEntrance(id) {
     return id
-      ? (this.allKeys.indexOf(id)>=this.dwIndex ? this.dwStaticEntrances[id]
-        : this.lwStaticEntrances[id] ) : {name:'???'};
+      ? EntranceHelper.junkLinks.indexOf(id)>-1 ? EntranceHelper.junkLinkObjects[id]
+        : (this.allKeys.indexOf(id)>=this.dwIndex ? this.dwStaticEntrances[id] : this.lwStaticEntrances[id] ) : {name:'???'};
   }
   getEntrance(id) {
     return this.modelManager.entrances[id];
@@ -94,12 +114,8 @@ export class EntranceHelper {
         name:this.lwStaticEntrances[key].name,
         intImg:this.lwStaticEntrances[key].intImg,
         extImg:this.lwStaticEntrances[key].extImg,
-        useless:!!this.lwStaticEntrances[key].useless
+        junk:!!this.lwStaticEntrances[key].junk
       };
-      //add hole exits for hole selection option
-      // if(this.lwStaticEntrances[key].isHoleExit){
-      //   retval.holeExits[key]={id:key, name:this.lwStaticEntrances[key].name, intImg:this.lwStaticEntrances[key].intImg, extImg:this.lwStaticEntrances[key].extImg, useless:!!this.lwStaticEntrances[key].useless};
-      // }
     }
     return retval;
   }
@@ -126,7 +142,7 @@ export class EntranceHelper {
         name:this.dwStaticEntrances[key].name,
         intImg:this.dwStaticEntrances[key].intImg,
         extImg:this.dwStaticEntrances[key].extImg,
-        useless:!!this.dwStaticEntrances[key].useless
+        junk:!!this.dwStaticEntrances[key].junk
       };
     }
     return retval;
@@ -142,31 +158,31 @@ export class EntranceHelper {
       return [{text:'Falling in ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance},
         {text:' overworld hole leads to ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown}];
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known: EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk : this.logicTextColors.unknown}];
     } else if(action === 'enterLink') {
       return [{text:'Entering ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance},
         {text:' overworld door leads to ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown}];
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk :this.logicTextColors.unknown}];
     } else if(action === 'exitLink') {
       return [{text:'Exiting ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance},
         {text:' leads to ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk :this.logicTextColors.unknown},
         {text:' overworld door', color:this.logicTextColors.basic}];
     } else if(staticEntrance.isHole && action === 'enterLinkedTo') {
       return [{text:'Falling in ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk :this.logicTextColors.unknown},
         {text:' overworld hole leads to ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance}];
     } else if(action === 'enterLinkedTo') {
       return [{text:'Entering ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk :this.logicTextColors.unknown},
         {text:' overworld door leads to ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance}];
     } else {
       return [{text:'Exiting ', color:this.logicTextColors.basic},
-        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:this.logicTextColors.unknown},
+        {text:staticLink.name, color:staticLink.region?this.logicTextColors.known:EntranceHelper.junkLinks.indexOf(staticLink.id)>-1 ? this.logicTextColors.junk :this.logicTextColors.unknown},
         {text:' leads to ', color:this.logicTextColors.basic},
         {text:staticEntrance.name, color:this.logicTextColors.entrance},
         {text:' overworld door', color:this.logicTextColors.basic}];

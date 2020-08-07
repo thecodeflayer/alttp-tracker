@@ -77,10 +77,16 @@
                     :left="Math.floor(mapHandler.staticEntrances[key].x - (15 * (1 / pinchHandler.localeScale)))"
                     :top="Math.floor(mapHandler.staticEntrances[key].y - (15 * (1 / pinchHandler.localeScale)))"
                     @tap="onClickEntrance(key)" @longpress="onLongPressEntrance(key)">
-          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLinkedTo? 'locale-green' : 'locale-red'"  row="0" col="0" borderWidth="0">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'"
+                       :class="mapHandler.entrances[key].enterLinkedTo ? 'locale-green' : 'locale-red'"
+                       row="0" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
-          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'" :class="mapHandler.entrances[key].enterLink? 'locale-green' : 'locale-red'"  row="2" col="0" borderWidth="0">
+          <StackLayout :colSpan="mapHandler.entrances[key].isHoleFM ? '3':'1'"
+                       :class="mapHandler.entrances[key].enterLink === 'junkCave' ? 'locale-junk'
+                       : mapHandler.entrances[key].enterLink === 'darkCave' ? 'locale-dark'
+                       : mapHandler.entrances[key].enterLink? 'locale-green'
+                       : 'locale-red'"  row="2" col="0" borderWidth="0">
             <Image src="~/img/tiny-up.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
           <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
@@ -88,7 +94,9 @@
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
           <StackLayout :visibility="mapHandler.entrances[key].isHoleFM ? 'collapsed':'visible'"
-                       :class="mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
+                       :class="mapHandler.entrances[key].exitLinkedTo === 'junkCave' ? 'locale-junk'
+                       : mapHandler.entrances[key].exitLinkedTo === 'darkCave' ? 'locale-dark'
+                       : mapHandler.entrances[key].exitLinkedTo? 'locale-green' : 'locale-red'"  row="2" col="2" borderWidth="0">
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
         </GridLayout>
@@ -181,6 +189,7 @@
     gameMode = this.$modelManager.getGameMode();
     entrancesEnabled = this.$modelManager.isEntrancesEnabled();
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
+    junkLinks = EntranceHelper.junkLinks;
 
     mounted() {
       this.$modelManager.validateLocales();

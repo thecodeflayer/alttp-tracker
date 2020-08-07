@@ -39,6 +39,11 @@ Button:active{
     border-color: $highlight-btn-border;
     color: $standard-font-color;
   }
+  &.ugly {
+    background-color: $ugly-border;
+    border-color: $ugly-btn-border;
+    color: $standard-font-color;
+  }
   &.padded {
     width:90%;
     magin-top:5;
@@ -108,6 +113,16 @@ Button:active{
   border-width: 3;
   border-color: black;
   background-color: red;
+}
+.locale-junk {
+  border-width: 3;
+  border-color:black;
+  background-color: #dede01;
+}
+.locale-dark {
+  border-width: 3;
+  border-color: black;
+  background-color: #929292;
 }
 .center-key {
   border-width: 3;

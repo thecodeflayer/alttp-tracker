@@ -72,7 +72,7 @@ export class StaticEntrancesLW {
     name: 'Lost Woods Gamble',
     region: 'northwest',
     extImg: '~/img/entrance/lostWoodsGamble.png',
-    useless:true,
+    junk:true,
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
   };
@@ -99,7 +99,7 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Lumberjack House',
     region: 'northwest',
-    useless: true,
+    junk: true,
     extImg: '~/img/entrance/lumberjackHouse.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}
@@ -143,7 +143,7 @@ export class StaticEntrancesLW {
     isSingleCave: true,
     name: 'Fortune Teller (Light)',
     region: 'northwest',
-    useless: true,
+    junk: true,
     extImg: '~/img/entrance/fortuneTellerLight.png',
     direction: CEntrance.DIRECTION.BOTH,
     limits: {singleCave: true, blacksmith: true}

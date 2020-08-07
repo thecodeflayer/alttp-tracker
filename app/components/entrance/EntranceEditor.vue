@@ -18,6 +18,9 @@
           <StackLayout orientation="vertical" :visibility="drillArr.length === 0 ? 'visible':'collapsed'">
             <Button @tap="drillDown('lightworld')" class="btn standard padded">Light World</Button>
             <Button @tap="drillDown('darkworld')" class="btn standard padded">Dark World</Button>
+            <Button :visibility="(action==='enterLink' || action==='exitLinkedTo') && !staticEntrance.isHole ? 'visible':'collapsed'"
+                        rows="50" columns="50,*" class="btn ugly padded"
+                        v-for="junk in junkEntrances" @tap="doLink(junk.id)" :text="junk.name"/>
           </StackLayout>
           <!-- LIGHT WORLD -->
           <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
@@ -66,8 +69,10 @@
                        :visibility="drillArr.length === 2
                        || (drillArr.length === 1 && staticEntrance.isHole)
                        ? 'visible':'collapsed'">
-            <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id" @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
-              <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg" col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
+            <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id"
+                        @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
+              <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg"
+                     col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
               <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
                      marginLeft="10" :fontSize="loc.name.length>28? '18':'20'"/>
             </GridLayout>
@@ -101,6 +106,7 @@
     dwDrillObj = {};
     currentRegion = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
+    junkEntrances = EntranceHelper.junkLinkObjects;
 
     mounted() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);

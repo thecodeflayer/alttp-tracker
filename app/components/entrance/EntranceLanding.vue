@@ -14,7 +14,7 @@
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLink,'enterLink')" :text="t.text" :color="t.color"/>
               </FormattedString>
             </Label>
-            <Image :visibility="currentEntrance.enterLink ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLink)"/>
+            <Image :visibility="currentEntrance.enterLink && junkLinks.indexOf(currentEntrance.enterLink)<0 ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLink)"/>
           </GridLayout>
           <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="60,*,36" @tap="navToEntranceEditor('exitLink')">
             <Image row="0" col="0" src="~/img/exit-link-alt.png" width="48" margin="4 5"/>
@@ -23,10 +23,10 @@
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.exitLink, 'exitLink')" :text="t.text" :color="t.color"/>
               </FormattedString>
             </Label>
-            <Image :visibility="currentEntrance.exitLink ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLink)"/>
+            <Image :visibility="currentEntrance.exitLink && junkLinks.indexOf(currentEntrance.exitLink)<0  ? 'visible':'collapsed'" row="0" col="2" src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLink)"/>
           </GridLayout>
           <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="36,*,60" @tap="navToEntranceEditor('exitLinkedTo')">
-            <Image :visibility="currentEntrance.exitLinkedTo ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
+            <Image :visibility="currentEntrance.exitLinkedTo && junkLinks.indexOf(currentEntrance.exitLinkedTo)<0  ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
                    src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLinkedTo)"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
@@ -36,7 +36,7 @@
             <Image row="0" col="2" src="~/img/exit-linked-to-alt.png" width="48" margin="4 5"/>
           </GridLayout>
           <GridLayout rows="*" columns="36,*,60" @tap="navToEntranceEditor('enterLinkedTo')">
-            <Image :visibility="currentEntrance.enterLinkedTo ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
+            <Image :visibility="currentEntrance.enterLinkedTo && junkLinks.indexOf(currentEntrance.enterLinkedTo)<0  ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
                    src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLinkedTo)"/>
             <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
               <FormattedString>
@@ -69,6 +69,7 @@
     links = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
     isJump = false;
+    junkLinks = EntranceHelper.junkLinks;
 
     mounted() {
       this.doInit();
