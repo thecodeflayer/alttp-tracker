@@ -1,5 +1,6 @@
 import {ModelManager} from '@/utils/ModelManager';
 import {StaticObjectLoader} from '@/utils/StaticObjectLoader';
+import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
 export class EntranceHelper {
   sol: StaticObjectLoader;
@@ -64,7 +65,9 @@ export class EntranceHelper {
     }
     const retval = this.modelManager.entrances[fromLink][action] = toLink;
     console.log('setting', fromLink, action, toLink);
-    if (this.getStaticEntrance(fromLink).isSingleCave && (action === 'exitLink' || action === 'enterLinkedTo')) {
+    //link back
+    if ((this.modelManager.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.insanity.id || this.getStaticEntrance(fromLink).isSingleCave)
+      && (action === 'exitLink' || action === 'enterLinkedTo')) {
       const caveAction = action === 'exitLink' ? 'enterLinkedTo' : 'exitLink';
       //check if already linked
       if (this.modelManager.entrances[fromLink][caveAction] && this.modelManager.entrances[fromLink][caveAction] !== toLink) {
@@ -72,10 +75,11 @@ export class EntranceHelper {
       }
       this.createLinkR(fromLink, toLink, caveAction);
     }
-    //handle junk links as caves
-    if(toLink==='junkCave' && (action ==='enterLink' || action === 'exitLinkedTo')){
-      const caveAction = action === 'enterLink' ? 'exitLinkedTo' : 'enterLink';
-      this.createLinkR(fromLink, toLink, caveAction);
+    //handle junk links
+    if((toLink==='junkCave' || (toLink === 'darkCave' && this.modelManager.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.insanity.id))
+      && (action ==='enterLink' || action === 'exitLinkedTo')){
+      const junkAction = action === 'enterLink' ? 'exitLinkedTo' : 'enterLink';
+      this.createLinkR(fromLink, toLink, junkAction);
     }
     if(toLink && EntranceHelper.junkLinks.indexOf(toLink)<0){
       this.createLinkR(toLink, fromLink, reverseAction);
