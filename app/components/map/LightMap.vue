@@ -491,7 +491,7 @@
       this.$modelManager.map.darkworld.mode = 0;
       this.$modelManager.map.darkworld.showMode = this.$modelManager.map.lightworld.showMode;
       this.$modelManager.saveMap();
-      this.$navigateTo(DarkMap, {clearHistory:true});
+      this.$navigateTo(DarkMap);
     }
     @Watch('mapHandler.showMode')
     updateShowMode() {
