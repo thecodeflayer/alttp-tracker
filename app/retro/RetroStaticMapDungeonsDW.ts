@@ -11,6 +11,12 @@ export class RetroStaticMapDungeonsDW extends StandardStaticMapDungeonsDW{
       return items.hammer && items.moonpearl && (items.bow > 0 && items.quiver)
         && (items.lantern || items.firerod) && RetroRegionHelper.northEastDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/moonpearl1', StandardRegionHelper.reqNorthEastDW]],
     reqBoss:[
       ['items/hammer1', 'items/moonpearl1', 'items/bow1', 'items/quiver1', StandardRegionHelper.reqNorthEastDW, 'items/lantern1'],
@@ -25,6 +31,12 @@ export class RetroStaticMapDungeonsDW extends StandardStaticMapDungeonsDW{
       return (items.sword > 0 || items.net) && (items.bow > 0 && items.quiver)
         && (items.lantern || items.firerod) && items.hookshot
         && RetroRegionHelper.gt(items, dungeons, settings);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[StandardRegionHelper.reqGt]],
     reqBoss:[

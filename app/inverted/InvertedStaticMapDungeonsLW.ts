@@ -9,6 +9,12 @@ export class InvertedStaticMapDungeonsLW {
       return  items.moonpearl && InvertedRegionHelper.northEastLW(items, dungeons)
             && items.bow > 0 && (items.lantern || items.firerod);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/moonpearl1', InvertedRegionHelper.reqNorthEastLW]],
     reqBoss:[
       ['items/moonpearl1', InvertedRegionHelper.reqNorthEastLW, 'items/bow1', 'items/lantern1'],
@@ -24,6 +30,12 @@ export class InvertedStaticMapDungeonsLW {
       return InvertedRegionHelper.southLW(items, dungeons) && items.moonpearl && items.book
                 && items.glove > 0 && (items.lantern || items.firerod);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/book1', 'items/moonpearl1', InvertedRegionHelper.reqSouthLW]],
     reqBoss:[
       ['items/book1', 'items/moonpearl1', InvertedRegionHelper.reqSouthLW, 'items/glove1', 'items/lantern1'],
@@ -37,6 +49,12 @@ export class InvertedStaticMapDungeonsLW {
     validateBoss(items, dungeons){
       return InvertedRegionHelper.toh(items, dungeons) && items.moonpearl;
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/moonpearl1', InvertedRegionHelper.reqToh]],
     reqBoss:[['items/moonpearl1', InvertedRegionHelper.reqToh]]
   };
@@ -48,6 +66,12 @@ export class InvertedStaticMapDungeonsLW {
       return (items.sword > 0 || items.net) && items.bow > 0
         && (items.lantern || items.firerod) && items.hookshot
         && InvertedRegionHelper.gt(items, dungeons, settings);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[InvertedRegionHelper.reqGt]],
     reqBoss:[

@@ -28,7 +28,7 @@
           <GridLayout :visibility="staticEntrance.isHole?'collapsed':'visible'" rows="*" columns="36,*,60" @tap="navToEntranceEditor('exitLinkedTo')">
             <Image :visibility="currentEntrance.exitLinkedTo && junkLinks.indexOf(currentEntrance.exitLinkedTo)<0  ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
                    src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.exitLinkedTo)"/>
-            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
+            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4" textAlignment="right">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.exitLinkedTo, 'exitLinkedTo')" :text="t.text" :color="t.color"/>
               </FormattedString>
@@ -38,7 +38,7 @@
           <GridLayout rows="*" columns="36,*,60" @tap="navToEntranceEditor('enterLinkedTo')">
             <Image :visibility="currentEntrance.enterLinkedTo && junkLinks.indexOf(currentEntrance.enterLinkedTo)<0  ? 'visible':'collapsed'" row="0" col="0" style="transform: scaleX(-1);"
                    src="~/img/items/boomerang0.png" height="48" @tap="doJump(currentEntrance.enterLinkedTo)"/>
-            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4">
+            <Label row="0" col="1" textWrap="true" verticalAlignment="center" fontSize="16" marginRight="4" textAlignment="right">
               <FormattedString>
                 <Span v-for="t in entranceHelper.getLogicText(staticEntrance, links.enterLinkedTo, 'enterLinkedTo')" :text="t.text" :color="t.color"/>
               </FormattedString>

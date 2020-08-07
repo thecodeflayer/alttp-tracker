@@ -16,6 +16,7 @@ import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
 import {RetroDefaultMap, RetroMapData} from '@/default-objects/RetroDefaultMap';
 import {DefaultEntranceData, DefaultEntrances} from '@/default-objects/DefaultEntrances';
+import {EntranceHelper} from '@/utils/EntranceHelper';
 
 export class ModelManager {
   items: DefaultItemsData;
@@ -333,24 +334,50 @@ export class ModelManager {
     const lskeys = Object.keys(this.sol.getStaticMapShopsLW(this.settings.gameMode));
     const dskeys = Object.keys(this.sol.getStaticMapShopsDW(this.settings.gameMode));
     for (const key of lkeys) {
-      this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.lightworld.locations[key].klass = this.sol.getStaticMapLW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances) ? 'locale-green' : 'locale-red';
+      }
     }
     for (const key of ldkeys) {
-      this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
-      this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+        this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.lightworld.dungeons[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+        this.map.lightworld.bosses[key].klass = this.sol.getStaticMapDungeonsLW(this.settings.gameMode)[key].validateBossEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+      }
     }
     for (const key of dkeys) {
-      this.map.darkworld.locations[key].klass = this.sol.getStaticMapDW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.darkworld.locations[key].klass = this.sol.getStaticMapDW(this.settings.gameMode)[key].validate(this.items, this.dungeons) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.darkworld.locations[key].klass = this.sol.getStaticMapDW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances) ? 'locale-green' : 'locale-red';
+      }
     }
     for (const key of ddkeys) {
-      this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
-      this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+        this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBoss(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.darkworld.dungeons[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+        this.map.darkworld.bosses[key].klass = this.sol.getStaticMapDungeonsDW(this.settings.gameMode)[key].validateBossEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+      }
     }
     for(const key of lskeys) {
-      this.map.lightworld.shops[key].klass = this.sol.getStaticMapShopsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.lightworld.shops[key].klass = this.sol.getStaticMapShopsLW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.lightworld.shops[key].klass = this.sol.getStaticMapShopsLW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+      }
     }
     for(const key of dskeys) {
-      this.map.darkworld.shops[key].klass = this.sol.getStaticMapShopsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      if(this.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id) {
+        this.map.darkworld.shops[key].klass = this.sol.getStaticMapShopsDW(this.settings.gameMode)[key].validate(this.items, this.dungeons, this.settings) ? 'locale-green' : 'locale-red';
+      } else {
+        this.map.darkworld.shops[key].klass = this.sol.getStaticMapShopsDW(this.settings.gameMode)[key].validateEntrance(this.items, this.dungeons, this.entrances, this.settings) ? 'locale-green' : 'locale-red';
+      }
     }
   }
 
