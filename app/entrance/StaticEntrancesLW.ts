@@ -3,7 +3,7 @@ import {CEntrance} from '@/entrance/CEntrance';
 export class StaticEntrancesLW {
   /** DUNGEONS **/
   desertPalaceWest = { //desertPalaceExitWest
-    x: 169, y: 1193,
+    x: 53, y: 1193,
     name: 'Desert Palace Entrance (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceWest.png',
@@ -30,7 +30,7 @@ export class StaticEntrancesLW {
     limits:{bombShop: true}
   }
   desertPalaceEast = { //desertPalaceExitEast
-    x: 53, y: 1193,
+    x: 169, y: 1193,
     name: 'Desert Palace Entrance (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceEast.png',

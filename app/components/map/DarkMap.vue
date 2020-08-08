@@ -514,7 +514,7 @@
     }
     onLongPressEntrance(key) {
       const toKey = this.$modelManager.entrances[key].enterLink;
-      if(toKey && this.junkLinks.indexOf(toKey)<-1){
+      if(toKey && this.junkLinks.indexOf(toKey)<0){
         const world = this.entranceHelper.isKeyDarkWorld(toKey) ? 'darkworld' : 'lightworld';
         this.$modelManager.map[world].centerEntranceKey = toKey;
         this.$modelManager.map[world].centerShopKey = undefined;
