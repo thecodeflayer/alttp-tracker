@@ -192,4 +192,14 @@ export class EntranceHelper {
         {text:' overworld door', color:this.logicTextColors.basic}];
     }
   }
+  static getPinSource(pin){
+    return pin === 'moonpearl' ? '~/img/items/moonpearl1.png'
+      : pin === 'mirror' ? '~/img/items/mirror1.png'
+        : pin === 'crystal' ? '~/img/dungeons/crystal3.png'
+          : pin === 'ganon' ? '~/img/items/ganon.png'
+            :pin === 'chest' ? '~/img/chest.png'
+              : pin === 'glove' ? '~/img/items/glove2.png'
+                : pin === 'flute' ? '~/img/items/flute1.png'
+                  : pin === 'shovel' ? '~/img/items/shovel1.png' : '~/img/dungeons/blank.png';
+  }
 }

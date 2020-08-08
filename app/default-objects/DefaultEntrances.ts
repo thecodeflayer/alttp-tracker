@@ -49,6 +49,7 @@ export class EntranceObj {
   enterLinkedTo: string;
   exitLinkedTo: string;
   isHoleFM: boolean;
+  pin:string;
   constructor(id: string, isHoleFM: boolean) {
     this.id = id;
     this.isHoleFM = isHoleFM;
@@ -56,6 +57,7 @@ export class EntranceObj {
     this.exitLink = undefined;
     this.enterLinkedTo = undefined;
     this.exitLinkedTo = undefined;
+    this.pin = undefined;
   }
   setFromObject(obj: any): void {
     const keys = Object.keys(this);

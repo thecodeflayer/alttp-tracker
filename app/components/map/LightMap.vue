@@ -100,6 +100,14 @@
             <Image src="~/img/tiny-dn.png" :height="Math.floor(8 * (1 / pinchHandler.localeScale))" marginTop="2"/>
           </StackLayout>
         </GridLayout>
+        <Image v-for="key in mapHandler.entranceKeys" v-bind:key="key+'pin'"
+                    :visibility="mapHandler.showMode === 'entrances' && !pinchHandler.pinching && mapHandler.entrances[key].pin ? 'visible': 'collapsed'"
+                    :src="getPinSource(mapHandler.entrances[key].pin)"
+                    :width="Math.floor(16 * (1 / pinchHandler.localeScale))"
+                    :height="Math.floor(16 * (1 / pinchHandler.localeScale))"
+                    :left="Math.floor(mapHandler.staticEntrances[key].x - (8 * (1 / pinchHandler.localeScale)))"
+                    :top="Math.floor(mapHandler.staticEntrances[key].y - (8 * (1 / pinchHandler.localeScale)))"
+                    @tap="onClickEntrance(key)" @longpress="onLongPressEntrance(key)"/>
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
@@ -513,7 +521,7 @@
         this.$modelManager.map[world].centerKey = undefined;
         this.$modelManager.map[world].showMode = 'entrances';
         if(world === 'darkworld'){
-          this.$navigateTo(DarkMap, {clearHistory:true});
+          this.$navigateTo(DarkMap);
         } else {
           this.centerOnEntranceKey();
         }
@@ -535,6 +543,9 @@
         this.momentumHandler.ticks = 0;
         this.mapWrapper.nativeView.left = this.$modelManager.map.lightworld.x;
       }
+    }
+    getPinSource(pin){
+      return EntranceHelper.getPinSource(pin);
     }
   }
 </script>

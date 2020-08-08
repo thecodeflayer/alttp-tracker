@@ -1,9 +1,19 @@
 <template>
   <Page backgroundColor="black">
     <Navbar/>
-    <GridLayout rows="50,*,78" columns="*">
+    <GridLayout rows="80,*,78" columns="*">
       <StackLayout orientation="vertical" class="list-top-header">
         <Label class="list-title" :text="staticEntrance.name" textAlignment="center" fontSize="24"/>
+        <GridLayout columns="*,*,*,*,*,*,*,*" rows="30">
+          <Image col="0" @tap="onClickPin('moonpearl')" :src="currentEntrance.pin === 'moonpearl' ?  '~/img/items/moonpearl1.png':'~/img/items/moonpearl0.png'" width="16"/>
+          <Image col="1" @tap="onClickPin('mirror')" :src="currentEntrance.pin === 'mirror' ? '~/img/items/mirror1.png':'~/img/items/mirror0.png'" width="16"/>
+          <Image col="2" @tap="onClickPin('crystal')" :src="currentEntrance.pin === 'crystal' ? '~/img/dungeons/crystal3.png': '~/img/crystal-disabled2.png'" width="16"/>
+          <Image col="3" @tap="onClickPin('ganon')" :src="currentEntrance.pin === 'ganon' ? '~/img/items/ganon.png' : '~/img/ganon-disabled.png'" width="16"/>
+          <Image col="4" @tap="onClickPin('chest')" :src="currentEntrance.pin === 'chest' ? '~/img/chest.png' : '~/img/chest-disabled.png'" width="16"/>
+          <Image col="5" @tap="onClickPin('glove')" :src="currentEntrance.pin === 'glove' ?  '~/img/items/glove2.png':'~/img/items/glove0.png'" width="16"/>
+          <Image col="6" @tap="onClickPin('flute')" :src="currentEntrance.pin === 'flute' ?  '~/img/items/flute1.png':'~/img/items/flute0.png'" width="16"/>
+          <Image col="7" @tap="onClickPin('shovel')" :src="currentEntrance.pin === 'shovel' ?  '~/img/items/shovel1.png':'~/img/items/shovel0.png'" width="16"/>
+        </GridLayout>
       </StackLayout>
       <ScrollView class="scrollbox" row="1">
         <StackLayout orientation="vertical" class="lbl">
@@ -108,6 +118,9 @@
       this.isJump = true;
       this.entranceKey = id;
       this.doInit();
+    }
+    onClickPin(pin) {
+      this.currentEntrance.pin = this.$modelManager.entrances[this.entranceKey].pin = this.currentEntrance.pin === pin ? undefined : pin;
     }
   }
 </script>
