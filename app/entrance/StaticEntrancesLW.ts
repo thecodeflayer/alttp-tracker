@@ -682,7 +682,7 @@ export class StaticEntrancesLW {
   }
   /** HYRULE CASTLE **/
   hyruleCastleWest = { //hyruleCastleExitWest
-    x: 825, y: 584,
+    x: 674, y: 584,
     name: 'Hyrule Castle Entrance (West)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleWest.png',
@@ -698,7 +698,7 @@ export class StaticEntrancesLW {
     limits: {bombShop: true}
   }
   hyruleCastleEast = { //hyruleCastleExitEast
-    x: 674, y: 584,
+    x: 825, y: 584,
     name: 'Hyrule Castle Entrance (East)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleEast.png',
