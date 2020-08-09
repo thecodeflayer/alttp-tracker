@@ -4,7 +4,7 @@
     <GridLayout rows="80,*,78" columns="*">
       <StackLayout orientation="vertical" class="list-top-header">
         <Label class="list-title" :text="staticEntrance.name" textAlignment="center" fontSize="24"/>
-        <GridLayout columns="*,*,*,*,*,*,*,*" rows="30">
+        <GridLayout columns="*,*,*,*,*,*,*,*,*,*" rows="30">
           <Image col="0" @tap="onClickPin('moonpearl')" :src="currentEntrance.pin === 'moonpearl' ?  '~/img/items/moonpearl1.png':'~/img/items/moonpearl0.png'" width="16"/>
           <Image col="1" @tap="onClickPin('mirror')" :src="currentEntrance.pin === 'mirror' ? '~/img/items/mirror1.png':'~/img/items/mirror0.png'" width="16"/>
           <Image col="2" @tap="onClickPin('crystal')" :src="currentEntrance.pin === 'crystal' ? '~/img/dungeons/crystal3.png': '~/img/crystal-disabled2.png'" width="16"/>
@@ -13,6 +13,8 @@
           <Image col="5" @tap="onClickPin('glove')" :src="currentEntrance.pin === 'glove' ?  '~/img/items/glove2.png':'~/img/items/glove0.png'" width="16"/>
           <Image col="6" @tap="onClickPin('flute')" :src="currentEntrance.pin === 'flute' ?  '~/img/items/flute1.png':'~/img/items/flute0.png'" width="16"/>
           <Image col="7" @tap="onClickPin('shovel')" :src="currentEntrance.pin === 'shovel' ?  '~/img/items/shovel1.png':'~/img/items/shovel0.png'" width="16"/>
+          <Image col="8" @tap="onClickPin('fairy')" :src="currentEntrance.pin === 'fairy' ?  '~/img/navbar/home.png':'~/img/fairy-disabled.png'" width="16"/>
+          <Image col="9" @tap="onClickPin('shop')" :src="currentEntrance.pin === 'shop' ?  '~/img/shopLW.png':'~/img/shop-disabled.png'" width="16"/>
         </GridLayout>
       </StackLayout>
       <ScrollView class="scrollbox" row="1">

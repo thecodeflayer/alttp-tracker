@@ -111,7 +111,7 @@
       </AbsoluteLayout>
       <GridLayout top="10" left="0" columns="40,*" rows="*,*">
         <Image row="0" col="0" height="32" width="32" src="~/img/dungeons/compass1.png" style="padding-left:10" @tap="toggleMode" />
-        <ShowModeToggle row="1" col="0" v-model="mapHandler.showMode" v-bind:shops-enabled="gameMode === 'retro'" v-bind:entrances-enabled="entrancesEnabled"/>
+        <ShowModeToggle row="1" col="0" v-model="mapHandler.showMode" v-bind:shops-enabled="gameMode === 'retro'" v-bind:entrances-enabled="entrancesEnabled" v-bind:is-dark-world="true"/>
         <Label visibility="collapsed" row="0" col="1" width="300" :text="debugInfo" textWrap="true" color="white" backgroundColor="black"/>
       </GridLayout>
     </AbsoluteLayout>

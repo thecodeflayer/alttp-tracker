@@ -200,6 +200,8 @@ export class EntranceHelper {
             :pin === 'chest' ? '~/img/chest.png'
               : pin === 'glove' ? '~/img/items/glove2.png'
                 : pin === 'flute' ? '~/img/items/flute1.png'
-                  : pin === 'shovel' ? '~/img/items/shovel1.png' : '~/img/dungeons/blank.png';
+                  : pin === 'shovel' ? '~/img/items/shovel1.png'
+                    : pin === 'fairy' ? '~/img/navbar/home.png'
+                      : pin === 'shop' ? '~/img/shopLW.png' : '~/img/dungeons/blank.png';
   }
 }
