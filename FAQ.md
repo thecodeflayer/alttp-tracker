@@ -14,6 +14,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 - [New Game Settings](#new-game-settings)
     - [Game Mode Settings](#game-mode-settings)
     - [Item Shuffle Settings](#item-shuffle-settings)
+    - [Entrance Shuffle Settings](#entrance-shuffle-settings)
     - [Goal Settings](#goal-settings)    
     - [Crystals for Ganon and Ganon's Tower](#crystals-for-ganon-and-ganons-tower)
 - [Troubleshooting](#troubleshooting)
@@ -84,7 +85,7 @@ The primary effect this has on the tracker is the number of available chests and
 Additionally, the total number of items on the Items screen will change depending on the Item Shuffle option chosen.
 
 **NOTE**
-Location logic in the app assumes that you have the required big and small keys to access an area. There is an open question [here](https://github.com/thecodeflayer/alttp-tracker/issues/39) about whether to add big keys to the location logic. Feel free to add your opinion on the matter there.
+Location logic in the app assumes that you have the required big and small keys to access an area. There is an open question [here](https://github.com/thecodeflayer/alttp-tracker/issues/39) about whether to add big keys to the location logic. Feel free to add your opinion on the matter.
 
 To learn more about the randomizer options for item shuffle please read Item Settings > Dungeon Item Shuffle section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
@@ -123,6 +124,46 @@ The overall item count in this mode is 214.
 In this mode small keys will increment from zero. Note that, like the Maps, Compasses and Small Keys option, the small key counter does not affect the item count.
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
 To increment item count when you find a small key in a chest you should click the chest icon to decrement the chest count.
+
+### Entrance Shuffle Settings
+
+Entrance shuffle adds the option of tracking how overworld entrances (and their underworld/interior counterparts) are linked.
+You can link entrances a variety of ways and you have the option to quickly mark entrances as junk, dark caves or even add "pins" to the location
+to help you remember to revisit the location later.
+
+Learn about the randomizer's entrance shuffle options under the Entrance Shuffle section of [alttpr.com/en/options](https://alttpr.com/en/options) 
+
+**None**
+
+Entrances are not shuffled and have no effect on tracker functionality. Entrance tracking is disabled.
+
+**Simple, Restricted, Full, Crossed**
+
+_NOTE:_ This is a BETA feature and additional enhancements will be added in the future.
+
+Entrances are shuffled and the option to track entrances is enabled on the Light World and Dark World maps. 
+Tap the Map icon to toggle to tracking entrances, a Door icon will appear.
+Tapping an entrance will open that entrance's links. Tap on the appropriate link text, then select the link you would like to create.
+
+Example: You enter Blind's Hideout and discover it links to Eastern Palace. You can then follow these steps to track the link:
+
+- Tap Blind's Hideout from the map
+- Tap  "Entering Blind's Hideout overworld door leads to ???"
+- Tap Light World > Dungeons > Eastern Palace
+- The link is now created. Additionally the corresponding links will also be created on the linked location.
+    
+Once links are created you can quickly navigate from the Entrance Links screen using the arrow icons.  
+
+In the future, different selection options will be created for each mode to align with options available in the randomizer for those modes.
+
+_NOTE:_ Location validation logic is currently disabled if Entrance Shuffle is set to any option other than None. All locations will appear as available.
+In the future I may update the validation logic to support Entrance Shuffle but this will take some time. 
+
+**Insanity**
+
+This mode functions the same way as the previous modes with the difference of how exit links are handled. 
+Since Insanity mode in the randomizer allows for exiting a location to take you to a different location than from where you entered, exit links are not automatically created. 
+The exception to this is single entrance caves, they will be linked back to the overworld entrance location since this is what the randomizer supports.  
 
 ### Goal Settings
 
