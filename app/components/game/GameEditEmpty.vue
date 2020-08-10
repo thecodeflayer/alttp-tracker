@@ -6,28 +6,51 @@
         <Label :text="game.name" fontSize="24" />
         <Label text="Game Slot Empty"/>
         <StackLayout orientation="vertical">
-          <Label text="Game Mode:"/>
-          <StackLayout orientation="horizontal" v-for="mode in gameModes" @tap="clickGameMode(mode)" v-bind:key="mode">
-            <Image :src="getGameModeCheckImage(mode)" width="20" height="20" />
-            <Label :text="gameModeLabels[mode]" verticalAlignment="center" marginLeft="5" fontSize="20" />
+
+          <StackLayout orientation="horizontal" @tap="toggleAcc('gameMode')" class="btn empty" horizontalAlignment="left" padding="0" marginBottom="4">
+            <Image src="~/img/items/boomerang2.png" width="20" marginRight="5" :class="{rotate90:accordion.gameMode}"/>
+            <Label :text="'Game Mode: '+gameModeLabels[game.gameMode]"/>
           </StackLayout>
-          <Label text="Item Shuffle:"/>
-          <StackLayout orientation="horizontal" v-for="key in itemShuffleKeys" @tap="clickItemShuffle(key)" v-bind:key="key">
-            <Image :src="getItemShuffleCheckImage(key)" width="20" height="20" />
-            <Label :text="itemShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+          <StackLayout orientation="vertical" :visibility="accordion.gameMode ? 'visible':'collapsed'">
+            <StackLayout orientation="horizontal" v-for="mode in gameModes" @tap="clickGameMode(mode)" v-bind:key="mode">
+              <Image :src="getGameModeCheckImage(mode)" width="20" height="20" />
+              <Label :text="gameModeLabels[mode]" verticalAlignment="center" marginLeft="5" fontSize="20" />
+            </StackLayout>
           </StackLayout>
 
-          <Label text="Entrance Shuffle:"/>
-          <StackLayout orientation="horizontal" v-for="key in entranceShuffleKeys" @tap="clickEntranceShuffle(key)" v-bind:key="key">
-            <Image :src="getEntranceShuffleCheckImage(key)" width="20" height="20" />
-            <Label :text="entranceShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+          <StackLayout orientation="horizontal" @tap="toggleAcc('itemShuffle')" class="btn empty" horizontalAlignment="left" padding="0" marginBottom="4">
+            <Image src="~/img/items/boomerang2.png" width="20" marginRight="5" :class="{rotate90:accordion.itemShuffle}"/>
+            <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+          </StackLayout>
+          <StackLayout orientation="vertical" :visibility="accordion.itemShuffle ? 'visible':'collapsed'">
+            <StackLayout orientation="horizontal" v-for="key in itemShuffleKeys" @tap="clickItemShuffle(key)" v-bind:key="key">
+              <Image :src="getItemShuffleCheckImage(key)" width="20" height="20" />
+              <Label :text="itemShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+            </StackLayout>
           </StackLayout>
 
-          <Label text="Goal:"/>
-          <StackLayout orientation="horizontal" v-for="goal in goalKeys" v-bind:key="goal" @tap="clickGoal(goal)">
-            <Image :src="getGoalCheckImage(goal)" width="20" height="20" />
-            <Label :text="goalOptions[goal].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+          <StackLayout orientation="horizontal" @tap="toggleAcc('entranceShuffle')" class="btn empty" horizontalAlignment="left" padding="0" marginBottom="4">
+            <Image src="~/img/items/boomerang2.png" width="20" marginRight="5" :class="{rotate90:accordion.entranceShuffle}"/>
+            <Label :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label"/>
           </StackLayout>
+          <StackLayout orientation="vertical" :visibility="accordion.entranceShuffle ? 'visible':'collapsed'">
+            <StackLayout orientation="horizontal" v-for="key in entranceShuffleKeys" @tap="clickEntranceShuffle(key)" v-bind:key="key">
+              <Image :src="getEntranceShuffleCheckImage(key)" width="20" height="20" />
+              <Label :text="entranceShuffleOptions[key].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+            </StackLayout>
+          </StackLayout>
+
+          <StackLayout orientation="horizontal" @tap="toggleAcc('goal')" class="btn empty" horizontalAlignment="left" padding="0" marginBottom="4">
+            <Image src="~/img/items/boomerang2.png" width="20" marginRight="5" :class="{rotate90:accordion.goal}"/>
+            <Label :text="'Goal: '+goalOptions[game.goal].label"/>
+          </StackLayout>
+          <StackLayout orientation="vertical" :visibility="accordion.goal ? 'visible':'collapsed'">
+            <StackLayout orientation="horizontal" v-for="goal in goalKeys" v-bind:key="goal" @tap="clickGoal(goal)">
+              <Image :src="getGoalCheckImage(goal)" width="20" height="20" />
+              <Label :text="goalOptions[goal].label" verticalAlignment="center" marginLeft="5" fontSize="20" />
+            </StackLayout>
+          </StackLayout>
+
           <StackLayout :visibility="game.goal === goalOptions.triforce.id ? 'visible':'collapsed'" orientation="vertical">
             <Label :text="'Triforce Pieces Goal: '+game.triforceGoal" />
             <GridLayout row="20" columns="20,*,20" style="margin:0;padding:0">
@@ -76,7 +99,6 @@
   import SaveList from '@/components/game/SaveList.vue';
   import GameEditValid from '@/components/game/GameEditValid.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
-  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditEmpty extends Vue {
@@ -90,6 +112,13 @@
     game = this.$modelManager.editGame;
     gameModes = Object.keys(GameSaveHelper.labels);
     gameModeLabels = GameSaveHelper.labels;
+
+    accordion = {
+      gameMode:false,
+      itemShuffle:false,
+      entranceShuffle:false,
+      goal:false
+    }
 
     created() {
       this.checkEmptyGameState();
@@ -155,9 +184,14 @@
     sliderChangeGanon(val) {
       this.game.openGanon = val.value;
     }
+    toggleAcc(key){
+      this.accordion[key] = !this.accordion[key];
+    }
   }
 </script>
 
 <style scoped lang="scss">
-
+  .rotate90 {
+    transform: rotate(90deg);
+  }
 </style>

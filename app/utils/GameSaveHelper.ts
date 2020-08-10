@@ -29,23 +29,23 @@ export class GameSaveHelper {
     },
     simple: {
       id: 'simple',
-      label: 'Simple'
+      label: 'Simple - BETA'
     },
     restricted: {
       id: 'restricted',
-      label: 'Restricted'
+      label: 'Restricted - BETA'
     },
     full: {
       id: 'full',
-      label: 'Full'
+      label: 'Full - BETA'
     },
     crossed: {
       id: 'crossed',
-      label: 'Crossed'
+      label: 'Crossed - BETA'
     },
     insanity: {
       id: 'insanity',
-      label: 'Insanity'
+      label: 'Insanity - BETA'
     }
   }
   static goalOptions = {
