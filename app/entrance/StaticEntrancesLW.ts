@@ -73,6 +73,7 @@ export class StaticEntrancesLW {
     name: 'Lumberjack Tree Drop',
     region: 'northwest',
     extImg:'~/img/entrance/lumberjackTreeTree.png',
+    intImg:'~/img/interior/lumberjackTreeTree.png',
     limits: {holeDrop: true}
   }
   lumberjackTreeCave = { //lumberjackTreeExit
@@ -81,6 +82,7 @@ export class StaticEntrancesLW {
     name: 'Lumberjack Tree Cave',
     region: 'northwest',
     extImg: '~/img/entrance/lumberjackTreeCave.png',
+    intImg: '~/img/interior/lumberjackTreeCave.png',
     limits:{blacksmith: true, holeEntrance: true}
   };
   lumberjackHouse = {
@@ -90,6 +92,7 @@ export class StaticEntrancesLW {
     region: 'northwest',
     junk: true,
     extImg: '~/img/entrance/lumberjackHouse.png',
+    intImg: '~/img/interior/lumberjackHouse.png',
     limits: {singleCave: true, blacksmith: true}
   }
   lostWoodsHideoutDrop = { //lostWoodsHideoutTop
@@ -150,6 +153,7 @@ export class StaticEntrancesLW {
     name: 'Sanctuary',
     region: 'northwest',
     extImg:'~/img/entrance/sanctuary.png',
+    intImg:'~/img/interior/sanctuary.png',
     limits:{blacksmith: true, holeEntrance:true, }
   };
   sanctuaryGrave = {
@@ -167,6 +171,7 @@ export class StaticEntrancesLW {
     name: 'Graveyard Cave',
     region: 'northwest',
     extImg:'~/img/entrance/graveyardCave.png',
+    intImg:'~/img/interior/graveyardCave.png',
     limits: {singleCave: true, bombShop: true}
   }
   kingsGrave = {
@@ -184,6 +189,7 @@ export class StaticEntrancesLW {
     name: 'North Fairy Cave Drop',
     region: 'northwest',
     extImg:'~/img/entrance/northFairyCave.png',
+    intImg:'~/img/interior/northFairyCaveDrop.png',
     limits:{holeDrop: true}
   }
   northFairyCave = { //northFairyCaveExit
@@ -192,6 +198,7 @@ export class StaticEntrancesLW {
     region: 'northwest',
     name: 'North Fairy Cave',
     extImg:'~/img/entrance/northFairyCave.png',
+    intImg:'~/img/interior/northFairyCave.png',
     limits:{holeEntrance:true, holeTarget: true, blacksmith: true}
   };
   /** DEATH MTN **/
@@ -272,6 +279,7 @@ export class StaticEntrancesLW {
     name: 'Fairy Ascension Cave (Top)',
     region: 'deathmtn',
     extImg: '~/img/entrance/fairyAscensionCaveTop.png',
+    intImg: '~/img/interior/fairyAscensionCaveTop.png',
     limits: {bombShop: true}
   };
   fairyAscensionCaveBottom = { //fairyAscensionCaveExitBottom
@@ -279,6 +287,7 @@ export class StaticEntrancesLW {
     name: 'Fairy Ascension Cave (Bottom)',
     region: 'deathmtn',
     extImg: '~/img/entrance/fairyAscensionCaveBottom.png',
+    intImg: '~/img/interior/fairyAscensionCaveBottom.png',
     limits: {bombShop: true}
   };
   mimicCave = {
@@ -296,6 +305,7 @@ export class StaticEntrancesLW {
     name: 'Hookshot Fairy',
     region: 'deathmtn',
     extImg: '~/img/entrance/hookshotFairy.png',
+    intImg: '~/img/interior/hookshotFairy.png',
     limits: {singleCave: true, bombShop: true}
   }
   paradoxCaveTop = { //paradoxCaveExitTop
@@ -372,6 +382,7 @@ export class StaticEntrancesLW {
     name: 'Snitch Lady (West)',
     region: 'kakariko',
     extImg: '~/img/entrance/snitchLadyWest.png',
+    intImg: '~/img/interior/snitchLadyWest.png',
     limits: {singleCave: true, blacksmith: true}
   }
   snitchLadyEast = {
@@ -380,6 +391,7 @@ export class StaticEntrancesLW {
     name: 'Snitch Lady (East)',
     region: 'kakariko',
     extImg: '~/img/entrance/snitchLadyEast.png',
+    intImg: '~/img/interior/snitchLadyEast.png',
     limits: {singleCave: true, blacksmith: true}
   }
   chickenHut = {
@@ -397,6 +409,7 @@ export class StaticEntrancesLW {
     name: 'Sick Kid\'s House',
     region: 'kakariko',
     extImg: '~/img/entrance/sickKidsHouse.png',
+    intImg: '~/img/interior/sickKidsHouse.png',
     limits:{singleCave: true, blacksmith: true}
   };
   bushCoveredHouse = {
@@ -414,6 +427,7 @@ export class StaticEntrancesLW {
     name: 'Blacksmith\'s Hut',
     region: 'kakariko',
     extImg: '~/img/entrance/blacksmithsHut.png',
+    intImg: '~/img/interior/blacksmithsHut.png',
     limits:{singleCave: true, blacksmith: true}
   };
   batCaveDrop = { //batCaveRight
@@ -449,6 +463,7 @@ export class StaticEntrancesLW {
     name: 'Kakariko Shop',
     region: 'kakariko',
     extImg: '~/img/entrance/kakarikoShop.png',
+    intImg: '~/img/interior/kakarikoShop.png',
     limits: {singleCave: true, blacksmith: true}
   }
   tavernFront = {
@@ -519,6 +534,7 @@ export class StaticEntrancesLW {
     name: 'Desert Fairy',
     region: 'desert',
     extImg:'~/img/entrance/desertFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits: {singleCave: true, blacksmith: true}
   }
   fiftyRupeeCave = {
@@ -555,6 +571,7 @@ export class StaticEntrancesLW {
     name: 'Bonk Fairy (Light)',
     region: 'south',
     extImg:'~/img/entrance/bonkFairyLight.png',
+    intImg:'~/img/interior/bonkFairyLight.png',
     limits:{bombShop: true, singleCave: true}
   };
   linksHouse = {
@@ -563,6 +580,7 @@ export class StaticEntrancesLW {
     name: 'Link\'s House',
     region: 'south',
     extImg: '~/img/entrance/linksHouse.png',
+    intImg: '~/img/interior/linksHouse.png',
     limits:{singleCave: true}
   }
   lightHypeFairy = {
@@ -571,6 +589,7 @@ export class StaticEntrancesLW {
     name: 'Light Hype Fairy',
     region: 'south',
     extImg:'~/img/entrance/lightHypeFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits: {singleCave: true, blacksmith: true}
   }
   lakeHyliaFortuneTeller = {
@@ -579,6 +598,7 @@ export class StaticEntrancesLW {
     name: 'Lake Hylia Fortune Teller',
     region: 'south',
     extImg: '~/img/entrance/lakeHyliaFortuneTeller.png',
+    intImg: '~/img/interior/fortuneTellerLight.png',
     limits: {singleCave: true, blacksmith: true}
   }
   caveShopLakeHylia = {
@@ -587,6 +607,7 @@ export class StaticEntrancesLW {
     name: 'Cave Shop (Lake Hylia)',
     region: 'south',
     extImg: '~/img/entrance/caveShopLakeHylia.png',
+    intImg: '~/img/interior/caveShopLakeHylia.png',
     limits:{singleCave: true, blacksmith: true}
   }
   miniMoldormCave = {
@@ -604,6 +625,7 @@ export class StaticEntrancesLW {
     name: 'Capacity Upgrade',
     region: 'south',
     extImg:'~/img/entrance/capacityUpgrade.png',
+    intImg:'~/img/interior/capacityUpgrade.png',
     limits:{singleCave: true, bombShop: true}
   }
   iceRodCave = {
@@ -692,6 +714,7 @@ export class StaticEntrancesLW {
     name: 'Potion Shop',
     region: 'northeast',
     extImg:'~/img/entrance/potionShop.png',
+    intImg:'~/img/interior/potionShop.png',
     limits: {singleCave: true, blacksmith: true}
   }
   sahasrahlasHut = {
@@ -709,6 +732,7 @@ export class StaticEntrancesLW {
     name: 'Lake Hylia Fairy',
     region: 'northeast',
     extImg:'~/img/entrance/lakeHyliaFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits:{singleCave: true, blacksmith: true}
   }
 

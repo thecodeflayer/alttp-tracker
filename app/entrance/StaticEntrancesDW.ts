@@ -13,42 +13,48 @@ export class StaticEntrancesDW {
     name: 'Thieves Town',
     region: 'dungeon',
     extImg: '~/img/entrance/thievesTown.png',
-    intImg: '~/img/interior/thievesTown.png', limits: {bombShop: true}
+    intImg: '~/img/interior/thievesTown.png',
+    limits: {bombShop: true}
   };
   miseryMire = { //miseryMireExit
     x: 111, y: 1209,
     name: 'Misery Mire',
     region: 'dungeon',
     extImg: '~/img/entrance/miseryMire.png',
-    intImg: '~/img/interior/miseryMire.png', limits: {bombShop: true}
+    intImg: '~/img/interior/miseryMire.png',
+    limits: {bombShop: true}
   };
   swampPalace = { //swampPalaceExit
     x: 703, y: 1406,
     name: 'Swamp Palace',
     region: 'dungeon',
     extImg: '~/img/entrance/swampPalace.png',
-    intImg: '~/img/interior/swampPalace.png', limits: {bombShop: true}
+    intImg: '~/img/interior/swampPalace.png',
+    limits: {bombShop: true}
   };
   icePalace = { //icePalaceExit
     x: 1195, y: 1294,
     name: 'Ice Palace',
     region: 'dungeon',
     extImg: '~/img/entrance/icePalace.png',
-    intImg: '~/img/interior/icePalace.png', limits: {bombShop: true}
+    intImg: '~/img/interior/icePalace.png',
+    limits: {bombShop: true}
   };
   turtleRock = { //turtleRockExitFront
     x: 1412, y: 124,
     name: 'Turtle Rock',
     region: 'dungeon',
     extImg: '~/img/entrance/turtleRock.png',
-    intImg: '~/img/interior/turtleRock.png', limits: {bombShop: true}
+    intImg: '~/img/interior/turtleRock.png',
+    limits: {bombShop: true}
   };
   darkDeathMtnLedgeWest = { //turtleRockExitWest
     x: 1195, y: 140,
     name: 'Dark Death Mountain Ledge (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/darkDeathMtnLedgeWest.png',
-    intImg: '~/img/interior/darkDeathMtnLedgeWest.png', limits: {bombShop: true, mustExit: true}
+    intImg: '~/img/interior/darkDeathMtnLedgeWest.png',
+    limits: {bombShop: true, mustExit: true}
   };
   darkDeathMtnLedgeEast = { //turtleRockExitEast
     x: 1266, y: 140,
@@ -63,7 +69,8 @@ export class StaticEntrancesDW {
     name: 'Turtle Rock Isolated Ledge Entrance',
     region: 'dungeon',
     extImg: '~/img/entrance/turtleRockIsolatedLedgeEntrance.png',
-    intImg: '~/img/interior/turtleRockIsolatedLedgeEntrance.png', limits: {mustExit: true}
+    intImg: '~/img/interior/turtleRockIsolatedLedgeEntrance.png',
+    limits: {mustExit: true}
   };
   palaceOfDarkness = { //palaceOfDarknessExit
     x: 1439, y: 592,
@@ -88,6 +95,7 @@ export class StaticEntrancesDW {
     name: 'Dark Death Mountain Fairy',
     region: 'deathmtn',
     extImg: '~/img/entrance/darkDeathMtnFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits: {singleCave: true}
   }
   spikeCave = {
@@ -104,6 +112,7 @@ export class StaticEntrancesDW {
     name: 'Hookshot Cave Back Entrance',
     region: 'deathmtn',
     extImg: '~/img/entrance/hookshotCaveBackEntrance.png',
+    intImg: '~/img/interior/hookshotCaveBackEntrance.png',
     limits: {mustExit: true, twoDoorCave: true}
   }
   hookshotCave = { //hookshotCaveExitSouth
@@ -120,6 +129,7 @@ export class StaticEntrancesDW {
     name: 'Cave Shop (Dark Death Mountain)',
     region: 'deathmtn',
     extImg: '~/img/entrance/superBunnyCaveBottom.png',
+    intImg: '~/img/interior/caveShopDarkDeathMtn.png',
     limits: {singleCave: true, bombShop: true}
   }
   superBunnyCaveTop = { //superBunnyCaveExitTop
@@ -145,6 +155,7 @@ export class StaticEntrancesDW {
     name: 'Dark World Lumberjack Shop',
     region: 'northwest',
     extImg: '~/img/entrance/darkWorldLumberjackShop.png',
+    intImg: '~/img/interior/darkWorldLumberjackShop.png',
     limits: {singleCave: true, bombShop: true}
   }
   bumperCaveTop = { //bumperCaveExitTop
@@ -169,6 +180,7 @@ export class StaticEntrancesDW {
     name: 'Fortune Teller (Dark)',
     region: 'northwest',
     extImg: '~/img/entrance/fortuneTellerDark.png',
+    intImg: '~/img/interior/fortuneTellerDark.png',
     limits: {singleCave: true, bombShop: true}
   }
   redShieldShop = {
@@ -177,6 +189,7 @@ export class StaticEntrancesDW {
     name: 'Red Shield Shop',
     region: 'northwest',
     extImg: '~/img/entrance/redShieldShop.png',
+    intImg: '~/img/interior/redShieldShop.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkSanctuaryHint = {
@@ -185,6 +198,7 @@ export class StaticEntrancesDW {
     name: 'Dark Sanctuary Hint',
     region: 'northwest',
     extImg: '~/img/entrance/darkSanctuaryHint.png',
+    intImg: '~/img/interior/darkSanctuaryHint.png',
     limits: {singleCave: true, bombShop: true}
   }
   /** VILLAGE **/
@@ -194,6 +208,7 @@ export class StaticEntrancesDW {
     name: 'Chest Game',
     region: 'village',
     extImg: '~/img/entrance/chestGame.png',
+    intImg: '~/img/interior/chestGame.png',
     limits: {singleCave: true, bombShop: true}
   }
   cShapedHouse = {

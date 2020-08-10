@@ -37,10 +37,10 @@
               <Button @tap="drillDown('northeast')" col="2" class="btn standard padded" style="font-size:16">Castle and North East</Button>
             </GridLayout>
             <GridLayout columns="*">
-              <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
+              <Button @tap="drillDown('holeExits')" class="btn standard">Hole Exits</Button>
             </GridLayout>
             <GridLayout columns="*">
-              <Button @tap="drillDown('alreadySet')" class="btn danger padded">Previously Linked</Button>
+              <Button @tap="drillDown('alreadySet')" class="btn danger">Previously Linked</Button>
             </GridLayout>
           </StackLayout>
           <!-- DARK WORLD -->
