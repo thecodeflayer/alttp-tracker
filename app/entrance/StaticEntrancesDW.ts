@@ -217,6 +217,7 @@ export class StaticEntrancesDW {
     name: 'C-Shaped House',
     region: 'village',
     extImg: '~/img/entrance/cShapedHouse.png',
+    intImg: '~/img/interior/cShapedHouse.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkWorldShop = {
@@ -225,6 +226,7 @@ export class StaticEntrancesDW {
     name: 'Dark World Outcast Shop',
     region: 'village',
     extImg: '~/img/entrance/darkWorldShop.png',
+    intImg: '~/img/interior/darkWorldShop.png',
     limits: {singleCave: true}
   }
   brewery = {
@@ -233,6 +235,7 @@ export class StaticEntrancesDW {
     name: 'Brewery',
     region: 'village',
     extImg: '~/img/entrance/brewery.png',
+    intImg: '~/img/interior/brewery.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkWorldHammerPegCave = {
@@ -241,6 +244,7 @@ export class StaticEntrancesDW {
     name: 'Dark World Hammer Peg Cave',
     region: 'village',
     extImg: '~/img/entrance/darkWorldHammerPegCave.png',
+    intImg: '~/img/interior/darkWorldHammerPegCave.png',
     limits: {singleCave: true, bombShop: true}
   }
   archeryGame = {
@@ -249,6 +253,7 @@ export class StaticEntrancesDW {
     name: 'Archery Game',
     region: 'village',
     extImg: '~/img/entrance/archeryGame.png',
+    intImg: '~/img/interior/archeryGame.png',
     limits: {singleCave: true, bombShop: true}
   }
   /** MIRE **/
@@ -267,6 +272,7 @@ export class StaticEntrancesDW {
     name: 'Mire Fairy', //'Dark Desert Fairy'
     region: 'mire',
     extImg: '~/img/entrance/mireFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits: {singleCave: true}
   }
   mireHint = {
@@ -275,6 +281,7 @@ export class StaticEntrancesDW {
     name: 'Mire Hint', //'Dark Desert Hint'
     region: 'mire',
     extImg: '~/img/entrance/mireHint.png',
+    intImg: '~/img/interior/mireHint.png',
     limits: {singleCave: true, bombShop: true}
   }
   /** SOUTH **/
@@ -284,6 +291,7 @@ export class StaticEntrancesDW {
     name: 'Bonk Fairy (Dark)',
     region: 'south',
     extImg: '~/img/entrance/bonkFairyDark.png',
+    intImg: '~/img/interior/bonkFairyLight.png',
     limits: {singleCave: true, bombShop: true}
   }
   bigBombShop = {
@@ -292,6 +300,7 @@ export class StaticEntrancesDW {
     name: 'Big Bomb Shop',
     region: 'south',
     extImg: '~/img/entrance/bigBombShop.png',
+    intImg: '~/img/interior/bigBombShop.png',
     limits: {singleCave: true, bombShop: true}
   }
   hypeCave = {
@@ -309,6 +318,7 @@ export class StaticEntrancesDW {
     name: 'Dark Lake Hylia Shop',
     region: 'south',
     extImg: '~/img/entrance/darkLakeHyliaShop.png',
+    intImg: '~/img/interior/darkWorldPotionShop.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaLedgeFairy = { //darkLakeHyliaLedgeHealerFairy
@@ -317,6 +327,7 @@ export class StaticEntrancesDW {
     name: 'Dark Lake Hylia Ledge Fairy',
     region: 'south',
     extImg: '~/img/entrance/darkLakeHyliaLedge.png',
+    intImg: '~/img/interior/singleFairyCave.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaLedgeHint = {
@@ -325,6 +336,7 @@ export class StaticEntrancesDW {
     name: 'Dark Lake Hylia Ledge Hint',
     region: 'south',
     extImg: '~/img/entrance/darkLakeHyliaLedge.png',
+    intImg: '~/img/interior/darkLakeHyliaLedgeHint.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaSpikeCave = {
@@ -333,6 +345,7 @@ export class StaticEntrancesDW {
     name: 'Dark Lake Hylia Ledge Spike Cave',
     region: 'south',
     extImg: '~/img/entrance/darkLakeHyliaLedge.png',
+    intImg: '~/img/interior/darkLakeHyliaSpikeCave.png',
     limits: {singleCave: true, bombShop: true}
   }
   /** NORTH EAST **/
@@ -342,6 +355,7 @@ export class StaticEntrancesDW {
     name: 'Pyramid Hole',
     region: 'northeast',
     extImg: '~/img/entrance/pyramidHole.png',
+    intImg: '~/img/interior/pyramidHole.png',
     limits: {holeEntrance: true}
   };
   pyramidEntrance = { //pyramidExit
@@ -349,7 +363,9 @@ export class StaticEntrancesDW {
     isHoleExit: true,
     name: 'Pyramid Entrance',
     region: 'northeast',
-    extImg: '~/img/entrance/pyramidEntrance.png', limits: {}
+    extImg: '~/img/entrance/pyramidEntrance.png',
+    intImg: '~/img/interior/pyramidEntrance.png',
+    limits: {}
   }
   pyramidFairy = { //TODO: only item in Singe_Cave_Doors in code, need to investigate.
     x: 703, y: 731,
@@ -357,6 +373,7 @@ export class StaticEntrancesDW {
     name: 'Pyramid Fairy',
     region: 'northeast',
     extImg: '~/img/entrance/pyramidFairy.png',
+    intImg: '~/img/interior/pyramidFairy.png',
     limits: {singleCave: true}
   };
   darkWorldPotionShop = {
@@ -365,6 +382,7 @@ export class StaticEntrancesDW {
     name: 'Dark World Potion Shop',
     region: 'northeast',
     extImg: '~/img/entrance/darkWorldPotionShop.png',
+    intImg: '~/img/interior/darkWorldPotionShop.png',
     limits: {singleCave: true, bombShop: true}
   }
   darkLakeHyliaFairy = { //darkLakeHyliaHealerFairy
@@ -373,6 +391,7 @@ export class StaticEntrancesDW {
     name: 'Dark Lake Hylia Fairy',
     region: 'northeast',
     extImg: '~/img/entrance/darkLakeHyliaFairy.png',
+    intImg:'~/img/interior/singleFairyCave.png',
     limits: {singleCave: true, bombShop: true}
   }
   palaceOfDarknessHint = {
@@ -381,6 +400,7 @@ export class StaticEntrancesDW {
     name: 'Palace of Darkness Hint',
     region: 'northeast',
     extImg: '~/img/entrance/palaceOfDarknessHint.png',
+    intImg: '~/img/interior/palaceOfDarknessHint.png',
     limits: {singleCave: true, bombShop: true}
   }
   eastDarkWorldHint = {
@@ -389,6 +409,7 @@ export class StaticEntrancesDW {
     name: 'East Dark World Hint',
     region: 'northeast',
     extImg: '~/img/entrance/eastDarkWorldHint.png',
+    intImg: '~/img/interior/eastDarkWorldHint.png',
     limits: {singleCave: true, bombShop: true}
   };
   /** SKULL WOODS **/
