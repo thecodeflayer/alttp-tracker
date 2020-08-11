@@ -2,6 +2,7 @@ export class StaticEntrancesLW {
   /** DUNGEONS **/
   desertPalaceWest = { //desertPalaceExitWest
     x: 53, y: 1193,
+    isMultiEntranceDungeon: true,
     name: 'Desert Palace Entrance (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceWest.png',
@@ -10,6 +11,7 @@ export class StaticEntrancesLW {
   }
   desertPalaceNorth = { //desertPalaceExitNorth
     x: 111, y: 1154,
+    isMultiEntranceDungeon: true,
     name: 'Desert Palace Entrance (North)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceNorth.png',
@@ -18,6 +20,7 @@ export class StaticEntrancesLW {
   };
   desertPalaceSouth = { //desertPalaceExitSouth
     x:111, y:1197,
+    isMultiEntranceDungeon: true,
     name: 'Desert Palace Entrance (South)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceSouth.png',
@@ -26,6 +29,7 @@ export class StaticEntrancesLW {
   }
   desertPalaceEast = { //desertPalaceExitEast
     x: 169, y: 1193,
+    isMultiEntranceDungeon: true,
     name: 'Desert Palace Entrance (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceEast.png',
@@ -34,6 +38,7 @@ export class StaticEntrancesLW {
   }
   towerOfHera = { //towerOfHeraExit
     x: 841, y: 53,
+    isSingleEntranceDungeon: true,
     name: 'Tower of Hera',
     region: 'dungeon',
     extImg:'~/img/entrance/towerOfHera.png',
@@ -42,6 +47,7 @@ export class StaticEntrancesLW {
   };
   agaTower = { //agaTowerExit
     x: 750, y: 602,
+    isMultiEntranceDungeon: true,
     name: 'Agahnim\'s Tower',
     region: 'dungeon',
     extImg: '~/img/entrance/agaTower.png',
@@ -50,6 +56,7 @@ export class StaticEntrancesLW {
   };
   easternPalace = {//easternPalaceExit
     x: 1438, y: 585,
+    isSingleEntranceDungeon: true,
     name: 'Eastern Palace',
     region: 'dungeon',
     extImg:'~/img/entrance/easternPalace.png',
@@ -658,6 +665,7 @@ export class StaticEntrancesLW {
   /** HYRULE CASTLE **/
   hyruleCastleWest = { //hyruleCastleExitWest
     x: 674, y: 584,
+    isMultiEntranceDungeon: true,
     name: 'Hyrule Castle Entrance (West)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleWest.png',
@@ -666,6 +674,7 @@ export class StaticEntrancesLW {
   };
   hyruleCastleSouth = { //hyruleCastleExitSouth
     x: 750, y: 662,
+    isMultiEntranceDungeon: true,
     name: 'Hyrule Castle Entrance (South)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleSouth.png',
@@ -674,6 +683,7 @@ export class StaticEntrancesLW {
   }
   hyruleCastleEast = { //hyruleCastleExitEast
     x: 825, y: 584,
+    isMultiEntranceDungeon: true,
     name: 'Hyrule Castle Entrance (East)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleEast.png',

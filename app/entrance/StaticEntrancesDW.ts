@@ -2,6 +2,7 @@ export class StaticEntrancesDW {
   /** DUNGEONS **/
   skullWoodsFinalSection = { //skullWoodsFinalSectionExit
     x: 58, y: 77,
+    isSingleEntranceDungeon: true,
     name: 'Skull Woods Final Section',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsFinalSection.png',
@@ -10,6 +11,7 @@ export class StaticEntrancesDW {
   };
   thievesTown = { //thievesTownExit
     x: 187, y: 730,
+    isSingleEntranceDungeon: true,
     name: 'Thieves Town',
     region: 'dungeon',
     extImg: '~/img/entrance/thievesTown.png',
@@ -18,6 +20,7 @@ export class StaticEntrancesDW {
   };
   miseryMire = { //miseryMireExit
     x: 111, y: 1209,
+    isSingleEntranceDungeon: true,
     name: 'Misery Mire',
     region: 'dungeon',
     extImg: '~/img/entrance/miseryMire.png',
@@ -26,6 +29,7 @@ export class StaticEntrancesDW {
   };
   swampPalace = { //swampPalaceExit
     x: 703, y: 1406,
+    isSingleEntranceDungeon: true,
     name: 'Swamp Palace',
     region: 'dungeon',
     extImg: '~/img/entrance/swampPalace.png',
@@ -34,6 +38,7 @@ export class StaticEntrancesDW {
   };
   icePalace = { //icePalaceExit
     x: 1195, y: 1294,
+    isSingleEntranceDungeon: true,
     name: 'Ice Palace',
     region: 'dungeon',
     extImg: '~/img/entrance/icePalace.png',
@@ -42,6 +47,7 @@ export class StaticEntrancesDW {
   };
   turtleRock = { //turtleRockExitFront
     x: 1412, y: 124,
+    isMultiEntranceDungeon: true,
     name: 'Turtle Rock',
     region: 'dungeon',
     extImg: '~/img/entrance/turtleRock.png',
@@ -50,6 +56,7 @@ export class StaticEntrancesDW {
   };
   darkDeathMtnLedgeWest = { //turtleRockExitWest
     x: 1195, y: 140,
+    isMultiEntranceDungeon: true,
     name: 'Dark Death Mountain Ledge (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/darkDeathMtnLedgeWest.png',
@@ -58,6 +65,7 @@ export class StaticEntrancesDW {
   };
   darkDeathMtnLedgeEast = { //turtleRockExitEast
     x: 1266, y: 140,
+    isMultiEntranceDungeon: true,
     name: 'Dark Death Mountain Ledge (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/darkDeathMtnLedgeEast.png',
@@ -66,6 +74,7 @@ export class StaticEntrancesDW {
   };
   turtleRockIsolatedLedgeEntrance = { //turtleRockIsolatedLedgeExit
     x: 1231, y: 173,
+    isMultiEntranceDungeon: true,
     name: 'Turtle Rock Isolated Ledge Entrance',
     region: 'dungeon',
     extImg: '~/img/entrance/turtleRockIsolatedLedgeEntrance.png',
@@ -74,6 +83,7 @@ export class StaticEntrancesDW {
   };
   palaceOfDarkness = { //palaceOfDarknessExit
     x: 1439, y: 592,
+    isSingleEntranceDungeon: true,
     name: 'Palace of Darkness',
     region: 'dungeon',
     extImg: '~/img/entrance/palaceOfDarkness.png',
@@ -82,6 +92,7 @@ export class StaticEntrancesDW {
   };
   ganonTower = { //ganonTowerExit
     x: 844, y: 30,
+    isSingleEntranceDungeon: true,
     name: 'Ganon\'s Tower',
     region: 'dungeon',
     extImg: '~/img/entrance/ganonTower.png',

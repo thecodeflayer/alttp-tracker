@@ -14,84 +14,29 @@
       </StackLayout>
       <ScrollView row="1">
         <StackLayout orientation="vertical">
-          <!-- MAIN MENU -->
-          <StackLayout orientation="vertical" :visibility="drillArr.length === 0 ? 'visible':'collapsed'">
-            <Button @tap="drillDown('lightworld')" class="btn standard padded">Light World</Button>
-            <Button @tap="drillDown('darkworld')" class="btn standard padded">Dark World</Button>
-            <Button :visibility="(action==='enterLink' || action==='exitLinkedTo') && !staticEntrance.isHole ? 'visible':'collapsed'"
-                        rows="50" columns="50,*" class="btn ugly padded"
-                        v-for="junk in junkEntrances" @tap="doLink(junk.id)" :text="junk.name"/>
-          </StackLayout>
-          <!-- LIGHT WORLD -->
-          <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
-                       :visibility="drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'">
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
-              <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
-            </GridLayout>
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('kakariko')" class="btn standard padded">Kakariko</Button>
-              <Button @tap="drillDown('northwest')" col="2" class="btn standard padded">North West</Button>
-            </GridLayout>
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('south')" class="btn standard padded">Desert and South</Button>
-              <Button @tap="drillDown('northeast')" col="2" class="btn standard padded" style="font-size:16">Castle and North East</Button>
-            </GridLayout>
-            <GridLayout columns="*">
-              <Button @tap="drillDown('holeExits')" class="btn standard">Hole Exits</Button>
-            </GridLayout>
-            <GridLayout columns="*">
-              <Button @tap="drillDown('alreadySet')" class="btn danger">Previously Linked</Button>
-            </GridLayout>
-          </StackLayout>
-          <!-- DARK WORLD -->
-          <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
-                       :visibility="drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'">
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
-              <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
-            </GridLayout>
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('village')" class="btn standard padded" style="font-size: 16">Village of Outcasts</Button>
-              <Button @tap="drillDown('northwest')" col="2" class="btn standard padded">North West</Button>
-            </GridLayout>
-            <GridLayout columns="*,5,*">
-              <Button @tap="drillDown('south')" class="btn standard padded">Dark South Shore</Button>
-              <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Mire and North East</Button>
-            </GridLayout>
-            <GridLayout columns="*">
-              <Button @tap="drillDown('holeExits')" class="btn standard">Hole Exits</Button>
-            </GridLayout>
-            <GridLayout columns="*">
-              <Button @tap="drillDown('alreadySet')" class="btn danger">Previously Linked</Button>
-            </GridLayout>
-          </StackLayout>
-          <!-- DYNAMIC LOCATIONS -->
-          <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">
-            <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id"
-                        @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
-              <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg"
-                     col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
-              <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
-                     marginLeft="10" :fontSize="loc.name.length>28? '18':'20'"/>
-            </GridLayout>
-            <Button @tap="drillDown('alreadySet')" :visibility="Object.keys(allCurrentAlreadySetObj).length>0 && drillArr[1] && drillArr[1]!=='alreadySet'  ? 'visible':'collapsed'"
-                    class="btn danger padded">Previously Linked</Button>
-          </StackLayout>
+          <GridLayout v-for="loc in availableLinks" columns="68,*" :rows="loc.isLink? '68':'48'" v-bind:key="loc.id"
+                      @tap="loc.isLink ? doLink(loc.id) : doDrill(loc.id)" class="btn padded" :class="loc.klass" margin="2 0" padding="2">
+            <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg"
+                   :visibility="loc.isLink ? 'visible':'collapsed'"
+                   col="0" height="64" horizontalAlignment="center" verticalAlignment="center"/>
+            <Label :col="loc.isLink? '1' : '0'" :colSpan="loc.isLink ? '1':'2'" :text="loc.name"
+                   :horizontalAlignment="loc.isLink ? 'left' : 'center'" verticalAlignment="center" textWrap="true"
+                   :marginLeft="loc.isLink ? '10':'0'" :fontSize="loc.name.length>28? '18':'20'"/>
+          </GridLayout>
         </StackLayout>
       </ScrollView>
       <GridLayout row="2" columns="*,5,*" class="list-top-header" margin="0 10 5 10">
-        <Button class="btn empty padded" @tap="onBackButton">Back</Button>
-        <Button col="2" class="btn danger padded" @tap="closeEditor">Close</Button>
+        <Button :visibility="this.path.length || this.showAlreadyLinked ? 'visible':'collapsed'" class="btn empty" @tap="onBackButton">Back</Button>
+        <Button :col="this.path.length || this.showAlreadyLinked ? '2':'0'" :colSpan="this.path.length || this.showAlreadyLinked ? '1':'3'" class="btn danger" @tap="closeEditor">Close</Button>
       </GridLayout>
     </GridLayout>
   </Page>
 </template>
 
 <script type="ts">
-  import {Component, Vue, Prop} from 'vue-property-decorator';
-  import {EntranceHelper} from '@/utils/EntranceHelper';
+  import {Component, Prop, Vue} from 'vue-property-decorator';
   import EntranceLanding from '@/components/entrance/EntranceLanding.vue';
+  import {EntranceHelper} from '@/utils/EntranceHelper';
 
   @Component
   export default class EntranceEditor extends Vue {
@@ -102,100 +47,55 @@
     staticLink = {};
     actionImage = '';
     logicText = [];
-    drillArr = [];
-    lwDrillObj = {};
-    dwDrillObj = {};
-    allCurrentObj = {};
-    allCurrentAlreadySetObj={};
-    currentRegion = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
     junkEntrances = EntranceHelper.junkLinkObjects;
+    availableLinks = [];
+    path=[];
+    showAlreadyLinked = false;
 
     mounted() {
       this.staticEntrance = this.entranceHelper.getStaticEntrance(this.entranceKey);
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
-      this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
-      this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
       this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = (this.staticEntrance.isHole && this.action === 'enterLink') ? '~/img/enter-hole.png'
           : this.action === 'enterLink' ? '~/img/enter-link-alt.png'
-            : this.action === 'exitLink' ? '~/img/exit-link-alt.png'
-              : (this.staticEntrance.isHole && this.action === 'enterLinkedTo') ? '~/img/enter-linked-hole.png'
-                : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
-                  : '~/img/exit-linked-to-alt.png';
+              : this.action === 'exitLink' ? '~/img/exit-link-alt.png'
+                  : (this.staticEntrance.isHole && this.action === 'enterLinkedTo') ? '~/img/enter-linked-hole.png'
+                      : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
+                          : '~/img/exit-linked-to-alt.png';
       this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
-      // handle specific navigation based on staticEntrance values and game settings here
-      if(this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
-        this.drillDown('fake');
-        this.allCurrentAlreadySetObj = this.getAlreadySetObj('isHoleExit', true);
-      } else if(this.staticEntrance.isHole) {
-        this.allCurrentObj = {...this.lwDrillObj.holes, ...this.dwDrillObj.holes};
-        this.allCurrentAlreadySetObj = this.getAlreadySetObj('isHole');
-        this.drillDown('fake');
-      }
-
-    }
-    getAlreadySetObj(field, skullWoods) {
-      const all = {...this.lwDrillObj.alreadySet, ...this.dwDrillObj.alreadySet};
-      const retval = {};
-      for(const key of Object.keys(all)){
-        if(skullWoods) {
-          if(all[key][field] && all[key].isSkullWoods){
-            retval[key]=all[key];
-          }
-        } else {
-          if(all[key][field]){
-            retval[key]=all[key];
-          }
-        }
-      }
-      return retval;
-    }
-    drillDown(path) {
-      if(path === 'fake') {
-        this.drillArr.push(path);
-        this.drillArr.push(path);
-      } else if(path === 'alreadySet' && this.drillArr[0] === 'fake') {
-        this.drillArr[1]='alreadySet';
-        this.currentRegion = this.allCurrentAlreadySetObj;
-        return;
-      } else if(this.drillArr.length<2) {
-        this.drillArr.push(path);
-      }
-      if(this.drillArr.length === 2 && this.staticEntrance.isHole) {
-        this.currentRegion = this.allCurrentObj; //this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
-      } else if(this.drillArr.length === 2 && this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
-        this.currentRegion = this.dwDrillObj.skullWoodsExits;
-      } else if(this.drillArr.length === 2) {
-        this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj[this.drillArr[1]] : this.dwDrillObj[this.drillArr[1]];
-      }
+      this.availableLinks = this.entranceHelper.getAvailableLinks(this.staticEntrance, this.entranceHelper.getReverseAction(this.action));
     }
     onBackButton() {
-      if(this.drillArr.length === 0 || this.drillArr[0] === 'fake'){
-        this.closeEditor();
-      } else {
-        this.drillArr.pop();
-        this.currentRegion = {};
+      if(this.showAlreadyLinked) {
+        this.showAlreadyLinked = false;
+      } else if(this.path.length){
+        this.path.pop();
       }
+      this.availableLinks = this.entranceHelper.getAvailableLinks(this.staticEntrance, this.entranceHelper.getReverseAction(this.action), this.path, false);
     }
     doLink(id){
       this.currentEntrance[this.action] = this.entranceHelper.createLinkR(this.currentEntrance.id, id, this.action);
       this.$modelManager.saveEntrances();
       this.closeEditor();
     }
+    doDrill(id) {
+      if(id === 'alreadyLinked') {
+        this.showAlreadyLinked = true;
+        this.availableLinks = this.entranceHelper.getAvailableLinks(this.staticEntrance, this.entranceHelper.getReverseAction(this.action), this.path, true);
+      } else {
+        this.showAlreadyLinked = false;
+        this.path.push(id);
+        this.availableLinks = this.entranceHelper.getAvailableLinks(this.staticEntrance, this.entranceHelper.getReverseAction(this.action), this.path, false);
+      }
+    }
     closeEditor() {
       this.$navigateTo(EntranceLanding, {props:{entranceKey:this.entranceKey}});
     }
+
   }
 </script>
 
 <style scoped lang="scss">
-  .header-label {
-    background-color: #4c4c4c;
-    border-color:white;
-    border-width:2;
-    margin: 4;
-    height: 60;
-    padding: 4;
-  }
+
 </style>
