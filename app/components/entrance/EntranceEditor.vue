@@ -23,7 +23,8 @@
                         v-for="junk in junkEntrances" @tap="doLink(junk.id)" :text="junk.name"/>
           </StackLayout>
           <!-- LIGHT WORLD -->
-          <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
+          <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
+                       :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && staticEntrance.isSkullWoods)) && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -44,7 +45,8 @@
             </GridLayout>
           </StackLayout>
           <!-- DARK WORLD -->
-          <StackLayout orientation="vertical" :visibility="!staticEntrance.isHole && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'" marginLeft="10" marginRight="10">
+          <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
+                       :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && staticEntrance.isSkullWoods)) && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -68,6 +70,7 @@
           <StackLayout orientation="vertical"
                        :visibility="drillArr.length === 2
                        || (drillArr.length === 1 && staticEntrance.isHole)
+                       || (drillArr.length === 1 && staticEntrance.isSkullWoods && staticEntrance.isHoleExit)
                        ? 'visible':'collapsed'">
             <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id"
                         @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
@@ -104,6 +107,7 @@
     drillArr = [];
     lwDrillObj = {};
     dwDrillObj = {};
+    allHolesObj = {};
     currentRegion = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
     junkEntrances = EntranceHelper.junkLinkObjects;
@@ -113,6 +117,7 @@
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
       this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
       this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
+      this.allHolesObj = {...this.lwDrillObj.holes, ...this.dwDrillObj.holes};
       this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = (this.staticEntrance.isHole && this.action === 'enterLink') ? '~/img/enter-hole.png'
           : this.action === 'enterLink' ? '~/img/enter-link-alt.png'
@@ -121,6 +126,12 @@
                 : this.action === 'enterLinkedTo' ? '~/img/enter-linked-to-alt.png'
                   : '~/img/exit-linked-to-alt.png';
       this.logicText = this.entranceHelper.getLogicText(this.staticEntrance, this.staticLink, this.action);
+      // handle specific navigation based on staticEntrance values and game settings here
+      if(this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
+        this.drillDown('fake');
+      } else if(this.staticEntrance.isHole) {
+        this.drillDown('fake');
+      }
 
     }
     drillDown(path) {
@@ -128,13 +139,15 @@
         this.drillArr.push(path);
       }
       if(this.drillArr.length === 1 && this.staticEntrance.isHole) {
-        this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
-      }else if(this.drillArr.length === 2) {
+        this.currentRegion = this.allHolesObj; //this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
+      } else if(this.drillArr.length === 1 && this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
+        this.currentRegion = this.dwDrillObj.skullWoodsExits;
+      } else if(this.drillArr.length === 2) {
         this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj[this.drillArr[1]] : this.dwDrillObj[this.drillArr[1]];
       }
     }
     onBackButton() {
-      if(this.drillArr.length === 0){
+      if(this.drillArr.length === 0 || this.drillArr.length === 1 && this.drillArr[0] === 'fake'){
         this.closeEditor();
       } else {
         this.drillArr.pop();

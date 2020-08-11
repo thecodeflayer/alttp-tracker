@@ -416,6 +416,7 @@ export class StaticEntrancesDW {
   skullWoodsSecondSectionDoorWest = { //skullWoodsSecondSectionExitWest
     x: 88, y: 196,
     isHoleExit: true,
+    isSkullWoods: true,
     name: 'Skull Woods Second Section Door (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsSecondSectionDoorWest.png',
@@ -425,6 +426,7 @@ export class StaticEntrancesDW {
   skullWoodsSecondSectionDoorEast = { //skullWoodsSecondSectionExitEast
     x: 217, y: 221,
     isHoleExit: true,
+    isSkullWoods: true,
     name: 'Skull Woods Second Section Door (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsSecondSectionDoorEast.png',
@@ -434,6 +436,7 @@ export class StaticEntrancesDW {
   skullWoodsFirstSectionDoor = { //skullWoodsFirstSectionExit
     x: 275, y: 224,
     isHoleExit: true,
+    isSkullWoods: true,
     name: 'Skull Woods First Section Door',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsFirstSectionDoor.png',
@@ -444,6 +447,7 @@ export class StaticEntrancesDW {
   skullWoodsFirstSectionHoleWest = {
     x: 293, y: 252,
     isHole: true,
+    isSkullWoods: true,
     name: 'Skull Woods First Section Hole (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsFirstSectionHoleWest.png',
@@ -453,6 +457,7 @@ export class StaticEntrancesDW {
   skullWoodsFirstSectionHoleEast = {
     x: 234, y: 263,
     isHole: true,
+    isSkullWoods: true,
     name: 'Skull Woods First Section Hole (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsFirstSectionHoleEast.png',
@@ -462,6 +467,7 @@ export class StaticEntrancesDW {
   skullWoodsFirstSectionHoleNorth = {
     x: 284, y: 197,
     isHole: true,
+    isSkullWoods: true,
     name: 'Skull Woods First Section Hole (North)',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsFirstSectionHoleNorth.png',
@@ -471,6 +477,7 @@ export class StaticEntrancesDW {
   skullWoodsSecondSectionHole = {
     x: 181, y: 135,
     isHole: true,
+    isSkullWoods: true,
     name: 'Skull Woods Second Section Hole',
     region: 'dungeon',
     extImg: '~/img/entrance/skullWoodsSecondSectionHole.png',

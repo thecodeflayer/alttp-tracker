@@ -133,14 +133,16 @@ export class EntranceHelper {
       other:{},
       holes:{},
       holeExits:{},
+      skullWoodsExits:{},
       alreadySet:{}
     };
     for(const key of this.dwEntranceKeys) {
       const region = this.modelManager.entrances[key][action] ? 'alreadySet'
         : this.dwStaticEntrances[key].isHole? 'holes'
-          : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
-            :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
-              : this.dwStaticEntrances[key].region;
+          : this.dwStaticEntrances[key].isSkullWoods && this.dwStaticEntrances[key].isHoleExit ? 'skullWoodsExits'
+            : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
+              :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
+                : this.dwStaticEntrances[key].region;
       retval[region][key] = {
         id:key,
         name:this.dwStaticEntrances[key].name,
