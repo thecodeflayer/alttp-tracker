@@ -258,7 +258,7 @@ export class EntranceHelper {
       const keys = Object.keys(this.lwStaticEntrances).concat(Object.keys(this.dwStaticEntrances));
       for(const key of keys){
         const e = this.getStaticEntrance(key);
-        if(e.isMultiEntranceDungeon && (!!this.modelManager.entrances[key][action] === alreadyLinked)) {
+        if(e.isMultiEntranceDungeon && entrance.multiDir === e.multiDir && (!!this.modelManager.entrances[key][action] === alreadyLinked)) {
           retval.push(
             {
               isLink: true,
@@ -273,7 +273,7 @@ export class EntranceHelper {
               junk:!!e.junk
             }
           );
-        } else if (e.isMultiEntranceDungeon && (!!this.modelManager.entrances[key][action] !== alreadyLinked)) {
+        } else if (e.isMultiEntranceDungeon && entrance.multiDir === e.multiDir && (!!this.modelManager.entrances[key][action] !== alreadyLinked)) {
           showAlreadyLinked = true;
         }
       }
@@ -286,7 +286,125 @@ export class EntranceHelper {
         });
       }
     } else if(this.modelManager.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.simple.id) {
-
+      if(entrance.isLWDM) {
+        const keys = Object.keys(this.lwStaticEntrances).concat(Object.keys(this.dwStaticEntrances));
+        for(const key of keys){
+          const e = this.getStaticEntrance(key);
+          if(e.isLWDM && (!!this.modelManager.entrances[key][action] === alreadyLinked)) {
+            retval.push(
+              {
+                isLink: true,
+                klass: 'standard',
+                id:key,
+                isHole:!!e.isHole,
+                isHoleExit:!!e.isHoleExit,
+                isSkullWoods:!!e.isSkullWoods,
+                name:e.name,
+                intImg:e.intImg,
+                extImg:e.extImg,
+                junk:!!e.junk
+              }
+            );
+          } else if (e.isLWDM && (!!this.modelManager.entrances[key][action] !== alreadyLinked)) {
+            showAlreadyLinked = true;
+          }
+        }
+        if(!alreadyLinked && showAlreadyLinked){
+          retval.push({
+            isLink:false,
+            klass: 'danger',
+            id:'alreadyLinked',
+            name: 'Previously Linked'
+          });
+        }
+      } else if(path.length === 0) {
+        retval.push({isLink:false, klass:'standard', id:'lightworld', name:'Light World'});
+        retval.push({isLink:false, klass:'standard', id:'darkworld', name:'Dark World'});
+        if(action === 'enterLinkedTo') {
+          if(entrance.isSingleCave) {
+            retval.push({isLink:true, klass:'ugly', id:'junkCave', name: 'Junk Cave', extImg:'~/img/interior/junkCave.png'});
+          }
+          retval.push({isLink:true, klass:'ugly', id:'darkCave', name: 'Unknown Dark Cave', extImg:'~/img/interior/darkCave.png'});
+        }
+      } else if(path.length === 1 && entrance.isMultiCave) {
+        const keys = path[0] === 'lightworld' ? Object.keys(this.lwStaticEntrances) : Object.keys(this.dwStaticEntrances);
+        for(const key of keys){
+          const e = this.getStaticEntrance(key);
+          if(e.isMultiCave && (!!this.modelManager.entrances[key][action] === alreadyLinked)) {
+            retval.push(
+              {
+                isLink: true,
+                klass: 'standard',
+                id:key,
+                isHole:!!e.isHole,
+                isHoleExit:!!e.isHoleExit,
+                isSkullWoods:!!e.isSkullWoods,
+                name:e.name,
+                intImg:e.intImg,
+                extImg:e.extImg,
+                junk:!!e.junk
+              }
+            );
+          } else if (e.isMultiCave && (!!this.modelManager.entrances[key][action] !== alreadyLinked)) {
+            showAlreadyLinked = true;
+          }
+        }
+        if(!alreadyLinked && showAlreadyLinked){
+          retval.push({
+            isLink:false,
+            klass: 'danger',
+            id:'alreadyLinked',
+            name: 'Previously Linked'
+          });
+        }
+      }  else if(path.length === 1 && path[0] === 'lightworld') {
+        retval.push({isLink:false, klass:'standard', id:'deathmtn', name:'Death Mountain'});
+        retval.push({isLink:false, klass:'standard', id:'kakariko', name:'Kakariko'});
+        retval.push({isLink:false, klass:'standard', id:'northwest', name:'North West'});
+        retval.push({isLink:false, klass:'standard', id:'south', name:'Desert and South'});
+        retval.push({isLink:false, klass:'standard', id:'northeast', name:'North East'});
+      } else if(path.length === 1 && path[0] === 'darkworld') {
+        retval.push({isLink:false, klass:'standard', id:'deathmtn', name:'Death Mountain'});
+        retval.push({isLink:false, klass:'standard', id:'village', name:'Village of Outcasts'});
+        retval.push({isLink:false, klass:'standard', id:'northwest', name:'North West'});
+        retval.push({isLink:false, klass:'standard', id:'south', name:'South'});
+        retval.push({isLink:false, klass:'standard', id:'northeast', name:'Mire and North East'});
+      } else if(path.length === 2) {
+        const keys = path[0] === 'lightworld' ? Object.keys(this.lwStaticEntrances) : Object.keys(this.dwStaticEntrances);
+        for(const key of keys) {
+          const e = this.getStaticEntrance(key);
+          if(e.isSingleCave
+            && (e.region === path[1] || (e.region === 'mire' && path[1] === 'northeast') || (e.region === 'desert' && path[1] === 'south'))
+            && (!!this.modelManager.entrances[key][action] === alreadyLinked)) {
+            retval.push(
+              {
+                isLink: true,
+                klass: 'standard',
+                id:key,
+                isHole:!!e.isHole,
+                isHoleExit:!!e.isHoleExit,
+                isSkullWoods:!!e.isSkullWoods,
+                name:e.name,
+                intImg:e.intImg,
+                extImg:e.extImg,
+                junk:!!e.junk
+              }
+            );
+          } else if(e.isSingleCave
+            && (e.region === path[1] || (e.region === 'mire' && path[1] === 'northeast') || (e.region === 'desert' && path[1] === 'south'))
+            && (!!this.modelManager.entrances[key][action] !== alreadyLinked)) {
+            showAlreadyLinked = true;
+          }
+        }
+        if(!alreadyLinked && showAlreadyLinked){
+          retval.push({
+            isLink:false,
+            klass: 'danger',
+            id:'alreadyLinked',
+            name: 'Previously Linked'
+          });
+        }
+      }
     } else if(this.modelManager.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.restricted.id) {
       if(path.length === 0) {
         retval.push({isLink:false, klass:'standard', id:'lightworld', name:'Light World'});
@@ -495,70 +613,7 @@ export class EntranceHelper {
     }
     return retval;
   }
-  getLightWorldRegionObject(action) {
-    const retval = {
-      dungeon:{},
-      deathmtn:{},
-      kakariko:{},
-      northwest:{},
-      south:{},
-      northeast:{},
-      holes:{},
-      holeExits:{},
-      alreadySet:{}
-    };
-    for(const key of this.lwEntranceKeys) {
-      const region = this.modelManager.entrances[key][action] ? 'alreadySet'
-        :this.lwStaticEntrances[key].isHole ? 'holes'
-          : this.lwStaticEntrances[key].isHoleExit ? 'holeExits'
-            : this.lwStaticEntrances[key].region === 'castle' ? 'northeast'
-              : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
-      retval[region][key] = {
-        id:key,
-        isHole:!!this.lwStaticEntrances[key].isHole,
-        isHoleExit:!!this.lwStaticEntrances[key].isHoleExit,
-        isSkullWoods:!!this.lwStaticEntrances[key].isSkullWoods,
-        name:this.lwStaticEntrances[key].name,
-        intImg:this.lwStaticEntrances[key].intImg,
-        extImg:this.lwStaticEntrances[key].extImg,
-        junk:!!this.lwStaticEntrances[key].junk
-      };
-    }
-    return retval;
-  }
-  getDarkWorldRegionObject(action) {
-    const retval = {
-      dungeon:{},
-      deathmtn:{},
-      village:{},
-      northwest:{},
-      south:{},
-      other:{},
-      holes:{},
-      holeExits:{},
-      skullWoodsExits:{},
-      alreadySet:{}
-    };
-    for(const key of this.dwEntranceKeys) {
-      const region = this.modelManager.entrances[key][action] ? 'alreadySet'
-        : this.dwStaticEntrances[key].isHole? 'holes'
-          : this.dwStaticEntrances[key].isSkullWoods && this.dwStaticEntrances[key].isHoleExit ? 'skullWoodsExits'
-            : this.dwStaticEntrances[key].isHoleExit ? 'holeExits'
-              :this.dwStaticEntrances[key].region === 'northeast' || this.dwStaticEntrances[key].region === 'mire' ? 'other'
-                : this.dwStaticEntrances[key].region;
-      retval[region][key] = {
-        id:key,
-        isHole:!!this.dwStaticEntrances[key].isHole,
-        isHoleExit:!!this.dwStaticEntrances[key].isHoleExit,
-        isSkullWoods:!!this.dwStaticEntrances[key].isSkullWoods,
-        name:this.dwStaticEntrances[key].name,
-        intImg:this.dwStaticEntrances[key].intImg,
-        extImg:this.dwStaticEntrances[key].extImg,
-        junk:!!this.dwStaticEntrances[key].junk
-      };
-    }
-    return retval;
-  }
+
   isKeyDarkWorld(key) {
     return this.allKeys.indexOf(key)>=this.dwIndex;
   }

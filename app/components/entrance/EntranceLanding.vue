@@ -60,7 +60,7 @@
         </StackLayout>
       </ScrollView>
       <StackLayout orientation="vertical" row="2" class="list-top-header">
-        <Button class="btn standard padded" @tap="closeModal">Return to Map</Button>
+        <Button class="btn standard padded" @tap="closeView">Return to Map</Button>
       </StackLayout>
     </GridLayout>
   </Page>
@@ -74,7 +74,7 @@
   import LightMap from '@/components/map/LightMap.vue';
 
   @Component
-  export default class EntranceModal extends Vue {
+  export default class EntranceLanding extends Vue {
     @Prop() entranceKey;
     staticEntrance = {};
     currentEntrance = {};
@@ -101,7 +101,7 @@
         this.$navigateTo(EntranceEditor, {props:{entranceKey:this.entranceKey, action:action}});
       }
     }
-    closeModal() {
+    closeView() {
       if(this.entranceHelper.isKeyDarkWorld(this.currentEntrance.id)) {
         this.$modelManager.map.darkworld.centerEntranceKey = this.currentEntrance.id;
         this.$modelManager.map.darkworld.centerShopKey = undefined;
@@ -134,23 +134,6 @@
     border-width: 0;
     &.empty {
       background-color: $standard-bg;
-    }
-  }
-  .modal-header {
-    border-color: $standard-border;
-    border-width: 0 0 2 0;
-    padding-top:10;
-    &.empty {
-      border-width: 0;
-    }
-  }
-  .modal-footer {
-    border-color: $standard-border;
-    border-width: 2 0 0 0;
-    padding-bottom:10;
-    padding-top:10;
-    &.empty {
-      border-width: 0;
     }
   }
 </style>
