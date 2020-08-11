@@ -115,6 +115,9 @@ export class EntranceHelper {
               : this.lwStaticEntrances[key].region === 'desert' ? 'south' : this.lwStaticEntrances[key].region;
       retval[region][key] = {
         id:key,
+        isHole:!!this.lwStaticEntrances[key].isHole,
+        isHoleExit:!!this.lwStaticEntrances[key].isHoleExit,
+        isSkullWoods:!!this.lwStaticEntrances[key].isSkullWoods,
         name:this.lwStaticEntrances[key].name,
         intImg:this.lwStaticEntrances[key].intImg,
         extImg:this.lwStaticEntrances[key].extImg,
@@ -145,6 +148,9 @@ export class EntranceHelper {
                 : this.dwStaticEntrances[key].region;
       retval[region][key] = {
         id:key,
+        isHole:!!this.dwStaticEntrances[key].isHole,
+        isHoleExit:!!this.dwStaticEntrances[key].isHoleExit,
+        isSkullWoods:!!this.dwStaticEntrances[key].isSkullWoods,
         name:this.dwStaticEntrances[key].name,
         intImg:this.dwStaticEntrances[key].intImg,
         extImg:this.dwStaticEntrances[key].extImg,

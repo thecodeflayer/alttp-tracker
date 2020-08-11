@@ -24,7 +24,7 @@
           </StackLayout>
           <!-- LIGHT WORLD -->
           <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
-                       :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && staticEntrance.isSkullWoods)) && drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'">
+                       :visibility="drillArr.length === 1 && drillArr[0] === 'lightworld' ? 'visible':'collapsed'">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -46,7 +46,7 @@
           </StackLayout>
           <!-- DARK WORLD -->
           <StackLayout orientation="vertical"  marginLeft="10" marginRight="10"
-                       :visibility="!(staticEntrance.isHole || (staticEntrance.isHoleExit && staticEntrance.isSkullWoods)) && drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'">
+                       :visibility="drillArr.length === 1 && drillArr[0] === 'darkworld' ? 'visible':'collapsed'">
             <GridLayout columns="*,5,*">
               <Button @tap="drillDown('dungeon')" class="btn standard padded">Dungeons</Button>
               <Button @tap="drillDown('deathmtn')" col="2" class="btn standard padded">Death Mountain</Button>
@@ -60,18 +60,14 @@
               <Button @tap="drillDown('other')" col="2" class="btn standard padded" style="font-size:16">Mire and North East</Button>
             </GridLayout>
             <GridLayout columns="*">
-              <Button @tap="drillDown('holeExits')" class="btn standard padded">Hole Exits</Button>
+              <Button @tap="drillDown('holeExits')" class="btn standard">Hole Exits</Button>
             </GridLayout>
             <GridLayout columns="*">
-              <Button @tap="drillDown('alreadySet')" class="btn danger padded">Previously Linked</Button>
+              <Button @tap="drillDown('alreadySet')" class="btn danger">Previously Linked</Button>
             </GridLayout>
           </StackLayout>
           <!-- DYNAMIC LOCATIONS -->
-          <StackLayout orientation="vertical"
-                       :visibility="drillArr.length === 2
-                       || (drillArr.length === 1 && staticEntrance.isHole)
-                       || (drillArr.length === 1 && staticEntrance.isSkullWoods && staticEntrance.isHoleExit)
-                       ? 'visible':'collapsed'">
+          <StackLayout orientation="vertical" :visibility="drillArr.length === 2 ? 'visible':'collapsed'">
             <GridLayout v-for="loc in currentRegion" columns="68,*" rows="68" v-bind:key="loc.id"
                         @tap="doLink(loc.id)" class="btn standard padded" margin="2 0" padding="2" height="68">
               <Image :src="(action === 'enterLink' && loc.intImg) ? loc.intImg : loc.extImg"
@@ -79,6 +75,8 @@
               <Label col="1" :text="loc.name" horizontalAlignment="left" verticalAlignment="center" textWrap="true"
                      marginLeft="10" :fontSize="loc.name.length>28? '18':'20'"/>
             </GridLayout>
+            <Button @tap="drillDown('alreadySet')" :visibility="Object.keys(allCurrentAlreadySetObj).length>0 && drillArr[1] && drillArr[1]!=='alreadySet'  ? 'visible':'collapsed'"
+                    class="btn danger padded">Previously Linked</Button>
           </StackLayout>
         </StackLayout>
       </ScrollView>
@@ -107,7 +105,8 @@
     drillArr = [];
     lwDrillObj = {};
     dwDrillObj = {};
-    allHolesObj = {};
+    allCurrentObj = {};
+    allCurrentAlreadySetObj={};
     currentRegion = {};
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
     junkEntrances = EntranceHelper.junkLinkObjects;
@@ -117,7 +116,6 @@
       this.currentEntrance = this.entranceHelper.getEntrance(this.entranceKey);
       this.lwDrillObj = this.entranceHelper.getLightWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
       this.dwDrillObj = this.entranceHelper.getDarkWorldRegionObject(this.entranceHelper.getReverseAction(this.action));
-      this.allHolesObj = {...this.lwDrillObj.holes, ...this.dwDrillObj.holes};
       this.staticLink = this.entranceHelper.getStaticEntrance(this.currentEntrance[this.action]);
       this.actionImage = (this.staticEntrance.isHole && this.action === 'enterLink') ? '~/img/enter-hole.png'
           : this.action === 'enterLink' ? '~/img/enter-link-alt.png'
@@ -129,25 +127,51 @@
       // handle specific navigation based on staticEntrance values and game settings here
       if(this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
         this.drillDown('fake');
+        this.allCurrentAlreadySetObj = this.getAlreadySetObj('isHoleExit', true);
       } else if(this.staticEntrance.isHole) {
+        this.allCurrentObj = {...this.lwDrillObj.holes, ...this.dwDrillObj.holes};
+        this.allCurrentAlreadySetObj = this.getAlreadySetObj('isHole');
         this.drillDown('fake');
       }
 
     }
+    getAlreadySetObj(field, skullWoods) {
+      const all = {...this.lwDrillObj.alreadySet, ...this.dwDrillObj.alreadySet};
+      const retval = {};
+      for(const key of Object.keys(all)){
+        if(skullWoods) {
+          if(all[key][field] && all[key].isSkullWoods){
+            retval[key]=all[key];
+          }
+        } else {
+          if(all[key][field]){
+            retval[key]=all[key];
+          }
+        }
+      }
+      return retval;
+    }
     drillDown(path) {
-      if(this.drillArr.length<2) {
+      if(path === 'fake') {
+        this.drillArr.push(path);
+        this.drillArr.push(path);
+      } else if(path === 'alreadySet' && this.drillArr[0] === 'fake') {
+        this.drillArr[1]='alreadySet';
+        this.currentRegion = this.allCurrentAlreadySetObj;
+        return;
+      } else if(this.drillArr.length<2) {
         this.drillArr.push(path);
       }
-      if(this.drillArr.length === 1 && this.staticEntrance.isHole) {
-        this.currentRegion = this.allHolesObj; //this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
-      } else if(this.drillArr.length === 1 && this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
+      if(this.drillArr.length === 2 && this.staticEntrance.isHole) {
+        this.currentRegion = this.allCurrentObj; //this.drillArr[0] === 'lightworld' ? this.lwDrillObj.holes: this.dwDrillObj.holes;
+      } else if(this.drillArr.length === 2 && this.staticEntrance.isSkullWoods && this.staticEntrance.isHoleExit) {
         this.currentRegion = this.dwDrillObj.skullWoodsExits;
       } else if(this.drillArr.length === 2) {
         this.currentRegion = this.drillArr[0] === 'lightworld' ? this.lwDrillObj[this.drillArr[1]] : this.dwDrillObj[this.drillArr[1]];
       }
     }
     onBackButton() {
-      if(this.drillArr.length === 0 || this.drillArr.length === 1 && this.drillArr[0] === 'fake'){
+      if(this.drillArr.length === 0 || this.drillArr[0] === 'fake'){
         this.closeEditor();
       } else {
         this.drillArr.pop();
