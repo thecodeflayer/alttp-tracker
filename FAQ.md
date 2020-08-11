@@ -133,13 +133,13 @@ to help you remember to revisit the location later.
 
 Learn about the randomizer's entrance shuffle options under the Entrance Shuffle section of [alttpr.com/en/options](https://alttpr.com/en/options) 
 
+_NOTE:_ This is a BETA feature and additional enhancements will be added in the future.
+
 **None**
 
 Entrances are not shuffled and have no effect on tracker functionality. Entrance tracking is disabled.
 
 **Simple, Restricted, Full, Crossed**
-
-_NOTE:_ This is a BETA feature and additional enhancements will be added in the future.
 
 Entrances are shuffled and the option to track entrances is enabled on the Light World and Dark World maps. 
 Tap the Map icon to toggle to tracking entrances, a Door icon will appear.
@@ -154,16 +154,20 @@ Example: You enter Blind's Hideout and discover it links to Eastern Palace. You 
     
 Once links are created you can quickly navigate from the Entrance Links screen using the arrow icons.  
 
-In the future, different selection options will be created for each mode to align with options available in the randomizer for those modes.
+Entrance options are dictated based on the entrance shuffle option selected and align with the available options for that mode. 
 
-_NOTE:_ Location validation logic is currently disabled if Entrance Shuffle is set to any option other than None. All locations will appear as available.
-In the future I may update the validation logic to support Entrance Shuffle but this will take some time. 
+For example, Simple mode will limit options based on several criteria, giving you limited options for each entrance type while Full will have quite a few more entrance options but require extra navigation steps to limit the selection. 
 
 **Insanity**
 
 This mode functions the same way as the previous modes with the difference of how exit links are handled. 
 Since Insanity mode in the randomizer allows for exiting a location to take you to a different location than from where you entered, exit links are not automatically created. 
 The exception to this is single entrance caves, they will be linked back to the overworld entrance location since this is what the randomizer supports.  
+
+**Location Validation and Entrance Shuffle**
+ 
+Location validation logic is currently disabled if Entrance Shuffle is set to any option other than None. All locations will appear as available.
+In the future I may update the validation logic to support Entrance Shuffle but this will take some time. 
 
 ### Goal Settings
 
