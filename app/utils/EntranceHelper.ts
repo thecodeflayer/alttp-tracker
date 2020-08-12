@@ -75,6 +75,21 @@ export class EntranceHelper {
       }
       this.createLinkR(fromLink, toLink, caveAction);
     }
+    //handle holes/hole exit links
+    if(this.modelManager.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.insanity.id
+      && (this.getStaticEntrance(fromLink).isHole || this.getStaticEntrance(fromLink).isHoleExit) && this.getStaticEntrance(fromLink).holeLink) {
+      const holeLinkFrom = this.getStaticEntrance(fromLink).holeLink;
+      const holeLinkTo = this.getStaticEntrance(toLink).holeLink;
+      this.createLinkR(holeLinkFrom, holeLinkTo, action);
+    }
+    //handle multi entrance dungeons
+    if((this.modelManager.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.restricted.id || this.modelManager.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.simple.id)
+      && this.getStaticEntrance(fromLink).isMultiEntranceDungeon) {
+      const keys = Object.keys(this.getStaticEntrance(fromLink).multiLinks);
+      for(const key of keys){
+        this.createLinkR(this.getStaticEntrance(fromLink).multiLinks[key],this.getStaticEntrance(toLink).multiLinks[key], action);
+      }
+    }
     //handle junk links
     if((toLink==='junkCave' || (toLink === 'darkCave' && this.modelManager.settings.entranceShuffle !== GameSaveHelper.entranceShuffleOptions.insanity.id))
       && (action ==='enterLink' || action === 'exitLinkedTo')){

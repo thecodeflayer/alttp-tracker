@@ -44,6 +44,7 @@ export class StaticEntrancesDW {
     x: 1412, y: 124,
     isMultiEntranceDungeon: true,
     multiDir:'south',
+    multiLinks:{west:'darkDeathMtnLedgeWest', north:'darkDeathMtnLedgeEast', east:'turtleRockIsolatedLedgeEntrance'},
     name: 'Turtle Rock',
     region: 'dungeon',
     extImg: '~/img/entrance/turtleRock.png',
@@ -53,6 +54,7 @@ export class StaticEntrancesDW {
     x: 1195, y: 140,
     isMultiEntranceDungeon: true,
     multiDir:'west',
+    multiLinks:{south:'turtleRock', north:'darkDeathMtnLedgeEast', east:'turtleRockIsolatedLedgeEntrance'},
     name: 'Dark Death Mountain Ledge (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/darkDeathMtnLedgeWest.png',
@@ -61,6 +63,7 @@ export class StaticEntrancesDW {
   darkDeathMtnLedgeEast = { //turtleRockExitEast
     x: 1266, y: 140,
     multiDir:'north',
+    multiLinks:{west:'darkDeathMtnLedgeWest', south:'turtleRock', east:'turtleRockIsolatedLedgeEntrance'},
     isMultiEntranceDungeon: true,
     name: 'Dark Death Mountain Ledge (East)',
     region: 'dungeon',
@@ -70,6 +73,7 @@ export class StaticEntrancesDW {
   turtleRockIsolatedLedgeEntrance = { //turtleRockIsolatedLedgeExit
     x: 1231, y: 173,
     multiDir:'east',
+    multiLinks:{west:'darkDeathMtnLedgeWest', north:'darkDeathMtnLedgeEast', south:'turtleRock'},
     isMultiEntranceDungeon: true,
     name: 'Turtle Rock Isolated Ledge Entrance',
     region: 'dungeon',
@@ -333,6 +337,7 @@ export class StaticEntrancesDW {
   pyramidHole = { //pyramid //not sure how this one is handled
     x: 747, y: 612,
     isHole: true,
+    holeLink: 'pyramidEntrance',
     name: 'Pyramid Hole',
     region: 'northeast',
     extImg: '~/img/entrance/pyramidHole.png',
@@ -341,6 +346,7 @@ export class StaticEntrancesDW {
   pyramidEntrance = { //pyramidExit
     x: 650, y: 732,
     isHoleExit: true,
+    holeLink: 'pyramidHole',
     name: 'Pyramid Entrance',
     region: 'northeast',
     extImg: '~/img/entrance/pyramidEntrance.png',

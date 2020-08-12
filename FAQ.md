@@ -38,7 +38,7 @@ Yes! You can double-tap the map to toggle between worlds at the same position an
 #### A location should/should not be accessible with the items I have! What gives?
 
 If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
-In coding location logic I attempted to follow the randomizer logic as closely as possible. I have even done several runs to manuall test
+In coding location logic I attempted to follow the randomizer logic as closely as possible. I have even done several runs to manually test
 the logic and have implemented unit tests using the tests from the randomizer as a guide. 
 
 That said, there still may be placed that have been missed and I welcome your feedback.

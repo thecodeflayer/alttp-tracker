@@ -4,6 +4,7 @@ export class StaticEntrancesLW {
     x: 53, y: 1193,
     isMultiEntranceDungeon: true,
     multiDir:'west',
+    multiLinks:{north:'desertPalaceNorth', south:'desertPalaceSouth', east:'desertPalaceEast'},
     name: 'Desert Palace Entrance (West)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceWest.png',
@@ -13,6 +14,7 @@ export class StaticEntrancesLW {
     x: 111, y: 1154,
     isMultiEntranceDungeon: true,
     multiDir:'north',
+    multiLinks:{west:'desertPalaceWest', south:'desertPalaceSouth', east:'desertPalaceEast'},
     name: 'Desert Palace Entrance (North)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceNorth.png',
@@ -22,6 +24,7 @@ export class StaticEntrancesLW {
     x:111, y:1197,
     isMultiEntranceDungeon: true,
     multiDir:'south',
+    multiLinks:{north:'desertPalaceNorth', west:'desertPalaceWest', east:'desertPalaceEast'},
     name: 'Desert Palace Entrance (South)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceSouth.png',
@@ -31,6 +34,7 @@ export class StaticEntrancesLW {
     x: 169, y: 1193,
     isMultiEntranceDungeon: true,
     multiDir:'east',
+    multiLinks:{north:'desertPalaceNorth', south:'desertPalaceSouth', west:'desertPalaceWest'},
     name: 'Desert Palace Entrance (East)',
     region: 'dungeon',
     extImg: '~/img/entrance/desertPalaceEast.png',
@@ -48,6 +52,7 @@ export class StaticEntrancesLW {
     x: 750, y: 602,
     isMultiEntranceDungeon: true,
     multiDir:'north',
+    multiLinks:{west:'hyruleCastleWest', south:'hyruleCastleSouth', east:'hyruleCastleEast'},
     name: 'Agahnim\'s Tower',
     region: 'dungeon',
     extImg: '~/img/entrance/agaTower.png',
@@ -73,6 +78,7 @@ export class StaticEntrancesLW {
   };
   lumberjackTreeTree = { //lumberjackTreeTop
     isHole: true,
+    holeLink: 'lumberjackTreeCave',
     x: 451, y: 111,
     name: 'Lumberjack Tree Drop',
     region: 'northwest',
@@ -82,6 +88,7 @@ export class StaticEntrancesLW {
   lumberjackTreeCave = { //lumberjackTreeExit
     x: 498, y: 52,
     isHoleExit: true,
+    holeLink: 'lumberjackTreeTree',
     name: 'Lumberjack Tree Cave',
     region: 'northwest',
     extImg: '~/img/entrance/lumberjackTreeCave.png',
@@ -99,6 +106,7 @@ export class StaticEntrancesLW {
   lostWoodsHideoutDrop = { //lostWoodsHideoutTop
     x: 284, y: 196,
     isHole:true,
+    holeLink:'lostWoodsHideoutStump',
     name: 'Lost Woods Hideout Drop',
     region: 'northwest',
     extImg: '~/img/entrance/lostWoodsHideout.png',
@@ -107,6 +115,7 @@ export class StaticEntrancesLW {
   lostWoodsHideoutStump = { //lostWoodsHideoutExit
     x: 275, y: 227,
     isHoleExit: true,
+    holeLink: 'lostWoodsHideoutDrop',
     name: 'Lost Woods Hideout Stump',
     region: 'northwest',
     extImg: '~/img/entrance/lostWoodsHideout.png',
@@ -148,6 +157,7 @@ export class StaticEntrancesLW {
   sanctuary = { //sanctuaryExit
     x: 692, y: 406,
     isHoleExit: true,
+    holeLink: 'sanctuaryGrave',
     name: 'Sanctuary',
     region: 'northwest',
     extImg:'~/img/entrance/sanctuary.png',
@@ -156,6 +166,7 @@ export class StaticEntrancesLW {
   sanctuaryGrave = {
     x:778, y:439,
     isHole: true,
+    holeLink: 'sanctuary',
     name: 'Sanctuary Grave',
     region: 'northwest',
     extImg:'~/img/entrance/sanctuaryGrave.png',
@@ -180,6 +191,7 @@ export class StaticEntrancesLW {
   northFairyCaveDrop = {
     x: 964, y: 465,
     isHole:true,
+    holeLink: 'northFairyCave',
     name: 'North Fairy Cave Drop',
     region: 'northwest',
     extImg:'~/img/entrance/northFairyCave.png',
@@ -188,6 +200,7 @@ export class StaticEntrancesLW {
   northFairyCave = { //northFairyCaveExit
     x: 1002, y: 415,
     isHoleExit: true,
+    holeLink: 'northFairyCaveDrop',
     region: 'northwest',
     name: 'North Fairy Cave',
     extImg:'~/img/entrance/northFairyCave.png',
@@ -326,6 +339,7 @@ export class StaticEntrancesLW {
   kakarikoWellDrop = { //kakarikoWellTop
     x: 35, y: 638,
     isHole:true,
+    holeLink: 'kakarikoWellCave',
     name: 'Kakariko Well Drop',
     region: 'kakariko',
     extImg:'~/img/entrance/kakarikoWell.png',
@@ -334,6 +348,7 @@ export class StaticEntrancesLW {
   kakarikoWellCave = { //kakarikoWellExit
     x: 70, y: 644,
     isHoleExit: true,
+    holeLink: 'kakarikoWellDrop',
     name: 'Kakariko Well Cave',
     region: 'kakariko',
     extImg:'~/img/entrance/kakarikoWell.png',
@@ -414,6 +429,7 @@ export class StaticEntrancesLW {
   batCaveDrop = { //batCaveRight
     x: 497, y: 843,
     isHole:true,
+    holeLink: 'batCaveCave',
     name: 'Bat Cave Drop',
     region: 'kakariko',
     extImg: '~/img/entrance/batCave.png',
@@ -422,6 +438,7 @@ export class StaticEntrancesLW {
   batCaveCave = { //batCaveExit
     x: 464, y: 837,
     isHoleExit: true,
+    holeLink: 'batCaveDrop',
     name: 'Bat Cave Exit',
     region: 'kakariko',
     extImg: '~/img/entrance/batCave.png',
@@ -618,6 +635,7 @@ export class StaticEntrancesLW {
     x: 674, y: 584,
     isMultiEntranceDungeon: true,
     multiDir:'west',
+    multiLinks:{north:'agaTower', south:'hyruleCastleSouth', east:'hyruleCastleEast'},
     name: 'Hyrule Castle Entrance (West)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleWest.png',
@@ -627,6 +645,7 @@ export class StaticEntrancesLW {
     x: 750, y: 662,
     isMultiEntranceDungeon: true,
     multiDir:'south',
+    multiLinks:{north:'agaTower', west:'hyruleCastleWest', east:'hyruleCastleEast'},
     name: 'Hyrule Castle Entrance (South)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleSouth.png',
@@ -636,6 +655,7 @@ export class StaticEntrancesLW {
     x: 825, y: 584,
     isMultiEntranceDungeon: true,
     multiDir:'east',
+    multiLinks:{north:'agaTower', south:'hyruleCastleSouth', west:'hyruleCastleWest'},
     name: 'Hyrule Castle Entrance (East)',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleEast.png',
@@ -644,6 +664,7 @@ export class StaticEntrancesLW {
   hyruleCastleSecretEntranceDrop = { //hyruleCastleSecretEntranceExit
     x: 893, y: 623,
     isHole:true,
+    holeLink: 'hyruleCastleSecretEntranceStairs',
     name: 'Hyrule Castle Secret Entrance Drop',
     extImg: '~/img/entrance/hyruleCastleSecretEntranceDrop.png',
     intImg: '~/img/interior/hyruleCastleSecretEntranceDrop.png',
@@ -652,6 +673,7 @@ export class StaticEntrancesLW {
   hyruleCastleSecretEntranceStairs = { //hyruleCastleSecretEntrance
     x: 826, y: 643,
     isHoleExit: true,
+    holeLink: 'hyruleCastleSecretEntranceDrop',
     region: 'castle',
     extImg: '~/img/entrance/hyruleCastleSecretEntranceStairs.png',
     intImg: '~/img/interior/hyruleCastleSecretEntranceStairs.png',

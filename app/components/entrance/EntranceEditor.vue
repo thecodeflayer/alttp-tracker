@@ -48,7 +48,6 @@
     actionImage = '';
     logicText = [];
     entranceHelper = new EntranceHelper(this.$sol, this.$modelManager);
-    junkEntrances = EntranceHelper.junkLinkObjects;
     availableLinks = [];
     path=[];
     showAlreadyLinked = false;
