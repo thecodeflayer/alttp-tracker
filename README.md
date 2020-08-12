@@ -3,8 +3,10 @@
 # alttp-tracker
 A mobile app for tracking ALTTP randomizer runs. You can track items collected, dungeon items and bosses and view available locations on the Light World and Dark World maps.
 
-The tracker currently supports Standard, Inverted and Retro modes and is geared towards new players who are learning.
-A number of game goals are also supported such as Defeat Ganon, Triforce Hunt and Pedestal Goal to name a few.
+The tracker currently supports [Standard, Inverted and Retro](https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md#game-mode-settings) modes and is geared towards new players who are learning.
+[Game Goals](https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md#goal-settings) are also supported such as Defeat Ganon, Triforce Hunt and Pedestal Goal to name a few.
+
+[Entrance Shuffle BETA](https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md#entrance-shuffle-settings) support has recently been added! 
 
 ## Supported Platforms
 Currently, I'm only building APKs for Android. I still need to figure out how to build for iOS.
