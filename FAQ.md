@@ -65,7 +65,7 @@ If you feel there is an error in item counts, please file an [issue](https://git
 #### Why are you not on the Play Store?
 The short version is "I'm trying."
 
-The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immidiate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
+The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immediate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
 
 
 ## New Game Settings
@@ -168,6 +168,8 @@ Entrance options are dictated based on the entrance shuffle option selected and 
 
 For example, Simple mode will limit options based on several criteria, giving you limited options for each entrance type while Full will have quite a few more entrance options but require extra navigation steps to limit the selection. 
 
+There is also some automatic handling of entrance linking depending on the mode. For example, linking a hole entrance will automatically link the hole exit as well in all modes but Insanity.  
+
 **Insanity**
 
 This mode functions the same way as the previous modes with the difference of how exit links are handled. 
@@ -207,7 +209,7 @@ Triforce count is displayed and can be incremented on the Items screen.
 
 ### Crystals for Ganon and Ganon's Tower
 
-Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed, and also editable on the Items screen.
+Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed and editable from the Items screen.
 
 ## Troubleshooting
 Sometimes you run into problems. If the solution isn't here or doesn't work please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).
