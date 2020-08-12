@@ -5,6 +5,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 ### Contents
 - [General Questions](#general-questions)
+    - [Why do keys decrement (count down) on the Dungeons Screen?](#why-do-keys-decrement-count-down-on-the-dungeons-screen)
     - [I clicked on items, but the item count doesn't increase. Why?](#i-clicked-on-items-but-the-item-count-doesnt-increase-why)
     - [Can I quickly navigate between the light world and dark world maps?](#can-i-quickly-navigate-between-the-light-world-and-dark-world-maps)
     - [How do I see what items are required for a location or dungeon access?](#how-do-i-see-what-items-are-required-for-a-location-or-dungeon-access)
@@ -21,6 +22,15 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
     - [Help! I Upgraded and I can't click on Anything?!?](#help-i-upgraded-and-i-cant-click-on-anything)
 
 ## General Questions
+
+#### Why do keys decrement (count down) on the Dungeons Screen?
+
+In standard item shuffle mode, the default setting, key counts start with the maximum number of keys found in that dungeon and clicking decrements the count.
+This is to help new randomizer players by making it obvious how many keys are available in each dungeon. 
+
+In other item shuffle modes, Keysanity for example, the key counter starts at zero and increments from there. You can set the item shuffle settings when creating a new game.
+
+More information on item shuffle setting can be found [here](#item-shuffle-settings).
 
 #### I clicked on items, but the item count doesn't increase. Why?
 
