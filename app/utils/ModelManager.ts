@@ -16,7 +16,6 @@ import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultGameSaves, DefaultGameSavesData, GameVersions, Game} from '@/default-objects/DefaultGameSaves';
 import {RetroDefaultMap, RetroMapData} from '@/default-objects/RetroDefaultMap';
 import {DefaultEntranceData, DefaultEntrances} from '@/default-objects/DefaultEntrances';
-import {EntranceHelper} from '@/utils/EntranceHelper';
 
 export class ModelManager {
   items: DefaultItemsData;
@@ -27,7 +26,7 @@ export class ModelManager {
   editGame: GameEditObj;
   entrances: DefaultEntranceData;
 
-  appVersion = '1.1.1';
+  appVersion = '1.2.0';
   itemsVersion = '0.0.1';
   dungeonsVersion = '0.0.2';
   mapVersion = '0.0.1';
