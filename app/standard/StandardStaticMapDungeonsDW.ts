@@ -9,6 +9,12 @@ export class StandardStaticMapDungeonsDW {
       return items.hammer && items.moonpearl && items.bow > 0
         && (items.lantern || items.firerod) && StandardRegionHelper.northEastDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/moonpearl1', StandardRegionHelper.reqNorthEastDW]],
     reqBoss:[
       ['items/hammer1', 'items/moonpearl1', 'items/bow1', StandardRegionHelper.reqNorthEastDW, 'items/lantern1'],
@@ -22,6 +28,12 @@ export class StandardStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.flippers && items.moonpearl && items.mirror && items.hookshot && items.hammer && StandardRegionHelper.southDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/flippers1', 'items/moonpearl1', 'items/mirror1', StandardRegionHelper.reqSouthDW]],
     reqBoss:[['items/flippers1', 'items/moonpearl1', 'items/mirror1', 'items/hookshot1', 'items/hammer1', StandardRegionHelper.reqSouthDW]]
   }; // swamp palace
@@ -31,6 +43,12 @@ export class StandardStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.moonpearl && items.firerod && StandardRegionHelper.northWestDW(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[['items/moonpearl1', StandardRegionHelper.reqNorthWestDW]],
     reqBoss:[['items/moonpearl1', 'items/firerod1', StandardRegionHelper.reqNorthWestDW]]
@@ -42,6 +60,12 @@ export class StandardStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.moonpearl && StandardRegionHelper.northWestDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[['items/moonpearl1', StandardRegionHelper.reqNorthWestDW]],
     reqBoss:[['items/moonpearl1', StandardRegionHelper.reqNorthWestDW]]
   }; // thieves town
@@ -51,6 +75,12 @@ export class StandardStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.hammer && items.glove === 2 && (items.firerod || items.bombos) && items.moonpearl && items.flippers && StandardRegionHelper.southDW(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[
       ['items/moonpearl1', 'items/glove2', 'items/flippers1', StandardRegionHelper.reqSouthDW, 'items/firerod1'],
@@ -68,6 +98,12 @@ export class StandardStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.redcane && items.lantern && StandardRegionHelper.mm(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[[StandardRegionHelper.reqMm]],
     reqBoss:[['items/redcane1', 'items/lantern1', StandardRegionHelper.reqMm]]
   }; // misery mire
@@ -77,6 +113,12 @@ export class StandardStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.firerod && items.icerod && StandardRegionHelper.tr(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[StandardRegionHelper.reqTr]],
     reqBoss:[['items/firerod1', 'items/icerod1', StandardRegionHelper.reqTr]]
@@ -89,6 +131,12 @@ export class StandardStaticMapDungeonsDW {
       return (items.sword > 0 || items.net) && items.bow > 0
         && (items.lantern || items.firerod) && items.hookshot
         && StandardRegionHelper.gt(items, dungeons, settings);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[StandardRegionHelper.reqGt]],
     reqBoss:[

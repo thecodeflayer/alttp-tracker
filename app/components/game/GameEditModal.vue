@@ -13,6 +13,9 @@
         <Label :visibility="modalAction === 'resetMap' ? 'visible':'collapsed'" textWrap="true"
                textAlignment="center" style="padding-bottom: 10"
                text="Are you sure you want to reset the map data for this game?"/>
+        <Label :visibility="modalAction === 'resetEntrances' ? 'visible':'collapsed'" textWrap="true"
+               textAlignment="center" style="padding-bottom: 10"
+               text="Are you sure you want to reset the entrance data for this game?"/>
         <Label text="This cannot be undone!" textAlignment="center" style="padding-bottom: 10"/>
         <StackLayout orientation="vertical">
           <Button class="btn danger padded" @tap="closeModal(true)">OK</Button>
@@ -45,6 +48,8 @@
           this.resetDungeons();
         } else if (this.modalAction === 'resetMap') {
           this.resetMap();
+        } else if(this.modalAction === 'resetEntrances') {
+          this.resetEntrances();
         }
       }
       this['$modal'].close(doAction ? this.modalAction : 'cancel');
@@ -65,6 +70,10 @@
 
     resetMap() {
       this.$modelManager.resetMap();
+    }
+
+    resetEntrances() {
+      this.$modelManager.resetEntrances();
     }
   }
 </script>

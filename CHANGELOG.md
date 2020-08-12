@@ -1,4 +1,18 @@
-# What's New in Version 1.1.1
+# What's New in Version 1.2.0
+
+### Entrance Shuffle BETA
+Entrance tracking has been added. This is a BETA release of the feature. As such, not everything has been tested and your feedback is encouraged.
+
+When creating a new game you can select an option for Entrance Shuffle. You can find out more on the [FAQ page](https://github.com/thecodeflayer/alttp-tracker/blob/master/FAQ.md#entrance-shuffle-settings).
+
+### Enhancements and Bug Fixes
+
+- Game Edit settings UI has been updated.
+- "Back History" is now cleared periodically when navigating to the maps. This should reduce some issues that can appear when the "Back History" gets too large.
+
+---
+
+## What's New in Version 1.1.1
 
 ### Location Item Requirements Modal
 Required items for locations can now be shown by "long pressing" on the location.
@@ -11,8 +25,6 @@ Required items for locations can now be shown by "long pressing" on the location
 - Fixed issue with chest saves in Dungeons screen where chest counts set to zero would be reset to max value when reloading the save.
 - Fixed issue with item counts in various item shuffle modes. Items should now add up correctly. 
 - Location list views now have a sleeker UI.
-
----
 
 ## What's New in Version 1.1.0
 

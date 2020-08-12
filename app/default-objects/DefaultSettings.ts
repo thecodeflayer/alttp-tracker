@@ -23,6 +23,7 @@ export class DefaultSettingsData {
   openGanon = 7;
   triforceGoal = 20;
   triforceCount = 0;
+  entranceShuffle = 'none';
 
   static fromObject(obj:any):DefaultSettingsData {
     const data = new DefaultSettingsData();

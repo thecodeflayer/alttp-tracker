@@ -6,6 +6,7 @@
         <Label :text="game.name" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+        <Label :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
         <Label height="15"/>
         <Button class="btn standard padded" @tap="loadGame">Load Game</Button>
@@ -24,6 +25,7 @@
   import SaveList from '@/components/game/SaveList.vue';
   import GameEditModal from '@/components/game/GameEditModal.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditValid extends Vue {
@@ -31,22 +33,23 @@
     allowDelete = this.$modelManager.allowGameDelete();
     game = this.$modelManager.editGame;
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
 
     async openModal() {
       const retval = await this.$showModal(GameEditModal, {props:{modalAction:'deleteGame'}});
       if(retval !== 'cancel') {
-        this.$navigateTo(SaveList);
+        this.$navigateTo(SaveList, {clearHistory:true});
       }
     }
 
     loadGame() {
       this.$modelManager.loadGame(this.game.id);
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
 
     cancel() {
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
 
   }

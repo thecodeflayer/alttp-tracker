@@ -4,6 +4,8 @@ import {IDefaultMapData} from '@/default-objects/DefaultMap';
 import {DefaultSettings, DefaultSettingsData} from '@/default-objects/DefaultSettings';
 import {InvertedMapData} from '@/default-objects/InvertedDefaultMap';
 import {StandardDefaultMap, StandardMapData} from '@/default-objects/StandardDefaultMap';
+import {DefaultEntranceData, DefaultEntrances} from '@/default-objects/DefaultEntrances';
+import {GameSaveHelper} from '@/utils/GameSaveHelper';
 
 export class DefaultGameSaves {
   version = '0.0.1';
@@ -50,6 +52,7 @@ export class Game {
   settings:DefaultSettingsData;
   timestamp = undefined;
   versions: GameVersions;
+  entrances: DefaultEntranceData;
   static fromObject(obj:any):Game{
     const game = new Game();
     if(obj.timestamp){
@@ -59,11 +62,13 @@ export class Game {
       game.dungeons = obj.dungeons ? DefaultDungeonsData.fromObject(obj.dungeons) : new DefaultDungeonsData();
       game.map = obj.map ? (game.settings.gameMode === 'inverted' ? InvertedMapData.fromObject(obj.map) : StandardMapData.fromObject(obj.map) )
         : (game.settings.gameMode === 'inverted' ? new InvertedMapData() : new StandardMapData());
+      game.entrances = game.settings.entranceShuffle === GameSaveHelper.entranceShuffleOptions.none.id ? undefined : DefaultEntranceData.fromObject(obj.entrances);
       game.versions = new GameVersions(
         (obj.versions && obj.versions.items) ? obj.versions.items : new DefaultItems().version,
         (obj.versions && obj.versions.dungeons) ? obj.versions.dungeons : new DefaultDungeons().version,
         (obj.versions && obj.versions.map) ? obj.versions.map : new StandardDefaultMap().version,
-        (obj.versions && obj.versions.settings) ? obj.versions.items : new DefaultSettings().version,
+        (obj.versions && obj.versions.settings) ? obj.versions.settings : new DefaultSettings().version,
+        (obj.versions && obj.versions.entrances) ? obj.versions.entrances : new DefaultEntrances().version
       );
     }
     return game;
@@ -75,10 +80,12 @@ export class GameVersions {
   dungeons: string;
   map: string;
   settings: string;
-  constructor(items: string, dungeons: string, map: string, settings: string) {
+  entrances: string;
+  constructor(items: string, dungeons: string, map: string, settings: string, entrances: string) {
     this.items = items;
     this.dungeons = dungeons;
     this.map = map;
     this.settings = settings;
+    this.entrances = entrances;
   }
 }

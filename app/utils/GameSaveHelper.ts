@@ -22,6 +22,32 @@ export class GameSaveHelper {
       label: 'Keysanity'
     }
   }
+  static entranceShuffleOptions = {
+    none: {
+      id: 'none',
+      label: 'None'
+    },
+    simple: {
+      id: 'simple',
+      label: 'Simple - BETA'
+    },
+    restricted: {
+      id: 'restricted',
+      label: 'Restricted - BETA'
+    },
+    full: {
+      id: 'full',
+      label: 'Full - BETA'
+    },
+    crossed: {
+      id: 'crossed',
+      label: 'Crossed - BETA'
+    },
+    insanity: {
+      id: 'insanity',
+      label: 'Insanity - BETA'
+    }
+  }
   static goalOptions = {
     ganon: {
       id: 'ganon',
@@ -59,7 +85,7 @@ export class GameSaveHelper {
         undefined,
         undefined,
         undefined,
-        20, 7, 7);
+        20, 7, 7, 'none');
       if(modelManager.gameSaves[key].timestamp){
         g.timestamp = this.parseDate(modelManager.gameSaves[key].timestamp);
         g.valid = modelManager.validateGame(modelManager.gameSaves[key]);
@@ -70,6 +96,7 @@ export class GameSaveHelper {
         g.triforceGoal = modelManager.gameSaves[key].settings.triforceGoal;
         g.openGT = modelManager.gameSaves[key].settings.openGT;
         g.openGanon = modelManager.gameSaves[key].settings.openGanon;
+        g.entranceShuffle = this.entranceShuffleOptions[modelManager.gameSaves[key].settings.entranceShuffle].id;
       }
       retval[key]=g;
       i++;
@@ -102,8 +129,9 @@ export class GameEditObj {
   triforceGoal: number;
   openGT: number;
   openGanon: number;
+  entranceShuffle: string;
   constructor(id: string, name: string, timestamp: string, valid: boolean, loaded: boolean,
-    gameMode: string, itemShuffle: string, goal: string, triforceGoal: number, openGT: number, openGanon: number) {
+    gameMode: string, itemShuffle: string, goal: string, triforceGoal: number, openGT: number, openGanon: number, entranceShuffle: string) {
     this.id = id;
     this.name = name;
     this.timestamp = timestamp;
@@ -115,5 +143,6 @@ export class GameEditObj {
     this.triforceGoal = triforceGoal;
     this.openGT = openGT;
     this.openGanon = openGanon;
+    this.entranceShuffle = entranceShuffle;
   }
 }

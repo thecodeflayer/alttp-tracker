@@ -5,6 +5,7 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 
 ### Contents
 - [General Questions](#general-questions)
+    - [Why do keys decrement (count down) on the Dungeons Screen?](#why-do-keys-decrement-count-down-on-the-dungeons-screen)
     - [I clicked on items, but the item count doesn't increase. Why?](#i-clicked-on-items-but-the-item-count-doesnt-increase-why)
     - [Can I quickly navigate between the light world and dark world maps?](#can-i-quickly-navigate-between-the-light-world-and-dark-world-maps)
     - [How do I see what items are required for a location or dungeon access?](#how-do-i-see-what-items-are-required-for-a-location-or-dungeon-access)
@@ -14,12 +15,22 @@ A compendium of Frequently Asked Questions and documentation about the tracker. 
 - [New Game Settings](#new-game-settings)
     - [Game Mode Settings](#game-mode-settings)
     - [Item Shuffle Settings](#item-shuffle-settings)
+    - [Entrance Shuffle Settings](#entrance-shuffle-settings)
     - [Goal Settings](#goal-settings)    
     - [Crystals for Ganon and Ganon's Tower](#crystals-for-ganon-and-ganons-tower)
 - [Troubleshooting](#troubleshooting)
     - [Help! I Upgraded and I can't click on Anything?!?](#help-i-upgraded-and-i-cant-click-on-anything)
 
 ## General Questions
+
+#### Why do keys decrement (count down) on the Dungeons Screen?
+
+In standard item shuffle mode, the default setting, key counts start with the maximum number of keys found in that dungeon and clicking decrements the count.
+This is to help new randomizer players by making it obvious how many keys are available in each dungeon. 
+
+In other item shuffle modes, Keysanity for example, the key counter starts at zero and increments from there. You can set the item shuffle settings when creating a new game.
+
+More information on item shuffle setting can be found [here](#item-shuffle-settings).
 
 #### I clicked on items, but the item count doesn't increase. Why?
 
@@ -37,7 +48,7 @@ Yes! You can double-tap the map to toggle between worlds at the same position an
 #### A location should/should not be accessible with the items I have! What gives?
 
 If you've found an issue with location logic please please submit an [issue](https://github.com/thecodeflayer/alttp-tracker/issues)!
-In coding location logic I attempted to follow the randomizer logic as closely as possible. I have even done several runs to manuall test
+In coding location logic I attempted to follow the randomizer logic as closely as possible. I have even done several runs to manually test
 the logic and have implemented unit tests using the tests from the randomizer as a guide. 
 
 That said, there still may be placed that have been missed and I welcome your feedback.
@@ -54,7 +65,7 @@ If you feel there is an error in item counts, please file an [issue](https://git
 #### Why are you not on the Play Store?
 The short version is "I'm trying."
 
-The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immidiate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
+The Play Store has very strict policies regarding popular IPs. Navigating this has proven to be a challenge. I will continue to pursue publication on the play store. Meanwhile, I'm hosting here for immediate access. I'll continue distributing from Github as the update process for the Play Store is also slow and will always be behind what I can distribute here.
 
 
 ## New Game Settings
@@ -84,7 +95,7 @@ The primary effect this has on the tracker is the number of available chests and
 Additionally, the total number of items on the Items screen will change depending on the Item Shuffle option chosen.
 
 **NOTE**
-Location logic in the app assumes that you have the required big and small keys to access an area. There is an open question [here](https://github.com/thecodeflayer/alttp-tracker/issues/39) about whether to add big keys to the location logic. Feel free to add your opinion on the matter there.
+Location logic in the app assumes that you have the required big and small keys to access an area. There is an open question [here](https://github.com/thecodeflayer/alttp-tracker/issues/39) about whether to add big keys to the location logic. Feel free to add your opinion on the matter.
 
 To learn more about the randomizer options for item shuffle please read Item Settings > Dungeon Item Shuffle section of
 [alttpr.com/en/options](https://alttpr.com/en/options).
@@ -124,6 +135,52 @@ In this mode small keys will increment from zero. Note that, like the Maps, Comp
 The small key counter reflects all the small keys in the dungeon whether they are in a chest, a drop or from pots.
 To increment item count when you find a small key in a chest you should click the chest icon to decrement the chest count.
 
+### Entrance Shuffle Settings
+
+Entrance shuffle adds the option of tracking how overworld entrances (and their underworld/interior counterparts) are linked.
+You can link entrances a variety of ways and you have the option to quickly mark entrances as junk, dark caves or even add "pins" to the location
+to help you remember to revisit the location later.
+
+Learn about the randomizer's entrance shuffle options under the Entrance Shuffle section of [alttpr.com/en/options](https://alttpr.com/en/options) 
+
+_NOTE:_ This is a BETA feature and additional enhancements will be added in the future.
+
+**None**
+
+Entrances are not shuffled and have no effect on tracker functionality. Entrance tracking is disabled.
+
+**Simple, Restricted, Full, Crossed**
+
+Entrances are shuffled and the option to track entrances is enabled on the Light World and Dark World maps. 
+Tap the Map icon to toggle to tracking entrances, a Door icon will appear.
+Tapping an entrance will open that entrance's links. Tap on the appropriate link text, then select the link you would like to create.
+
+Example: You enter Blind's Hideout and discover it links to Eastern Palace. You can then follow these steps to track the link:
+
+- Tap Blind's Hideout from the map
+- Tap  "Entering Blind's Hideout overworld door leads to ???"
+- Tap Light World > Dungeons > Eastern Palace
+- The link is now created. Additionally the corresponding links will also be created on the linked location.
+    
+Once links are created you can quickly navigate from the Entrance Links screen using the arrow icons.  
+
+Entrance options are dictated based on the entrance shuffle option selected and align with the available options for that mode. 
+
+For example, Simple mode will limit options based on several criteria, giving you limited options for each entrance type while Full will have quite a few more entrance options but require extra navigation steps to limit the selection. 
+
+There is also some automatic handling of entrance linking depending on the mode. For example, linking a hole entrance will automatically link the hole exit as well in all modes but Insanity.  
+
+**Insanity**
+
+This mode functions the same way as the previous modes with the difference of how exit links are handled. 
+Since Insanity mode in the randomizer allows for exiting a location to take you to a different location than from where you entered, exit links are not automatically created. 
+The exception to this is single entrance caves, they will be linked back to the overworld entrance location since this is what the randomizer supports.  
+
+**Location Validation and Entrance Shuffle**
+ 
+Location validation logic is currently disabled if Entrance Shuffle is set to any option other than None. All locations will appear as available.
+In the future I may update the validation logic to support Entrance Shuffle but this will take some time. 
+
 ### Goal Settings
 
 Learn about the randomizer's game goals under the Goal section of [alttpr.com/en/options](https://alttpr.com/en/options)
@@ -152,7 +209,7 @@ Triforce count is displayed and can be incremented on the Items screen.
 
 ### Crystals for Ganon and Ganon's Tower
 
-Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed, and also editable on the Items screen.
+Sliders to set the Crystal requirement for Ganon's Tower and to access Ganon. The counts are displayed and editable from the Items screen.
 
 ## Troubleshooting
 Sometimes you run into problems. If the solution isn't here or doesn't work please file an [issue](https://github.com/thecodeflayer/alttp-tracker/issues).

@@ -9,6 +9,12 @@ export class RetroStaticMapDungeonsLW extends StandardStaticMapDungeonsLW{
     validateBoss(items){
       return  (items.bow > 0 && items.quiver) && (items.lantern || items.firerod);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[],
     reqBoss:[
       ['items/bow1', 'items/quiver1', 'items/lantern1'],

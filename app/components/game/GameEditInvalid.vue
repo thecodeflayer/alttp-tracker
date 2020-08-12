@@ -6,6 +6,7 @@
         <Label :text="game.name" fontSize="24" />
         <Label :text="'Game Mode: '+game.gameMode"/>
         <Label :text="'Item Shuffle: '+itemShuffleOptions[game.itemShuffle].label"/>
+        <Label :text="'Entrance Shuffle: '+entranceShuffleOptions[game.entranceShuffle].label"/>
         <Label :text="'Goal: '+goalOptions[game.goal].label"/>
         <Button class="btn danger padded" @tap="deleteGame">Delete</Button>
         <Label textWrap="true" fontSize="16" textAlignment="center"
@@ -22,18 +23,20 @@
   import {Component, Vue} from 'vue-property-decorator';
   import SaveList from '@/components/game/SaveList.vue';
   import {GameSaveHelper} from '@/utils/GameSaveHelper';
+  import DarkMap from '@/components/map/DarkMap.vue';
 
   @Component
   export default class GameEditInvalid extends Vue {
 
     allowDelete = this.$modelManager.allowGameDelete();
     itemShuffleOptions = GameSaveHelper.itemShuffleOptions;
+    entranceShuffleOptions = GameSaveHelper.entranceShuffleOptions;
     goalOptions = GameSaveHelper.goalOptions;
     game = this.$modelManager.editGame;
 
     deleteGame() {
       this.$modelManager.deleteGame(this.game.id);
-      this.$navigateTo(SaveList);
+      this.$navigateTo(SaveList, {clearHistory:true});
     }
   }
 </script>

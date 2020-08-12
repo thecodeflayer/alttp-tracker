@@ -36,6 +36,7 @@ export class MapWorld {
   y = 0;
   centerKey = undefined;
   centerShopKey = undefined;
+  centerEntranceKey = undefined;
   scrollY = 0;
   filterList = 0;
   locations = {};

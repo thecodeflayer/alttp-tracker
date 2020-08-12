@@ -8,6 +8,12 @@ export class StandardStaticMapDungeonsLW {
     validateBoss(items){
       return  items.bow > 0 && (items.lantern || items.firerod);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[],
     reqBoss:[
       ['items/bow1', 'items/lantern1'],
@@ -22,6 +28,12 @@ export class StandardStaticMapDungeonsLW {
       return StandardRegionHelper.dp(items, dungeons)
                 && (items.glove > 0 || (items.mirror && StandardRegionHelper.mireDW(items, dungeons)))
                 && (items.lantern || items.firerod);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[StandardRegionHelper.reqDp]],
     reqBoss:[
@@ -38,6 +50,12 @@ export class StandardStaticMapDungeonsLW {
     validateBoss(items, dungeons){
       return StandardRegionHelper.toh(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[[StandardRegionHelper.reqToh]],
     reqBoss:[[StandardRegionHelper.reqToh]]
   };
@@ -47,6 +65,12 @@ export class StandardStaticMapDungeonsLW {
     },
     validateBoss(items){
       return items.lantern && (items.cape || items.sword > 1) && (items.sword > 0 || items.net);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[['items/cape1'], ['items/sword2']],
     reqBoss:[

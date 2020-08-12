@@ -8,6 +8,12 @@ export class InvertedStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.hammer && items.bow > 0 && items.lantern && InvertedRegionHelper.northEastDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[[InvertedRegionHelper.reqNorthEastDW]],
     reqBoss:[['items/hammer1', 'items/bow1', 'items/lantern1', InvertedRegionHelper.reqNorthEastDW]]
   }; // palace of darkness
@@ -17,6 +23,12 @@ export class InvertedStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.flippers && items.moonpearl && items.mirror && items.hookshot && items.hammer && InvertedRegionHelper.southDW(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[['items/flippers1', 'items/moonpearl1', 'items/mirror1']],
     reqBoss:[['items/flippers1', 'items/moonpearl1', 'items/mirror1', 'items/hookshot1', 'items/hammer1']]
@@ -28,6 +40,12 @@ export class InvertedStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.firerod && InvertedRegionHelper.northWestDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[],
     reqBoss:[['items/firerod1']]
   }; // skull woods
@@ -38,6 +56,12 @@ export class InvertedStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return InvertedRegionHelper.northWestDW(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[],
     reqBoss:[]
   }; // thieves town
@@ -47,6 +71,12 @@ export class InvertedStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.hammer && items.glove > 0 && (items.firerod || items.bombos) && items.flippers && InvertedRegionHelper.southDW(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[
       ['items/flippers1', 'items/firerod1'],
@@ -64,6 +94,12 @@ export class InvertedStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.redcane && items.lantern && InvertedRegionHelper.mm(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[[InvertedRegionHelper.reqMm]],
     reqBoss:[['items/redcane1', 'items/lantern1', InvertedRegionHelper.reqMm]]
   }; // misery mire
@@ -74,6 +110,12 @@ export class InvertedStaticMapDungeonsDW {
     validateBoss(items, dungeons){
       return items.firerod && items.icerod && InvertedRegionHelper.tr(items, dungeons);
     },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
+    },
     req:[[InvertedRegionHelper.reqTr]],
     reqBoss:[['items/firerod1', 'items/icerod1', InvertedRegionHelper.reqTr]]
   }; // turtle rock
@@ -83,6 +125,12 @@ export class InvertedStaticMapDungeonsDW {
     },
     validateBoss(items, dungeons){
       return items.lantern && (items.sword > 0 || items.net) && InvertedRegionHelper.deathMtnEastDW(items, dungeons);
+    },
+    validateEntrance(items, dungeons, entrances, settings){
+      return true;
+    },
+    validateBossEntrance(items, dungeons, entrances, settings) {
+      return true;
     },
     req:[[InvertedRegionHelper.reqDeathMtnEastDW]],
     reqBoss:[
