@@ -87,7 +87,7 @@ export class EntranceHelper {
       && this.getStaticEntrance(fromLink).isMultiEntranceDungeon) {
       const keys = Object.keys(this.getStaticEntrance(fromLink).multiLinks);
       for(const key of keys){
-        this.createLinkR(this.getStaticEntrance(fromLink).multiLinks[key],this.getStaticEntrance(toLink).multiLinks[key], action);
+        this.createLinkR(this.getStaticEntrance(fromLink).multiLinks[key], this.getStaticEntrance(toLink).multiLinks[key], action);
       }
     }
     //handle junk links
