@@ -70,7 +70,6 @@ module.exports = env => {
   alias['~'] = appFullPath;
   alias['@'] = appFullPath;
   alias['vue'] = 'nativescript-vue';
-  alias['vue$'] = 'nativescript-vue';
 
   if (hasRootLevelScopedModules) {
     coreModulesPackageName = '@nativescript/core';
@@ -87,7 +86,7 @@ module.exports = env => {
   const areCoreModulesExternal = Array.isArray(env.externals) && env.externals.some(e => e.indexOf('tns-core-modules') > -1);
   if (platform === 'ios' && !areCoreModulesExternal) {
     entries['tns_modules/tns-core-modules/inspector_modules'] = 'inspector_modules';
-  };
+  }
   console.log(`Bundling application for entryPath ${entryPath}...`);
 
   let sourceMapFilename = nsWebpack.getSourceMapFilename(hiddenSourceMap, __dirname, dist);
@@ -254,11 +253,6 @@ module.exports = env => {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        options: {
-          plugins: [
-            '@babel/plugin-proposal-class-properties'
-          ]
-        }
       },
       {
         test: /\.ts$/,
